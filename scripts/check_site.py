@@ -22,7 +22,7 @@ from pathlib import Path
 
 SITE_URL = "https://gsoc.elixpo.com"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/mentors/", "/operations/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/agenda/", "/about/",
+STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/mentors/", "/operations/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/agenda/", "/why-elixpo/", "/about/",
                  "/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
 # Footer legal and community row (src/data/site.ts LEGAL_PAGES), exactly in this order, on every page.
 LEGAL_ROUTES = ["/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
@@ -100,7 +100,7 @@ FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
 # Each of these pages must mark its own link with aria-current="page".
 NAV_ROUTES = ["/ideas/", "/projects/", "/proposal/", "/timeline/", "/mentors/", "/faq/", "/contributor-guide/", "/contact/"]
 NAV_LABELS = ["Ideas", "Projects", "Proposal", "Timeline", "Mentors", "FAQ", "Get involved", "Contact"]
-NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/", "/operations/"]
+NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/", "/operations/", "/why-elixpo/"]
 # The five codebases on /projects/ (content/projects/*.md).
 PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "oreo"]
 IDEA_SECTIONS = ["Description", "Expected outcomes", "Stretch goals", "Out of scope", "How success is measured", "Material",
@@ -117,6 +117,10 @@ REQUIRED_SECTIONS = {
                      "escalation-and-conduct", "after-the-programme", "what-we-publish", "what-this-is-based-on"],
 }
 # How we run the programme: linked from these pages, and pointing to Google's rules and support address.
+# Why Elixpo: each answer links its evidence; these must stay.
+WHY_ELIXPO_LINKS = ["https://github.com/orgs/elixpo/repositories", "/projects/", "/mentors/", "/ideas/", "/contributor-guide/", "/selection/",
+                    "/operations/", "/ai-policy/", "/agenda/#money-and-commercial-interests", "/about/#mentoring-experience", "/agreements/",
+                    "mailto:gsoc@elixpo.com", HISTORY_EVIDENCE[3]]
 OPERATIONS_LINKED_FROM = ["/mentors/", "/contributor-guide/", "/agenda/"]
 OPERATIONS_LINKS = [GSOC_TIMELINE_URL, "https://developers.google.com/open-source/gsoc/help/responsibilities",
                     "https://summerofcode.withgoogle.com/rules", "mailto:gsoc-support@google.com", "/code-of-conduct/", "/agreements/"]
@@ -373,8 +377,8 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect("ItemList" in types, "/ideas/: ItemList JSON-LD missing")
         if route in idea_routes:
             expect("BreadcrumbList" in types, f"{route}: BreadcrumbList JSON-LD missing")
-        if route == "/faq/":
-            expect("FAQPage" in types, "/faq/: FAQPage JSON-LD missing")
+        if route in ("/faq/", "/why-elixpo/"):
+            expect("FAQPage" in types, f"{route}: FAQPage JSON-LD missing")
         if route == "/about/":
             expect("AboutPage" in types, "/about/: AboutPage JSON-LD missing")
         if route == "/projects/":
@@ -398,6 +402,15 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect('href="/agenda/"' in raw["/contributor-guide/"], "/contributor-guide/: does not link to /agenda/")
     if "/" in raw:
         expect('href="/agenda/"' in raw["/"] and "Read our agenda" in parsed["/"].text, "/: 'Read our agenda' link missing")
+    if "/" in raw:
+        actions = re.search(r'<div class="actions">(.*?)</div>', raw["/"], re.S)
+        expect(bool(actions) and re.findall(r'href="([^"]+)"', actions.group(1) if actions else "")[-1:] == ["/why-elixpo/"]
+               and "Why Elixpo for GSoC" in (actions.group(1) if actions else ""), "/: hero action 'Why Elixpo for GSoC' missing or not last")
+    if "/why-elixpo/" in raw:
+        source = raw["/why-elixpo/"]
+        for target in WHY_ELIXPO_LINKS:
+            expect(f'href="{target}"' in source, f"/why-elixpo/: evidence link missing: {target}")
+        expect(len(re.findall(r'<h2 id="q-\d+">', source)) >= 10, "/why-elixpo/: fewer than ten questions")
     for route in OPERATIONS_LINKED_FROM:
         if route in raw:
             body = re.search(r"<main.*?</main>", raw[route], re.S)

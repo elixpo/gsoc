@@ -45,6 +45,7 @@ export default function Home() {
           <div className="actions">
             <Link href="/ideas/">See the {IDEAS.length} project ideas</Link>
             <Link href="/contributor-guide/">How to apply</Link>
+            <Link href="/why-elixpo/">Why Elixpo for GSoC</Link>
           </div>
           <ul className="credentials" aria-label="Track record">
             {HOME_CREDENTIALS.map((item) => (

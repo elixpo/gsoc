@@ -72,7 +72,7 @@ export const CONTENT_REVIEWED = "2026-10-29";
 
 /**
  * Primary navigation, in this order, with Contact as a button at the end.
- * Agenda, Selection, AI policy, Glossary, About and How we run the programme live in the footer site map
+ * Agenda, Selection, AI policy, Glossary, About, Why Elixpo and How we run the programme live in the footer site map
  * and in contextual links (the proposal page links Selection and AI policy).
  */
 export const NAV = [
@@ -106,6 +106,7 @@ export const SITE_MAP = [
   { href: "/glossary/", label: "Glossary", about: "Definitions of the terms used on this site." },
   { href: "/contact/", label: "Contact", about: "Public channels and the programme email address." },
   { href: "/agenda/", label: "Our agenda", about: "Why Elixpo takes part, what it ships, how it decides and what it commits to contributors." },
+  { href: "/why-elixpo/", label: "Why Elixpo for GSoC", about: "Short, evidence-linked answers for programme reviewers." },
   { href: "/about/", label: "About Elixpo", about: "Elixpo's community and mentoring record, with sources." },
 ] as const;
 

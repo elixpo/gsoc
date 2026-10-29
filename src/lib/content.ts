@@ -150,13 +150,16 @@ export function getAbout() {
   };
 }
 
-export function getFaq() {
-  const page = getPage("faq");
+/** A page whose `##` headings are questions: the FAQ and "Why Elixpo". */
+export function getQuestions(slug: string) {
+  const page = getPage(slug);
   return {
     page,
     items: sections(page.body).map(({ heading, markdown }) => ({ question: heading, answerHtml: renderMarkdown(markdown) })),
   };
 }
+
+export const getFaq = () => getQuestions("faq");
 
 /* ----------------------------------------------------------------- ideas */
 

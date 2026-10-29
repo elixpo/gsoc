@@ -6,7 +6,7 @@ import { sizeLabel } from "@/components/blocks";
 export const dynamic = "force-static";
 export const dynamicParams = false;
 
-const PAGE_SLUGS = ["home", "ideas", "projects", "mentors", "operations", "contributor-guide", "proposal", "selection", "ai-policy", "timeline", "faq", "glossary", "contact", "agenda", "about", "privacy", "terms", "code-of-conduct", "contributing", "agreements"];
+const PAGE_SLUGS = ["home", "ideas", "projects", "mentors", "operations", "contributor-guide", "proposal", "selection", "ai-policy", "timeline", "faq", "glossary", "contact", "agenda", "why-elixpo", "about", "privacy", "terms", "code-of-conduct", "contributing", "agreements"];
 
 export function generateStaticParams() {
   return [...PAGE_SLUGS, ...IDEAS.map((idea) => idea.slug)].map((slug) => ({ slug: `${slug}.png` }));

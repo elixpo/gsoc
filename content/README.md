@@ -22,6 +22,7 @@ banner, capacity statement, contact email) in `src/data/site.ts`.
 | `pages/privacy.md`, `pages/terms.md`, `pages/code-of-conduct.md`, `pages/contributing.md` | `/privacy/`, `/terms/`, `/code-of-conduct/`, `/contributing/` |
 | `pages/agreements.md` | `/agreements/` (people and signed copies come from `src/data/agreements.ts`) |
 | `pages/agenda.md` | `/agenda/` (mission, what Elixpo ships, how it decides, money and commercial interests, care for contributors) |
+| `pages/why-elixpo.md` | `/why-elixpo/` (questions a programme reviewer may ask, each `##` heading one question with an evidence link) |
 | `pages/about.md` | `/about/` (history from `elixpo/content/history.json`; each step is `### Date — Title` with its evidence) |
 
 ## Ideas
