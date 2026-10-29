@@ -97,11 +97,12 @@ FORBIDDEN_FRAMING = [
 ]
 FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
 # Main navigation (src/data/site.ts NAV_GROUPS), exactly in this order, in three groups
-# (Ideas, Codebases, Mentors | Get involved, Proposal, Timeline | FAQ); Contact is last, as a button.
+# (Ideas, Codebases, Mentors | Get involved, Proposal, Timeline | FAQ), then a fourth group with the
+# "More" menu and Contact last, as a button. The order is checked outside the More panel.
 # Each of these pages must mark its own link with aria-current="page".
 NAV_ROUTES = ["/ideas/", "/projects/", "/mentors/", "/contributor-guide/", "/proposal/", "/timeline/", "/faq/", "/contact/"]
 NAV_LABELS = ["Ideas", "Codebases", "Mentors", "Get involved", "Proposal", "Timeline", "FAQ", "Contact"]
-NAV_GROUP_COUNT = 3
+NAV_GROUP_COUNT = 4
 # Pages without a TL;DR (src/lib/content.ts TLDR_EXEMPT): the timeline is only the timeline and a call to action.
 TLDR_EXEMPT = ["/timeline/"]
 # Inner pages without a hero card: the timeline (coming soon) is only the timeline and a call to action.
@@ -250,6 +251,18 @@ def people() -> dict[str, dict[str, object]]:
     return result
 
 
+def site_pages() -> list[str]:
+    """Every route in SITE_MAP and LEGAL_PAGES (src/data/site.ts), in order."""
+    source = Path("src/data/site.ts").read_text(encoding="utf-8")
+    routes = []
+    for name in ("SITE_MAP", "LEGAL_PAGES"):
+        block = re.search(rf"export const {name}\b[^=]*= \[(.*?)\n\];", source, re.S)
+        assert block, f"Could not read {name} from src/data/site.ts"
+        routes += re.findall(r'\{ href: "([^"]+)"', block.group(1))
+    assert routes, "Could not read the page list from src/data/site.ts"
+    return routes
+
+
 def png_size(path: Path) -> tuple[int, int]:
     header = path.read_bytes()[:24]
     assert header[1:4] == b"PNG" and header[12:16] == b"IHDR", f"{path} is not a PNG file"
@@ -276,6 +289,11 @@ def check_site(site: Path, launched: bool) -> list[str]:
     projects = [frontmatter(path) for path in sorted(Path("content/projects").glob("*.md"))]
     project_of = {str(project["repository"]): project for project in projects}
     routes = STATIC_ROUTES + idea_routes
+    pages = site_pages()
+    expect(sorted(pages) == sorted(STATIC_ROUTES), f"STATIC_ROUTES and src/data/site.ts disagree. Missing here: {sorted(set(pages) - set(STATIC_ROUTES))}; "
+           f"missing in site.ts: {sorted(set(STATIC_ROUTES) - set(pages))}")
+    # Pages listed in the header's "More" menu: every page except Home and the main navigation (incl. Contact)
+    more_routes = {page for page in pages if page != "/" and page not in NAV_ROUTES}
 
     # Launch gate: robots.txt
     robots = (site / "robots.txt").read_text(encoding="utf-8").casefold()
@@ -292,6 +310,8 @@ def check_site(site: Path, launched: bool) -> list[str]:
     urls = {node.text for node in sitemap.findall(f"{SITEMAP_NS}url/{SITEMAP_NS}loc") if node.text}
     expected_urls = {f"{SITE_URL}{route}" for route in routes}
     expect(urls == expected_urls, f"Sitemap mismatch. Missing: {sorted(expected_urls - urls)}; extra: {sorted(urls - expected_urls)}")
+    for route in pages + idea_routes:
+        expect(f"{SITE_URL}{route}" in urls, f"sitemap.xml omits {route} (listed in src/data/site.ts or content/ideas)")
 
     # Idea content rules
     for idea in ideas:
@@ -487,17 +507,46 @@ def check_site(site: Path, launched: bool) -> list[str]:
         main_nav = re.search(r'<nav[^>]*aria-label="Main".*?</nav>', source, re.S)
         expect(bool(main_nav), f"{route}: main navigation missing")
         if main_nav:
-            nav_hrefs = re.findall(r'href="([^"]+)"', main_nav.group(0))
+            # The "More" menu: a native <details> (works without JavaScript) whose summary is the hamburger button
+            details = re.findall(r'<details[^>]*class="nav-more"[^>]*>.*?</details>', main_nav.group(0), re.S)
+            expect(len(details) == 1, f"{route}: the header must have exactly one 'More' menu inside <details class=\"nav-more\"> (found {len(details)})")
+            more_hrefs: list[str] = []
+            if details:
+                summary = re.search(r"<summary([^>]*)>(.*?)</summary>", details[0], re.S)
+                expect(bool(summary and 'aria-label="More pages"' in summary.group(1)), f"{route}: the More <summary> must have aria-label=\"More pages\"")
+                expect(bool(summary and len(re.findall(r"<span></span>", summary.group(2))) == 3 and re.search(r">\s*More\s*<", summary.group(2))),
+                       f"{route}: the More <summary> must hold three hamburger bars and the visible text 'More'")
+                expect('class="nav-more-panel"' in details[0], f"{route}: the More panel is missing from <details>")
+                more_hrefs = re.findall(r'href="([^"]+)"', details[0])
+                expect(set(more_hrefs) == more_routes and len(more_hrefs) == len(more_routes),
+                       f"{route}: the More panel must list each page outside the main navigation once. Missing: {sorted(more_routes - set(more_hrefs))}; "
+                       f"extra: {sorted(set(more_hrefs) - more_routes)}")
+                if route in more_routes:
+                    expect(bool(re.search(rf'href="{re.escape(route)}"[^>]*aria-current="page"|aria-current="page"[^>]*href="{re.escape(route)}"', details[0])),
+                           f"{route}: the More panel does not mark the current page with aria-current")
+                    expect(bool(summary and 'data-current="true"' in summary.group(1)), f"{route}: the More button is not shown as active")
+            # Main navigation proper: everything outside the More panel
+            main_part = re.sub(r"<details.*?</details>", "", main_nav.group(0), flags=re.S)
+            nav_hrefs = re.findall(r'href="([^"]+)"', main_part)
             expect(nav_hrefs == NAV_ROUTES, f"{route}: main navigation order is {nav_hrefs}, expected {NAV_ROUTES}")
-            nav_labels = [html.unescape(re.sub(r"<[^>]+>", "", label)).strip() for label in re.findall(r"<a[^>]*>(.*?)</a>", main_nav.group(0), re.S)]
+            nav_labels = [html.unescape(re.sub(r"<[^>]+>", "", label)).strip() for label in re.findall(r"<a[^>]*>(.*?)</a>", main_part, re.S)]
             expect(nav_labels == NAV_LABELS, f"{route}: main navigation labels are {nav_labels}, expected {NAV_LABELS}")
-            groups = re.findall(r'<ul aria-label="[^"]+"', main_nav.group(0))
-            spacers = re.findall(r'class="nav-spacer"', main_nav.group(0))
+            groups = re.findall(r'<ul aria-label="[^"]+"', main_part)
+            spacers = re.findall(r'class="nav-spacer"', main_part)
             expect(len(groups) == NAV_GROUP_COUNT and len(spacers) == NAV_GROUP_COUNT - 1,
                    f"{route}: main navigation must have {NAV_GROUP_COUNT} labelled groups with spacers between them (found {len(groups)} groups, {len(spacers)} spacers)")
-            expect(re.search(r'class="nav-contact"[^>]*>\s*<a[^>]*href="/contact/"', main_nav.group(0)) is not None, f"{route}: Contact is not the button at the end of the main navigation")
+            expect(re.search(r'href="/faq/".*?class="nav-spacer".*?class="nav-more"', main_nav.group(0), re.S) is not None,
+                   f"{route}: the More menu must sit in its own group, after a spacer following FAQ")
+            more_at, faq_at, contact_at = main_nav.group(0).find('class="nav-more"'), main_nav.group(0).find('href="/faq/"'), main_nav.group(0).rfind('href="/contact/"')
+            expect(0 <= faq_at < more_at < contact_at, f"{route}: the More menu must come after FAQ and before Contact")
+            expect(re.search(r'class="nav-contact"[^>]*>\s*<a[^>]*href="/contact/"', main_part) is not None, f"{route}: Contact is not the button at the end of the main navigation")
             for target in NOT_IN_NAV:
-                expect(f'href="{target}"' not in main_nav.group(0), f"{route}: {target} belongs in the footer, not the main navigation")
+                expect(f'href="{target}"' not in main_part, f"{route}: {target} belongs in the More menu, not the main navigation")
+            # Every page is reachable from the header: brand (home), main navigation or the More panel
+            site_header = re.search(r'<header class="site-header".*?</header>', source, re.S)
+            header_links = set(re.findall(r'href="([^"]+)"', site_header.group(0))) if site_header else set()
+            for target in pages:
+                expect(target in header_links, f"{route}: {target} is not reachable from the header (main navigation or the More menu)")
         if main_nav and route in NAV_ROUTES:
             expect(re.search(rf'<a[^>]*href="{re.escape(route)}"[^>]*aria-current="page"|<a[^>]*aria-current="page"[^>]*href="{re.escape(route)}"', main_nav.group(0)) is not None,
                    f"{route}: main navigation does not mark the current page with aria-current")

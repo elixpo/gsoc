@@ -89,6 +89,27 @@ main:focus { outline:none; }
 .main-nav .nav-contact a { padding:0 1.1rem; background:var(--ink); color:var(--white); }
 .main-nav .nav-contact a:hover, .main-nav .nav-contact a[aria-current] { background:var(--leaf); color:var(--white); }
 
+/* "More": a native <details> menu listing every page outside the main navigation. Hairline panel, no shadow. */
+.main-nav .nav-more-item { position:relative; }
+.nav-more > summary { display:inline-flex; align-items:center; gap:.55rem; min-height:44px; padding:0 .85rem; border:1px solid var(--line-strong); border-radius:999px; color:#3d4a41; font-size:.875rem; font-weight:700; list-style:none; cursor:pointer; user-select:none; }
+.nav-more > summary::-webkit-details-marker { display:none; }
+.nav-more > summary:hover, .nav-more[open] > summary { background:#e8eee9; color:var(--leaf); }
+.nav-more > summary[data-current] { background:#e3ece5; color:var(--leaf); border-color:var(--leaf); }
+.nav-more > summary[data-current] > span:last-child { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:.3em; }
+.nav-more-icon { display:inline-grid; gap:3px; width:16px; }
+.nav-more-icon > span { display:block; height:2px; border-radius:2px; background:currentColor; transition:transform .18s ease, opacity .18s ease; }
+.nav-more[open] .nav-more-icon > span:nth-child(1) { transform:translateY(5px) rotate(45deg); }
+.nav-more[open] .nav-more-icon > span:nth-child(2) { opacity:0; }
+.nav-more[open] .nav-more-icon > span:nth-child(3) { transform:translateY(-5px) rotate(-45deg); }
+.nav-more-panel { position:absolute; z-index:110; top:calc(100% + .6rem); right:0; width:min(520px, calc(100vw - 2rem)); display:grid; grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr)); gap:1rem 1.25rem; padding:1.1rem 1.25rem 1.2rem; border:1px solid var(--line-strong); border-radius:var(--radius); background:var(--paper); }
+.nav-more-heading { margin:0 0 .35rem; color:var(--leaf); font:650 .7rem/1.4 var(--font-mono); letter-spacing:.13em; text-transform:uppercase; }
+.main-nav .nav-more-panel ul { display:grid; gap:0; }
+.main-nav .nav-more-panel li { border-top:1px solid var(--line); }
+.main-nav .nav-more-panel a { display:flex; min-height:40px; padding:0 .25rem; border-radius:0; font-size:.875rem; }
+.main-nav .nav-more-panel a:hover { background:none; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.2em; }
+.main-nav .nav-more-panel a[aria-current] { background:none; color:var(--leaf); text-decoration:underline; text-decoration-thickness:2px; }
+@media (prefers-reduced-motion:reduce) { .nav-more-icon > span { transition:none; } }
+
 /* Hero cards: a large rounded card on a soft tinted gradient, under the floating navigation */
 .hero-card { position:relative; margin:.75rem; padding:calc(var(--nav-height) + 3.5rem) var(--hero-inline) clamp(2.25rem,4vw,3.25rem); overflow:hidden; border:1px solid rgba(20,32,24,.12); border-radius:2rem; background:var(--hero-gradient); }
 .hero-card > :not(.hero-geometry) { position:relative; z-index:2; }
@@ -454,6 +475,8 @@ a.link-chip:hover { border-color:var(--ink); background:var(--white); }
   .site-header { position:relative; top:auto; margin:.75rem auto; flex-wrap:wrap; border-radius:1.5rem; padding:.6rem .75rem; }
   .main-nav { flex-basis:100%; }
   .main-nav .nav-contact { margin-left:0; }
+  .main-nav .nav-more-item { position:static; }
+  .nav-more-panel { left:0; right:0; width:auto; }
   .hero-card { padding-top:clamp(2rem,6vw,3rem); }
   .hero-geometry i:nth-child(4) { top:2rem; }
   .home-hero, .split, .band-head, .idea-hero, .faq > section, .content-split .prose { grid-template-columns:minmax(0,1fr); }
@@ -477,6 +500,8 @@ a.link-chip:hover { border-color:var(--ink); background:var(--white); }
   .main-nav .nav-groups { gap:.1rem .75rem; }
   .nav-spacer { display:none; }
   .main-nav a { padding:0 .65rem; font-size:.8125rem; }
+  .nav-more > summary { padding:0 .7rem; font-size:.8125rem; }
+  .nav-more-panel { grid-template-columns:repeat(2,minmax(0,1fr)); padding:1rem; }
   .hero-card { margin:.5rem; border-radius:1.5rem; }
   .hero-geometry i:nth-child(3), .hero-geometry i:nth-child(4) { display:none; }
   .actions a { width:100%; }
