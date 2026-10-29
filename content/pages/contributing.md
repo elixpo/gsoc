@@ -1,0 +1,44 @@
+---
+title: Contributing
+description: How to contribute to Elixpo's Google Summer of Code programme - suggest or improve a project idea, fix text on this site, and contribute to the participating projects.
+heading: Contributing to *the programme*
+lead: You do not have to wait for Google Summer of Code to take part. You can help shape the project ideas, improve this site and contribute to the participating projects now.
+next:
+  - /projects/
+  - /contributor-guide/
+  - /code-of-conduct/
+---
+
+## Suggest or improve an idea
+
+Open a discussion in
+[GitHub Discussions](https://github.com/orgs/elixpo/discussions) to suggest a
+new idea or to improve an existing one, for example a clearer outcome, a
+missing setup step or a better warm-up task. Name the idea and the codebase,
+and describe the problem it solves. A new idea, or a change to an idea's size
+or mentors, needs agreement from both mentors named on it.
+
+## Fix text on this site
+
+Every page on this site is built from Markdown files in the site's `content/`
+folder. The site's source repository will be published on GitHub. Once it is
+public, you can fix a mistake by opening a pull request against `content/`.
+Until then, report the mistake in
+[GitHub Discussions](https://github.com/orgs/elixpo/discussions) or to
+[gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+
+## Contribute to the participating projects
+
+The project ideas belong to five Elixpo codebases, listed on the
+[participating projects page](/projects/) with their repositories, setup
+instructions and contribution guidelines. Small fixes, tests and
+documentation are welcome at any time. If you plan to apply, the
+[Get involved guide](/contributor-guide/) explains how to start.
+
+## Rules that apply
+
+- Follow the [Code of Conduct](/code-of-conduct/) in every Elixpo space.
+- Follow the [AI policy](/ai-policy/): you must understand, test and be able to
+  explain everything you submit, and disclose meaningful use of AI tools.
+- Each repository's own contribution guidelines and licence apply to work in
+  that repository.
