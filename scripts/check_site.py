@@ -359,8 +359,12 @@ def check_site(site: Path, launched: bool) -> list[str]:
             continue
 
         expect(bool(page.title.strip()), f"{route}: missing <title>")
-        if route != "/":
-            expect(page.title.strip().endswith("· Elixpo GSoC"), f"{route}: title does not use the site template: {page.title!r}")
+        title = page.title.strip()
+        expect(len(title) <= 60, f"{route}: title is {len(title)} characters; keep it to 60 or fewer")
+        if route != "/" and not route.startswith("/ideas/"):
+            expect(title.endswith("· Elixpo GSoC"), f"{route}: title does not use the site template: {page.title!r}")
+        description = first(page.meta, "description") or ""
+        expect(70 <= len(description) <= 160, f"{route}: description is {len(description)} characters; keep it between 70 and 160")
         expect(page.links.get("canonical") == canonical, f"{route}: canonical is {page.links.get('canonical')!r}, expected {canonical}")
         expect(bool(first(page.meta, "description")), f"{route}: missing description")
         expect(first(page.meta, "og:url") == canonical, f"{route}: og:url is {first(page.meta, 'og:url')!r}")

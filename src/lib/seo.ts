@@ -41,10 +41,10 @@ export const socialImage = (slug: string) => socialCard(slug).url;
 export function pageMetadata(options: { title: string; description: string; path: string; social: string; absoluteTitle?: boolean }): Metadata {
   const { title, description, path, social } = options;
   const card = socialCard(social);
-  const fullTitle = options.absoluteTitle ? title : `${title} · ${SITE_NAME}`;
+  const fullTitle = options.absoluteTitle ? title : `${title} · ${SITE_NAME}`.length > 60 ? title : `${title} · ${SITE_NAME}`;
   const alt = `${title}: Elixpo, Google Summer of Code 2027`;
   return {
-    title: options.absoluteTitle ? { absolute: title } : title,
+    title: options.absoluteTitle || `${title} · ${SITE_NAME}`.length > 60 ? { absolute: title } : title,
     description,
     alternates: { canonical: path },
     openGraph: {

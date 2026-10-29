@@ -1,6 +1,6 @@
 ---
 title: "Warm-up: set up a project without keys"
-description: How to set up each Elixpo project for Google Summer of Code 2027 from a clean checkout without private keys - prerequisites, the exact commands from each repository, how to tell it worked, the warm-up tasks and known limitations.
+description: Set up each Elixpo GSoC 2027 project from a clean checkout without private keys: prerequisites, exact commands, expected results and warm-up tasks.
 heading: Set up a project *without keys*
 lead: Every warm-up task can be done from a public checkout, without decrypting any Elixpo configuration. This page gives, for each of the five projects, what runs without keys, the commands taken from the repository's own files, how to tell it worked, and the limitations you may meet today.
 tldr:

@@ -1,6 +1,6 @@
 ---
 title: How we run the programme
-description: How Elixpo will run Google Summer of Code 2027 - what happens in each phase, the weekly communication cadence and progress report, mentor duties and absence cover, evaluations, escalation, and what happens after the programme.
+description: How Elixpo runs Google Summer of Code 2027: each phase, weekly check-ins and reports, mentor cover, evaluations, escalation and life after the programme.
 heading: How we run *the programme*
 lead: This page sets out how Elixpo will run Google Summer of Code 2027 from selection to the end of the programme and after it. These are our commitments, based on Google's published responsibilities for organisations, mentors and contributors. We will follow them for every contributor.
 tldr:
