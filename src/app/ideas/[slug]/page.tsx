@@ -201,7 +201,7 @@ export default async function IdeaPage({ params }: Props) {
                     <a href={`${idea.repository}/blob/main/CONTRIBUTING.md`}>Contribution guidelines (CONTRIBUTING)</a>
                   </li>
                   <li>
-                    <Link href={`/projects/#${projectAnchor(idea.repository)}`}>Project overview</Link>
+                    <Link href={`/projects/#${projectAnchor(idea.repository)}`}>Codebase overview</Link>
                   </li>
                 </ul>
                 <p className="note">

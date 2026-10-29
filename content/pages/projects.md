@@ -1,7 +1,7 @@
 ---
-title: Participating projects
+title: Participating codebases
 description: The five Elixpo codebases behind our GSoC 2027 ideas: LixBlogs, LixSketch, Crumb, Elixpo Open Source and Oreo, with repositories, setup and mentors.
-heading: Participating *projects*
+heading: Participating *codebases*
 lead: Every Elixpo project idea belongs to one of the five codebases below. Each entry describes the project, its main languages, where to find its setup and contribution guidelines, the ideas it hosts and their mentors.
 tldr:
   - Five codebases host the ideas: LixBlogs, LixSketch, Crumb, Elixpo Open Source and Oreo.

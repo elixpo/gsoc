@@ -1,7 +1,7 @@
 # Developing the Elixpo GSoC site
 
 The source of **https://gsoc.elixpo.com**, Elixpo's Google Summer of Code
-programme site: project ideas, participating projects, mentors, contributor
+programme site: project ideas, participating codebases, mentors, contributor
 guide, proposal template, selection criteria, AI policy and FAQ.
 
 Elixpo is applying to be a mentoring organisation for GSoC 2027. The site
@@ -17,7 +17,7 @@ GitHub. See [`content/README.md`](../content/README.md) for the full map.
 | `content/pages/home.md` | `/` |
 | `content/pages/ideas.md` + `content/ideas/*.md` | `/ideas/` |
 | `content/ideas/<slug>.md` | `/ideas/<slug>/` |
-| `content/pages/projects.md` + `content/projects/*.md` | `/projects/` (ideas and mentors come from the idea files) |
+| `content/pages/projects.md` + `content/projects/*.md` | `/projects/`, titled "Codebases" (ideas and mentors come from the idea files) |
 | `content/pages/mentors.md` + `src/data/people.ts` | `/mentors/` |
 | `content/pages/contributor-guide.md` | `/contributor-guide/` |
 | `content/pages/proposal.md` | `/proposal/` |

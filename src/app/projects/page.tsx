@@ -39,7 +39,7 @@ export default function ProjectsPage() {
   return (
     <>
       <JsonLd data={[structured, breadcrumbJsonLd([{ name: page.title, path: "/projects/" }])]} />
-      <PageHero eyebrow="Projects" headingHtml={page.headingHtml} lead={page.lead} />
+      <PageHero eyebrow="Codebases" headingHtml={page.headingHtml} lead={page.lead} />
       <Tldr items={page.tldrHtml} />
       <PageLayout toc={PROJECTS.map((project) => ({ id: project.slug, text: project.name }))}>
         {PROJECTS.map((project) => (

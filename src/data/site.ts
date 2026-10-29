@@ -88,19 +88,33 @@ export const SETUP_NOTE = "Set up from the README; no private keys needed.";
 export const CONTENT_REVIEWED = "2026-10-29";
 
 /**
- * Primary navigation, in this order, with Contact as a button at the end.
- * Agenda, Selection, AI policy, Glossary, About, Why Elixpo and How we run the programme live in the footer site map
+ * Primary navigation in three groups, shown with a hairline spacer between
+ * them, then Contact as a button at the end. "Codebases" is the /projects/
+ * page (the route keeps its name so existing links work).
+ * Agenda, Selection, AI policy, Glossary, About, Why Elixpo, Warm-up and How we run the programme live in the footer site map
  * and in contextual links (the proposal page links Selection and AI policy).
  */
-export const NAV = [
-  { href: "/ideas/", label: "Ideas" },
-  { href: "/projects/", label: "Projects" },
-  { href: "/proposal/", label: "Proposal" },
-  { href: "/timeline/", label: "Timeline" },
-  { href: "/mentors/", label: "Mentors" },
-  { href: "/faq/", label: "FAQ" },
-  { href: "/contributor-guide/", label: "Get involved" },
+export const NAV_GROUPS = [
+  {
+    label: "Explore",
+    items: [
+      { href: "/ideas/", label: "Ideas" },
+      { href: "/projects/", label: "Codebases" },
+      { href: "/mentors/", label: "Mentors" },
+    ],
+  },
+  {
+    label: "Apply",
+    items: [
+      { href: "/contributor-guide/", label: "Get involved" },
+      { href: "/proposal/", label: "Proposal" },
+      { href: "/timeline/", label: "Timeline" },
+    ],
+  },
+  { label: "Help", items: [{ href: "/faq/", label: "FAQ" }] },
 ] as const;
+export type NavItem = { readonly href: string; readonly label: string };
+export const NAV: readonly NavItem[] = NAV_GROUPS.flatMap((group): readonly NavItem[] => group.items);
 export const NAV_CONTACT = { href: "/contact/", label: "Contact" } as const;
 
 /**
@@ -111,7 +125,7 @@ export const NAV_CONTACT = { href: "/contact/", label: "Contact" } as const;
 export const SITE_MAP = [
   { href: "/", label: "Home", about: "Elixpo's plans for Google Summer of Code 2027." },
   { href: "/ideas/", label: "Project ideas", about: "The six project ideas, with size, difficulty and mentors." },
-  { href: "/projects/", label: "Participating projects", about: "The five codebases the ideas belong to." },
+  { href: "/projects/", label: "Codebases", about: "The five codebases the ideas belong to." },
   { href: "/contributor-guide/", label: "Get involved", about: "How to prepare and apply, step by step." },
   { href: "/warm-up/", label: "Warm-up", about: "Set up each project without keys: commands, checks and known limitations." },
   { href: "/proposal/", label: "Proposal template", about: "The sections every proposal must contain." },

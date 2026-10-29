@@ -21,7 +21,7 @@ Yes. The Elixpo GitHub organisation was created on 24 February 2024 and
 develops its projects in public. Each of the five participating repositories
 had changes pushed in October 2026. See the
 [Elixpo repositories](https://github.com/orgs/elixpo/repositories), the
-[participating projects](/projects/) and the [dated history](/about/).
+[participating codebases](/projects/) and the [dated history](/about/).
 
 ## Is the software under an OSI-approved licence?
 

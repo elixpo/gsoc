@@ -18,7 +18,7 @@
 
 This repository is the home of Elixpo's Google Summer of Code (GSoC)
 programme. It holds everything a prospective contributor needs to read before
-applying: the project ideas, the projects they belong to, how to get involved,
+applying: the project ideas, the codebases they belong to, how to get involved,
 how to write a proposal, how we select contributors, our AI policy and the
 people who mentor.
 
@@ -61,9 +61,9 @@ The full descriptions, warm-up tasks and mentors are on
 [gsoc.elixpo.com/ideas](https://gsoc.elixpo.com/ideas/). The source text is in
 [`content/ideas/`](content/ideas/).
 
-## Participating projects
+## Participating codebases
 
-| Project | What it is | Repository |
+| Codebase | What it is | Repository |
 |---|---|---|
 | **LixBlogs** | A collaborative publishing platform with an API and a CLI | [elixpo/blogs.elixpo](https://github.com/elixpo/blogs.elixpo) |
 | **LixSketch** | A shared canvas for sketches, diagrams and documents | [elixpo/sketch.elixpo](https://github.com/elixpo/sketch.elixpo) |
