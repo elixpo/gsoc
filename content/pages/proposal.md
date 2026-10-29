@@ -2,18 +2,36 @@
 title: Proposal template
 description: The proposal template for Elixpo's GSoC 2027 ideas: synopsis, approach, deliverables, a timeline with a midterm checkpoint, testing and availability.
 heading: Proposal *template*
-lead: Your proposal is your plan for one Elixpo project idea. Use the sections below, in this order. Write it yourself; be specific and concise.
+lead: Your proposal is your plan for one Elixpo project idea. Start with what Google provides, then use Elixpo's template below, in this order. Write it yourself; be specific and concise.
 tldr:
+  - "Google provides the official guidance: its contributor guide on [writing a proposal](https://google.github.io/gsocguides/student/writing-a-proposal), submission only through the [official GSoC website](https://summerofcode.withgoogle.com/) during the contributor application period, and the dates on its [official timeline](https://developers.google.com/open-source/gsoc/timeline). Google has not announced the 2027 dates yet."
   - Your proposal is your plan for one idea. Write it yourself.
   - Complete at least one of the idea's warm-up tasks first.
-  - Use the sections on this page, in order, including a timeline with a midterm checkpoint.
+  - Use the sections of [the template](#the-template), in order, including a timeline with a midterm checkpoint.
   - Send a draft to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) so that mentors can comment on it.
-  - Submit the final proposal on the [official GSoC website](https://summerofcode.withgoogle.com/).
+  - Choose your idea first: [browse the six project ideas](/ideas/).
 next:
   - /selection/
   - /ai-policy/
   - /timeline/
 ---
+
+## What Google provides
+
+Google runs the application and publishes the official guidance. Read it
+first; the rest of this page adds what Elixpo asks for.
+
+1. **Google's guide.** Google's contributor guide explains
+   [writing a proposal](https://google.github.io/gsocguides/student/writing-a-proposal):
+   the formal requirements to check first, being clear about your time
+   commitments, and the elements of a quality proposal.
+2. **Where to submit.** Proposals are submitted only through the
+   [official GSoC website](https://summerofcode.withgoogle.com/), during the
+   contributor application period. Proposals sent anywhere else are not
+   considered.
+3. **When.** The dates are on Google's
+   [official timeline](https://developers.google.com/open-source/gsoc/timeline).
+   Google has not announced the 2027 dates yet.
 
 ## Before you write
 
@@ -26,6 +44,11 @@ next:
   deadline so that mentors can comment on it.
 - You must submit your final proposal through the
   [official GSoC website](https://summerofcode.withgoogle.com/).
+
+## The template
+
+Elixpo's template: use these sections, in this order. Write each one
+yourself.
 
 ## Title
 
