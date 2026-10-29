@@ -1,80 +1,85 @@
 ---
 title: Contributor guide
-description: How to get involved with Elixpo before applying to Google Summer of Code 2027 - pick an idea, set up the code, make a small contribution and talk to us in public.
-heading: Get involved before you apply
-lead: This page is for anyone thinking of applying to work on an Elixpo idea. It shows you, step by step, how to set up the code, make a small first contribution and talk to us. You can start now; you don't need to wait for Google's dates.
+description: How to prepare for and apply to Elixpo in Google Summer of Code 2027 - the pre-application phase, the application phase, hints for applicants and communication channels.
+heading: Get involved
+lead: This guide is for prospective Google Summer of Code contributors who are interested in an Elixpo project idea. It describes what to do before applications open, how to apply, and how to communicate with mentors.
 next:
   - /proposal/
   - /selection/
   - /ai-policy/
 ---
 
-The strongest applications come from people who have already set up the
-code, made a small contribution and talked to us. These five steps get you
-there.
+## Pre-application phase
 
-## 1. Pick an idea
+1. **Browse the ideas.** Read the [ideas list](/ideas/) and choose one or
+   two that match your skills and interests. Each idea page lists the
+   repository, the skills required, warm-up tasks and the mentors. The
+   [projects page](/projects/) describes each codebase.
+2. **Set up the code.** Clone the repository and follow its README from a
+   fresh checkout. You do not need any private Elixpo key, password, account
+   or paid service to build the code and run the tests relevant to your idea.
+   If setup requires one, report it as an issue: it is a defect in our
+   instructions, and fixing it is a valid first contribution.
+3. **Ask questions in public.** Use
+   [GitHub Discussions](https://github.com/orgs/elixpo/discussions) for
+   questions about an idea and repository issues for defects. Do not send
+   unsolicited private messages to mentors about project work; public answers
+   help every applicant.
+4. **Complete a warm-up task.** Each idea page lists warm-up tasks. A small,
+   finished, reviewed change carries more weight than a large unfinished one.
 
-Read the [ideas list](/ideas/) and choose one or two that match your skills
-and interests. Each idea page lists the repository (the place on GitHub
-where the project's code lives), the skills you need and the mentors.
+## Application phase
 
-## 2. Set up the project on your computer
+1. **Choose one idea.** We prefer one well-researched proposal to several
+   general ones.
+2. **Introduce yourself.** Post in
+   [GitHub Discussions](https://github.com/orgs/elixpo/discussions) with the
+   idea you intend to apply for, your background and your warm-up
+   contribution.
+3. **Contact the mentors through GitHub before finalising your proposal.**
+   Share a draft in a public discussion thread so that mentors can comment on
+   it.
+4. **Read the rules.** Read the
+   [Google Summer of Code rules](https://summerofcode.withgoogle.com/rules)
+   and the [contributor guide](https://google.github.io/gsocguides/student/)
+   published by Google. Google sets eligibility and the number of proposals
+   you may submit.
+5. **Submit through Google.** You must submit your final proposal through the
+   [official GSoC website](https://summerofcode.withgoogle.com/). Proposals
+   sent by email or posted only on GitHub are not considered.
 
-Download the code and follow the project's setup instructions, starting from
-a fresh copy. You should not need any private Elixpo key, password, account
-or paid service to build the code and run the tests that matter for your
-idea.
+Use the [proposal template](/proposal/) and read the
+[selection criteria](/selection/) and the [AI policy](/ai-policy/).
 
-| Project | Repository | Start with |
-|---|---|---|
-| LixBlogs | [elixpo/blogs.elixpo](https://github.com/elixpo/blogs.elixpo) | [README](https://github.com/elixpo/blogs.elixpo/blob/main/README.md), [.env.example](https://github.com/elixpo/blogs.elixpo/blob/main/.env.example), [CONTRIBUTING](https://github.com/elixpo/blogs.elixpo/blob/main/CONTRIBUTING.md) |
-| LixSketch | [elixpo/sketch.elixpo](https://github.com/elixpo/sketch.elixpo) | [README](https://github.com/elixpo/sketch.elixpo/blob/main/README.md), [CONTRIBUTING](https://github.com/elixpo/sketch.elixpo/blob/main/CONTRIBUTING.md) |
-| Crumb | [elixpo/crumb.elixpo](https://github.com/elixpo/crumb.elixpo) | [README](https://github.com/elixpo/crumb.elixpo/blob/main/README.md), [CONTRIBUTING](https://github.com/elixpo/crumb.elixpo/blob/main/CONTRIBUTING.md) |
-| Elixpo Open Source | [elixpo/opensource.elixpo](https://github.com/elixpo/opensource.elixpo) | [README](https://github.com/elixpo/opensource.elixpo/blob/main/README.md), [CONTRIBUTING](https://github.com/elixpo/opensource.elixpo/blob/main/CONTRIBUTING.md) |
-| Oreo | [elixpo/oreo](https://github.com/elixpo/oreo) | [README](https://github.com/elixpo/oreo/blob/main/README.md), [CONTRIBUTING](https://github.com/elixpo/oreo/blob/main/CONTRIBUTING.md) |
+## Hints before applying
 
-The README explains how to set up the project. CONTRIBUTING explains how to
-send changes. `.env.example` is a sample settings file, where a project
-needs one.
+- **Be visible in the community.** Ask questions, answer others where you
+  can, and post progress on your warm-up task in public.
+- **Work on issues.** Fix a small defect, add a test or improve the
+  documentation in the repository for your idea.
+- **Write clear pull requests.** State what you changed and how you tested
+  it, and disclose meaningful use of AI tools as the
+  [AI policy](/ai-policy/) requires.
+- **Respond to review.** Review is how mentors and contributors work
+  together, and how we assess communication.
+- **Read the code before proposing.** Proposals that refer to specific files,
+  routes or modules are stronger than proposals that restate the idea page.
 
-If setup fails or asks for a secret key, that is a bug in our instructions,
-not your fault. Tell us in an issue or in Discussions, and include the exact
-command and error message. Fixing setup is a good first contribution.
+## Communication channels
 
-## 3. Make a small contribution
+| Purpose | Channel |
+|---|---|
+| Questions about an idea or the code | [GitHub Discussions](https://github.com/orgs/elixpo/discussions) |
+| Defects and setup problems | An issue in the relevant repository |
+| Programme questions and private matters | [gsoc@elixpo.com](mailto:gsoc@elixpo.com) |
+| Code of Conduct reports | The [Code of Conduct](https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md) reporting steps |
 
-Fix a small bug, improve a test, or make the documentation clearer in the
-repository for your idea. Keep it small and finish it: a merged ten-line
-change tells us more than an unfinished large one.
-
-You send a change as a pull request: a request, on GitHub, for the project
-to accept your change. When you open one:
-
-- Explain what you changed and how you tested it.
-- If you used AI tools in a meaningful way, say so. Read our
-  [AI policy](/ai-policy/).
-- Reply to review comments. Review is how we work together.
-
-## 4. Talk to us in public
-
-- Ask questions and introduce yourself in
-  [GitHub Discussions](https://github.com/orgs/elixpo/discussions), our
-  public forum.
-- Report bugs as issues in the relevant repository.
-- Please don't send private messages to mentors about the project. Public
-  questions help the next person too.
-
-Mentors aim to reply within 48 hours on weekdays. If you have waited longer,
-post a polite reminder in the same thread.
-
-## 5. Write your proposal
-
-Use the [proposal template](/proposal/) and read how we
-[select contributors](/selection/).
+Ask in public first. Mentors aim to reply within 48 hours on weekdays. If you
+have not received a reply after that, post a reminder in the same thread.
 
 ## Code of Conduct
 
 Everyone taking part follows the
-[Elixpo Code of Conduct](https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md),
-our rules for treating each other with respect.
+[Elixpo Code of Conduct](https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md).
+
+We look forward to your application.

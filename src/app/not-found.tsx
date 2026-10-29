@@ -13,12 +13,12 @@ export default function NotFound() {
     <PageHero
       eyebrow="404"
       heading="Page not found"
-      lead="We could not find this page. It may have moved, or the link may be wrong. These links will help you find your way."
+      lead="The requested page does not exist. It may have moved, or the link may be incorrect. Use the links below or the site map at the foot of the page."
     >
       <div className="actions">
-        <Link href="/">Go to the home page</Link>
-        <Link href="/ideas/">See the project ideas</Link>
-        <Link href="/faq/">Read the FAQ</Link>
+        <Link href="/">Home page</Link>
+        <Link href="/ideas/">Project ideas</Link>
+        <Link href="/faq/">FAQ</Link>
       </div>
     </PageHero>
   );

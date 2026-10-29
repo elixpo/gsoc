@@ -1,11 +1,11 @@
 # Elixpo GSoC site
 
 The source of **https://gsoc.elixpo.com**, Elixpo's Google Summer of Code
-programme site: project ideas, mentors, contributor guide, proposal template,
-selection criteria, AI policy and FAQ.
+programme site: project ideas, participating projects, mentors, contributor
+guide, proposal template, selection criteria, AI policy and FAQ.
 
-Elixpo is preparing to apply to GSoC 2027 as a first-time mentoring
-organisation. Google has not yet announced GSoC 2027.
+Elixpo is applying to be a mentoring organisation for GSoC 2027. The site
+must never claim that Elixpo has been accepted.
 
 ## How content maps to routes
 
@@ -17,6 +17,7 @@ GitHub. See [`content/README.md`](content/README.md) for the full map.
 | `content/pages/home.md` | `/` |
 | `content/pages/ideas.md` + `content/ideas/*.md` | `/ideas/` |
 | `content/ideas/<slug>.md` | `/ideas/<slug>/` |
+| `content/pages/projects.md` + `content/projects/*.md` | `/projects/` (ideas and mentors come from the idea files) |
 | `content/pages/people.md` + `src/data/people.ts` | `/people/` |
 | `content/pages/contributor-guide.md` | `/contributor-guide/` |
 | `content/pages/proposal.md` | `/proposal/` |
@@ -55,9 +56,11 @@ npm run site:check   # crawl metadata, launch gate, links, consistency
 `scripts/check_site.py` checks every exported page for title, canonical URL,
 description, Open Graph and Twitter tags (with `og:image` sizes that match the
 real PNG), JSON-LD (Organization and WebSite everywhere, BreadcrumbList on
-inner pages, ItemList on `/ideas/`, FAQPage on `/faq/`, AboutPage on
-`/about/`), one `<h1>`, `lang="en"`, the skip link, the status banner, the GSoC
-trademark notice in every footer, the main navigation order, broken internal
+inner pages, ItemList on `/ideas/`, CollectionPage of SoftwareSourceCode on
+`/projects/`, FAQPage on `/faq/`, AboutPage on `/about/`), one `<h1>`, `lang="en"`, the skip link, the status banner, the GSoC
+trademark notice in every footer, the exact main navigation order and labels,
+the idea page sections (including Warm-up tasks), the five repositories on
+`/projects/`, the absence of "first-time" framing, broken internal
 links, the GSoC logo placement on `/`, history evidence links on `/about/`,
 role chips on `/people/`, `security.txt`, icons and the manifest, no
 `::before`/`::after` in the built CSS, and claims the site must not make. It also checks that idea
@@ -122,7 +125,7 @@ time to emit `<meta name="google-site-verification">`. Unset, nothing is emitted
 [Google's downloads](https://developers.google.com/open-source/gsoc/resources/downloads/).
 Follow Google's [brand guidelines](https://developers.google.com/open-source/gsoc/resources/brand_guidelines):
 do not alter or recolour the logo, never combine it with the Elixpo mark in one
-lockup, always label it ("Elixpo is preparing to apply to"), and never imply
+lockup, always label it ("Elixpo is applying to"), and never imply
 that Google endorses Elixpo. Every page carries the trademark notice in its
 footer (`GSOC_TRADEMARK_NOTICE` in `src/data/site.ts`).
 
@@ -140,5 +143,5 @@ described in [SECURITY.md](SECURITY.md).
   licence. Each Elixpo project linked from the site keeps its own licence.
 
 Google Summer of Code and the GSoC logo are trademarks of Google LLC. Elixpo
-is preparing to apply as a mentoring organisation and is not affiliated with or
-endorsed by Google.
+is applying as a mentoring organisation and is not affiliated with or endorsed
+by Google.

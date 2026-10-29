@@ -1,23 +1,24 @@
 ---
 title: AI policy
-description: Elixpo's AI policy for Google Summer of Code 2027 applicants and contributors - what AI use is allowed, what must be disclosed, and what leads to rejection.
+description: Elixpo's AI policy for Google Summer of Code 2027 applicants and contributors - permitted use of AI tools, required disclosure, and grounds for rejection.
 heading: AI policy
-lead: This page explains when you may use AI tools, such as chatbots and code assistants, and what you must tell us. In short, you may use AI to learn, but you must understand and stand behind everything you submit.
+lead: This policy covers AI tools such as chatbots and code assistants. You may use them to learn, but you must understand, test and be able to explain everything you submit.
 next:
   - /proposal/
   - /selection/
   - /contributor-guide/
 ---
 
-## Allowed
+## Permitted use
 
-- Using AI tools to research and learn: for example, to understand a
-  codebase, an error message or an idea.
+- Using AI tools for research and learning, for example to understand a
+  codebase, an error message or a concept.
 
-## You must tell us
+## Disclosure
 
-- If an AI tool did a meaningful part of the work in your code, say so in
-  the pull request description: which tool, and what it helped with.
+- If an AI tool produced a meaningful part of the code in a pull request,
+  state this in the pull request description: name the tool and what it was
+  used for.
 
 ## Your responsibility
 
@@ -28,10 +29,10 @@ next:
 
 - **Proposals written by AI.** Your proposal must be your own writing and
   your own plan.
-- **Made-up evidence.** Invented test results, contributions, references
+- **Fabricated evidence.** Invented test results, contributions, references
   or experience lead to rejection.
 
-## From our side
+## Review
 
-Mentors are people, and people review your work. Automated checks may run
-on pull requests, but a person makes the decision.
+Mentors review all work personally. Automated checks may run on pull
+requests, but a mentor makes every decision.

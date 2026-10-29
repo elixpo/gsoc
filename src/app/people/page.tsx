@@ -16,7 +16,7 @@ export default function PeoplePage() {
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: page.title, path: "/people/" }])} />
       <PageHero eyebrow="People" heading={page.heading} lead={page.lead} />
-      <section className="content content-split" aria-labelledby="how-mentoring-works">
+      <section className="content content-split" aria-labelledby="roles">
         <Prose html={page.html} />
       </section>
       <section className="content" aria-labelledby="people-list">

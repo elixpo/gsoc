@@ -1,22 +1,22 @@
 ---
 title: People
 description: The mentors, organisation administrator and programme coordinator for Elixpo's Google Summer of Code 2027 application.
-heading: The people behind the programme
-lead: These are the people running Elixpo's application to Google Summer of Code 2027. Here you can see who mentors which idea, what each role means, and how to reach each person.
+heading: People
+lead: The mentors and organisers responsible for Elixpo's Google Summer of Code 2027 application, the ideas each mentor supervises, and how to contact them.
 next:
   - /ideas/
   - /contact/
   - /contributor-guide/
 ---
 
-## How mentoring works
+## Roles
 
-- Mentors are people, not bots. A person reviews every piece of your work.
-- We aim to reply within 48 hours on weekdays.
-- Every idea has two mentors. Your **primary mentor** is your main contact.
-  Your **backup mentor** knows your project and can step in, so you are
-  never left without help.
+- Each idea has two mentors. The **primary mentor** is the contributor's main
+  contact. The **backup mentor** knows the project and can step in, so the
+  contributor always has support.
+- Mentors review all work personally and aim to reply within 48 hours on
+  weekdays.
 - The **organisation administrator** manages Elixpo's application and its
-  dealings with Google.
-- The **programme coordinator** helps with community questions, but does
-  not mentor or review code.
+  communication with Google.
+- The **programme coordinator** handles community questions and does not
+  mentor or review code.

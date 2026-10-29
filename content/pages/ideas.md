@@ -1,29 +1,32 @@
 ---
 title: Project ideas
-description: Six Google Summer of Code 2027 project ideas from Elixpo, each with size, difficulty, a primary and a backup mentor, expected outcomes and proof of success.
+description: Elixpo's six project ideas for Google Summer of Code 2027, each with size, difficulty, a primary and a backup mentor, expected outcomes and success measures.
 heading: Project ideas for 2027
-lead: These are the six projects you can choose from if you apply to Elixpo. Each one is a single problem in a single project, with two mentors. Read the short summaries, open the ones that interest you, and choose one to build your proposal around.
+lead: Each idea is a defined piece of work in one Elixpo codebase, with expected outcomes, out-of-scope items, success measures and two mentors. Choose one idea and build your proposal around it.
 next:
+  - /projects/
   - /contributor-guide/
   - /proposal/
-  - /people/
 ---
 
-## How to read this list
+## Reading the list
 
-- **Size** is how much work the project is expected to take: 90 hours
-  (small) or 175 hours (medium). We are not offering 350-hour projects.
-- **Difficulty** is Easy, Intermediate or Hard: one Easy, three
-  Intermediate and two Hard.
-- **Mentors**: each idea has a primary mentor (your main contact) and a
-  backup mentor (who knows the project and can step in).
-- The ideas describe what is needed, not a recipe. Your proposal should show
-  your own understanding and your own plan.
+- **Size** is the expected total effort: 90 hours (small) or 175 hours
+  (medium). We do not offer 350-hour projects.
+- **Difficulty** follows Google's levels: one idea is Easy, three are
+  Intermediate and two are Hard.
+- **Mentors**: each idea has a primary mentor, who is the contributor's main
+  contact, and a backup mentor, who knows the project and can step in.
+- Each idea page lists warm-up tasks. Complete at least one before you write
+  your proposal.
+- The ideas describe the problem and the expected outcomes, not a solution.
+  Your proposal must set out your own understanding and your own plan.
 
-New to some of these words? See the [glossary](/glossary/).
+Terms are defined in the [glossary](/glossary/).
 
-## Your own idea
+## Proposing your own idea
 
-You can suggest your own idea. Talk to us in
-[GitHub Discussions](https://github.com/orgs/elixpo/discussions) first. It
-must fit one project, and it needs a mentor who can review it.
+You may propose an idea of your own. Discuss it in
+[GitHub Discussions](https://github.com/orgs/elixpo/discussions) before
+writing a proposal. It must fit one codebase and have a mentor who agrees to
+review it.

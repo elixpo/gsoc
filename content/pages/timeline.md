@@ -1,39 +1,39 @@
 ---
 title: Timeline
-description: The Google Summer of Code 2027 timeline has not yet been announced by Google. Elixpo will publish dates here once they are official. Meanwhile, this page explains the usual stages of the programme.
-heading: "Timeline: coming soon"
-lead: Google has not yet announced the dates for Google Summer of Code 2027. This page explains the usual stages of the programme, so you know what to expect. We will add the 2027 dates once Google publishes them.
+description: The stages of Google Summer of Code and where Google publishes the official 2027 dates. Elixpo lists the 2027 dates here once Google publishes them.
+heading: Programme timeline
+lead: Google Summer of Code follows the same sequence of stages each year. This page describes them. Google publishes the official dates, and we list the 2027 dates here once they are available.
 next:
   - /contributor-guide/
   - /ideas/
   - /faq/
 ---
 
-## The usual stages
+## Programme stages
 
-Each year, Google Summer of Code follows the same broad order. The exact
-dates and rules change, so always check the official timeline.
+The dates and rules change each year; the official timeline is authoritative.
 
 1. **Organisations apply.** Open-source organisations apply to Google to take
-   part. Elixpo is preparing to apply at this stage.
-2. **Organisations are announced.** Google publishes the list of
-   organisations it has chosen.
-3. **Contributors apply.** You submit your proposal through the Google Summer
-   of Code site.
-4. **Community bonding.** Selected contributors get to know their mentors and
-   the project, and plan the work before coding starts.
-5. **Coding.** You work on your project, with regular review from your
-   mentors.
-6. **Evaluations.** Mentors and contributors give feedback on how the work is
-   going: once around the middle (the midterm) and once at the end.
+   part. Elixpo is applying at this stage.
+2. **Organisations are announced.** Google publishes the list of accepted
+   organisations.
+3. **Contributors apply.** Contributors submit proposals through the official
+   GSoC website.
+4. **Community bonding.** Selected contributors meet their mentors, study the
+   project and plan the work before coding starts.
+5. **Coding.** Contributors carry out the project with regular review from
+   their mentors.
+6. **Evaluations.** Mentors and contributors evaluate progress at the midterm
+   and at the end of the programme.
 
-## Where to find the dates
+## Official dates
 
-We will add the 2027 dates here once Google publishes them. Until then, the
-official source is the
+The official source is the
 [Google Summer of Code timeline](https://developers.google.com/open-source/gsoc/timeline).
+We add the 2027 dates to this page once Google publishes them.
 
-## You can start now
+## Preparing now
 
-You don't need to wait for dates. Read the
-[contributor guide](/contributor-guide/) and get involved now.
+Prospective contributors can prepare before the contributor application
+period. The [contributor guide](/contributor-guide/) describes the
+pre-application phase.

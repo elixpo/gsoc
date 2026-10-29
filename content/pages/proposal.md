@@ -1,74 +1,103 @@
 ---
 title: Proposal template
-description: The proposal template for Elixpo's Google Summer of Code 2027 ideas - what to include, from the problem in your own words to milestones, testing and availability.
+description: The proposal template for Elixpo's Google Summer of Code 2027 ideas - contact details, synopsis, approach, deliverables, timeline with a midterm checkpoint, testing, communication and availability.
 heading: Proposal template
-lead: A proposal is your written plan for the idea you want to work on. This page gives you the headings to use and what to put under each one. Write it yourself, in your own words. Short and specific is better than long and general.
+lead: Your proposal is your plan for one Elixpo project idea. Use the sections below, in this order. Write it yourself; be specific and concise.
 next:
   - /selection/
   - /ai-policy/
   - /timeline/
 ---
 
-## Before you start
+## Before you write
 
-- Copy the eight headings below into your proposal.
-- Share a draft with us in
-  [GitHub Discussions](https://github.com/orgs/elixpo/discussions) before
-  the deadline, so we can ask questions.
-- Read [how we select a contributor](/selection/) and our
+- Read the idea page in full, including its expected outcomes, out-of-scope
+  items and success measures.
+- Complete at least one of the idea's warm-up tasks.
+- Read the [selection criteria](/selection/) and the
   [AI policy](/ai-policy/). Your proposal must be your own writing.
-- When applications open, you submit the final proposal through Google's
-  [Summer of Code site](https://summerofcode.withgoogle.com/), not to us
-  directly.
+- Share a draft in
+  [GitHub Discussions](https://github.com/orgs/elixpo/discussions) before the
+  deadline so that mentors can comment on it.
+- You must submit your final proposal through the
+  [official GSoC website](https://summerofcode.withgoogle.com/).
 
-## 1. About you
+## Title
 
-- Name, GitHub username and time zone.
-- Your relevant experience. Link to code you have written.
-- Why this idea, and what you want to learn.
+Use this format:
 
-## 2. The problem in your own words
+> Elixpo GSoC 2027: &lt;idea title&gt; — &lt;your name&gt;
 
-Explain the problem as you understand it after reading the code. What is
-broken or missing today, and who does it affect? Don't copy the idea page.
+For example: *Elixpo GSoC 2027: Oreo badge desktop simulator — Jane Doe*.
 
-## 3. Approach and design decisions
+## 1. Contact details
 
-- How you plan to solve the problem.
-- The main choices you need to make, the options you considered, and why you
-  picked one.
-- What you are unsure about, and how you will find out.
+- Full name, email address, GitHub username and time zone.
+- Links to your other public profiles, if relevant.
 
-## 4. Milestones
+## 2. About you
 
-A milestone is a checkpoint: a piece of work you will have finished by a
-certain point.
+- Your education or work background and relevant experience.
+- Links to code you have written.
+- Why you chose this idea and what you expect to learn.
 
-- Split the work into milestones of one to two weeks. Each one should end in
-  a pull request that a mentor can review.
-- Mark a **midterm checkpoint**: what will be merged (accepted into the
-  project) by the middle of the programme.
-- Say what you will drop first if you fall behind.
+## 3. Project title
 
-## 5. Testing and proof
+The title of the idea as it appears on the idea page.
 
-How will you and your mentors know the work is done? Connect your plan to the
-idea's "Proof of success" section. Include at least one test that fails
-before your change and passes after it. That shows your change really fixes
-the problem.
+## 4. Synopsis
 
-## 6. Communication plan
+A short paragraph that summarises the problem and your proposed solution.
 
-- How often you will post progress, and where (we prefer public places, like
-  GitHub Discussions).
-- How you will ask for help when you are stuck.
+## 5. The problem in your own words
 
-## 7. Availability
+Explain the problem as you understand it after reading the code. Refer to the
+files, routes or modules involved. Do not copy the idea page.
 
-- How many hours a week you can work on the project.
-- Exams, travel, jobs or other commitments during the programme.
+## 6. Proposed approach and design decisions
 
-## 8. Prior contributions to Elixpo
+- How you intend to solve the problem.
+- The main design decisions, the options you considered and the reasons for
+  your choice.
+- Open questions, and how you will resolve them.
 
-Link your pull requests, issues and discussions in Elixpo repositories. Say
-what you learned from the review.
+## 7. Deliverables
+
+List what will exist at the end of the project, mapped to the idea's expected
+outcomes. Mark any stretch goals separately.
+
+## 8. Timeline
+
+- Divide the work into milestones of one to two weeks. Each milestone should
+  end in a pull request that a mentor can review.
+- Include the community bonding period.
+- Mark a **midterm checkpoint**: the work that will be merged by the midterm
+  evaluation.
+- State what you will drop first if the work falls behind.
+
+## 9. Testing and evidence
+
+Explain how you and your mentors will confirm the work is complete, with
+reference to the idea's "How success is measured" section. Include at least
+one test that fails before your change and passes after it.
+
+## 10. Communication plan
+
+- How often you will report progress, and where. We prefer public channels
+  such as GitHub Discussions.
+- How you will ask for help when you are blocked.
+
+## 11. Availability and other commitments
+
+- The number of hours per week you can commit.
+- Examinations, travel, employment or other commitments during the programme.
+
+## 12. Prior contributions to Elixpo
+
+Link your pull requests, issues and discussions in Elixpo repositories, and
+state what you learned from review.
+
+## 13. GSoC experience
+
+State whether you have applied to or taken part in Google Summer of Code
+before, with which organisations, and the outcome.

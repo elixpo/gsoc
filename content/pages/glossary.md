@@ -1,8 +1,8 @@
 ---
 title: Glossary
-description: Plain explanations of the words used on Elixpo's Google Summer of Code 2027 site, from mentor and proposal to pull request and stretch goal.
+description: Definitions of the terms used on Elixpo's Google Summer of Code 2027 site, from mentor and proposal to pull request and stretch goal.
 heading: Glossary
-lead: This page explains, in plain words, the terms you will see across this site. Use it whenever a word on another page is new to you.
+lead: Definitions of the terms used across this site, grouped by topic.
 next:
   - /
   - /ideas/
@@ -12,7 +12,7 @@ next:
 ## The programme
 
 - **Google Summer of Code (GSoC)**: a programme run by Google in which
-  people new to open source work on a real open-source project for a few
+  contributors new to open source work on an open-source project for several
   months, with mentors. See the
   [official site](https://summerofcode.withgoogle.com/).
 - **Open source**: software whose code is public, so anyone can read, use
@@ -35,18 +35,22 @@ next:
 
 - **Project idea**: a description of a problem we would like solved. Our
   ideas are on the [ideas page](/ideas/).
+- **Participating project**: an Elixpo codebase that one or more ideas belong
+  to. See the [projects page](/projects/).
 - **Size (90 or 175 hours)**: how much work an idea is expected to take in
   total. 90 hours is a small project; 175 hours is a medium one.
 - **Difficulty**: how hard an idea is: Easy, Intermediate or Hard.
 - **Proposal**: your written plan for the idea you want to work on. See the
   [proposal template](/proposal/).
 - **Expected outcomes**: what should exist at the end of the project.
-- **Stretch goal**: extra work to try only if the main goals are finished
-  early. Not doing stretch goals is fine.
-- **Not in scope**: work that is not part of the project, even if it seems
+- **Stretch goal**: additional work attempted only if the main goals are
+  complete. Stretch goals are optional.
+- **Out of scope**: work that is not part of the project, even if it appears
   related.
-- **Proof of success**: the checks that show the work is done, such as tests
-  anyone can run.
+- **Success measures**: the checks that show the work is complete, such as
+  tests anyone can run.
+- **Warm-up task**: a small task, listed on each idea page, that you complete
+  before applying to learn the codebase and show your approach.
 - **Milestone**: a checkpoint, a piece of work you will have finished by a
   certain point.
 

@@ -22,28 +22,28 @@ export default function Home() {
     <>
       <header className="home-hero">
         <div className="home-hero-copy">
-          <p className="eyebrow">Google Summer of Code 2027 · preparing to apply</p>
+          <p className="eyebrow">Google Summer of Code 2027 · mentoring organisation application</p>
           <h1>{page.heading}</h1>
           <p className="lead">{page.lead}</p>
           <Capacity />
           <div className="actions">
             <Link href="/ideas/">See the {IDEAS.length} project ideas</Link>
-            <Link href="#start-here">Where to start</Link>
+            <Link href="/contributor-guide/">How to apply</Link>
           </div>
         </div>
-        <aside className="home-hero-side" aria-label="The plan in brief">
-          <GsocMark note={<>Google has not yet announced GSoC 2027, and Elixpo has not been accepted. Google decides which organisations take part.</>} />
+        <aside className="home-hero-side" aria-label="Key facts">
+          <GsocMark note={<>Google selects participating organisations and announces them after the application period.</>} />
           <dl className="key-facts">
             <div>
-              <dt>Contributors we plan to mentor</dt>
+              <dt>Contributors we expect to mentor</dt>
               <dd>One</dd>
             </div>
             <div>
-              <dt>Real projects to choose from</dt>
+              <dt>Project ideas</dt>
               <dd>{inWords(IDEAS.length).replace(/^./, (letter) => letter.toUpperCase())}</dd>
             </div>
             <div>
-              <dt>Mentors on each project</dt>
+              <dt>Mentors per idea</dt>
               <dd>Two</dd>
             </div>
           </dl>
@@ -64,7 +64,7 @@ export default function Home() {
           <p className="eyebrow">Project ideas</p>
           <h2 id="home-ideas">The {inWords(IDEAS.length)} project ideas</h2>
           <p>
-            Each idea is a project you could work on over the summer. Read the short summaries, then open the one that interests you. You can also{" "}
+            Each idea is a defined piece of work in one Elixpo codebase, with stated outcomes and two mentors. Open an idea for its full description, or{" "}
             <Link href="/ideas/">compare all ideas in one table</Link>.
           </p>
         </div>

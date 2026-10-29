@@ -1,30 +1,28 @@
 ---
 title: About Elixpo
-description: A short history of Elixpo as an open-source organisation that prepares work for outside contributors, reviews it and merges it, with a link to the public record behind each step.
+description: Elixpo's community and mentoring record - how its maintainers prepare work for outside contributors, review it and merge it - with a link to the public source for each step.
 heading: About Elixpo
-lead: Elixpo is a group of people who build open-source software together. This page gives a short history of Elixpo as a place where outside contributors do real work, and links to the public record behind each step.
+lead: Elixpo is an open-source organisation that builds software in public. This page sets out its community and mentoring record, with a link to the public source for each step.
 next:
   - /ideas/
   - /people/
   - /contributor-guide/
 ---
 
-## Why this matters for Google Summer of Code
+## Elixpo and Google Summer of Code
 
-Elixpo has not taken part in Google Summer of Code before. This would be our
-first time. But we have already done a shorter version of the work: in two
-Hacktoberfests, our maintainers prepared work for outside contributors,
-reviewed their pull requests and merged them.
+Elixpo maintainers prepare work for outside contributors, review their pull
+requests and merge them. They have done so in public in two Hacktoberfests.
+Google Summer of Code extends that work to a full programme: one contributor,
+one project and two mentors who know the code.
 
-Google Summer of Code is the longer, deeper version of that: one contributor,
-one project and a whole summer, with two mentors who know the code.
+## Community and mentoring record
 
-## Our history, step by step
-
-Each step links to the public record that supports it. When the record shows
-only the month, a range of months or the year, we say so. This history comes
-from Elixpo's
-[public history record](https://github.com/elixpo/elixpo/blob/main/content/history.json).
+Each step links to the public source that supports it, and states the
+precision of its date. The record is maintained in Elixpo's
+[public history file](https://github.com/elixpo/elixpo/blob/main/content/history.json).
+Figures are counts of merged pull requests and contributing GitHub accounts
+in one repository.
 
 ### 26 December 2023 — The earliest surviving Elixpo project record
 
@@ -100,13 +98,5 @@ Evidence: [community partnership programme](https://elixpo.com/partnerships).
   for Elixpo since 2024. Ayushman was also a mentor in GirlScript Summer of Code 2025,
   Open Source Contribution Initiative (OSCI) 2025 and ESSOC 2026.
 
-See [the people page](/people/) for every mentor and organiser, and the ideas
-each person mentors.
-
-## What this record does not show
-
-- Elixpo has not mentored in Google Summer of Code before.
-- Google has not accepted Elixpo. Google decides which organisations take
-  part.
-- The numbers above are counts of merged pull requests and GitHub accounts in
-  one repository. They are not counts of people mentored.
+The [people page](/people/) lists every mentor and organiser and the ideas
+each mentor supervises.

@@ -20,7 +20,7 @@ import { JsonLd } from "@/components/blocks";
 import { organizationJsonLd, socialCard, websiteJsonLd } from "@/lib/seo";
 
 const description =
-  "Elixpo is preparing to apply to Google Summer of Code 2027 as a first-time mentoring organisation. Project ideas, mentors, contributor guide and selection criteria.";
+  "Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. Project ideas, participating projects, mentors, the contributor guide and selection criteria.";
 
 const homeCard = socialCard("home");
 /** Optional Google Search Console verification token, only emitted when set at build time. */
@@ -75,7 +75,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </a>
         <div className="status-banner" role="region" aria-label="Programme status">
           <p>
-            <strong>Status:</strong> {STATUS_BANNER} <Link href="/#where-things-stand">What this means for you</Link>
+            <strong>Status:</strong> {STATUS_BANNER}
           </p>
         </div>
         <header className="site-header">
@@ -97,12 +97,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <div>
               <strong>Elixpo · Google Summer of Code 2027</strong>
               <p>
-                Questions? Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or ask in <a href={DISCUSSIONS_URL}>GitHub Discussions</a>.
+                Technical questions: <a href={DISCUSSIONS_URL}>GitHub Discussions</a>. Programme questions:{" "}
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
               </p>
             </div>
           </div>
           <nav aria-labelledby="footer-sitemap" className="footer-sitemap">
-            <h2 id="footer-sitemap">All pages on this site</h2>
+            <h2 id="footer-sitemap">Site map</h2>
             <ul>
               {SITE_MAP.map((item) => (
                 <li key={item.href}>

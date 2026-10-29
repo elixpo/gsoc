@@ -16,7 +16,7 @@ export default function ContactPage() {
     >
       <section className="page-section" aria-labelledby="contact-shared">
         <h2 id="contact-shared">Programme email</h2>
-        <p>For private questions, or questions about the programme itself, write to:</p>
+        <p>For programme questions and private matters, write to:</p>
         <p className="big-link">
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </p>
@@ -24,7 +24,7 @@ export default function ContactPage() {
       <section className="page-section" aria-labelledby="contact-people">
         <h2 id="contact-people">Individual contacts</h2>
         <PeopleTable headingId="contact-people" />
-        <p className="note">If you are not sure who to write to, use {CONTACT_EMAIL}.</p>
+        <p className="note">If you are unsure whom to contact, use {CONTACT_EMAIL}.</p>
       </section>
     </MarkdownPage>
   );

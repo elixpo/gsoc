@@ -1,113 +1,108 @@
 ---
 title: Elixpo and Google Summer of Code 2027
-description: Elixpo is preparing to apply to Google Summer of Code 2027 as a first-time mentoring organisation and plans to mentor one contributor. Learn what the programme is and read the six project ideas.
-heading: Elixpo is preparing to apply to Google Summer of Code 2027.
-lead: If Google accepts us, we plan to mentor one contributor on one of six real open-source projects. Each project has two mentors. This site is for students and anyone new to open source. Learn what the programme is, read the ideas and find out how to start.
+description: Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. Six project ideas across five open-source codebases, each with a primary and a backup mentor.
+heading: Elixpo is applying to mentor in Google Summer of Code 2027.
+lead: Elixpo builds open-source software for writing, drawing, agent tooling, community programmes and open hardware. We have prepared six project ideas across five codebases, each with a primary and a backup mentor. This site sets out the ideas, how to prepare an application and how we select contributors.
 next:
   - /ideas/
   - /contributor-guide/
   - /faq/
 ---
 
-## Start here
+## Getting started
 
-1. **[Learn what Google Summer of Code is](#what-is-google-summer-of-code)**.
-   It takes two minutes, and it is just below.
-2. **[Browse the six project ideas](/ideas/)**. Pick one or two that match
-   what you know and what you want to learn.
-3. **[Get involved and make a first contribution](/contributor-guide/)**.
-   Set up the code and make one small, finished change.
-4. **[Prepare your proposal](/proposal/)**. Use our template, and read
-   [how we select a contributor](/selection/).
+1. **[Read about Google Summer of Code](#what-is-google-summer-of-code)**
+   and the rules Google sets for contributors.
+2. **[Browse the project ideas](/ideas/)** and choose one or two that match
+   your skills and interests.
+3. **[Get involved](/contributor-guide/)**: set up the code, introduce
+   yourself and make a small contribution.
+4. **[Prepare your proposal](/proposal/)** using our template, and read the
+   [selection criteria](/selection/).
 
 ## What is Google Summer of Code?
 
-Google Summer of Code (GSoC for short) is a programme run by Google. It helps
-people who are new to open source work on a real open-source project for a
-few months, with help from experienced mentors. Contributors are paid for
-this work.
+Google Summer of Code (GSoC) is a global programme run by Google. Contributors
+who are new to open source work on an open-source project for several months
+with guidance from mentors, and receive a stipend from Google.
 
-- **Google** runs the programme and chooses which organisations take part.
-- **Organisations**, like Elixpo, offer project ideas and mentors.
-- **Contributors** pick an idea, write a proposal (a plan for the work) and,
-  if they are selected, work on it with a mentor.
+- **Google** runs the programme and selects the participating organisations.
+- **Mentoring organisations**, such as Elixpo, publish project ideas and
+  provide mentors.
+- **Contributors** choose an idea, write a proposal (a plan for the work) and,
+  if selected, carry it out with their mentors.
 
-Google sets the rules each year: who can apply, how payment works and the
-dates. Read them on the
-[official Google Summer of Code site](https://summerofcode.withgoogle.com/).
+Google sets the eligibility rules, stipends and dates each year. Read them on
+the [official Google Summer of Code site](https://summerofcode.withgoogle.com/).
 
-## Where things stand
+## Programme status
 
-- Elixpo is **preparing to apply** to Google Summer of Code 2027 as a
-  mentoring organisation: a group that offers project ideas and mentors.
-- Google has **not yet announced** Google Summer of Code 2027.
-- Elixpo has **not been accepted** yet. Google decides which organisations
-  take part.
-- If Google accepts Elixpo, we plan to mentor **one contributor**.
+- Elixpo is **applying** to be a mentoring organisation for Google Summer of
+  Code 2027.
+- Google announces accepted organisations after the application period.
+- In 2027 we expect to mentor **one contributor**.
 
-You don't need to wait for any of this. You can read the ideas and make a
-small contribution now.
+Prospective contributors can read the ideas, ask questions and contribute to
+the repositories now.
 
-## What Elixpo is
+## About Elixpo
 
-Elixpo is a group of people who build open-source software together. Open
-source means the code is public, and anyone can read, use and improve it.
-Our code is on [GitHub](https://github.com/elixpo), and we have been active
-since February 2024. The projects in our ideas list are:
+Elixpo is an open-source organisation that builds software in public. Our
+code is on [GitHub](https://github.com/elixpo), and the organisation has been
+active since February 2024. The project ideas belong to five codebases,
+described in more detail on the [projects page](/projects/):
 
-- **[LixBlogs](https://github.com/elixpo/blogs.elixpo)**: a blogging
-  platform where people write together. Many separate publications can run
-  on it, and it has an API (a way for other programs to use it) and a CLI (a
-  tool you use by typing commands).
-- **[LixSketch](https://github.com/elixpo/sketch.elixpo)**: a shared canvas
-  for sketches, diagrams and documents that several people can edit together.
-- **[Crumb](https://github.com/elixpo/crumb.elixpo)**: a program you run on
-  your own computer to run and control AI agents (programs that use an AI
-  model to carry out tasks), with a terminal interface. It is written in Rust.
+- **[LixBlogs](https://github.com/elixpo/blogs.elixpo)**: a collaborative
+  blogging platform that hosts many publications, with an API (an interface
+  for other programs) and a CLI (a command-line tool).
+- **[LixSketch](https://github.com/elixpo/sketch.elixpo)**: a collaborative
+  canvas for sketches, diagrams and documents.
+- **[Crumb](https://github.com/elixpo/crumb.elixpo)**: a self-hosted agent
+  harness and natural-language terminal, written in Rust. An agent harness
+  runs AI agents and controls what they may do.
 - **[Elixpo Open Source](https://github.com/elixpo/opensource.elixpo)**: a
-  platform, still being built, for running open-source contests and
-  mentoring programmes.
+  platform, in development, for running open-source contests and mentoring
+  programmes.
 - **[Oreo](https://github.com/elixpo/oreo)**: an open operating system and
-  hardware design for an electronic badge built on the ESP32-S3 chip. It is
-  written in MicroPython, a small version of Python for tiny computers.
+  hardware design for an electronic badge built on the ESP32-S3 chip, written
+  in MicroPython (a compact Python for microcontrollers).
 
-## Our track record
+## Track record
 
-Elixpo has not mentored in Google Summer of Code before. We have done a
-shorter version of the work, in public:
+Elixpo maintainers have prepared, reviewed and merged work from outside
+contributors in public:
 
 - **October 2024:** our first recorded Hacktoberfest. Maintainers opened the
   Chapter repository to Hacktoberfest work, labelled and reviewed submissions,
   and merged three Hacktoberfest-labelled pull requests.
-  [See the pull requests](https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2024-10-01..2024-10-31).
+  [View the pull requests](https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2024-10-01..2024-10-31).
 - **October 2025:** a second Hacktoberfest. The Chapter repository merged 47
   Hacktoberfest-labelled pull requests from 24 GitHub accounts; maintainers
   prepared the work, reviewed, labelled and merged it.
-  [See the pull requests](https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2025-10-01..2025-10-31).
-- **Mentoring elsewhere:** Ayushman Bhattacharya was a mentor in GirlScript
-  Summer of Code 2025, Open Source Contribution Initiative (OSCI) 2025 and
-  ESSOC 2026.
+  [View the pull requests](https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2025-10-01..2025-10-31).
+- **Mentoring in other programmes:** Ayushman Bhattacharya was a mentor in
+  GirlScript Summer of Code 2025, Open Source Contribution Initiative (OSCI)
+  2025 and ESSOC 2026.
 
-Google Summer of Code is the longer, deeper version of this: one contributor,
-one project and a whole summer. [Read the short history of Elixpo](/about/),
-with a link to the record behind each step.
+Google Summer of Code extends this work to one contributor, one project and a
+full programme. The [community and mentoring record](/about/) lists each step
+with its source.
 
-## Why we want to take part
+## Why we are applying
 
-Google Summer of Code brings new people into open source, with a real person
-guiding them. We want that too. We hope to help one contributor learn how a
-real project works, finish a clear, limited piece of it with a mentor's
-review, and stay involved after the summer.
+Google Summer of Code brings new contributors into open source with the
+guidance of experienced mentors. We want to help one contributor learn how a
+production codebase works, deliver a well-defined piece of it under review,
+and remain involved after the programme.
 
-## How we have set it up
+## How the ideas are organised
 
-- Each idea is one problem in one project, with a clear list of what is
-  *not* included.
-- Each idea has two mentors: a primary mentor, who is your main contact, and
-  a backup mentor, who can step in.
-- Each idea says how we will all know the work is done, for example with
-  tests that anyone can run.
-- You can set up each project on your own computer without any private keys
-  or passwords from us.
-- Every page on this site is built from one set of text files, so the pages
-  agree with each other.
+- Each idea addresses one problem in one codebase and states what is out of
+  scope.
+- Each idea has two mentors: a primary mentor, who is the contributor's main
+  contact, and a backup mentor, who can step in.
+- Each idea states how success is measured, for example with tests that
+  anyone can run.
+- Each codebase can be set up locally without private Elixpo credentials.
+- Every page on this site is built from one set of Markdown files, so the
+  facts on each page agree.
