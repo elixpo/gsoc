@@ -1,6 +1,6 @@
 ---
 title: Code of Conduct
-description: The Elixpo Community Code of Conduct as it applies to Google Summer of Code 2027 - expected behaviour, unacceptable behaviour, how to report a concern and how reports are handled.
+description: The Elixpo Code of Conduct for Google Summer of Code 2027: expected behaviour, unacceptable behaviour, and how to report a concern and how it is handled.
 heading: Code of *Conduct*
 lead: Everyone who takes part in Elixpo's Google Summer of Code programme - applicants, contributors, mentors and organisers - follows the Elixpo Community Code of Conduct. This page summarises it and explains how to report a concern.
 tldr:

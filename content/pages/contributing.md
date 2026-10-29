@@ -1,6 +1,6 @@
 ---
 title: Contributing
-description: How to contribute to Elixpo's Google Summer of Code programme - suggest or improve a project idea, fix text on this site, and contribute to the participating projects.
+description: Contribute to Elixpo's Google Summer of Code programme: suggest or improve a project idea, fix text on this site and work on the participating projects.
 heading: Contributing to *the programme*
 lead: You do not have to wait for Google Summer of Code to take part. You can help shape the project ideas, improve this site and contribute to the participating projects now.
 tldr:

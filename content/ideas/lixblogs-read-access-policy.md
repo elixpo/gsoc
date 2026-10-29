@@ -9,7 +9,7 @@ primary_mentor: divyanshuj91
 backup_mentor: ez-vivek
 repository: https://github.com/elixpo/blogs.elixpo
 setup: https://github.com/elixpo/blogs.elixpo/blob/main/README.md
-summary: Replace read-access checks copied across LixBlogs API routes with one declarative policy, and prove it with an offline harness that runs the real route handlers.
+summary: Replace read-access checks copied across LixBlogs API routes with one declarative policy, proven by an offline harness that runs the real routes.
 in_short: Make one clear set of rules for who may read what on LixBlogs, and build tests that prove private posts stay private.
 skills:
   - JavaScript and Node

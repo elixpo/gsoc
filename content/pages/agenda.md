@@ -1,6 +1,6 @@
 ---
 title: Our agenda
-description: Why Elixpo takes part in Google Summer of Code 2027 - what Elixpo is, what it ships in public, how it decides what to approve, its position on money and commercial interests, and its commitments to contributors.
+description: Why Elixpo takes part in Google Summer of Code 2027: what we build in public, how we approve contributions and our commitments to contributors.
 heading: Our *agenda*
 lead: Elixpo takes part in Google Summer of Code to help one contributor become the supported owner of one part of a real project. This page sets out what Elixpo is, what it ships in public, how it decides what to approve, and what it commits to contributors.
 tldr:

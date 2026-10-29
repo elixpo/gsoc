@@ -23,7 +23,8 @@ export const CODE_OF_CONDUCT_URL = "https://github.com/elixpo/elixpo/blob/main/C
 export const GSOC_TIMELINE_URL = "https://developers.google.com/open-source/gsoc/timeline";
 export const GSOC_URL = "https://summerofcode.withgoogle.com/";
 export const ELIXPO_URL = "https://elixpo.com";
-export const ELIXPO_LOGO_URL = "https://elixpo.com/logos/logo.webp";
+/** The shared Elixpo GSoC logo (the mentor and mentee pandas), used everywhere on this site. */
+export const ELIXPO_LOGO_URL = `${SITE_URL}/logo.png`;
 /** Date the Elixpo GitHub organisation was created (content/pages/about.md). */
 export const ELIXPO_FOUNDING_DATE = "2024-02-24";
 // TODO: link the source repository (github.com/elixpo/gsoc) from the footer once it is public.

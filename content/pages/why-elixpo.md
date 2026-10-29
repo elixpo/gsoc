@@ -1,6 +1,6 @@
 ---
 title: Why Elixpo for Google Summer of Code
-description: Short, evidence-linked answers for Google Summer of Code programme reviewers - Elixpo's open-source record, licences, community, mentors and capacity, ideas, selection, communication, evaluations, retention, AI policy, money, mentoring experience and written commitments.
+description: Evidence-linked answers for GSoC reviewers: Elixpo's open-source record, licences, community, mentors, ideas, selection, evaluations and commitments.
 heading: Why Elixpo *for GSoC*
 lead: Short answers to the questions a Google Summer of Code reviewer is likely to ask about Elixpo, each with a link to the page or public record that supports it. Elixpo is applying to be a mentoring organisation for 2027; Google decides which organisations take part.
 tldr:

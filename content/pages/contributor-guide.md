@@ -1,6 +1,6 @@
 ---
 title: Contributor guide
-description: How to get started with Elixpo in Google Summer of Code 2027 - why contribute, what each project is for, a step-by-step path from first contribution to proposal, and what contributors and mentors can expect from each other.
+description: Get started with Elixpo for Google Summer of Code 2027: why contribute, what each project does and a step-by-step path from first contribution to proposal.
 heading: Getting *started*
 lead: This guide is for anyone who wants to contribute to Elixpo through Google Summer of Code 2027. It explains what Elixpo offers, what each project is for, and the steps from choosing an idea to what happens after selection.
 tldr:

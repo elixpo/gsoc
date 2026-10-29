@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import fs from "node:fs";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 import { getIdea, getPage, IDEAS } from "@/lib/content";
 import { sizeLabel } from "@/components/blocks";
@@ -7,6 +9,9 @@ export const dynamic = "force-static";
 export const dynamicParams = false;
 
 const PAGE_SLUGS = ["home", "ideas", "projects", "mentors", "operations", "contributor-guide", "warm-up", "proposal", "selection", "ai-policy", "timeline", "faq", "glossary", "contact", "agenda", "why-elixpo", "about", "privacy", "terms", "code-of-conduct", "contributing", "agreements"];
+
+/** The shared site logo, embedded so cards build without network access. */
+const LOGO = `data:image/png;base64,${fs.readFileSync(path.join(process.cwd(), "public", "logo.png")).toString("base64")}`;
 
 export function generateStaticParams() {
   return [...PAGE_SLUGS, ...IDEAS.map((idea) => idea.slug)].map((slug) => ({ slug: `${slug}.png` }));
@@ -44,7 +49,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
         <div style={{ position: "absolute", width: 200, height: 200, borderRadius: 999, right: 120, top: 160, background: "#f3b529" }} />
         <div style={{ position: "relative", width: 880, display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <img src="https://elixpo.com/logos/logo.png" style={{ width: 40, height: 40 }} alt="" />
+            <img src={LOGO} style={{ width: 48, height: 48 }} alt="" />
             <span style={{ color: "#3a65c7", fontSize: 18, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase" }}>Elixpo · GSoC 2027</span>
           </div>
           <div style={{ display: "flex", marginTop: 46, fontSize: titleSize, fontWeight: 700, lineHeight: 1, letterSpacing: -2.5 }}>{data.title}</div>

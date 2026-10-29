@@ -1,6 +1,6 @@
 ---
 title: Elixpo and Google Summer of Code 2027
-description: Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. Six project ideas across five open-source codebases, each with a primary and a backup mentor.
+description: Elixpo is applying to mentor in Google Summer of Code 2027: six project ideas across five open-source codebases, each with a primary and a backup mentor.
 heading: Elixpo is applying to mentor in *Google Summer of Code 2027*.
 lead: Elixpo builds open-source software for writing, drawing, agent tooling, community programmes and open hardware. We have prepared six project ideas across five codebases. In 2027 we plan to mentor one contributor, with a primary and a backup mentor on every project. This site sets out the ideas, how to prepare an application and how we select contributors.
 tldr:

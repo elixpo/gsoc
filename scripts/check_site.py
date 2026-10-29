@@ -359,8 +359,12 @@ def check_site(site: Path, launched: bool) -> list[str]:
             continue
 
         expect(bool(page.title.strip()), f"{route}: missing <title>")
-        if route != "/":
-            expect(page.title.strip().endswith("· Elixpo GSoC"), f"{route}: title does not use the site template: {page.title!r}")
+        title = page.title.strip()
+        expect(len(title) <= 60, f"{route}: title is {len(title)} characters; keep it to 60 or fewer")
+        if route != "/" and not route.startswith("/ideas/"):
+            expect(title.endswith("· Elixpo GSoC"), f"{route}: title does not use the site template: {page.title!r}")
+        description = first(page.meta, "description") or ""
+        expect(70 <= len(description) <= 160, f"{route}: description is {len(description)} characters; keep it between 70 and 160")
         expect(page.links.get("canonical") == canonical, f"{route}: canonical is {page.links.get('canonical')!r}, expected {canonical}")
         expect(bool(first(page.meta, "description")), f"{route}: missing description")
         expect(first(page.meta, "og:url") == canonical, f"{route}: og:url is {first(page.meta, 'og:url')!r}")
@@ -495,7 +499,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect(bool(logo) and f'alt="{GSOC_LOGO_ALT}"' in (logo.group(0) if logo else ""), "/: GSoC logo with the right alt text missing from the hero")
             figure = re.search(r'<figure class="gsoc-mark">.*?</figure>', hero.group(0), re.S)
             expect(bool(figure and GSOC_LOGO_LABEL in figure.group(0)), f"/: GSoC logo is not labelled {GSOC_LOGO_LABEL!r}")
-            expect(bool(figure) and "icon-192.png" not in figure.group(0) and "elixpo-logo" not in figure.group(0), "/: the GSoC logo must not share a lockup with the Elixpo mark")
+            expect(bool(figure) and "icon-192.png" not in figure.group(0) and "logo.png" not in figure.group(0), "/: the GSoC logo must not share a lockup with the Elixpo mark")
         expect("Track record" in parsed["/"].text and 'href="/about/"' in source, "/: 'Track record' section or link to /about/ missing")
         if hero:
             plain = lambda fragment: html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", fragment))).strip()
@@ -678,7 +682,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
         row = f"| {idea['theme']} | {idea['size_hours']} h | {idea['difficulty']} | {primary} / {backup} |"
         expect(f"[{idea['title']}](ideas/{idea['slug']}.md) {row}" in readme, f"content/README.md: ideas table row for {idea['slug']} is out of date")
 
-    for name in ("favicon.ico", "robots.txt", "sitemap.xml", "manifest.webmanifest", "_headers", "404.html", "elixpo-logo.png",
+    for name in ("favicon.ico", "robots.txt", "sitemap.xml", "manifest.webmanifest", "_headers", "404.html", "logo.png", "favicon.png",
                  "apple-touch-icon.png", "icon-192.png", "icon-512.png", "humans.txt", ".well-known/security.txt"):
         expect((site / name).is_file(), f"Missing public file: {name}")
 

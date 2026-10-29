@@ -11,8 +11,9 @@ Not covered by those licences
   trademarks of Google LLC. Included unmodified from
   https://developers.google.com/open-source/gsoc/resources/downloads/
   and used under Google's brand guidelines. See TRADEMARKS.md.
-- public/elixpo-logo.png, public/icon-*.png, public/apple-touch-icon.png,
-  src/app/favicon.ico: Elixpo brand marks. See TRADEMARKS.md.
+- public/logo.png, public/favicon.png, public/icon-*.png,
+  public/apple-touch-icon.png, src/app/favicon.ico: the Elixpo GSoC logo, an
+  Elixpo brand mark. See TRADEMARKS.md.
 
 Third-party software
 - Next.js, React and the other npm dependencies listed in package.json are
