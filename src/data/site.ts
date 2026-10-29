@@ -22,7 +22,33 @@ export const ELIXPO_FOUNDING_DATE = "2024-02-24";
 export const STATUS_BANNER =
   "Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. Google announces accepted organisations after the application period.";
 /** Intended intake, stated at the top of the ideas list as Google's mentor guide asks. */
-export const CAPACITY_STATEMENT = "In 2027 we expect to mentor one contributor.";
+export const CAPACITY_STATEMENT = "In 2027 we plan to mentor one contributor.";
+/** The same plan, stated in the home hero. */
+export const HOME_CAPACITY_SENTENCE = "In 2027 we plan to mentor one contributor, with a primary and a backup mentor on every project.";
+/** Mentors on every idea: one primary, one backup. */
+export const MENTORS_PER_IDEA = 2;
+/** Contributors Elixpo plans to mentor in 2027. */
+export const PLANNED_CONTRIBUTORS = 1;
+
+/**
+ * The credential strip under the home hero. Verified facts only, worded as in
+ * elixpo/content/history.json (which wins on any conflict); each links to its
+ * public record where one exists.
+ */
+export const HOME_CREDENTIALS = [
+  {
+    label: "Hacktoberfest 2024 & 2025",
+    detail: "maintainer-led participation",
+    href: "/about/#community-and-mentoring-record",
+  },
+  {
+    label: "47 pull requests merged",
+    detail: "Hacktoberfest 2025, from 24 GitHub accounts",
+    href: "https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2025-10-01..2025-10-31",
+  },
+  { label: "Organisation since 2024", detail: "github.com/elixpo", href: "https://github.com/elixpo" },
+  { label: "Two mentors per idea", detail: "primary and backup", href: "/people/" },
+] as const;
 /** Required wherever the GSoC name or logo appears: shown in the footer of every page. */
 export const GSOC_TRADEMARK_NOTICE =
   "Google Summer of Code and the GSoC logo are trademarks of Google LLC. Elixpo is applying as a mentoring organisation and is not affiliated with or endorsed by Google.";
@@ -72,10 +98,22 @@ export const SITE_MAP = [
   { href: "/about/", label: "About Elixpo", about: "Elixpo's community and mentoring record, with sources." },
 ] as const;
 
-export type SiteMapEntry = (typeof SITE_MAP)[number];
+/**
+ * Legal and community pages, in this order, in the footer of every page.
+ * They are reachable from the footer only, not from the main navigation.
+ */
+export const LEGAL_PAGES = [
+  { href: "/privacy/", label: "Privacy", about: "What this site and the programme do with personal information." },
+  { href: "/terms/", label: "Terms of service", about: "Licences, trademarks and the terms for using this site." },
+  { href: "/code-of-conduct/", label: "Code of Conduct", about: "How everyone in the programme is expected to behave, and how to report a concern." },
+  { href: "/contributing/", label: "Contributing", about: "How to suggest ideas, fix this site and contribute to the projects." },
+  { href: "/agreements/", label: "Agreements", about: "The commitments signed by every mentor and administrator." },
+] as const;
+
+export type SiteMapEntry = (typeof SITE_MAP)[number] | (typeof LEGAL_PAGES)[number];
 
 export function siteMapEntry(href: string): SiteMapEntry {
-  const entry = SITE_MAP.find((item) => item.href === href);
+  const entry = [...SITE_MAP, ...LEGAL_PAGES].find((item) => item.href === href);
   if (!entry) throw new Error(`Unknown page "${href}". Add it to SITE_MAP in src/data/site.ts.`);
   return entry;
 }

@@ -1,7 +1,7 @@
 ---
 title: Frequently asked questions
 description: Answers to common questions about Elixpo and Google Summer of Code 2027 - status, intake, project sizes and difficulty, mentors, eligibility and contact.
-heading: Frequently asked questions
+heading: Frequently asked *questions*
 lead: Answers to common questions about Elixpo and Google Summer of Code 2027. If your question is not answered here, ask in GitHub Discussions or email gsoc@elixpo.com.
 next:
   - /ideas/
@@ -25,7 +25,7 @@ application period.
 
 ## How many contributors will Elixpo mentor?
 
-In 2027 we expect to mentor one contributor.
+In 2027 we plan to mentor one contributor.
 
 ## Who can apply?
 

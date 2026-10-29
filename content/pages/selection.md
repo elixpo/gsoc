@@ -1,8 +1,8 @@
 ---
 title: Selection criteria
 description: The criteria Elixpo uses to select a Google Summer of Code 2027 contributor, the selection process and the grounds for rejection.
-heading: Selection criteria
-lead: This page sets out how mentors evaluate applications for Elixpo project ideas. The same criteria apply to every applicant. In 2027 we expect to mentor one contributor.
+heading: Selection *criteria*
+lead: This page sets out how mentors evaluate applications for Elixpo project ideas. The same criteria apply to every applicant. In 2027 we plan to mentor one contributor.
 next:
   - /proposal/
   - /contributor-guide/
