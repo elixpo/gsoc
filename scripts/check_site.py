@@ -13,29 +13,53 @@ import html
 import json
 import os
 import re
+import struct
 import sys
+from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
 
 SITE_URL = "https://gsoc.elixpo.com"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-STATIC_ROUTES = ["/", "/ideas/", "/people/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/"]
+STATIC_ROUTES = ["/", "/ideas/", "/people/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/about/"]
 SIZES = {90, 175}
 DIFFICULTIES = {"Easy", "Intermediate", "Hard"}
 STATUS_BANNER = "Elixpo is preparing to apply as a GSoC 2027 mentoring organisation. Google has not yet announced GSoC 2027."
 CAPACITY = "Elixpo is a first-time applicant and plans to mentor one contributor in 2027."
-DISCLAIMER = "Not affiliated with or endorsed by Google."
+# Google's brand rules: the trademark notice appears in the footer of every page.
+DISCLAIMER = (
+    "Google Summer of Code and the GSoC logo are trademarks of Google LLC. Elixpo is preparing to apply as a "
+    "mentoring organisation and is not affiliated with or endorsed by Google."
+)
+GSOC_LOGO_SRC = "/brand/gsoc/GSoC-Horizontal.png"
+GSOC_LOGO_ALT = "Google Summer of Code logo"
+GSOC_LOGO_LABEL = "Elixpo is preparing to apply to"
+GSOC_BRAND_FILES = ["GSoC-Horizontal.svg", "GSoC-Horizontal.png", "GSoC-Vertical.svg", "GSoC-Vertical.png", "GSoC-icon-192.png"]
+# Evidence for the history on /about/ (from elixpo/content/history.json). Each must be linked.
+HISTORY_EVIDENCE = [
+    "https://github.com/elixpo/octabit",
+    "https://github.com/elixpo",
+    "https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2024-10-01..2024-10-31",
+    "https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2025-10-01..2025-10-31",
+    "https://github.com/orgs/elixpo/repositories",
+    "https://elixpo.com/partnerships",
+]
 CONTACT = "gsoc@elixpo.com"
 # Claims the site must never make, and links it must not contain yet.
 FORBIDDEN_TEXT = [
     re.compile(r"\bElixpo (is|has been|was) (accepted|selected)\b", re.I),
     re.compile(r"\baccepted (mentoring )?organi[sz]ation\b", re.I),
     re.compile(r"\d+\+ (contributors|projects|users|mentors)", re.I),
+    re.compile(r"\bElixpo\s*[×xX]\s*(GSoC|Google)", re.I),
+    re.compile(r"\b(GSoC|Google Summer of Code|Google)( 2027)? partner", re.I),
+    re.compile(r"\bglobal community\b", re.I),
 ]
 FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
-# Main navigation (src/data/site.ts NAV): each of these pages must mark its own link with aria-current="page".
-NAV_ROUTES = ["/ideas/", "/contributor-guide/", "/proposal/", "/selection/", "/people/", "/faq/", "/contact/"]
+# Main navigation (src/data/site.ts NAV), in order of importance; Contact is last, as a button.
+# Each of these pages must mark its own link with aria-current="page".
+NAV_ROUTES = ["/ideas/", "/contributor-guide/", "/proposal/", "/timeline/", "/people/", "/faq/", "/contact/"]
+NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/about/"]
 GSOC_TIMELINE_URL = "https://developers.google.com/open-source/gsoc/timeline"
 GSOC_URL = "https://summerofcode.withgoogle.com/"
 TIMELINE_PHASES = ["Organisations apply", "Organisations are announced", "Contributors apply", "Community bonding", "Coding", "Evaluations"]
@@ -139,6 +163,12 @@ def people() -> dict[str, dict[str, object]]:
     return result
 
 
+def png_size(path: Path) -> tuple[int, int]:
+    header = path.read_bytes()[:24]
+    assert header[1:4] == b"PNG" and header[12:16] == b"IHDR", f"{path} is not a PNG file"
+    return struct.unpack(">II", header[16:24])
+
+
 def route_file(site: Path, route: str) -> Path:
     return site / route.lstrip("/") / "index.html" if route.endswith("/") else site / route.lstrip("/")
 
@@ -215,7 +245,16 @@ def check_site(site: Path, launched: bool) -> list[str]:
                 errors.append(f"{route}: invalid JSON-LD: {error}")
                 continue
             types.add(data.get("@type"))
+            if data.get("@type") == "Organization":
+                expect(data.get("url") == "https://elixpo.com" and bool(data.get("logo")) and data.get("foundingDate") == "2024-02-24"
+                       and "https://github.com/elixpo" in data.get("sameAs", [])
+                       and any(point.get("email") == CONTACT for point in data.get("contactPoint", [])),
+                       f"{route}: Organization JSON-LD lacks url, logo, sameAs, foundingDate or contactPoint email")
         expect("Organization" in types, f"{route}: Organization JSON-LD missing")
+        expect("WebSite" in types, f"{route}: WebSite JSON-LD missing")
+        footer_html = re.search(r"<footer.*?</footer>", source, re.S)
+        expect(bool(footer_html) and DISCLAIMER in html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", footer_html.group(0)))),
+               f"{route}: GSoC trademark notice missing from the footer")
 
         if route == "/404.html":
             expect("noindex" in robots_meta, "404 page must be noindex")
@@ -229,7 +268,26 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect(first(page.meta, "og:url") == canonical, f"{route}: og:url is {first(page.meta, 'og:url')!r}")
         expect(first(page.meta, "twitter:card") == "summary_large_image", f"{route}: missing large Twitter card")
         image = first(page.meta, "og:image")
-        expect(image.startswith(SITE_URL) and (site / image.removeprefix(SITE_URL).lstrip("/")).is_file(), f"{route}: og:image not exported: {image!r}")
+        image_file = site / image.removeprefix(SITE_URL).lstrip("/")
+        expect(image.startswith(SITE_URL) and image_file.is_file(), f"{route}: og:image not exported: {image!r}")
+        if image_file.is_file():
+            declared = (first(page.meta, "og:image:width"), first(page.meta, "og:image:height"))
+            actual = png_size(image_file)
+            expect(declared == (str(actual[0]), str(actual[1])), f"{route}: og:image declares {declared[0]}x{declared[1]} but {image_file.name} is {actual[0]}x{actual[1]}")
+        expect("/brand/gsoc/" not in image and "/brand/gsoc/" not in first(page.meta, "twitter:image"), f"{route}: the GSoC logo must not be used as a social card")
+        expect(bool(first(page.meta, "twitter:title")) and bool(first(page.meta, "twitter:description")) and bool(first(page.meta, "twitter:image")), f"{route}: Twitter title, description or image missing")
+        expect(bool(first(page.meta, "og:title")) and bool(first(page.meta, "og:description")), f"{route}: Open Graph title or description missing")
+        expect(bool(first(page.meta, "theme-color")), f"{route}: theme-color missing")
+        for rel in ("icon", "apple-touch-icon", "manifest"):
+            expect(bool(page.links.get(rel)), f"{route}: <link rel={rel}> missing")
+            expect("/brand/gsoc/" not in page.links.get(rel, ""), f"{route}: the GSoC logo must not be used as {rel}")
+        verification = os.environ.get("NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION", "").strip()
+        if verification:
+            expect(first(page.meta, "google-site-verification") == verification, f"{route}: Google site verification meta missing")
+        else:
+            expect("google-site-verification" not in page.meta, f"{route}: Google site verification meta present without NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION")
+        if route != "/":
+            expect("BreadcrumbList" in types, f"{route}: BreadcrumbList JSON-LD missing")
         if launched:
             expect("noindex" not in robots_meta and "index" in robots_meta, f"{route}: should be indexable when launched (robots={robots_meta!r})")
         else:
@@ -241,6 +299,8 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect("BreadcrumbList" in types, f"{route}: BreadcrumbList JSON-LD missing")
         if route == "/faq/":
             expect("FAQPage" in types, "/faq/: FAQPage JSON-LD missing")
+        if route == "/about/":
+            expect("AboutPage" in types, "/about/: AboutPage JSON-LD missing")
 
     # Navigation: "What next?" block, footer site map, current page in the main nav
     for route in routes:
@@ -256,6 +316,12 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect(target in footer_links, f"{route}: footer site map does not link to {target}")
         main_nav = re.search(r'<nav[^>]*aria-label="Main".*?</nav>', source, re.S)
         expect(bool(main_nav), f"{route}: main navigation missing")
+        if main_nav:
+            nav_hrefs = re.findall(r'href="([^"]+)"', main_nav.group(0))
+            expect(nav_hrefs == NAV_ROUTES, f"{route}: main navigation order is {nav_hrefs}, expected {NAV_ROUTES}")
+            expect(re.search(r'class="nav-contact"[^>]*>\s*<a[^>]*href="/contact/"', main_nav.group(0)) is not None, f"{route}: Contact is not the button at the end of the main navigation")
+            for target in NOT_IN_NAV:
+                expect(f'href="{target}"' not in main_nav.group(0), f"{route}: {target} belongs in the footer, not the main navigation")
         if main_nav and route in NAV_ROUTES:
             expect(re.search(rf'<a[^>]*href="{re.escape(route)}"[^>]*aria-current="page"|<a[^>]*aria-current="page"[^>]*href="{re.escape(route)}"', main_nav.group(0)) is not None,
                    f"{route}: main navigation does not mark the current page with aria-current")
@@ -272,12 +338,56 @@ def check_site(site: Path, launched: bool) -> list[str]:
                 expect(f'href="{target}"' in start.group(0), f"/: 'Start here' does not link to {target}")
         expect("What is Google Summer of Code?" in text and f'href="{GSOC_URL}"' in source, "/: 'What is Google Summer of Code?' section or official link missing")
 
+    # Home page: the GSoC logo, unmodified, labelled and separate from the Elixpo mark
+    if "/" in raw:
+        source = raw["/"]
+        hero = re.search(r'<header class="home-hero".*?</header>', source, re.S)
+        expect(bool(hero), "/: home hero missing")
+        if hero:
+            logo = re.search(r'<img[^>]*src="' + re.escape(GSOC_LOGO_SRC) + r'"[^>]*>', hero.group(0))
+            expect(bool(logo) and f'alt="{GSOC_LOGO_ALT}"' in (logo.group(0) if logo else ""), "/: GSoC logo with the right alt text missing from the hero")
+            figure = re.search(r'<figure class="gsoc-mark">.*?</figure>', hero.group(0), re.S)
+            expect(bool(figure and GSOC_LOGO_LABEL in figure.group(0)), f"/: GSoC logo is not labelled {GSOC_LOGO_LABEL!r}")
+            expect(bool(figure) and "icon-192.png" not in figure.group(0) and "elixpo-logo" not in figure.group(0), "/: the GSoC logo must not share a lockup with the Elixpo mark")
+        expect("Our track record" in parsed["/"].text and 'href="/about/"' in source, "/: 'Our track record' section or link to /about/ missing")
+    for name in GSOC_BRAND_FILES:
+        path = site / "brand" / "gsoc" / name
+        expect(path.is_file(), f"Missing GSoC brand file: {name}")
+        if path.is_file():
+            head = path.read_bytes()[:256]
+            expect(head.startswith(b"\x89PNG") if name.endswith(".png") else b"<svg" in head, f"{name} is not a real {name.rsplit('.', 1)[-1].upper()} file")
+
+    # About page: every history step links to its evidence; date precision is stated
+    if "/about/" in raw:
+        source, text = raw["/about/"], parsed["/about/"].text
+        for url in HISTORY_EVIDENCE:
+            expect(f'href="{html.escape(url)}"' in source or f'href="{url}"' in source, f"/about/: history evidence link missing: {url}")
+        expect(text.count("Date precision:") >= 6, "/about/: date precision missing from history entries")
+        expect("Mentoring experience" in text, "/about/: 'Mentoring experience' section missing")
+
+    # People page: each role is a chip in a list
+    if "/people/" in raw:
+        source = raw["/people/"]
+        roles_source = Path("src/data/people.ts").read_text(encoding="utf-8")
+        for roles in re.findall(r"roles: \[([^\]]*)\]", roles_source):
+            for role in re.findall(r'"([^"]+)"', roles):
+                expect(re.search(r'<ul class="chips[^"]*"[^>]*>(?:(?!</ul>).)*<li class="chip">' + re.escape(html.escape(role, quote=False)) + "</li>", source, re.S) is not None,
+                       f"/people/: role {role!r} is not shown as a chip")
+        for role in ("Primary mentor", "Backup mentor"):
+            expect(f'<li class="chip">{role}</li>' in source, f"/people/: {role!r} chip missing")
+
     # Timeline: usual phases, no dates, link to Google's timeline
     if "/timeline/" in raw:
         text = parsed["/timeline/"].text
         for phase in TIMELINE_PHASES:
             expect(phase in text, f"/timeline/: phase {phase!r} missing")
         expect(f'href="{GSOC_TIMELINE_URL}"' in raw["/timeline/"], "/timeline/: link to Google's official timeline missing")
+
+    # Proposal page links to the pages that left the main navigation
+    if "/proposal/" in raw:
+        for target in ("/selection/", "/ai-policy/"):
+            body = re.search(r"<main.*?</main>", raw["/proposal/"], re.S)
+            expect(bool(body and f'href="{target}"' in body.group(0)), f"/proposal/: contextual link to {target} missing")
 
     # Idea pages: breadcrumb, plain summary, start box, previous / next links
     for index, idea in enumerate(ideas):
@@ -342,8 +452,36 @@ def check_site(site: Path, launched: bool) -> list[str]:
         row = f"| {idea['theme']} | {idea['size_hours']} h | {idea['difficulty']} | {primary} / {backup} |"
         expect(f"[{idea['title']}](ideas/{idea['slug']}.md) {row}" in readme, f"content/README.md: ideas table row for {idea['slug']} is out of date")
 
-    for name in ("favicon.ico", "robots.txt", "sitemap.xml", "manifest.webmanifest", "_headers", "404.html", "elixpo-logo.png"):
+    for name in ("favicon.ico", "robots.txt", "sitemap.xml", "manifest.webmanifest", "_headers", "404.html", "elixpo-logo.png",
+                 "apple-touch-icon.png", "icon-192.png", "icon-512.png", "humans.txt", ".well-known/security.txt"):
         expect((site / name).is_file(), f"Missing public file: {name}")
+
+    # Sitemap entries carry lastmod
+    for node in sitemap.findall(f"{SITEMAP_NS}url"):
+        expect(node.find(f"{SITEMAP_NS}lastmod") is not None, f"sitemap.xml: {node.findtext(f'{SITEMAP_NS}loc')} has no lastmod")
+
+    # Manifest uses the Elixpo mark only
+    if (site / "manifest.webmanifest").is_file():
+        manifest = json.loads((site / "manifest.webmanifest").read_text(encoding="utf-8"))
+        icons = [icon.get("src", "") for icon in manifest.get("icons", [])]
+        expect(bool(icons) and not any("/brand/gsoc/" in icon for icon in icons), "manifest.webmanifest: icons missing or use the GSoC logo")
+
+    # security.txt (RFC 9116)
+    security = site / ".well-known" / "security.txt"
+    if security.is_file():
+        fields = dict(line.split(": ", 1) for line in security.read_text(encoding="utf-8").splitlines() if ": " in line)
+        expect(fields.get("Contact") == f"mailto:{CONTACT}", "security.txt: Contact must be mailto:gsoc@elixpo.com")
+        expect(fields.get("Canonical") == f"{SITE_URL}/.well-known/security.txt", "security.txt: wrong Canonical")
+        try:
+            expires = datetime.fromisoformat(fields.get("Expires", "").replace("Z", "+00:00"))
+            expect(expires > datetime.now(timezone.utc), "security.txt: Expires is in the past")
+        except ValueError:
+            errors.append("security.txt: Expires missing or not an ISO 8601 date")
+
+    # No decorative ::before / ::after pseudo-elements in the built CSS
+    for css in (site / "_next").rglob("*.css"):
+        content = css.read_text(encoding="utf-8")
+        expect(not re.search(r"::?(before|after)\b", content), f"{css.name}: uses ::before/::after pseudo-elements")
 
     return errors
 

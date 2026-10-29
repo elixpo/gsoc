@@ -25,6 +25,7 @@ GitHub. See [`content/README.md`](content/README.md) for the full map.
 | `content/pages/timeline.md` | `/timeline/` |
 | `content/pages/faq.md` | `/faq/` |
 | `content/pages/contact.md` + `src/data/people.ts` | `/contact/` |
+| `content/pages/about.md` | `/about/` (history entries are `### Date — Title`) |
 | `src/app/not-found.tsx` | 404 page |
 
 People, roles and emails live only in `src/data/people.ts`. Shared facts (the
@@ -52,10 +53,14 @@ npm run site:check   # crawl metadata, launch gate, links, consistency
 ```
 
 `scripts/check_site.py` checks every exported page for title, canonical URL,
-description, Open Graph and Twitter tags, JSON-LD (Organization everywhere,
-ItemList on `/ideas/`, BreadcrumbList on idea pages, FAQPage on `/faq/`),
-one `<h1>`, `lang="en"`, the skip link, the status banner and footer, broken
-internal links, and claims the site must not make. It also checks that idea
+description, Open Graph and Twitter tags (with `og:image` sizes that match the
+real PNG), JSON-LD (Organization and WebSite everywhere, BreadcrumbList on
+inner pages, ItemList on `/ideas/`, FAQPage on `/faq/`, AboutPage on
+`/about/`), one `<h1>`, `lang="en"`, the skip link, the status banner, the GSoC
+trademark notice in every footer, the main navigation order, broken internal
+links, the GSoC logo placement on `/`, history evidence links on `/about/`,
+role chips on `/people/`, `security.txt`, icons and the manifest, no
+`::before`/`::after` in the built CSS, and claims the site must not make. It also checks that idea
 sizes, difficulty levels and mentors are identical on `/`, `/ideas/`, each
 idea page, `/people/`, `/faq/` and `content/README.md`.
 
@@ -103,9 +108,23 @@ One-time setup (maintainer):
 - Launch gate: the repository variable `SITE_LAUNCHED` controls indexing. Leave
   it unset until launch; set it to `true` on launch day and redeploy.
 
-Social card: put a 1200x630 PNG at `public/og-image.png` to replace the
-generated home card (also the site-wide default). Other pages keep their
-generated per-page cards.
+Social card: put a PNG at `public/og-image.png` (the Elixpo branding pipeline
+outputs 1280x720) to replace the generated home card (also the site-wide
+default). Its real size is read from the file at build time. Other pages keep
+their generated 1200x630 cards. Never use the GSoC logo as a social card or icon.
+
+Search Console (optional): set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` at build
+time to emit `<meta name="google-site-verification">`. Unset, nothing is emitted.
+
+## GSoC logo and brand rules
+
+`public/brand/gsoc/` holds Google's official GSoC logo files, unmodified, from
+[Google's downloads](https://developers.google.com/open-source/gsoc/resources/downloads/).
+Follow Google's [brand guidelines](https://developers.google.com/open-source/gsoc/resources/brand_guidelines):
+do not alter or recolour the logo, never combine it with the Elixpo mark in one
+lockup, always label it ("Elixpo is preparing to apply to"), and never imply
+that Google endorses Elixpo. Every page carries the trademark notice in its
+footer (`GSOC_TRADEMARK_NOTICE` in `src/data/site.ts`).
 
 ## Contributing
 
@@ -120,5 +139,6 @@ described in [SECURITY.md](SECURITY.md).
 - The Elixpo name and logo are brand marks and are not covered by either
   licence. Each Elixpo project linked from the site keeps its own licence.
 
-Not affiliated with or endorsed by Google. Google Summer of Code is a Google
-programme.
+Google Summer of Code and the GSoC logo are trademarks of Google LLC. Elixpo
+is preparing to apply as a mentoring organisation and is not affiliated with or
+endorsed by Google.
