@@ -1,6 +1,6 @@
 ---
 title: People
-description: The mentors, organisation administrator and programme coordinator for Elixpo's Google Summer of Code 2027 application.
+description: The mentors, organisation administrators and programme coordinator for Elixpo's Google Summer of Code 2027 application.
 heading: People
 lead: The mentors and organisers responsible for Elixpo's Google Summer of Code 2027 application, the ideas each mentor supervises, and how to contact them.
 next:
@@ -16,7 +16,7 @@ next:
   contributor always has support.
 - Mentors review all work personally and aim to reply within 48 hours on
   weekdays.
-- The **organisation administrator** manages Elixpo's application and its
-  communication with Google.
+- The **organisation administrators**, Ayushman Bhattacharya (lead) and
+  Vivek Yadav, manage Elixpo's application and its communication with Google.
 - The **programme coordinator** handles community questions and does not
   mentor or review code.

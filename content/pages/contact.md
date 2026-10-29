@@ -19,4 +19,6 @@ next:
 - **Code of Conduct reports:** follow the reporting steps in the
   [Code of Conduct](https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md).
 
-Mentors aim to reply within 48 hours on weekdays.
+Mentors aim to reply within 48 hours on weekdays. Questions about Elixpo's
+application are handled by the organisation administrators, Ayushman
+Bhattacharya (lead) and Vivek Yadav.

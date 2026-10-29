@@ -25,8 +25,9 @@ next:
 - **Primary mentor**: the contributor's main contact for an idea.
 - **Backup mentor**: a second mentor who knows the project and can step in
   if the primary mentor is away.
-- **Organisation administrator**: the person who manages the organisation's
-  application and its contact with Google.
+- **Organisation administrator**: a person who manages the organisation's
+  application and its communication with Google. Elixpo has two: Ayushman
+  Bhattacharya (lead) and Vivek Yadav.
 - **Community bonding**: the period after contributors are selected and
   before coding starts, used to get to know the mentors and plan the work.
 - **Midterm**: the middle of the programme, when progress is checked.

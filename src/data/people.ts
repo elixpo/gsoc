@@ -31,16 +31,16 @@ export const PEOPLE: Person[] = [
     isMentor: true,
     isPointOfContact: true,
     email: "vivek@elixpo.com",
-    about: "Elixpo contributor, including LixBlogs. Organisation administrator for the GSoC application.",
+    about: "Elixpo contributor, including LixBlogs. Organisation administrator and point of contact for the programme.",
   },
   {
     name: "Ayushman Bhattacharya", // TODO confirm
     github: "Circuit-Overtime",
-    roles: ["Mentor", "Founder of Elixpo"], // TODO confirm
+    roles: ["Lead organisation administrator", "Mentor", "Founder of Elixpo"], // TODO confirm
     isMentor: true,
     isPointOfContact: false,
     email: "ayushman@elixpo.com",
-    about: "Founded Elixpo and maintains several of its projects.",
+    about: "Founded Elixpo, leads its Google Summer of Code application and maintains several of its projects.",
   },
   {
     name: "Divyanshu", // TODO confirm full name and spelling

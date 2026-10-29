@@ -64,7 +64,7 @@ export const SITE_MAP = [
   { href: "/selection/", label: "Selection criteria", about: "How mentors evaluate applications." },
   { href: "/ai-policy/", label: "AI policy", about: "Permitted use of AI tools, and what you must disclose." },
   { href: "/timeline/", label: "Timeline", about: "The stages of the programme and where official dates are published." },
-  { href: "/people/", label: "People", about: "Mentors, the organisation administrator and the programme coordinator." },
+  { href: "/people/", label: "People", about: "Mentors, the organisation administrators and the programme coordinator." },
   { href: "/faq/", label: "FAQ", about: "Answers to common questions." },
   { href: "/glossary/", label: "Glossary", about: "Definitions of the terms used on this site." },
   { href: "/contact/", label: "Contact", about: "Public channels and the programme email address." },

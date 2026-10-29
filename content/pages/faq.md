@@ -49,6 +49,11 @@ Vivek Yadav, Ayushman Bhattacharya and Divyanshu. Each idea has a primary
 mentor (the contributor's main contact) and a backup mentor (who can step
 in). See [People](/people/).
 
+## Who are the organisation administrators?
+
+Ayushman Bhattacharya (lead organisation administrator) and Vivek Yadav. They
+manage Elixpo's application and its communication with Google.
+
 ## Can I propose my own idea?
 
 Yes. Discuss it in GitHub Discussions first. It must fit one codebase and

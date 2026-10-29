@@ -21,7 +21,7 @@ export default function PeoplePage() {
       </section>
       <section className="content" aria-labelledby="people-list">
         <h2 id="people-list" className="visually-hidden">
-          Mentors, administrator and coordinator
+          Mentors, administrators and coordinator
         </h2>
         <ul className="people-grid">
           {PEOPLE.map((person) => {
