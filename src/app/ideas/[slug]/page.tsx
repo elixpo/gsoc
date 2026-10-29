@@ -146,7 +146,7 @@ export default async function IdeaPage({ params }: Props) {
               </dd>
             </div>
             <div>
-              <dt>Live product</dt>
+              <dt>Product site</dt>
               <dd>
                 <a href={project.homepage}>{project.homepage.replace("https://", "")}</a>
               </dd>

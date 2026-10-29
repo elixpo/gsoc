@@ -531,7 +531,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
         for idea in ideas:
             expect(f'href="/ideas/{idea["slug"]}/"' in source, f"/projects/: idea {idea['slug']} not listed under its project")
         for project in projects:
-            for label, key in (("Live product", "homepage"), ("Project page on elixpo.com", "elixpo_page")):
+            for label, key in (("Product site", "homepage"), ("Project page on elixpo.com", "elixpo_page")):
                 expect(f'<dt>{label}</dt><dd><a href="{project[key]}">' in source, f"/projects/: {project['name']}: '{label}' link missing")
         main = re.search(r"<main.*?</main>", source, re.S)
         expect(bool(main) and not re.search(r"\bMIT\b", main.group(0) if main else ""), "/projects/: must not claim a licence; link the repository's LICENSE")
@@ -581,7 +581,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
         project = project_of.get(str(idea["repository"]))
         expect(bool(project), f"{route}: no project in content/projects/ for {idea['repository']}")
         if project:
-            for label, key in (("Live product", "homepage"), ("Project page on elixpo.com", "elixpo_page")):
+            for label, key in (("Product site", "homepage"), ("Project page on elixpo.com", "elixpo_page")):
                 expect(f'<dt>{label}</dt><dd><a href="{project[key]}">' in source, f"{route}: '{label}' link missing")
         pager = re.search(r'<nav[^>]*aria-label="More ideas".*?</nav>', source, re.S)
         expect(bool(pager), f"{route}: previous / next idea links missing")
