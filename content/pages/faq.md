@@ -26,8 +26,8 @@ Elixpo is a first-time applicant and plans to mentor one contributor in 2027.
 
 ## How hard are the projects?
 
-Difficulty is Easy, Intermediate or Hard. Two ideas sit between two levels:
-"Easy–Intermediate" and "Intermediate–Hard". Each idea page states its level.
+Difficulty is Easy, Intermediate or Hard, as Google defines them. One idea is
+Easy, three are Intermediate and two are Hard. Each idea page states its level.
 
 ## Who are the mentors?
 

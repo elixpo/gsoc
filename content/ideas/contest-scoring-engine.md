@@ -4,7 +4,7 @@ slug: contest-scoring-engine
 order: 4
 theme: Community, data
 size_hours: 90
-difficulty: Easy–Intermediate
+difficulty: Intermediate
 primary_mentor: divyanshuj91
 backup_mentor: Circuit-Overtime
 repository: https://github.com/elixpo/opensource.elixpo

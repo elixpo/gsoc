@@ -7,7 +7,7 @@ import { getPerson, type Person } from "@/data/people";
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
 export const SIZES = [90, 175] as const;
-export const DIFFICULTIES = ["Easy", "Easy–Intermediate", "Intermediate", "Intermediate–Hard", "Hard"] as const;
+export const DIFFICULTIES = ["Easy", "Intermediate", "Hard"] as const;
 export type Difficulty = (typeof DIFFICULTIES)[number];
 
 /** Render trusted Markdown from content/. Tables get a focusable scroll wrapper for small screens. */

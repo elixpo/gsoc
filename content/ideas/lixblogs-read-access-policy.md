@@ -4,7 +4,7 @@ slug: lixblogs-read-access-policy
 order: 1
 theme: Security
 size_hours: 175
-difficulty: Intermediate–Hard
+difficulty: Hard
 primary_mentor: divyanshuj91
 backup_mentor: ez-vivek
 repository: https://github.com/elixpo/blogs.elixpo

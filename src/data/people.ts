@@ -30,7 +30,7 @@ export const PEOPLE: Person[] = [
     roles: ["Organisation administrator", "Mentor", "Programme point of contact"], // TODO confirm
     isMentor: true,
     isPointOfContact: true,
-    email: null, // TODO confirm individual email
+    email: "vivek@elixpo.com",
     about: "Elixpo contributor, including LixBlogs. Organisation administrator for the GSoC application.",
   },
   {
@@ -39,7 +39,7 @@ export const PEOPLE: Person[] = [
     roles: ["Mentor", "Founder of Elixpo"], // TODO confirm
     isMentor: true,
     isPointOfContact: false,
-    email: null, // TODO confirm individual email
+    email: "ayushman@elixpo.com",
     about: "Founded Elixpo and maintains several of its projects.",
   },
   {
@@ -48,7 +48,7 @@ export const PEOPLE: Person[] = [
     roles: ["Mentor"], // TODO confirm
     isMentor: true,
     isPointOfContact: false,
-    email: null, // TODO confirm individual email
+    email: null, // TODO: Divyanshu has no elixpo.com inbox; add the address he confirms
     about: "Elixpo contributor across several projects, including LixBlogs, LixSketch and Elixpo Open Source.",
   },
   {
@@ -57,7 +57,7 @@ export const PEOPLE: Person[] = [
     roles: ["Programme coordinator", "Programme point of contact"], // TODO confirm
     isMentor: false,
     isPointOfContact: true,
-    email: null, // TODO confirm individual email
+    email: "anwesha@elixpo.com",
     about: "Coordinates community questions for the programme. Not a mentor.",
   },
 ];
