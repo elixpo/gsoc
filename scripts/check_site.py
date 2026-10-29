@@ -69,9 +69,9 @@ FORBIDDEN_FRAMING = [
 FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
 # Main navigation (src/data/site.ts NAV), exactly in this order; Contact is last, as a button.
 # Each of these pages must mark its own link with aria-current="page".
-NAV_ROUTES = ["/ideas/", "/projects/", "/proposal/", "/timeline/", "/faq/", "/contributor-guide/", "/contact/"]
-NAV_LABELS = ["Ideas", "Projects", "Proposal", "Timeline", "FAQ", "Get involved", "Contact"]
-NOT_IN_NAV = ["/people/", "/selection/", "/ai-policy/", "/glossary/", "/about/"]
+NAV_ROUTES = ["/ideas/", "/projects/", "/proposal/", "/timeline/", "/people/", "/faq/", "/contributor-guide/", "/contact/"]
+NAV_LABELS = ["Ideas", "Projects", "Proposal", "Timeline", "People", "FAQ", "Get involved", "Contact"]
+NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/about/"]
 # The five codebases on /projects/ (content/projects/*.md).
 PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "oreo"]
 IDEA_SECTIONS = ["Description", "Expected outcomes", "Stretch goals", "Out of scope", "How success is measured", "Material",
