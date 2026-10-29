@@ -1,69 +1,142 @@
 ---
 title: Contributor guide
-description: How to prepare for and apply to Elixpo in Google Summer of Code 2027 - the pre-application phase, the application phase, hints for applicants and communication channels.
-heading: Get *involved*
-lead: This guide is for prospective Google Summer of Code contributors who are interested in an Elixpo project idea. It describes what to do before applications open, how to apply, and how to communicate with mentors.
+description: How to get started with Elixpo in Google Summer of Code 2027 - why contribute, what each project is for, a step-by-step path from first contribution to proposal, and what contributors and mentors can expect from each other.
+heading: Getting *started*
+lead: This guide is for anyone who wants to contribute to Elixpo through Google Summer of Code 2027. It explains what Elixpo offers, what each project is for, and the steps from choosing an idea to what happens after selection.
 next:
+  - /ideas/
   - /proposal/
-  - /selection/
-  - /ai-policy/
+  - /agenda/
 ---
 
-## Pre-application phase
+> **In short**
+>
+> - **Elixpo** is an open-source project foundry where people build in public
+>   and release projects together. Read [our agenda](/agenda/).
+> - **What we offer:** a real project used in public, two mentors on every
+>   idea, review by people, and credit for attributable work.
+> - **The steps:** choose an idea, set it up locally, complete a warm-up task,
+>   introduce yourself, make a small pull request, then write your proposal.
+> - **Where to ask:** [gsoc@elixpo.com](mailto:gsoc@elixpo.com). GitHub
+>   Discussions for GSoC 2027 will open once Google announces the programme
+>   dates.
+> - **One rule:** submit your final proposal on the
+>   [official GSoC website](https://summerofcode.withgoogle.com/). Proposals
+>   sent anywhere else are not considered.
 
-1. **Browse the ideas.** Read the [ideas list](/ideas/) and choose one or
-   two that match your skills and interests. Each idea page lists the
-   repository, the skills required, warm-up tasks and the mentors. The
-   [projects page](/projects/) describes each codebase.
-2. **Set up the code.** Clone the repository and follow its README from a
-   fresh checkout. You do not need any private Elixpo key, password, account
-   or paid service to build the code and run the tests relevant to your idea.
-   If setup requires one, report it as an issue: it is a defect in our
-   instructions, and fixing it is a valid first contribution.
-3. **Ask questions.** Write to
-   [gsoc@elixpo.com](mailto:gsoc@elixpo.com) with questions about an idea,
-   and open an issue in the relevant repository for defects. Use the
-   programme address rather than mentors' personal accounts, so that every
-   question reaches both mentors on the idea. GitHub Discussions for GSoC 2027
-   will open once Google announces the programme dates.
-4. **Complete a warm-up task.** Each idea page lists warm-up tasks. A small,
-   finished, reviewed change carries more weight than a large unfinished one.
+## Why contribute to Elixpo
 
-## Application phase
+- **Real projects, used in public.** Every idea belongs to a codebase that
+  Elixpo operates or releases publicly, as a hosted service, an npm package or
+  a Debian package. The [projects page](/projects/) lists them.
+- **Two mentors on every idea.** A primary mentor is your main contact; a
+  backup mentor knows the project and can step in.
+- **Review by people.** Mentors review all work personally. Automated checks
+  are evidence for a review, not a replacement for it.
+- **Credit for your work.** Elixpo publishes contribution records for
+  attributable public work at
+  [elixpo.com/contributors](https://elixpo.com/contributors), each with a
+  stable record ID and links to its evidence. Credit points to work such as
+  merged changes, reviews, releases and documentation; commit count alone is
+  not the measure.
+- **A path beyond the summer.** The contributor is invited to keep reviewing
+  and maintaining the part they built.
 
-1. **Choose one idea.** We prefer one well-researched proposal to several
-   general ones.
-2. **Introduce yourself.** Write to
+## What each project is for
+
+- **[LixBlogs](/projects/#lixblogs)** is a collaborative blogging platform
+  with an API and a command-line tool, where many publications run on one
+  deployment. Ideas: [read-access policy](/ideas/lixblogs-read-access-policy/)
+  and [CLI automation contract](/ideas/lixblogs-cli-contract/).
+- **[LixSketch](/projects/#lixsketch)** is an end-to-end encrypted canvas for
+  sketches, diagrams and documents. Idea:
+  [accessible canvas](/ideas/accessible-lixsketch-canvas/).
+- **[Crumb](/projects/#crumb)** is a self-hosted agent harness and
+  natural-language terminal, written in Rust, that controls what AI agents
+  may do. Idea: [connector contract](/ideas/crumb-connector-contract/).
+- **[Elixpo Open Source](/projects/#elixpo-open-source)** is a platform, in
+  development, for running open-source contests and mentoring programmes.
+  Idea: [contest-scoring engine](/ideas/contest-scoring-engine/).
+- **[Oreo](/projects/#oreo)** is an open MicroPython operating system and
+  hardware design for an ESP32-S3 conference badge. Idea:
+  [desktop simulator](/ideas/oreo-badge-simulator/).
+
+## Step by step
+
+1. **Read the ideas and choose one or two.** Read the [ideas list](/ideas/)
+   and each idea page in full: the problem, expected outcomes, out-of-scope
+   items and how success is measured. *Why:* a proposal must answer one
+   idea's problem. *Done when:* you can explain the problem in your own words.
+2. **Set up the project locally.** Clone the repository and follow its README
+   from a fresh checkout. You do not need any private Elixpo key, password,
+   account or paid service to build the code and run the tests for your idea.
+   *Why:* every later step depends on a working setup. *Done when:* the
+   project builds and its tests run. If a step requires a private credential,
+   report it as an issue: it is a defect in our instructions, and fixing it is
+   a valid first contribution.
+3. **Complete a warm-up task.** Each idea page lists warm-up tasks. *Why:* it
+   shows you how the code is organised and gives mentors evidence of your
+   work. *Done when:* you have finished one task and recorded what you
+   learned.
+4. **Introduce yourself.** Write to
    [gsoc@elixpo.com](mailto:gsoc@elixpo.com) with the idea you intend to
-   apply for, your background and a link to your warm-up contribution.
-3. **Share a draft before finalising your proposal.** Send it to
+   apply for, your background and a link to your warm-up work. GitHub
+   Discussions for GSoC 2027 will open once Google announces the programme
+   dates. Use the programme address rather than mentors' personal accounts,
+   so that every message reaches both mentors on the idea. *Done when:* a
+   mentor has replied.
+5. **Make a first small pull request and respond to review.** Fix a small
+   defect, add a test or improve the documentation in the repository for
+   your idea. State what you changed and how you tested it, and disclose
+   meaningful use of AI tools as the [AI policy](/ai-policy/) requires.
+   *Why:* review is how mentors and contributors work together. A small,
+   finished, reviewed change carries more weight than a large unfinished one.
+   *Done when:* the pull request is merged or closed after review.
+6. **Draft your proposal and share it early.** Use the
+   [proposal template](/proposal/) and read the
+   [selection criteria](/selection/). Send the draft to
    [gsoc@elixpo.com](mailto:gsoc@elixpo.com) so that the mentors can comment
-   on it.
-4. **Read the rules.** Read the
+   on it. *Done when:* you have revised the draft after feedback.
+7. **Submit on the official GSoC website before the deadline.** Read the
    [Google Summer of Code rules](https://summerofcode.withgoogle.com/rules)
-   and the [contributor guide](https://google.github.io/gsocguides/student/)
-   published by Google. Google sets eligibility and the number of proposals
-   you may submit.
-5. **Submit through Google.** You must submit your final proposal through the
-   [official GSoC website](https://summerofcode.withgoogle.com/). Proposals
-   sent by email or posted only on GitHub are not considered.
+   and Google's
+   [contributor guide](https://google.github.io/gsocguides/student/). Google
+   sets eligibility, the number of proposals you may submit and the deadline;
+   see the [timeline](/timeline/). *Done when:* your final proposal appears on
+   the [official GSoC website](https://summerofcode.withgoogle.com/).
+8. **What happens next.** Mentors read every proposal and interview
+   shortlisted applicants; Google allocates contributor slots and announces
+   the results. A selected contributor then meets the mentors in the
+   community bonding period, agrees milestones and a communication plan, and
+   starts coding. Mentors complete Google's evaluations at the midterm and at
+   the end of the programme. If you are not selected, your merged work remains
+   part of the project and you are welcome to keep contributing.
 
-Use the [proposal template](/proposal/) and read the
-[selection criteria](/selection/) and the [AI policy](/ai-policy/).
+## What we expect from you
 
-## Hints before applying
+- **Ownership.** You are responsible for your work and your communication;
+  respect the time of reviewers and other applicants.
+- **Careful work.** Review your own pull request before asking for review,
+  keep changes focused, and test what you submit.
+- **Clear communication.** Ask specific questions, report progress regularly,
+  and tell your mentors early when you are blocked or your availability
+  changes.
+- **Honesty.** Write your own proposal, disclose meaningful use of AI tools,
+  and never claim work or results that do not exist.
+- **Conduct.** Follow the [Code of Conduct](/code-of-conduct/) in every
+  Elixpo space.
 
-- **Be visible in the community.** Ask questions, answer others where you
-  can, and report progress on your warm-up task in its pull request or issue.
-- **Work on issues.** Fix a small defect, add a test or improve the
-  documentation in the repository for your idea.
-- **Write clear pull requests.** State what you changed and how you tested
-  it, and disclose meaningful use of AI tools as the
-  [AI policy](/ai-policy/) requires.
-- **Respond to review.** Review is how mentors and contributors work
-  together, and how we assess communication.
-- **Read the code before proposing.** Proposals that refer to specific files,
-  routes or modules are stronger than proposals that restate the idea page.
+## What you can expect from us
+
+- **Timely replies.** Mentors aim to reply within 48 hours on weekdays.
+- **Two mentors.** A primary and a backup mentor on every idea, so that you
+  always have support.
+- **Honest feedback.** Written review on your pull requests and comments on
+  your draft proposal.
+- **Human decisions.** Mentors review all work personally and make every
+  decision.
+- **Published commitments.** Every mentor and administrator signs the
+  commitments published on the [agreements page](/agreements/).
 
 ## Communication channels
 
@@ -72,18 +145,11 @@ Use the [proposal template](/proposal/) and read the
 | Questions about an idea or the code | [gsoc@elixpo.com](mailto:gsoc@elixpo.com) |
 | Defects and setup problems | An issue in the relevant repository |
 | Programme questions and private matters | [gsoc@elixpo.com](mailto:gsoc@elixpo.com) |
-| Code of Conduct reports | The [Code of Conduct](https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md) reporting steps |
+| Code of Conduct reports | The [Code of Conduct](/code-of-conduct/) reporting steps |
 
 GitHub Discussions for GSoC 2027 will open once Google announces the
 programme dates. Until then, write to
 [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 
-Mentors aim to reply within 48 hours on weekdays. If you have not received a
-reply after that, send a reminder in the same email thread.
-
-## Code of Conduct
-
-Everyone taking part follows the
-[Elixpo Code of Conduct](https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md).
-
-We look forward to your application.
+If you have not received a reply within 48 hours on weekdays, send a reminder
+in the same email thread.
