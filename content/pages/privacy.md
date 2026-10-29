@@ -9,6 +9,7 @@ tldr:
   - Cloudflare Pages hosts the site and processes standard request information.
   - Email to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) is used only to answer you and to run the programme.
   - You submit applications and proposals to Google, through the Google Summer of Code site.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /terms/
   - /contact/

@@ -8,6 +8,7 @@ tldr:
   - Each entry links its repository, README, contribution guidelines and licence.
   - Each entry lists the ideas it hosts and their mentors.
   - Every project can be set up from its public repository, without private keys: see the [warm-up page](/warm-up/).
+  - Ideas by codebase: LixBlogs, [LixBlogs read-access policy and offline conformance harness](/ideas/lixblogs-read-access-policy/) and [LixBlogs CLI automation contract v1](/ideas/lixblogs-cli-contract/); LixSketch, [Accessible LixSketch canvas](/ideas/accessible-lixsketch-canvas/); Crumb, [Crumb connector contract and offline conformance kit](/ideas/crumb-connector-contract/); Elixpo Open Source, [Explainable contest-scoring engine for Elixpo Open Source](/ideas/contest-scoring-engine/); Oreo, [Oreo badge desktop simulator](/ideas/oreo-badge-simulator/).
 next:
   - /ideas/
   - /contributor-guide/

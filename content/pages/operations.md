@@ -9,6 +9,7 @@ tldr:
   - If work falls behind, we say so early, in writing, and agree a recovery plan before any evaluation.
   - Escalation runs from the primary mentor to the backup mentor, the organisation administrators, then Google.
   - Questions and concerns: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+  - [Browse the six project ideas](/ideas/).
 next:
   - /mentors/
   - /contributor-guide/

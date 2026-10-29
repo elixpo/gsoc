@@ -9,6 +9,7 @@ tldr:
   - Three mentors, two administrators and a coordinator, for one planned contributor.
   - Every answer below links the page or public record that supports it.
   - Contact: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+  - [Browse the six project ideas](/ideas/).
 next:
   - /about/
   - /operations/

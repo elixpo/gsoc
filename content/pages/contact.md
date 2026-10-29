@@ -8,6 +8,7 @@ tldr:
   - Defects and setup problems: an issue in the relevant repository.
   - Mentors aim to reply within 48 hours on weekdays.
   - GitHub Discussions for GSoC 2027 will open once Google announces the programme dates.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /faq/
   - /mentors/

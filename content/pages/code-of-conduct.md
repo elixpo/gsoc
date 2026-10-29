@@ -8,6 +8,7 @@ tldr:
   - Be kind and respectful; harassment, plagiarism and misuse of a role are not acceptable.
   - Report a concern privately to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) with the subject Code of Conduct report.
   - If a report involves an organisation administrator, write to the other administrator.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /contributing/
   - /ai-policy/

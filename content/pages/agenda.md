@@ -10,6 +10,7 @@ tldr:
   # TODO: Update to 'participating projects have no paid plans' after the pricing-removal PRs merge.
   - No Google Summer of Code idea involves payments, pricing or paid features.
   - Two mentors, human review, and replies within 48 hours on weekdays.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /contributor-guide/
   - /ideas/

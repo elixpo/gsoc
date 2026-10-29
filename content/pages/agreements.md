@@ -7,6 +7,7 @@ tldr:
   - Every mentor and administrator signs a public commitment.
   - It covers time and replies, mentoring duties, evaluations, conduct, confidentiality and conflicts of interest.
   - Signed copies are published on this page; until then each entry shows Awaiting signature.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /mentors/
   - /code-of-conduct/

@@ -9,6 +9,7 @@ tldr:
   - The steps: choose an idea, set it up, complete a warm-up task, introduce yourself, make a small pull request, then write your proposal.
   - Write to [gsoc@elixpo.com](mailto:gsoc@elixpo.com). GitHub Discussions for GSoC 2027 will open once Google announces the programme dates.
   - Submit your final proposal on the [official GSoC website](https://summerofcode.withgoogle.com/). Proposals sent anywhere else are not considered.
+  - Step one is choosing an idea: [browse the six project ideas](/ideas/).
 next:
   - /ideas/
   - /proposal/

@@ -47,7 +47,10 @@ const TOC = [
   { id: "terms", text: "Terms used on this page" },
 ];
 
-/** The idea's TL;DR, built from its frontmatter so it always matches the page. */
+const COUNT_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+const countWord = (count: number) => COUNT_WORDS[count] ?? String(count);
+
+/** The idea's TL;DR, built from its frontmatter so it always matches the page; the last point links back to all ideas. */
 function ideaTldr(idea: Idea): string[] {
   return [
     `<strong>In short:</strong> ${escapeHtml(idea.inShort)}`,
@@ -55,6 +58,7 @@ function ideaTldr(idea: Idea): string[] {
     `Mentors: ${escapeHtml(idea.primaryMentor.name)} (primary) and ${escapeHtml(idea.backupMentor.name)} (backup).`,
     `First step: set up <a href="${idea.setup}">${escapeHtml(idea.repositoryName)}</a> from its README, then pick a <a href="#warm-up-tasks">warm-up task</a>.`,
     `Questions: <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`,
+    `<a href="/ideas/">See all ${countWord(IDEAS.length)} ideas</a>, with size, difficulty and mentors.`,
   ];
 }
 

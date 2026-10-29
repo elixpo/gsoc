@@ -9,6 +9,7 @@ tldr:
   - Every idea has a primary mentor and a backup mentor.
   - Complete at least one warm-up task before you write your proposal.
   - Your own idea? Describe it to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) first.
+  - Compare them in [all ideas at a glance](#ideas-overview), then open an idea for its warm-up tasks.
 next:
   - /projects/
   - /contributor-guide/

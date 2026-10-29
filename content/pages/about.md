@@ -8,6 +8,7 @@ tldr:
   - Its maintainers took part in Hacktoberfest in 2024 and 2025, reviewing and merging outside contributors' pull requests.
   - In October 2025 the Chapter repository merged 47 Hacktoberfest pull requests from 24 GitHub accounts.
   - Every step in the record links its public source and states the precision of its date.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /ideas/
   - /mentors/

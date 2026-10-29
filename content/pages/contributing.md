@@ -8,6 +8,7 @@ tldr:
   - Report mistakes on this site to the same address until its source repository is public.
   - Small fixes, tests and documentation are welcome in the [participating codebases](/projects/) at any time.
   - The Code of Conduct and the AI policy apply everywhere.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /projects/
   - /contributor-guide/

@@ -9,6 +9,7 @@ tldr:
   - In 2027 we plan to mentor one contributor.
   - To start: choose an idea, set it up, complete a warm-up task, then follow the [contributor guide](/contributor-guide/).
   - Questions: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+  - [Browse the six project ideas](/ideas/).
 next:
   - /ideas/
   - /contributor-guide/

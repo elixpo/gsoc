@@ -9,6 +9,7 @@ tldr:
   - Organisation administrators: Ayushman Bhattacharya (lead) and Vivek Yadav. Programme coordinator: Anwesha Chakraborty.
   - Mentors aim to reply within 48 hours on weekdays.
   - Programme questions: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+  - Each profile lists the ideas that person mentors; [browse the six project ideas](/ideas/).
 next:
   - /ideas/
   - /operations/

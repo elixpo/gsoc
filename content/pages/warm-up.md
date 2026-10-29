@@ -8,6 +8,7 @@ tldr:
   - Each project below lists its prerequisites and the exact commands its own CI or README uses, with the source file.
   - Where a project falls short today, its section says so under "Known limitations".
   - If a step asks for a secret, report it as a setup issue. Questions go to [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+  - Pick the idea you will work on: [browse the six project ideas](/ideas/).
 next:
   - /ideas/
   - /contributor-guide/

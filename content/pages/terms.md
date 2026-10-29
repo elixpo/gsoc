@@ -8,6 +8,7 @@ tldr:
   - The Elixpo name and marks are reserved and not covered by either licence.
   - Google's official rules, dates and eligibility requirements take precedence over this site.
   - Nothing on this site guarantees selection.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /privacy/
   - /code-of-conduct/
