@@ -19,21 +19,15 @@ skills:
 related_issues: []
 ---
 
-## Why this matters
-
-People and AI agents use the LixBlogs command-line tool from their own
-scripts, and those scripts read what it prints. If the output changes, even
-slightly, the scripts can break without anyone noticing.
-
-A written, versioned description of the output, checked by tests, protects
-everyone who builds on the tool.
-
-## Problem
+## Description
 
 [`@elixpo/lixblogs-cli`](https://www.npmjs.com/package/@elixpo/lixblogs-cli)
 (v1.8.0 on npm) is used by people and by AI agents through
 `--json --no-input`, but its output shapes are not versioned or specified.
 An unnoticed change breaks every script and agent skill built on it.
+
+**Impact.** A written, versioned and tested description of the output protects
+everyone who builds scripts and agent tools on the CLI.
 
 ## Expected outcomes
 
@@ -48,29 +42,29 @@ An unnoticed change breaks every script and agent skill built on it.
 
 - CI detection of breaking contract changes.
 
-## Not in scope
+## Out of scope
 
 - New API endpoints.
 - Telemetry.
 - Offline sync.
 - Plugins.
 
-## Proof of success
+## How success is measured
 
 - The schemas validate every snapshot.
 - A forced duplicate upload creates exactly one record.
 - The packed artifact passes CI on three operating systems.
 
-## How to start
+## Warm-up tasks
 
-1. Install the CLI from npm and run a few commands with `--json --no-input`.
-2. Read the CLI source in `packages/lixblogs-cli` in the LixBlogs
-   repository.
-3. Write down every JSON shape you see, including errors.
-4. Make a small, reviewed contribution to the repository, then share your
+1. Install the CLI from npm and run several commands with
+   `--json --no-input`.
+2. Read the CLI source in `packages/lixblogs-cli` in the LixBlogs repository.
+3. Record every JSON output shape you observe, including errors, and share the
    notes in GitHub Discussions.
+4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.
 
-## Words used on this page
+## Terms used on this page
 
 - **CLI**: a command-line interface, a tool you use by typing commands in a
   terminal.

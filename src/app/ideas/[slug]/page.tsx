@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { nextLinks, RoleChips, sizeLabel, WhatNext } from "@/components/blocks";
-import { getIdea, IDEAS, neighbours, type IdeaSection } from "@/lib/content";
+import { getIdea, IDEAS, neighbours, projectAnchor, type IdeaSection } from "@/lib/content";
 import { CONTACT_EMAIL, DISCUSSIONS_URL, RESPONSE_EXPECTATION } from "@/data/site";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 
@@ -24,14 +24,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-/** Plain one-line hints shown under each formal section heading. */
+/** One-line explanations shown under each section heading. */
 const HINTS: Partial<Record<IdeaSection, string>> = {
-  Problem: "What is broken or missing today.",
-  "Expected outcomes": "What should exist at the end of the project.",
-  "Stretch goals": "Extra work to try only if the main goals are finished early.",
-  "Not in scope": "Work that is not part of this project, even if it seems related.",
-  "Proof of success": "How you and your mentors will know the work is done.",
+  Description: "The problem this idea addresses and why it matters.",
+  "Expected outcomes": "What must exist at the end of the project.",
+  "Stretch goals": "Optional work, attempted only once the expected outcomes are complete.",
+  "Out of scope": "Work that is not part of this project, even if it appears related.",
+  "How success is measured": "The checks that confirm the work is complete.",
+  "Warm-up tasks": "Complete at least one before you submit a proposal, and share the result in GitHub Discussions or as a pull request.",
 };
+
+/** Section ids, in page order, for the "On this page" list. */
+const TOC = [
+  { id: "description", text: "Description" },
+  { id: "outcomes", text: "Expected outcomes" },
+  { id: "stretch", text: "Stretch goals" },
+  { id: "out-of-scope", text: "Out of scope" },
+  { id: "success", text: "How success is measured" },
+  { id: "material", text: "Material" },
+  { id: "warm-up-tasks", text: "Warm-up tasks" },
+  { id: "details", text: "Skills, size and mentors" },
+  { id: "terms", text: "Terms used on this page" },
+];
 
 function Section({ id, title, html }: { id: string; title: IdeaSection; html: string }) {
   return (
@@ -123,122 +137,131 @@ export default async function IdeaPage({ params }: Props) {
             </div>
           </dl>
           <p className="note">
-            <Link href="/glossary/">What do these words mean?</Link>
+            <a href="#warm-up-tasks">Warm-up tasks</a> · <Link href="/glossary/">Glossary</Link>
           </p>
         </aside>
       </header>
 
       <div className="idea-body">
+        <nav className="toc" aria-labelledby="toc-heading">
+          <h2 id="toc-heading">On this page</h2>
+          <ol>
+            {TOC.map((item) => (
+              <li key={item.id}>
+                <a href={`#${item.id}`}>{item.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
         <div className="idea-main">
-          <section className="idea-section" aria-labelledby="why">
-            <h2 id="why">Why this matters</h2>
-            <div className="prose" dangerouslySetInnerHTML={{ __html: idea.sections["Why this matters"] }} />
-            <p className="section-hint">
-              New to some of the words below? See <a href="#words">words used on this page</a>.
-            </p>
-          </section>
-          <Section id="problem" title="Problem" html={idea.sections["Problem"]} />
+          <Section id="description" title="Description" html={idea.sections["Description"]} />
           <Section id="outcomes" title="Expected outcomes" html={idea.sections["Expected outcomes"]} />
           <Section id="stretch" title="Stretch goals" html={idea.sections["Stretch goals"]} />
-          <Section id="not-in-scope" title="Not in scope" html={idea.sections["Not in scope"]} />
-          <Section id="proof" title="Proof of success" html={idea.sections["Proof of success"]} />
+          <Section id="out-of-scope" title="Out of scope" html={idea.sections["Out of scope"]} />
+          <Section id="success" title="How success is measured" html={idea.sections["How success is measured"]} />
 
-          <section className="start-box" aria-labelledby="how-to-start">
-            <h2 id="how-to-start">How to start on this idea</h2>
-            <div className="prose" dangerouslySetInnerHTML={{ __html: idea.sections["How to start"] }} />
-            <div className="start-links">
+          <section className="idea-section" aria-labelledby="material">
+            <h2 id="material">Material</h2>
+            <p className="section-hint">The code, documentation and issues this idea builds on.</p>
+            <div className="material">
               <div>
-                <h3>Links you will need</h3>
+                <h3>Code and documentation</h3>
                 <ul className="link-list">
                   <li>
-                    <a href={idea.repository}>Code repository: {idea.repositoryName}</a>
+                    Repository: <a href={idea.repository}>{idea.repositoryName}</a>
                   </li>
                   <li>
                     <a href={idea.setup}>Setup instructions (README)</a>
                   </li>
                   {idea.envExample && (
                     <li>
-                      <a href={idea.envExample}>Example settings file (.env.example)</a>
+                      <a href={idea.envExample}>Example configuration (.env.example)</a>
                     </li>
                   )}
                   <li>
-                    <a href={`${idea.repository}/blob/main/CONTRIBUTING.md`}>How to send changes (CONTRIBUTING)</a>
+                    <a href={`${idea.repository}/blob/main/CONTRIBUTING.md`}>Contribution guidelines (CONTRIBUTING)</a>
+                  </li>
+                  <li>
+                    <Link href={`/projects/#${projectAnchor(idea.repository)}`}>Project overview</Link>
                   </li>
                 </ul>
-                <p className="note">You should not need any Elixpo secret to set up the project. If you do, tell us: that is a bug.</p>
+                <p className="note">Setup does not require Elixpo credentials. Report any step that does as an issue.</p>
               </div>
               <div>
-                <h3>Where to ask</h3>
-                <ul className="link-list">
-                  <li>
-                    <a href={DISCUSSIONS_URL}>Ask in GitHub Discussions</a> (public, preferred)
-                  </li>
-                  <li>
-                    Private questions: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-                  </li>
-                  <li>
-                    <Link href="/contributor-guide/">Read the contributor guide</Link>
-                  </li>
-                </ul>
-                <p className="note">{RESPONSE_EXPECTATION}</p>
+                <h3>Related issues</h3>
+                {idea.relatedIssues.length ? (
+                  <ul className="link-list">
+                    {idea.relatedIssues.map((issue) => (
+                      <li key={issue.number}>
+                        <a href={issue.url}>
+                          #{issue.number} {issue.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="note">
+                    No issues are linked to this idea yet. Ask about it in <a href={DISCUSSIONS_URL}>GitHub Discussions</a>.
+                  </p>
+                )}
               </div>
             </div>
           </section>
 
-          <section className="idea-section words" aria-labelledby="words">
-            <h2 id="words">Words used on this page</h2>
-            <div className="prose" dangerouslySetInnerHTML={{ __html: idea.sections["Words used on this page"] }} />
+          <Section id="warm-up-tasks" title="Warm-up tasks" html={idea.sections["Warm-up tasks"]} />
+
+          <section className="idea-section" aria-labelledby="details">
+            <h2 id="details">Skills, size and mentors</h2>
+            <dl className="idea-details">
+              <div>
+                <dt>Skills</dt>
+                <dd>
+                  <ul className="tags">
+                    {idea.skills.map((skill) => (
+                      <li key={skill}>{skill}</li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+              <div>
+                <dt>Size</dt>
+                <dd>{sizeLabel(idea.sizeHours)}</dd>
+              </div>
+              <div>
+                <dt>Difficulty</dt>
+                <dd>{idea.difficulty}</dd>
+              </div>
+              <div>
+                <dt>Mentors</dt>
+                <dd>
+                  <ul className="mentor-list">
+                    {mentors.map(({ person, role }) => (
+                      <li key={person.github}>
+                        <Image src={`https://github.com/${person.github}.png?size=96`} width={48} height={48} alt="" unoptimized />
+                        <span>
+                          <b>{person.name}</b>
+                          <RoleChips roles={[role]} label={`Role of ${person.name} on this idea`} className="chips-small" />
+                          <a href={`https://github.com/${person.github}`}>@{person.github}</a>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            </dl>
             <p className="note">
-              For general terms such as mentor, proposal or pull request, see the <Link href="/glossary/">glossary</Link>.
+              The primary mentor is the contributor&apos;s main contact; the backup mentor can step in. Ask questions about this idea in{" "}
+              <a href={DISCUSSIONS_URL}>GitHub Discussions</a>; programme questions go to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.{" "}
+              {RESPONSE_EXPECTATION}
             </p>
           </section>
-        </div>
 
-        <div className="idea-side">
-          <section aria-labelledby="skills">
-            <h2 id="skills">Skills</h2>
-            <ul className="tags">
-              {idea.skills.map((skill) => (
-                <li key={skill}>{skill}</li>
-              ))}
-            </ul>
-          </section>
-
-          <section aria-labelledby="mentors">
-            <h2 id="mentors">Mentors</h2>
-            <ul className="mentor-list">
-              {mentors.map(({ person, role }) => (
-                <li key={person.github}>
-                  <Image src={`https://github.com/${person.github}.png?size=96`} width={48} height={48} alt="" unoptimized />
-                  <span>
-                    <b>{person.name}</b>
-                    <RoleChips roles={[role]} label={`Role of ${person.name} on this idea`} className="chips-small" />
-                    <a href={`https://github.com/${person.github}`}>@{person.github}</a>
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <p className="note">Your primary mentor is your main contact. Your backup mentor can step in.</p>
-          </section>
-
-          <section aria-labelledby="related-issues">
-            <h2 id="related-issues">Related issues</h2>
-            {idea.relatedIssues.length ? (
-              <>
-                <p className="note">Public bug reports and plans in the repository that this idea builds on.</p>
-                <ul className="link-list">
-                  {idea.relatedIssues.map((issue) => (
-                    <li key={issue.number}>
-                      <a href={issue.url}>
-                        #{issue.number} {issue.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <p className="note">No issues are linked yet. Ask about this idea in GitHub Discussions.</p>
-            )}
+          <section className="idea-section terms" aria-labelledby="terms">
+            <h2 id="terms">Terms used on this page</h2>
+            <div className="prose" dangerouslySetInnerHTML={{ __html: idea.sections["Terms used on this page"] }} />
+            <p className="note">
+              General terms such as mentor, proposal and pull request are defined in the <Link href="/glossary/">glossary</Link>.
+            </p>
           </section>
         </div>
       </div>

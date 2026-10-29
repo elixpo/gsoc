@@ -20,25 +20,19 @@ skills:
 related_issues: []
 ---
 
-## Why this matters
-
-Today, Oreo apps only run on the physical badge, and the badges are
-hand-built. So almost nobody else can try or test a change.
-
-A simulator, a program that pretends to be the badge on your own computer,
-lets anyone contribute. It also lets automated tests check the apps on every
-change.
-
-## Problem
+## Description
 
 Oreo is an open MicroPython OS for an ESP32-S3 conference badge: about 22k
 lines of Python and 21 apps. The project is young, and today apps run only on
-hand-built hardware, with no automated tests. That means almost nobody else
-can contribute.
+hand-built hardware, with no automated tests, so very few people can
+contribute.
 
-This project is the one that opens Oreo to contributors. The OS already
-defines a hardware abstraction layer (`oreoOS/api.py`), but several modules
-bypass it.
+The OS already defines a hardware abstraction layer (`oreoOS/api.py`), but
+several modules bypass it.
+
+**Impact.** A simulator, a program that runs the badge software on an ordinary
+computer, opens Oreo to contributors without hardware and allows automated
+tests to check the apps on every change.
 
 ## Expected outcomes
 
@@ -56,30 +50,29 @@ bypass it.
 - Wifi and HTTP mocks.
 - A video playback fallback.
 
-## Not in scope
+## Out of scope
 
 - Cycle-accurate ESP32 emulation.
 - BLE emulation.
 - A new quest protocol.
 
-## Proof of success
+## How success is measured
 
 - At least 15 of the 21 apps run unmodified.
 - Two simulated badges exchange an IR frame.
 - Headless CI checks golden images.
 - A new contributor builds an app from `app_templates/` without hardware.
 
-## How to start
+## Warm-up tasks
 
-1. Clone Oreo and read the README. You do not need a badge.
-2. Read `oreoOS/api.py`, then find one module that imports hardware directly
-   instead of going through it.
-3. Install the MicroPython unix port and see how far an app gets before it
-   needs hardware.
-4. Make a small, reviewed contribution to the repository, then share your
-   findings in GitHub Discussions.
+1. Clone Oreo and read the README. No badge hardware is required.
+2. Read `oreoOS/api.py`, then identify one module that imports hardware
+   directly instead of going through it.
+3. Install the MicroPython unix port and record how far an app runs before it
+   requires hardware.
+4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.
 
-## Words used on this page
+## Terms used on this page
 
 - **MicroPython**: a small version of Python for tiny computers.
 - **ESP32-S3**: the small computer chip inside the badge.

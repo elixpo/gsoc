@@ -22,16 +22,7 @@ related_issues:
   - "31 Plan storage connectors for media workflows"
 ---
 
-## Why this matters
-
-Crumb lets AI agents do tasks for you, for example on GitHub. When an agent
-can reach your accounts, it must only do what you have allowed, and your
-passwords and keys must stay safe.
-
-Today there is no shared, tested set of rules for this. Until there is, the
-planned connections to other services are on hold.
-
-## Problem
+## Description
 
 Crumb is Elixpo's self-hosted Rust agent harness: 29 crates, about 700
 tests, and packaged in Debian. Skills already have a signed, verified
@@ -40,8 +31,12 @@ access is hand-written native tools, and MCP servers are unscoped.
 
 There is no versioned contract for declaring scopes, storing and revoking
 credentials, separating read approval from write approval, or proving that a
-connector behaves correctly. The planned connectors (listed under "Related issues" on this page) are
-blocked until that contract exists.
+connector behaves correctly. The planned connectors, linked under Material,
+are blocked until that contract exists.
+
+**Impact.** When an agent can reach a user's accounts, it must do only what
+the user has allowed, and credentials must stay protected. A shared, tested
+contract makes that guarantee explicit and unblocks the planned connectors.
 
 ## Expected outcomes
 
@@ -60,14 +55,14 @@ blocked until that contract exists.
 - Wrapping MCP servers as connectors.
 - A `crumb connector doctor` command.
 
-## Not in scope
+## Out of scope
 
 - Email and calendar connectors.
 - OAuth app registration.
 - Marketplace UI.
 - New LLM providers.
 
-## Proof of success
+## How success is measured
 
 - The kit runs in CI on Linux, macOS and Windows with no secrets.
 - Negative tests prove that undeclared scopes are denied.
@@ -75,18 +70,17 @@ blocked until that contract exists.
   pass.
 - The design document is merged before the midterm.
 
-## How to start
+## Warm-up tasks
 
 1. Build Crumb and run its test suite from a clean checkout, following the
-   README. The tests use a mock LLM provider, so you should not need an API
-   key.
-2. Read the `crumb-marketplace` crate to see how skill manifests are
+   README. The tests use a mock LLM provider, so no API key is required.
+2. Read the `crumb-marketplace` crate and describe how skill manifests are
    verified today.
-3. Read the connector planning issues listed under "Related issues".
-4. Make a small, reviewed contribution to the repository, then share your
-   questions in GitHub Discussions.
+3. Read the connector planning issues linked under Material and summarise
+   their requirements in your own words in GitHub Discussions.
+4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.
 
-## Words used on this page
+## Terms used on this page
 
 - **Agent harness**: a program that runs AI agents and controls what they
   may do. **Self-hosted** means you run it on your own computer.

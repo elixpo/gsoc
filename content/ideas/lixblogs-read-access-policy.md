@@ -30,26 +30,20 @@ related_issues:
   - "519 Private org posts surface in follow lists, discovery, and public reading lists"
 ---
 
-## Why this matters
-
-LixBlogs has content that is meant to be private: drafts, secret posts and
-posts inside private organisations. Today, each part of the code checks on its
-own who may see that content. In October 2026, several reports showed that
-some of those checks were wrong.
-
-One shared set of rules, with tests that run the real code, makes this kind
-of mistake much harder to repeat. It protects the privacy of everyone who
-writes on LixBlogs.
-
-## Problem
+## Description
 
 LixBlogs decides who can read a post, draft, secret post or
 private-organisation item separately in each of its ~135 API routes. The same
 SQL filter is copied about 100 times, and there is no shared `canRead` rule.
 
-In October 2026 that duplication led to a cluster of privacy-leak reports
-(listed under "Related issues" on this page). Nothing stops the next one. There are no route-level tests:
-the 47 existing tests stub the database by hand.
+In October 2026 that duplication led to a cluster of privacy-leak reports,
+linked under Material. Nothing prevents the next one. There are no
+route-level tests: the 47 existing tests stub the database by hand.
+
+**Impact.** LixBlogs holds content that must remain private: drafts, secret
+posts and posts in private organisations. One shared policy, tested against
+the real route handlers, makes this class of defect much harder to
+reintroduce and protects everyone who writes on LixBlogs.
 
 ## Expected outcomes
 
@@ -69,31 +63,31 @@ the 47 existing tests stub the database by hand.
 - Differential checks: a list endpoint never returns an item that the
   single-item endpoint refuses.
 
-## Not in scope
+## Out of scope
 
 - Fixing unrelated bugs.
 - Building UI.
 - Testing against production.
 - Changing the auth provider.
 
-## Proof of success
+## How success is measured
 
 - Reverting the October fix commits makes the suite fail.
 - 100% of routes are classified.
 - CI needs no secrets.
 
-## How to start
+## Warm-up tasks
 
-1. Set up LixBlogs locally from the README and `.env.example`. You should not
-   need any production secret. If you do, tell us in Discussions: that is a
-   bug we want to fix.
-2. Read the issues listed under "Related issues" and find the route each one touches.
-3. Look at `migrations/` and the existing tests in `tests/` to see how data
+1. Set up LixBlogs locally from the README and `.env.example`, and run the
+   existing tests in `tests/`. Setup does not require production secrets;
+   report any step that does as an issue.
+2. Read the related issues linked under Material, identify the route each one
+   touches, and summarise the cause in your own words in GitHub Discussions.
+3. Read `migrations/` and the existing tests in `tests/`, and describe how data
    and tests are structured today.
-4. Make a small, reviewed contribution to the repository, then say hello in
-   GitHub Discussions with what you learned.
+4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.
 
-## Words used on this page
+## Terms used on this page
 
 - **Read-access policy**: the rules that decide who may read a piece of
   content.

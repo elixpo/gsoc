@@ -19,17 +19,7 @@ skills:
 related_issues: []
 ---
 
-## Why this matters
-
-Elixpo Open Source will run contests in which people earn points for
-contributing to open source. For a contest to be fair, everyone must be able
-to see why they got their points, get the same result when the scores are
-worked out again, and not be able to earn points with tricks.
-
-Today the leaderboard shows made-up data, because the part that calculates
-the points does not exist yet.
-
-## Problem
+## Description
 
 Elixpo Open Source is the platform Elixpo is building to run open-source
 contests and mentorship programmes. Its points ledger schema and written
@@ -38,6 +28,10 @@ mock data.
 
 Contest hosts need points that are reproducible, explainable and hard to
 game.
+
+**Impact.** A fair contest requires that every participant can see why they
+received their points, that recalculating the scores gives the same result,
+and that points cannot be earned through tricks.
 
 ## Expected outcomes
 
@@ -58,29 +52,31 @@ game.
 - A D1 adapter.
 - Tie-breakers.
 
-## Not in scope
+## Out of scope
 
 - Webhook ingestion.
 - The GitHub App.
 - UI.
 - Payouts.
 
-## Proof of success
+## How success is measured
 
 - 20 or more fixture scenarios with golden outputs.
 - Two replays produce byte-identical output.
 - Every point traces back to its events and the rule that awarded it.
 
-## How to start
+## Warm-up tasks
 
 1. Set up Elixpo Open Source locally from the README.
-2. Find the points ledger schema and the written scoring policy in the
+2. Locate the points ledger schema and the written scoring policy in the
    repository, and note where they disagree or leave gaps.
-3. Read GitHub's webhook event documentation for pull requests and reviews.
-4. Make a small, reviewed contribution to the repository, then share your
-   notes in GitHub Discussions.
+3. Read GitHub's
+   [webhook event documentation](https://docs.github.com/en/webhooks/webhook-events-and-payloads)
+   for pull requests and reviews, and summarise which events the engine would
+   need in your own words.
+4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.
 
-## Words used on this page
+## Terms used on this page
 
 - **Scoring engine**: the code that calculates points.
 - **Ledger, ledger entry**: a list of every point awarded, and one line in
