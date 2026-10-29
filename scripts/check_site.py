@@ -775,8 +775,8 @@ def check_site(site: Path, launched: bool) -> list[str]:
     template = "elixpo-gsoc-2027-commitment-template.pdf"
     if "/agreements/" in raw:
         source, text = raw["/agreements/"], parsed["/agreements/"].text
-        expect("Published copies are signed electronically (typed name, GitHub account and date). Personal contact details are not included." in text,
-               "/agreements/: note about electronic signatures missing")
+        expect("Each copy is signed by hand and countersigned by an organisation administrator." in text,
+               "/agreements/: note about hand-signed copies missing")
         expect((f'href="/agreements/{template}"' in source) == (template in public_pdfs), "/agreements/: template link does not match public/agreements/")
         for handle, document, status, signed_on in entries:
             card = re.search(rf'<li data-github="{re.escape(handle)}" data-status="([^"]+)">(.*?)</li>\s*(?=<li data-github|</ol>)', source, re.S)
