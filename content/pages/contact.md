@@ -1,8 +1,8 @@
 ---
 title: Contact
-description: How to contact Elixpo about Google Summer of Code 2027 - GitHub Discussions for technical questions and gsoc@elixpo.com for programme questions.
+description: How to contact Elixpo about Google Summer of Code 2027 - gsoc@elixpo.com for questions about the programme and the ideas, repository issues for defects.
 heading: Contact *us*
-lead: Use the public channels below for questions about the project ideas and the code, and the programme email address for programme or private matters. Ask in public first.
+lead: Write to gsoc@elixpo.com with questions about the programme or a project idea. Report defects and setup problems as an issue in the relevant repository.
 next:
   - /faq/
   - /people/
@@ -11,13 +11,16 @@ next:
 
 ## Channels
 
-- **Questions about an idea or the code:**
-  [GitHub Discussions](https://github.com/orgs/elixpo/discussions).
+- **Questions about the programme, an idea or the code, and private
+  matters:** [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 - **Defects and setup problems:** an issue in the relevant repository.
-- **Programme questions and private matters:**
-  [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 - **Code of Conduct reports:** follow the reporting steps in the
   [Code of Conduct](https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md).
+
+GitHub Discussions for GSoC 2027 will open once Google announces the
+programme dates, at
+[github.com/orgs/elixpo/discussions](https://github.com/orgs/elixpo/discussions).
+Until then, email is the primary channel.
 
 Mentors aim to reply within 48 hours on weekdays. Questions about Elixpo's
 application are handled by the organisation administrators, Ayushman

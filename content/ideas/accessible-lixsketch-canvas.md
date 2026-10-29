@@ -67,8 +67,8 @@ and adds automated tests so that it stays usable.
 
 1. Set up LixSketch locally from the README and open the canvas.
 2. Attempt to draw and connect three shapes using only the keyboard, then with
-   a screen reader. Record each point at which you cannot continue, and share
-   the notes in GitHub Discussions.
+   a screen reader. Record each point at which you cannot continue, and send
+   the notes to [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 3. Locate where shapes are created and rendered in `src/`, and how a shape's
    ID, label and bindings are stored.
 4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.

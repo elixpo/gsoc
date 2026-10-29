@@ -71,6 +71,13 @@ HISTORY_EVIDENCE = [
     "https://elixpo.com/partnerships",
 ]
 CONTACT = "gsoc@elixpo.com"
+# GitHub Discussions for the programme open only once Google announces the GSoC 2027 dates (src/data/site.ts).
+DISCUSSIONS_NOTE = "GitHub Discussions for GSoC 2027 will open once Google announces the programme dates."
+# Wording that presents Discussions as open now; checked in page text.
+DISCUSSIONS_AS_OPEN = [
+    re.compile(r"\b(ask|post|discuss|share|introduce yourself|open a discussion)\b[^.]{0,60}\bin (GitHub )?Discussions\b", re.I),
+    re.compile(r"Ask in GitHub Discussions", re.I),
+]
 # Claims the site must never make, and links it must not contain yet.
 FORBIDDEN_TEXT = [
     re.compile(r"\bElixpo (is|has been|was) (accepted|selected)\b", re.I),
@@ -299,6 +306,12 @@ def check_site(site: Path, launched: bool) -> list[str]:
         legal_links = re.findall(r'<a[^>]*href="([^"]+)"[^>]*>(.*?)</a>', legal.group(0) if legal else "", re.S)
         expect([href for href, _ in legal_links] == LEGAL_ROUTES and [html.unescape(re.sub(r"<[^>]+>", "", label)).strip() for _, label in legal_links] == LEGAL_LABELS,
                f"{route}: footer legal links are {legal_links}, expected {list(zip(LEGAL_ROUTES, LEGAL_LABELS))}")
+        footer_source = footer_html.group(0) if footer_html else ""
+        footer_text = html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", footer_source)))
+        expect(f'href="mailto:{CONTACT}"' in footer_source, f"{route}: footer lacks the mailto:{CONTACT} link")
+        expect(DISCUSSIONS_NOTE in footer_text, f"{route}: footer lacks the note that GitHub Discussions open once Google announces the dates")
+        for pattern in DISCUSSIONS_AS_OPEN:
+            expect(not pattern.search(page.text), f"{route}: presents GitHub Discussions as open now ({pattern.pattern!r})")
 
         if route == "/404.html":
             expect("noindex" in robots_meta, "404 page must be noindex")

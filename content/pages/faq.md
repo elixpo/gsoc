@@ -2,7 +2,7 @@
 title: Frequently asked questions
 description: Answers to common questions about Elixpo and Google Summer of Code 2027 - status, intake, project sizes and difficulty, mentors, eligibility and contact.
 heading: Frequently asked *questions*
-lead: Answers to common questions about Elixpo and Google Summer of Code 2027. If your question is not answered here, ask in GitHub Discussions or email gsoc@elixpo.com.
+lead: Answers to common questions about Elixpo and Google Summer of Code 2027. If your question is not answered here, email gsoc@elixpo.com.
 next:
   - /ideas/
   - /glossary/
@@ -56,7 +56,8 @@ manage Elixpo's application and its communication with Google.
 
 ## Can I propose my own idea?
 
-Yes. Discuss it in GitHub Discussions first. It must fit one codebase and
+Yes. Describe it in an email to
+[gsoc@elixpo.com](mailto:gsoc@elixpo.com) first. It must fit one codebase and
 have a mentor who agrees to review it.
 
 ## Can I apply for more than one idea?
@@ -90,7 +91,7 @@ programme stages and a link to Google's timeline.
 
 ## Whom do I contact?
 
-Ask technical questions in
-[GitHub Discussions](https://github.com/orgs/elixpo/discussions). For
-programme questions, email [gsoc@elixpo.com](mailto:gsoc@elixpo.com). See
-[Contact](/contact/).
+Email [gsoc@elixpo.com](mailto:gsoc@elixpo.com) with questions about the
+programme or an idea, and report defects as an issue in the relevant
+repository. GitHub Discussions for GSoC 2027 will open once Google announces the
+programme dates. See [Contact](/contact/).

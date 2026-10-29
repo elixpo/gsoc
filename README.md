@@ -9,7 +9,6 @@
   <a href="https://gsoc.elixpo.com">gsoc.elixpo.com</a> ·
   <a href="https://gsoc.elixpo.com/ideas/">Project ideas</a> ·
   <a href="https://gsoc.elixpo.com/contributor-guide/">Get involved</a> ·
-  <a href="https://github.com/orgs/elixpo/discussions">Discussions</a> ·
   <a href="mailto:gsoc@elixpo.com">gsoc@elixpo.com</a>
 </p>
 
@@ -95,8 +94,9 @@ GitHub accounts. The dated record, with links to the evidence, is on
 1. Read the [project ideas](https://gsoc.elixpo.com/ideas/) and pick one or two.
 2. Set up the project from its repository and try a
    [warm-up task](https://gsoc.elixpo.com/contributor-guide/).
-3. Introduce yourself and ask questions in
-   [GitHub Discussions](https://github.com/orgs/elixpo/discussions).
+3. Introduce yourself and ask questions at
+   [gsoc@elixpo.com](mailto:gsoc@elixpo.com). GitHub Discussions for GSoC
+   2027 will open once Google announces the programme dates.
 4. Write your proposal with our [template](https://gsoc.elixpo.com/proposal/)
    and submit it through the official
    [Google Summer of Code website](https://summerofcode.withgoogle.com/).

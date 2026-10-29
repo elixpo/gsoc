@@ -20,11 +20,12 @@ next:
    or paid service to build the code and run the tests relevant to your idea.
    If setup requires one, report it as an issue: it is a defect in our
    instructions, and fixing it is a valid first contribution.
-3. **Ask questions in public.** Use
-   [GitHub Discussions](https://github.com/orgs/elixpo/discussions) for
-   questions about an idea and repository issues for defects. Do not send
-   unsolicited private messages to mentors about project work; public answers
-   help every applicant.
+3. **Ask questions.** Write to
+   [gsoc@elixpo.com](mailto:gsoc@elixpo.com) with questions about an idea,
+   and open an issue in the relevant repository for defects. Use the
+   programme address rather than mentors' personal accounts, so that every
+   question reaches both mentors on the idea. GitHub Discussions for GSoC 2027
+   will open once Google announces the programme dates.
 4. **Complete a warm-up task.** Each idea page lists warm-up tasks. A small,
    finished, reviewed change carries more weight than a large unfinished one.
 
@@ -32,13 +33,12 @@ next:
 
 1. **Choose one idea.** We prefer one well-researched proposal to several
    general ones.
-2. **Introduce yourself.** Post in
-   [GitHub Discussions](https://github.com/orgs/elixpo/discussions) with the
-   idea you intend to apply for, your background and your warm-up
-   contribution.
-3. **Contact the mentors through GitHub before finalising your proposal.**
-   Share a draft in a public discussion thread so that mentors can comment on
-   it.
+2. **Introduce yourself.** Write to
+   [gsoc@elixpo.com](mailto:gsoc@elixpo.com) with the idea you intend to
+   apply for, your background and a link to your warm-up contribution.
+3. **Share a draft before finalising your proposal.** Send it to
+   [gsoc@elixpo.com](mailto:gsoc@elixpo.com) so that the mentors can comment
+   on it.
 4. **Read the rules.** Read the
    [Google Summer of Code rules](https://summerofcode.withgoogle.com/rules)
    and the [contributor guide](https://google.github.io/gsocguides/student/)
@@ -54,7 +54,7 @@ Use the [proposal template](/proposal/) and read the
 ## Hints before applying
 
 - **Be visible in the community.** Ask questions, answer others where you
-  can, and post progress on your warm-up task in public.
+  can, and report progress on your warm-up task in its pull request or issue.
 - **Work on issues.** Fix a small defect, add a test or improve the
   documentation in the repository for your idea.
 - **Write clear pull requests.** State what you changed and how you tested
@@ -69,13 +69,17 @@ Use the [proposal template](/proposal/) and read the
 
 | Purpose | Channel |
 |---|---|
-| Questions about an idea or the code | [GitHub Discussions](https://github.com/orgs/elixpo/discussions) |
+| Questions about an idea or the code | [gsoc@elixpo.com](mailto:gsoc@elixpo.com) |
 | Defects and setup problems | An issue in the relevant repository |
 | Programme questions and private matters | [gsoc@elixpo.com](mailto:gsoc@elixpo.com) |
 | Code of Conduct reports | The [Code of Conduct](https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md) reporting steps |
 
-Ask in public first. Mentors aim to reply within 48 hours on weekdays. If you
-have not received a reply after that, post a reminder in the same thread.
+GitHub Discussions for GSoC 2027 will open once Google announces the
+programme dates. Until then, write to
+[gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+
+Mentors aim to reply within 48 hours on weekdays. If you have not received a
+reply after that, send a reminder in the same email thread.
 
 ## Code of Conduct
 

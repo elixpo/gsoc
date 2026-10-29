@@ -50,7 +50,7 @@ to reply.
 ## GitHub Discussions and issues
 
 Questions in [GitHub Discussions](https://github.com/orgs/elixpo/discussions)
-and issues in Elixpo repositories are public: anyone can read them. GitHub
+(which open for GSoC 2027 once Google announces the programme dates) and issues in Elixpo repositories are public: anyone can read them. GitHub
 operates these services under the
 [GitHub General Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 Do not post private information there; write to

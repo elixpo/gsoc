@@ -11,20 +11,21 @@ next:
 
 ## Suggest or improve an idea
 
-Open a discussion in
-[GitHub Discussions](https://github.com/orgs/elixpo/discussions) to suggest a
-new idea or to improve an existing one, for example a clearer outcome, a
+Write to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) to suggest a new idea or
+to improve an existing one, for example a clearer outcome, a
 missing setup step or a better warm-up task. Name the idea and the codebase,
 and describe the problem it solves. A new idea, or a change to an idea's size
 or mentors, needs agreement from both mentors named on it.
+
+GitHub Discussions for GSoC 2027 will open once Google announces the
+programme dates. Until then, email is the channel for suggestions.
 
 ## Fix text on this site
 
 Every page on this site is built from Markdown files in the site's `content/`
 folder. The site's source repository will be published on GitHub. Once it is
 public, you can fix a mistake by opening a pull request against `content/`.
-Until then, report the mistake in
-[GitHub Discussions](https://github.com/orgs/elixpo/discussions) or to
+Until then, report the mistake to
 [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 
 ## Contribute to the participating projects

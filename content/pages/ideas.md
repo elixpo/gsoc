@@ -26,7 +26,6 @@ Terms are defined in the [glossary](/glossary/).
 
 ## Proposing your own idea
 
-You may propose an idea of your own. Discuss it in
-[GitHub Discussions](https://github.com/orgs/elixpo/discussions) before
-writing a proposal. It must fit one codebase and have a mentor who agrees to
+You may propose an idea of your own. Describe it in an email to
+[gsoc@elixpo.com](mailto:gsoc@elixpo.com) before writing a proposal. It must fit one codebase and have a mentor who agrees to
 review it.

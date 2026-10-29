@@ -10,6 +10,15 @@ export const SITE_LAUNCHED = process.env.NEXT_PUBLIC_SITE_LAUNCHED === "true";
 export const CONTACT_EMAIL = "gsoc@elixpo.com"; // TODO confirm the mailbox is live and monitored before launch.
 export const GITHUB_ORG_URL = "https://github.com/elixpo";
 export const DISCUSSIONS_URL = "https://github.com/orgs/elixpo/discussions";
+/**
+ * GitHub Discussions for the programme open only once Google announces the
+ * GSoC 2027 dates. Until then the programme email is the primary channel.
+ */
+export const DISCUSSIONS_OPEN = false;
+export const DISCUSSIONS_NOTE =
+  "GitHub Discussions for GSoC 2027 will open once Google announces the programme dates. Until then, write to gsoc@elixpo.com.";
+/** The same fact, for places that already give the email address. */
+export const DISCUSSIONS_NOTE_SHORT = "GitHub Discussions for GSoC 2027 will open once Google announces the programme dates.";
 export const CODE_OF_CONDUCT_URL = "https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md";
 export const GSOC_TIMELINE_URL = "https://developers.google.com/open-source/gsoc/timeline";
 export const GSOC_URL = "https://summerofcode.withgoogle.com/";

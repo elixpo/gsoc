@@ -71,7 +71,8 @@ next:
 - **Test**: a small program that checks that the code does what it should.
 - **CI (continuous integration)**: a service that runs a project's tests
   automatically every time someone proposes a change.
-- **GitHub Discussions**: Elixpo's public forum on GitHub, where you can ask
-  questions and introduce yourself.
+- **GitHub Discussions**: Elixpo's public forum on GitHub. Discussions for
+  GSoC 2027 will open once Google announces the programme dates; until then,
+  questions go to gsoc@elixpo.com.
 - **Code of Conduct**: the rules everyone follows for treating each other
   with respect.

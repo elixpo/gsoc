@@ -6,6 +6,7 @@ import "./globals.css";
 import {
   CODE_OF_CONDUCT_URL,
   CONTACT_EMAIL,
+  DISCUSSIONS_NOTE,
   DISCUSSIONS_URL,
   GITHUB_ORG_URL,
   GSOC_TRADEMARK_NOTICE,
@@ -17,6 +18,7 @@ import {
   SITE_URL,
   STATUS_BANNER,
 } from "@/data/site";
+import { CopyEmail } from "@/components/CopyEmail";
 import { MainNav } from "@/components/MainNav";
 import { JsonLd } from "@/components/blocks";
 import { organizationJsonLd, socialCard, websiteJsonLd } from "@/lib/seo";
@@ -113,9 +115,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 Ask early. <em>Build in public.</em>
               </p>
             </div>
-            <a className="footer-cta" href={DISCUSSIONS_URL}>
-              Ask in GitHub Discussions
-            </a>
+            <div className="footer-contact">
+              <p className="footer-contact-label">Programme email</p>
+              <CopyEmail email={CONTACT_EMAIL} className="footer-email" />
+              <p className="footer-contact-note">{DISCUSSIONS_NOTE}</p>
+            </div>
           </div>
           <div className="footer-grid">
             <div className="footer-brand">
@@ -123,8 +127,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <div>
                 <strong>Elixpo · Google Summer of Code 2027</strong>
                 <p>
-                  Technical questions: <a href={DISCUSSIONS_URL}>GitHub Discussions</a>. Programme questions:{" "}
-                  <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+                  Questions about the programme or an idea: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Defects and setup
+                  problems: an issue in the relevant repository.
                 </p>
               </div>
             </div>
@@ -145,7 +149,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                   <a href={GITHUB_ORG_URL}>Elixpo on GitHub</a>
                 </li>
                 <li>
-                  <a href={DISCUSSIONS_URL}>GitHub Discussions</a>
+                  <a href={DISCUSSIONS_URL}>GitHub Discussions (opens with the 2027 dates)</a>
                 </li>
                 <li>
                   <a href={CODE_OF_CONDUCT_URL}>Elixpo Code of Conduct (full text)</a>

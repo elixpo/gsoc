@@ -1,3 +1,4 @@
+import { CopyEmail } from "@/components/CopyEmail";
 import { MarkdownPage, markdownMetadata } from "@/components/MarkdownPage";
 import { PeopleTable } from "@/components/PeopleTable";
 import { CONTACT_EMAIL } from "@/data/site";
@@ -16,9 +17,9 @@ export default function ContactPage() {
     >
       <section className="page-section" aria-labelledby="contact-shared">
         <h2 id="contact-shared">Programme email</h2>
-        <p>For programme questions and private matters, write to:</p>
+        <p>For questions about the programme or a project idea, and for private matters, write to:</p>
         <p className="big-link">
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          <CopyEmail email={CONTACT_EMAIL} />
         </p>
       </section>
       <section className="page-section" aria-labelledby="contact-people">

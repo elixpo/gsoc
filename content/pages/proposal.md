@@ -16,8 +16,7 @@ next:
 - Complete at least one of the idea's warm-up tasks.
 - Read the [selection criteria](/selection/) and the
   [AI policy](/ai-policy/). Your proposal must be your own writing.
-- Share a draft in
-  [GitHub Discussions](https://github.com/orgs/elixpo/discussions) before the
+- Send a draft to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) before the
   deadline so that mentors can comment on it.
 - You must submit your final proposal through the
   [official GSoC website](https://summerofcode.withgoogle.com/).
@@ -83,8 +82,8 @@ one test that fails before your change and passes after it.
 
 ## 10. Communication plan
 
-- How often you will report progress, and where. We prefer public channels
-  such as GitHub Discussions.
+- How often you will report progress, and where. We prefer public channels,
+  such as pull requests and issues in the project's repository.
 - How you will ask for help when you are blocked.
 
 ## 11. Availability and other commitments

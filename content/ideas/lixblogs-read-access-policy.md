@@ -82,7 +82,8 @@ reintroduce and protects everyone who writes on LixBlogs.
    existing tests in `tests/`. Setup does not require production secrets;
    report any step that does as an issue.
 2. Read the related issues linked under Material, identify the route each one
-   touches, and summarise the cause in your own words in GitHub Discussions.
+   touches, and summarise the cause in your own words. Send the summary to
+   [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 3. Read `migrations/` and the existing tests in `tests/`, and describe how data
    and tests are structured today.
 4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.

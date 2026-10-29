@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HeroGeometry, nextLinks, RoleChips, sizeLabel, WhatNext } from "@/components/blocks";
 import { getIdea, IDEAS, neighbours, projectAnchor, type IdeaSection } from "@/lib/content";
-import { CONTACT_EMAIL, DISCUSSIONS_URL, RESPONSE_EXPECTATION } from "@/data/site";
+import { CONTACT_EMAIL, DISCUSSIONS_NOTE_SHORT, RESPONSE_EXPECTATION } from "@/data/site";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -31,7 +31,7 @@ const HINTS: Partial<Record<IdeaSection, string>> = {
   "Stretch goals": "Optional work, attempted only once the expected outcomes are complete.",
   "Out of scope": "Work that is not part of this project, even if it appears related.",
   "How success is measured": "The checks that confirm the work is complete.",
-  "Warm-up tasks": "Complete at least one before you submit a proposal, and share the result in GitHub Discussions or as a pull request.",
+  "Warm-up tasks": "Complete at least one before you submit a proposal, and share the result as a pull request or by email to the programme address.",
 };
 
 /** Section ids, in page order, for the "On this page" list. */
@@ -202,7 +202,7 @@ export default async function IdeaPage({ params }: Props) {
                   </ul>
                 ) : (
                   <p className="note">
-                    No issues are linked to this idea yet. Ask about it in <a href={DISCUSSIONS_URL}>GitHub Discussions</a>.
+                    No issues are linked to this idea yet. Ask about it at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
                   </p>
                 )}
               </div>
@@ -251,9 +251,9 @@ export default async function IdeaPage({ params }: Props) {
               </div>
             </dl>
             <p className="note">
-              The primary mentor is the contributor&apos;s main contact; the backup mentor can step in. Ask questions about this idea in{" "}
-              <a href={DISCUSSIONS_URL}>GitHub Discussions</a>; programme questions go to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.{" "}
-              {RESPONSE_EXPECTATION}
+              The primary mentor is the contributor&apos;s main contact; the backup mentor can step in. Send questions about this idea or the
+              programme to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>, and report defects as an issue in the{" "}
+              <a href={idea.repository}>repository</a>. {RESPONSE_EXPECTATION} {DISCUSSIONS_NOTE_SHORT}
             </p>
           </section>
 

@@ -16,7 +16,7 @@ next:
 - **Prior contribution.** We assess the quality of a small contribution to
   the idea's repository and how you responded to review. Quality matters more
   than size or number.
-- **Communication.** You ask clear questions in public, report progress and
+- **Communication.** You ask clear questions, report progress and
   act on feedback.
 - **A realistic plan.** Milestones that fit the idea's size, a midterm
   checkpoint, and a testing plan that matches the idea's success measures.
