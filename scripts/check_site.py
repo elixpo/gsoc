@@ -22,14 +22,36 @@ from pathlib import Path
 
 SITE_URL = "https://gsoc.elixpo.com"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/people/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/about/"]
+STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/people/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/about/",
+                 "/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
+# Footer legal and community row (src/data/site.ts LEGAL_PAGES), exactly in this order, on every page.
+LEGAL_ROUTES = ["/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
+LEGAL_LABELS = ["Privacy", "Terms of service", "Code of Conduct", "Contributing", "Agreements"]
 SIZES = {90, 175}
 DIFFICULTIES = {"Easy", "Intermediate", "Hard"}
 STATUS_BANNER = (
     "Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. "
     "Google announces accepted organisations after the application period."
 )
-CAPACITY = "In 2027 we expect to mentor one contributor."
+CAPACITY = "In 2027 we plan to mentor one contributor."
+HOME_CAPACITY = "In 2027 we plan to mentor one contributor, with a primary and a backup mentor on every project."
+# Home hero stats row: numerals and labels, in order (src/app/page.tsx).
+HOME_STATS = [("1", "contributor in 2027"), ("6", "project ideas"), ("2", "mentors on every idea"), ("5", "participating projects")]
+# Credential strip under the home hero: verified facts from elixpo/content/history.json.
+HOME_CREDENTIALS = [("Hacktoberfest 2024 & 2025", "maintainer-led participation"),
+                    ("47 pull requests merged", "Hacktoberfest 2025, from 24 GitHub accounts"),
+                    ("Organisation since 2024", "github.com/elixpo"),
+                    ("Two mentors per idea", "primary and backup")]
+# Analytics, tracking and cookie code. If any appears in the build, /privacy/ must not deny it.
+TRACKING_PATTERNS = [re.compile(p, re.I) for p in (
+    r"googletagmanager\.com", r"google-analytics\.com", r"\bgtag\(", r"plausible\.io", r"cloudflareinsights\.com",
+    r"umami\.(is|js)", r"posthog", r"mixpanel", r"hotjar", r"segment\.(com|io)", r"matomo", r"clarity\.ms",
+    r"document\.cookie\s*=", r"\blocalStorage\.setItem", r"\bsessionStorage\.setItem")]
+PRIVACY_DENIALS = {
+    "cookies": re.compile(r"does not set cookies|no cookies", re.I),
+    "analytics": re.compile(r"no analytics|contains no analytics", re.I),
+}
+PRIVACY_EFFECTIVE = "Effective date: 29 October 2026."
 # Google's brand rules: the trademark notice appears in the footer of every page.
 DISCLAIMER = (
     "Google Summer of Code and the GSoC logo are trademarks of Google LLC. Elixpo is applying as a "
@@ -273,6 +295,10 @@ def check_site(site: Path, launched: bool) -> list[str]:
         footer_html = re.search(r"<footer.*?</footer>", source, re.S)
         expect(bool(footer_html) and DISCLAIMER in html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", footer_html.group(0)))),
                f"{route}: GSoC trademark notice missing from the footer")
+        legal = re.search(r'<nav[^>]*aria-labelledby="footer-legal-heading".*?</nav>', footer_html.group(0) if footer_html else "", re.S)
+        legal_links = re.findall(r'<a[^>]*href="([^"]+)"[^>]*>(.*?)</a>', legal.group(0) if legal else "", re.S)
+        expect([href for href, _ in legal_links] == LEGAL_ROUTES and [html.unescape(re.sub(r"<[^>]+>", "", label)).strip() for _, label in legal_links] == LEGAL_LABELS,
+               f"{route}: footer legal links are {legal_links}, expected {list(zip(LEGAL_ROUTES, LEGAL_LABELS))}")
 
         if route == "/404.html":
             expect("noindex" in robots_meta, "404 page must be noindex")
@@ -370,7 +396,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
     # Home page: the GSoC logo, unmodified, labelled and separate from the Elixpo mark
     if "/" in raw:
         source = raw["/"]
-        hero = re.search(r'<header class="home-hero".*?</header>', source, re.S)
+        hero = re.search(r'<header class="home-hero[^"]*".*?</header>', source, re.S)
         expect(bool(hero), "/: home hero missing")
         if hero:
             logo = re.search(r'<img[^>]*src="' + re.escape(GSOC_LOGO_SRC) + r'"[^>]*>', hero.group(0))
@@ -379,6 +405,29 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect(bool(figure and GSOC_LOGO_LABEL in figure.group(0)), f"/: GSoC logo is not labelled {GSOC_LOGO_LABEL!r}")
             expect(bool(figure) and "icon-192.png" not in figure.group(0) and "elixpo-logo" not in figure.group(0), "/: the GSoC logo must not share a lockup with the Elixpo mark")
         expect("Track record" in parsed["/"].text and 'href="/about/"' in source, "/: 'Track record' section or link to /about/ missing")
+        if hero:
+            plain = lambda fragment: html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", fragment))).strip()
+            # The hero states the plan in a plain sentence, not in a callout box
+            lead = re.search(r'<p class="lead">(.*?)</p>', hero.group(0), re.S)
+            expect(bool(lead) and HOME_CAPACITY in plain(lead.group(1) if lead else ""), f"/: hero lead must say {HOME_CAPACITY!r}")
+            expect('class="capacity"' not in source, "/: the intake callout box is back; state the plan in the hero lead")
+            # One panel: logo, stats row of numerals, note
+            panel = re.search(r'<aside class="hero-panel".*?</aside>', hero.group(0), re.S)
+            expect(bool(panel and '<figure class="gsoc-mark">' in panel.group(0)), "/: the GSoC logo is not in the hero panel")
+            stats = re.search(r'<dl class="hero-stats">(.*?)</dl>', panel.group(0) if panel else "", re.S)
+            cells = re.findall(r"<div><dt>(.*?)</dt><dd>(.*?)</dd></div>", stats.group(1) if stats else "", re.S)
+            found = [(plain(dd), plain(dt)) for dt, dd in cells]
+            expect(found == HOME_STATS, f"/: hero stats row is {found}, expected {HOME_STATS}")
+            expect(bool(panel and 'class="hero-panel-note"' in panel.group(0) and "Google selects participating organisations" in panel.group(0)),
+                   "/: the note about Google selecting organisations is missing from the hero panel")
+            strip = re.search(r'<ul class="credentials"[^>]*>(.*?)</ul>', hero.group(0), re.S)
+            items = [tuple(plain(part) for part in re.findall(r"<(?:a|span)[^>]*>(.*?)</(?:a|span)>", item, re.S))
+                     for item in re.findall(r"<li>(.*?)</li>", strip.group(1) if strip else "", re.S)]
+            expect(items == HOME_CREDENTIALS, f"/: credential strip is {items}, expected {HOME_CREDENTIALS}")
+        start = re.search(r'id="getting-started".*?</section>', source, re.S)
+        numbers = re.findall(r'<span class="cell-number"[^>]*>(\d+)</span>', start.group(0) if start else "")
+        expect(bool(start and 'class="hairline-grid step-grid"' in start.group(0)) and numbers == ["01", "02", "03", "04"],
+               f"/: 'Getting started' must be a numbered 01-04 step grid, found {numbers}")
     for name in GSOC_BRAND_FILES:
         path = site / "brand" / "gsoc" / name
         expect(path.is_file(), f"Missing GSoC brand file: {name}")
@@ -468,7 +517,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
                 errors.append(f"{route}: internal link without trailing slash {ref}")
 
     # Consistency across pages
-    for route in ("/", "/ideas/", "/faq/"):
+    for route in ("/ideas/", "/faq/"):
         if route in parsed:
             expect(CAPACITY in parsed[route].text, f"{route}: capacity statement missing")
     listing, home, faq, people_page = (parsed.get(r) for r in ("/ideas/", "/", "/faq/", "/people/"))
@@ -524,6 +573,71 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect(expires > datetime.now(timezone.utc), "security.txt: Expires is in the past")
         except ValueError:
             errors.append("security.txt: Expires missing or not an ISO 8601 date")
+
+    # Legal pages: effective dates
+    for route in ("/privacy/", "/terms/"):
+        if route in parsed:
+            expect(PRIVACY_EFFECTIVE in parsed[route].text, f"{route}: effective date missing; expected {PRIVACY_EFFECTIVE!r}")
+    if "/code-of-conduct/" in raw:
+        source = raw["/code-of-conduct/"]
+        for target in ("https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md", "https://summerofcode.withgoogle.com/rules", f"mailto:{CONTACT}"):
+            expect(f'href="{target}"' in source, f"/code-of-conduct/: link missing: {target}")
+        expect("Conflict of interest" in parsed["/code-of-conduct/"].text, "/code-of-conduct/: conflict-of-interest route missing")
+
+    # Privacy: what the build really contains must match what /privacy/ says
+    tracking = []
+    for path in list(site.rglob("*.html")) + list(site.rglob("*.js")):
+        content = path.read_text(encoding="utf-8", errors="ignore")
+        tracking += [f"{path.relative_to(site)}: {pattern.pattern}" for pattern in TRACKING_PATTERNS if pattern.search(content)]
+    if "/privacy/" in parsed:
+        privacy_text, privacy_raw = parsed["/privacy/"].text, raw["/privacy/"]
+        if tracking:
+            for claim, pattern in PRIVACY_DENIALS.items():
+                expect(not pattern.search(privacy_text), f"/privacy/: claims no {claim}, but the build contains tracking or cookie code: {tracking[:3]}")
+        for target in ("https://www.cloudflare.com/privacypolicy/", "https://policies.google.com/privacy", "https://summerofcode.withgoogle.com/rules",
+                       "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement", f"mailto:{CONTACT}"):
+            expect(f'href="{target}"' in privacy_raw, f"/privacy/: link missing: {target}")
+        # Every third-party host the browser loads resources from must be named on /privacy/
+        hosts = set()
+        for page in parsed.values():
+            hosts |= {re.sub(r"^https?://([^/]+).*$", r"\1", src) for src in page.srcs if re.match(r"^https?://", src)}
+        for source in raw.values():
+            hosts |= set(re.findall(r'<link[^>]*rel="(?:stylesheet|preload|preconnect|dns-prefetch)"[^>]*href="https?://([^/"]+)', source))
+        hosts.discard(SITE_URL.removeprefix("https://"))
+        for host in sorted(hosts):
+            expect(host in {"github.com", "avatars.githubusercontent.com"} and "profile pictures" in privacy_text and "GitHub" in privacy_text,
+                   f"/privacy/: pages load resources from {host}, which the privacy notice does not describe")
+
+    # Agreements: the page, src/data/agreements.ts and public/agreements/ agree
+    agreements_source = Path("src/data/agreements.ts").read_text(encoding="utf-8")
+    entries = re.findall(r'github: "([^"]+)",.*?document: "([^"]+)",\s*status: "([^"]+)",\s*signedOn: (null|"[^"]*")', agreements_source, re.S)
+    expect(sorted(handle for handle, *_ in entries) == sorted(team), f"src/data/agreements.ts covers {sorted(h for h, *_ in entries)}, expected everyone in people.ts")
+    public_pdfs = {path.name for path in Path("public/agreements").glob("*.pdf")}
+    template = "elixpo-gsoc-2027-commitment-template.pdf"
+    if "/agreements/" in raw:
+        source, text = raw["/agreements/"], parsed["/agreements/"].text
+        expect("Published copies are signed electronically (typed name, GitHub account and date). Personal contact details are not included." in text,
+               "/agreements/: note about electronic signatures missing")
+        expect((f'href="/agreements/{template}"' in source) == (template in public_pdfs), "/agreements/: template link does not match public/agreements/")
+        for handle, document, status, signed_on in entries:
+            card = re.search(rf'<li data-github="{re.escape(handle)}" data-status="([^"]+)">(.*?)</li>\s*(?=<li data-github|</ol>)', source, re.S)
+            expect(bool(card), f"/agreements/: no entry for {handle}")
+            if not card:
+                continue
+            card_text = html.unescape(re.sub(r"<[^>]+>", " ", card.group(2)))
+            expect(card.group(1) == status and str(team[handle]["name"]) in card_text, f"/agreements/: entry for {handle} does not match src/data/agreements.ts")
+            name = document.rsplit("/", 1)[-1]
+            if status == "signed":
+                expect(name in public_pdfs and (site / document.lstrip("/")).is_file(), f"/agreements/: {handle} is signed but {document} is missing")
+                expect(f'href="{document}"' in card.group(2) and "View signed copy (PDF)" in card_text and signed_on != "null",
+                       f"/agreements/: signed copy link or date missing for {handle}")
+            else:
+                expect(status == "awaiting-signature" and "Awaiting signature" in card_text and "href=" not in card.group(2) and signed_on == "null",
+                       f"/agreements/: {handle} must show 'Awaiting signature' and no link")
+                expect(name not in public_pdfs, f"public/agreements/{name} exists but {handle} is not marked signed")
+    known = {document.rsplit("/", 1)[-1] for _, document, _, _ in entries} | {template}
+    for name in sorted(public_pdfs - known):
+        errors.append(f"public/agreements/{name} does not belong to anyone in src/data/agreements.ts")
 
     # No decorative ::before / ::after pseudo-elements in the built CSS
     for css in (site / "_next").rglob("*.css"):
