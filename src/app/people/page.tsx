@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { nextLinks, PageHero, Prose, WhatNext } from "@/components/blocks";
+import { JsonLd, nextLinks, PageHero, Prose, RoleChips, WhatNext } from "@/components/blocks";
 import { PeopleTable } from "@/components/PeopleTable";
 import { PEOPLE } from "@/data/people";
 import { getPage, ideasMentoredBy } from "@/lib/content";
-import { pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 const page = getPage("people");
 
@@ -14,8 +14,9 @@ export const metadata: Metadata = pageMetadata({ title: page.title, description:
 export default function PeoplePage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd([{ name: page.title, path: "/people/" }])} />
       <PageHero eyebrow="People" heading={page.heading} lead={page.lead} />
-      <section className="content">
+      <section className="content content-split" aria-labelledby="how-mentoring-works">
         <Prose html={page.html} />
       </section>
       <section className="content" aria-labelledby="people-list">
@@ -31,15 +32,16 @@ export default function PeoplePage() {
                   <Image src={`https://github.com/${person.github}.png?size=192`} width={96} height={96} alt="" unoptimized />
                   <div>
                     <h3 id={`person-${person.github}`}>{person.name}</h3>
-                    <p className="roles">{person.roles.join(" · ")}</p>
+                    <RoleChips roles={person.roles} label={`Roles of ${person.name}`} />
                     <p>{person.about}</p>
                     {person.isMentor && mentored.length > 0 && (
                       <>
                         <h4>Ideas</h4>
-                        <ul className="link-list">
+                        <ul className="mentored-ideas">
                           {mentored.map(({ idea, role }) => (
                             <li key={idea.slug}>
-                              <Link href={`/ideas/${idea.slug}/`}>{idea.title}</Link> <span className="muted">({role.toLowerCase()})</span>
+                              <Link href={`/ideas/${idea.slug}/`}>{idea.title}</Link>
+                              <RoleChips roles={[role]} label="Role on this idea" className="chips-small" />
                             </li>
                           ))}
                         </ul>

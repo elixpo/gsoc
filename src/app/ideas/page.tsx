@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Capacity, IdeaCards, IdeaTable, nextLinks, PageHero, Prose, WhatNext } from "@/components/blocks";
+import { Capacity, IdeaCards, IdeaTable, JsonLd, nextLinks, PageHero, Prose, WhatNext } from "@/components/blocks";
 import { getPage, IDEAS } from "@/lib/content";
-import { absoluteUrl, jsonLd, ORGANIZATION_ID, pageMetadata } from "@/lib/seo";
+import { absoluteUrl, breadcrumbJsonLd, ORGANIZATION_ID, pageMetadata } from "@/lib/seo";
 
 const page = getPage("ideas");
 
@@ -24,11 +24,11 @@ export default function IdeasPage() {
   };
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(structured) }} />
+      <JsonLd data={[structured, breadcrumbJsonLd([{ name: "Ideas", path: "/ideas/" }])]} />
       <PageHero eyebrow="Project ideas" heading={page.heading} lead={page.lead}>
         <Capacity />
       </PageHero>
-      <section className="content">
+      <section className="content content-split">
         <Prose html={page.html} />
       </section>
       <section className="content" aria-labelledby="ideas-overview">

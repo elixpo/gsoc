@@ -7,6 +7,7 @@ import {
   CONTACT_EMAIL,
   DISCUSSIONS_URL,
   GITHUB_ORG_URL,
+  GSOC_TRADEMARK_NOTICE,
   GSOC_URL,
   SITE_LAUNCHED,
   SITE_MAP,
@@ -15,10 +16,15 @@ import {
   STATUS_BANNER,
 } from "@/data/site";
 import { MainNav } from "@/components/MainNav";
-import { jsonLd, organizationJsonLd, socialImage } from "@/lib/seo";
+import { JsonLd } from "@/components/blocks";
+import { organizationJsonLd, socialCard, websiteJsonLd } from "@/lib/seo";
 
 const description =
   "Elixpo is preparing to apply to Google Summer of Code 2027 as a first-time mentoring organisation. Project ideas, mentors, contributor guide and selection criteria.";
+
+const homeCard = socialCard("home");
+/** Optional Google Search Console verification token, only emitted when set at build time. */
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
 
 export const viewport: Viewport = { themeColor: "#fbfbf8", colorScheme: "light" };
 
@@ -32,11 +38,17 @@ export const metadata: Metadata = {
   referrer: "strict-origin-when-cross-origin",
   formatDetection: { email: false, address: false, telephone: false },
   alternates: { canonical: "/" },
+  // Icons use the Elixpo mark only, never the GSoC logo.
   icons: {
-    icon: [{ url: "/favicon.ico", sizes: "any" }, { url: "/elixpo-logo.png", type: "image/png", sizes: "1024x1024" }],
-    apple: [{ url: "/elixpo-logo.png" }],
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     shortcut: ["/favicon.ico"],
   },
+  ...(googleSiteVerification ? { verification: { google: googleSiteVerification } } : {}),
   manifest: "/manifest.webmanifest",
   // Launch gate: see README. Without NEXT_PUBLIC_SITE_LAUNCHED=true every page is noindex, nofollow.
   robots: SITE_LAUNCHED
@@ -49,9 +61,9 @@ export const metadata: Metadata = {
     title: "Elixpo · Google Summer of Code 2027",
     description,
     url: "/",
-    images: [{ url: socialImage("home"), width: 1200, height: 630, alt: "Elixpo, Google Summer of Code 2027" }],
+    images: [{ url: homeCard.url, width: homeCard.width, height: homeCard.height, alt: "Elixpo, Google Summer of Code 2027", type: "image/png" }],
   },
-  twitter: { card: "summary_large_image", title: "Elixpo · Google Summer of Code 2027", description, images: [socialImage("home")] },
+  twitter: { card: "summary_large_image", title: "Elixpo · Google Summer of Code 2027", description, images: [{ url: homeCard.url, alt: "Elixpo, Google Summer of Code 2027" }] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -68,7 +80,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </div>
         <header className="site-header">
           <Link className="brand" href="/">
-            <Image src="/favicon.ico" width="34" height="34" alt="" priority unoptimized />
+            <Image src="/icon-192.png" width="36" height="36" alt="" priority unoptimized />
             <span>
               <b>Elixpo</b>
               <small>GSoC 2027</small>
@@ -81,7 +93,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </main>
         <footer className="site-footer">
           <div className="footer-brand">
-            <Image src="/favicon.ico" width="42" height="42" alt="" unoptimized />
+            <Image src="/icon-192.png" width="44" height="44" alt="" unoptimized />
             <div>
               <strong>Elixpo · Google Summer of Code 2027</strong>
               <p>
@@ -121,12 +133,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               Site code is MIT licensed; site text is available under{" "}
               <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Each Elixpo project keeps its own licence; see its repository.
             </p>
-            <p>
-              Not affiliated with or endorsed by Google. <a href={GSOC_URL}>Google Summer of Code</a> is a Google programme.
-            </p>
+            <p className="trademark">{GSOC_TRADEMARK_NOTICE}</p>
           </div>
         </footer>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(organizationJsonLd) }} />
+        <JsonLd data={[organizationJsonLd, websiteJsonLd]} />
       </body>
     </html>
   );

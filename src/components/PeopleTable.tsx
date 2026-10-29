@@ -1,3 +1,4 @@
+import { RoleChips } from "@/components/blocks";
 import { PEOPLE } from "@/data/people";
 
 /** Per-person contact table, rendered from src/data/people.ts. */
@@ -18,7 +19,9 @@ export function PeopleTable({ headingId }: { headingId: string }) {
           {PEOPLE.map((person) => (
             <tr key={person.github}>
               <th scope="row">{person.name}</th>
-              <td>{person.roles.join(", ")}</td>
+              <td>
+                <RoleChips roles={person.roles} label={`Roles of ${person.name}`} />
+              </td>
               <td>
                 <a href={`https://github.com/${person.github}`}>@{person.github}</a>
               </td>

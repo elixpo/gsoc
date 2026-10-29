@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageHero } from "@/components/blocks";
 
 export const metadata: Metadata = {
   title: "Page not found",
@@ -9,15 +10,16 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <header className="page-hero">
-      <p className="eyebrow">404</p>
-      <h1>Page not found</h1>
-      <p className="lead">We could not find this page. It may have moved, or the link may be wrong. These links will help you find your way.</p>
+    <PageHero
+      eyebrow="404"
+      heading="Page not found"
+      lead="We could not find this page. It may have moved, or the link may be wrong. These links will help you find your way."
+    >
       <div className="actions">
         <Link href="/">Go to the home page</Link>
         <Link href="/ideas/">See the project ideas</Link>
         <Link href="/faq/">Read the FAQ</Link>
       </div>
-    </header>
+    </PageHero>
   );
 }

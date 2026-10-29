@@ -1,14 +1,31 @@
 import Link from "next/link";
 import type { Idea } from "@/lib/content";
-import { CAPACITY_STATEMENT, siteMapEntry } from "@/data/site";
+import { CAPACITY_STATEMENT, GSOC_LOGO, siteMapEntry } from "@/data/site";
+import { jsonLd } from "@/lib/seo";
+
+/** Render one or more JSON-LD objects, each in its own script tag. */
+export function JsonLd({ data }: { data: object | object[] }) {
+  const items = Array.isArray(data) ? data : [data];
+  return (
+    <>
+      {items.map((item, index) => (
+        <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(item) }} />
+      ))}
+    </>
+  );
+}
 
 export function PageHero({ eyebrow, heading, lead, children }: { eyebrow: string; heading: string; lead: string; children?: React.ReactNode }) {
   return (
     <header className="page-hero">
-      <p className="eyebrow">{eyebrow}</p>
-      <h1>{heading}</h1>
-      <p className="lead">{lead}</p>
-      {children}
+      <div className="page-hero-title">
+        <p className="eyebrow">{eyebrow}</p>
+        <h1>{heading}</h1>
+      </div>
+      <div className="page-hero-lead">
+        <p className="lead">{lead}</p>
+        {children}
+      </div>
     </header>
   );
 }
@@ -17,11 +34,66 @@ export function Prose({ html, className = "" }: { html: string; className?: stri
   return <div className={`prose ${className}`.trim()} dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
+/**
+ * Full-width page body: an "On this page" list beside the reading column on
+ * wide screens, stacked above it on narrow ones. The reading column keeps a
+ * comfortable measure; tables and wide blocks may use the full column.
+ */
+export function PageLayout({ toc, children }: { toc: { id: string; text: string }[]; children: React.ReactNode }) {
+  return (
+    <div className={toc.length > 1 ? "page-layout" : "page-layout page-layout-single"}>
+      {toc.length > 1 && (
+        <nav className="toc" aria-labelledby="toc-heading">
+          <h2 id="toc-heading">On this page</h2>
+          <ol>
+            {toc.map((item) => (
+              <li key={item.id}>
+                <a href={`#${item.id}`}>{item.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+      <div className="page-main">{children}</div>
+    </div>
+  );
+}
+
 export function Capacity() {
   return (
     <p className="capacity">
       <strong>{CAPACITY_STATEMENT}</strong>
     </p>
+  );
+}
+
+/** Roles as small chips. A real list, so the roles are read out as text, not conveyed by colour. */
+export function RoleChips({ roles, label = "Roles", className = "" }: { roles: readonly string[]; label?: string; className?: string }) {
+  return (
+    <ul className={`chips ${className}`.trim()} aria-label={label}>
+      {roles.map((role) => (
+        <li className="chip" key={role}>
+          {role}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * Google's unmodified GSoC logo, always with a plain label above it and on its
+ * own light tile, never in a lockup with the Elixpo mark (Google brand guidelines).
+ */
+export function GsocMark({ label = "Elixpo is preparing to apply to", note }: { label?: string; note?: React.ReactNode }) {
+  return (
+    <figure className="gsoc-mark">
+      <figcaption>{label}</figcaption>
+      <div className="gsoc-tile">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={GSOC_LOGO.src} width={GSOC_LOGO.width} height={GSOC_LOGO.height} alt={GSOC_LOGO.alt} decoding="async" />
+      </div>
+      {note && <p className="gsoc-note">{note}</p>}
+    </figure>
   );
 }
 

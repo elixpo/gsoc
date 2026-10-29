@@ -1,7 +1,7 @@
-import { nextLinks, PageHero, WhatNext } from "@/components/blocks";
+import { JsonLd, nextLinks, PageHero, WhatNext } from "@/components/blocks";
 import { markdownMetadata } from "@/components/MarkdownPage";
 import { getFaq } from "@/lib/content";
-import { jsonLd, stripTags } from "@/lib/seo";
+import { breadcrumbJsonLd, stripTags } from "@/lib/seo";
 
 export const metadata = markdownMetadata("faq");
 
@@ -18,7 +18,7 @@ export default function FaqPage() {
   };
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(structured) }} />
+      <JsonLd data={[structured, breadcrumbJsonLd([{ name: "FAQ", path: "/faq/" }])]} />
       <PageHero eyebrow="FAQ" heading={page.heading} lead={page.lead} />
       <section className="content faq">
         {items.map((item, index) => (

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { nextLinks, sizeLabel, WhatNext } from "@/components/blocks";
+import { nextLinks, RoleChips, sizeLabel, WhatNext } from "@/components/blocks";
 import { getIdea, IDEAS, neighbours, type IdeaSection } from "@/lib/content";
 import { CONTACT_EMAIL, DISCUSSIONS_URL, RESPONSE_EXPECTATION } from "@/data/site";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
@@ -72,9 +72,17 @@ export default async function IdeaPage({ params }: Props) {
             <Link href="/">Home</Link>
           </li>
           <li>
+            <span className="crumb-sep" aria-hidden="true">
+              /
+            </span>
             <Link href="/ideas/">Ideas</Link>
           </li>
-          <li aria-current="page">{idea.title}</li>
+          <li aria-current="page">
+            <span className="crumb-sep" aria-hidden="true">
+              /
+            </span>
+            {idea.title}
+          </li>
         </ol>
       </nav>
 
@@ -204,9 +212,8 @@ export default async function IdeaPage({ params }: Props) {
                   <Image src={`https://github.com/${person.github}.png?size=96`} width={48} height={48} alt="" unoptimized />
                   <span>
                     <b>{person.name}</b>
-                    <small>
-                      {role} · <a href={`https://github.com/${person.github}`}>@{person.github}</a>
-                    </small>
+                    <RoleChips roles={[role]} label={`Role of ${person.name} on this idea`} className="chips-small" />
+                    <a href={`https://github.com/${person.github}`}>@{person.github}</a>
                   </span>
                 </li>
               ))}
@@ -241,7 +248,9 @@ export default async function IdeaPage({ params }: Props) {
           {previous && (
             <li className="pager-previous">
               <Link href={`/ideas/${previous.slug}/`} rel="prev">
-                <small>Previous idea</small>
+                <small>
+                  <span aria-hidden="true">← </span>Previous idea
+                </small>
                 <span>{previous.title}</span>
               </Link>
             </li>
@@ -252,7 +261,9 @@ export default async function IdeaPage({ params }: Props) {
           {next && (
             <li className="pager-next">
               <Link href={`/ideas/${next.slug}/`} rel="next">
-                <small>Next idea</small>
+                <small>
+                  Next idea<span aria-hidden="true"> →</span>
+                </small>
                 <span>{next.title}</span>
               </Link>
             </li>

@@ -10,10 +10,25 @@ export const SIZES = [90, 175] as const;
 export const DIFFICULTIES = ["Easy", "Intermediate", "Hard"] as const;
 export type Difficulty = (typeof DIFFICULTIES)[number];
 
-/** Render trusted Markdown from content/. Tables get a focusable scroll wrapper for small screens. */
+/** Stable anchor for a heading, e.g. "1. About you" -> "about-you". */
+export const slugify = (text: string) =>
+  text
+    .replace(/<[^>]+>/g, "")
+    .toLowerCase()
+    .replace(/&[a-z]+;|&#\d+;/g, "")
+    .replace(/^\d+\.\s*/, "")
+    .replace(/\W+/g, "-")
+    .replace(/^-|-$/g, "");
+
+/**
+ * Render trusted Markdown from content/. Second-level headings get ids, so the
+ * "On this page" list can link to them. Tables get a focusable scroll wrapper
+ * for small screens.
+ */
 export function renderMarkdown(markdown: string): string {
   const html = marked.parse(markdown, { async: false, gfm: true }) as string;
   return html
+    .replace(/<h2>(.*?)<\/h2>/g, (_match, inner: string) => `<h2 id="${slugify(inner)}">${inner}</h2>`)
     .replace(/<table>/g, '<div class="table-scroll" role="region" tabindex="0" aria-label="Table (scrolls sideways on small screens)"><table>')
     .replace(/<\/table>/g, "</table></div>");
 }
@@ -71,6 +86,11 @@ export function getPage(slug: string): Page {
   };
 }
 
+/** The second-level headings of rendered Markdown, for an "On this page" list. */
+export function tableOfContents(html: string): { id: string; text: string }[] {
+  return [...html.matchAll(/<h2 id="([^"]+)">(.*?)<\/h2>/g)].map((match) => ({ id: match[1], text: match[2].replace(/<[^>]+>/g, "") }));
+}
+
 /** Split a Markdown body into `## Heading` sections. */
 export function sections(body: string): { heading: string; markdown: string }[] {
   return body
@@ -80,6 +100,29 @@ export function sections(body: string): { heading: string; markdown: string }[] 
       const newline = chunk.indexOf("\n");
       return { heading: chunk.slice(0, newline).trim(), markdown: chunk.slice(newline + 1).trim() };
     });
+}
+
+export type HistoryEntry = { date: string; title: string; html: string };
+
+/**
+ * The about page: Markdown sections, with the "Our history, step by step"
+ * section split into dated entries (`### Date — Title`).
+ */
+export function getAbout() {
+  const page = getPage("about");
+  return {
+    page,
+    sections: sections(page.body).map(({ heading, markdown }) => {
+      const [intro, ...chunks] = markdown.split(/^### /m);
+      const history: HistoryEntry[] = chunks.map((chunk) => {
+        const newline = chunk.indexOf("\n");
+        const [date, title] = chunk.slice(0, newline).split(" — ");
+        if (!title) throw new Error(`content/pages/about.md: history headings look like "### Date — Title" (found "${chunk.slice(0, newline)}")`);
+        return { date: date.trim(), title: title.trim(), html: renderMarkdown(chunk.slice(newline + 1).trim()) };
+      });
+      return { heading, id: slugify(heading), html: renderMarkdown(intro.trim()), history };
+    }),
+  };
 }
 
 export function getFaq() {

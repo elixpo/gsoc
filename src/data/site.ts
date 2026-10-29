@@ -15,25 +15,37 @@ export const GSOC_TIMELINE_URL = "https://developers.google.com/open-source/gsoc
 export const GSOC_URL = "https://summerofcode.withgoogle.com/";
 export const ELIXPO_URL = "https://elixpo.com";
 export const ELIXPO_LOGO_URL = "https://elixpo.com/logos/logo.webp";
+/** Date the Elixpo GitHub organisation was created (content/pages/about.md). */
+export const ELIXPO_FOUNDING_DATE = "2024-02-24";
 // TODO: link the source repository (github.com/elixpo/gsoc) from the footer once it is public.
 
 export const STATUS_BANNER =
   "Elixpo is preparing to apply as a GSoC 2027 mentoring organisation. Google has not yet announced GSoC 2027.";
 export const CAPACITY_STATEMENT = "Elixpo is a first-time applicant and plans to mentor one contributor in 2027.";
+/** Required wherever the GSoC name or logo appears: shown in the footer of every page. */
+export const GSOC_TRADEMARK_NOTICE =
+  "Google Summer of Code and the GSoC logo are trademarks of Google LLC. Elixpo is preparing to apply as a mentoring organisation and is not affiliated with or endorsed by Google.";
+/** Google's unmodified horizontal logo, downloaded from developers.google.com/open-source/gsoc/resources/downloads. */
+export const GSOC_LOGO = { src: "/brand/gsoc/GSoC-Horizontal.png", width: 920, height: 147, alt: "Google Summer of Code logo" } as const;
 export const RESPONSE_EXPECTATION = "Mentors aim to reply within 48 hours on weekdays.";
 
 /** Date the content was last reviewed; used for the sitemap. */
 export const CONTENT_REVIEWED = "2026-10-29";
 
+/**
+ * Primary navigation, in order of importance. Contact is shown as a button at
+ * the end. Selection, AI policy, Glossary and About live in the footer site map
+ * and in contextual links (the proposal page links Selection and AI policy).
+ */
 export const NAV = [
   { href: "/ideas/", label: "Ideas" },
   { href: "/contributor-guide/", label: "Get involved" },
   { href: "/proposal/", label: "Proposal" },
-  { href: "/selection/", label: "Selection" },
+  { href: "/timeline/", label: "Timeline" },
   { href: "/people/", label: "People" },
   { href: "/faq/", label: "FAQ" },
-  { href: "/contact/", label: "Contact" },
 ] as const;
+export const NAV_CONTACT = { href: "/contact/", label: "Contact" } as const;
 
 /**
  * Every page, with a plain one-line description. Used for the footer site map
@@ -52,6 +64,7 @@ export const SITE_MAP = [
   { href: "/faq/", label: "FAQ", about: "Short answers to common questions." },
   { href: "/glossary/", label: "Glossary", about: "Plain explanations of words used on this site." },
   { href: "/contact/", label: "Contact", about: "Where to ask questions, in public or by email." },
+  { href: "/about/", label: "About Elixpo", about: "A short, sourced history of Elixpo and its mentoring experience." },
 ] as const;
 
 export type SiteMapEntry = (typeof SITE_MAP)[number];
