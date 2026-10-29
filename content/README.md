@@ -13,6 +13,7 @@ banner, capacity statement, contact email) in `src/data/site.ts`.
 | `pages/mentors.md` | `/mentors/` (intro; people come from `src/data/people.ts`) |
 | `pages/operations.md` | `/operations/` (how the programme runs: phases, weekly cadence and report, mentor cover, evaluations, escalation, after the programme; full handbook in `../operations/`) |
 | `pages/contributor-guide.md` | `/contributor-guide/` |
+| `pages/warm-up.md` | `/warm-up/` (setting up each project without keys; commands are cited to each repository's own files, and each project section must be named after `projects/*.md` `name`) |
 | `pages/proposal.md` | `/proposal/` |
 | `pages/selection.md` | `/selection/` |
 | `pages/ai-policy.md` | `/ai-policy/` |

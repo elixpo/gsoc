@@ -22,7 +22,7 @@ from pathlib import Path
 
 SITE_URL = "https://gsoc.elixpo.com"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/mentors/", "/operations/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/agenda/", "/why-elixpo/", "/about/",
+STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/mentors/", "/operations/", "/contributor-guide/", "/warm-up/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/agenda/", "/why-elixpo/", "/about/",
                  "/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
 # Footer legal and community row (src/data/site.ts LEGAL_PAGES), exactly in this order, on every page.
 LEGAL_ROUTES = ["/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
@@ -100,7 +100,7 @@ FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
 # Each of these pages must mark its own link with aria-current="page".
 NAV_ROUTES = ["/ideas/", "/projects/", "/proposal/", "/timeline/", "/mentors/", "/faq/", "/contributor-guide/", "/contact/"]
 NAV_LABELS = ["Ideas", "Projects", "Proposal", "Timeline", "Mentors", "FAQ", "Get involved", "Contact"]
-NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/", "/operations/", "/why-elixpo/"]
+NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/", "/operations/", "/why-elixpo/", "/warm-up/"]
 # The five codebases on /projects/ (content/projects/*.md).
 PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "oreo"]
 IDEA_SECTIONS = ["Description", "Expected outcomes", "Stretch goals", "Out of scope", "How success is measured", "Material",
@@ -125,6 +125,7 @@ REQUIRED_SECTIONS = {
                             "what-you-can-expect-from-us", "communication-channels"],
     "/agenda/": ["what-elixpo-is", "what-we-want-google-summer-of-code-to-achieve", "what-we-ship-in-public",
                  "how-we-decide-what-to-approve", "money-and-commercial-interests", "care-for-contributors"],
+    "/warm-up/": ["our-warm-up-policy", "lixblogs", "lixsketch", "crumb", "elixpo-open-source", "oreo", "common-problems", "where-to-ask"],
     "/operations/": ["who-does-what", "the-programme-phase-by-phase", "communication", "mentor-operations", "configuration-and-access", "evaluations",
                      "escalation-and-conduct", "after-the-programme", "what-we-publish", "what-this-is-based-on"],
 }
@@ -480,7 +481,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
         start = re.search(r'id="getting-started".*?</section>', source, re.S)
         expect(bool(start), "/: 'Getting started' section missing")
         if start:
-            for target in ("/ideas/", "/contributor-guide/", "/proposal/"):
+            for target in ("/ideas/", "/warm-up/", "/contributor-guide/", "/proposal/"):
                 expect(f'href="{target}"' in start.group(0), f"/: 'Getting started' does not link to {target}")
         expect("What is Google Summer of Code?" in text and f'href="{GSOC_URL}"' in source, "/: 'What is Google Summer of Code?' section or official link missing")
 
@@ -614,6 +615,28 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect(route_file(site, target).is_file(), f"{route}: broken internal link {ref}")
             if target.endswith("/") is False and "." not in target.rsplit("/", 1)[-1]:
                 errors.append(f"{route}: internal link without trailing slash {ref}")
+
+    # Warm-up: one HowTo per project, and linked from home, the guide, projects, every idea and the configuration text
+    if "/warm-up/" in raw:
+        source = raw["/warm-up/"]
+        howtos = [json.loads(block) for block in parsed["/warm-up/"].json_ld if '"HowTo"' in block]
+        expect(sorted(item.get("url", "") for item in howtos) == sorted(f"{SITE_URL}/warm-up/#{project['slug']}" for project in projects)
+               and all(item.get("step") for item in howtos), f"/warm-up/: expected one HowTo with steps per project, found {len(howtos)}")
+        expect("BreadcrumbList" in source, "/warm-up/: BreadcrumbList JSON-LD missing")
+        expect('href="/contributor-guide/#configuration-and-access"' in source, "/warm-up/: link to configuration and access missing")
+        for project in projects:
+            expect(f'href="{project["repository"]}"' in source, f"/warm-up/: repository link for {project['slug']} missing")
+    for route in ["/", "/contributor-guide/", "/projects/", "/operations/", "/faq/"]:
+        if route in raw:
+            expect('href="/warm-up/' in raw[route], f"{route}: no link to /warm-up/")
+    if "/projects/" in raw:
+        for project in projects:
+            expect(f'href="/warm-up/#{project["slug"]}"' in raw["/projects/"], f"/projects/: warm-up link for {project['slug']} missing")
+    for index, idea in enumerate(ideas):
+        source = raw.get(idea_routes[index], "")
+        warm = re.search(r'<h2 id="warm-up-tasks">Warm-up tasks</h2>.*?</section>', source, re.S)
+        slug = project_of[str(idea["repository"])]["slug"] if str(idea["repository"]) in project_of else ""
+        expect(bool(warm and f'href="/warm-up/#{slug}"' in warm.group(0)), f"{idea_routes[index]}: 'Warm-up tasks' does not link to /warm-up/#{slug}")
 
     # Configuration and access: one shared explanation on the guide, operations and FAQ
     for route in CONFIG_ACCESS_ROUTES:

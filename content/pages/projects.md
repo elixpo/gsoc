@@ -7,7 +7,7 @@ tldr:
   - Five codebases host the ideas: LixBlogs, LixSketch, Crumb, Elixpo Open Source and Oreo.
   - Each entry links its repository, README, contribution guidelines and licence.
   - Each entry lists the ideas it hosts and their mentors.
-  - Every project can be set up from its public repository, without private keys.
+  - Every project can be set up from its public repository, without private keys: see the [warm-up page](/warm-up/).
 next:
   - /ideas/
   - /contributor-guide/

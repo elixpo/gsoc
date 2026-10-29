@@ -21,8 +21,9 @@ next:
    how the programme works and the rules Google sets for contributors.
 2. **[Browse the project ideas](/ideas/)**: choose one or two that match your
    skills and interests.
-3. **[Get involved](/contributor-guide/)**: set up the code, introduce
-   yourself and make a small contribution.
+3. **[Set up a project without keys](/warm-up/)**: run its tests, complete
+   a warm-up task, then follow the [contributor guide](/contributor-guide/) to
+   introduce yourself and make a small contribution.
 4. **[Prepare your proposal](/proposal/)**: use our template, and read the
    [selection criteria](/selection/).
 

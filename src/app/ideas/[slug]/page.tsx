@@ -58,11 +58,12 @@ function ideaTldr(idea: Idea): string[] {
   ];
 }
 
-function Section({ id, title, html }: { id: string; title: IdeaSection; html: string }) {
+function Section({ id, title, html, children }: { id: string; title: IdeaSection; html: string; children?: React.ReactNode }) {
   return (
     <section className="idea-section" aria-labelledby={id}>
       <h2 id={id}>{title}</h2>
       {HINTS[title] && <p className="section-hint">{HINTS[title]}</p>}
+      {children}
       <div className="prose" dangerouslySetInnerHTML={{ __html: html }} />
     </section>
   );
@@ -229,7 +230,12 @@ export default async function IdeaPage({ params }: Props) {
             </div>
           </section>
 
-          <Section id="warm-up-tasks" title="Warm-up tasks" html={idea.sections["Warm-up tasks"]} />
+          <Section id="warm-up-tasks" title="Warm-up tasks" html={idea.sections["Warm-up tasks"]}>
+            <p className="note warm-up-link">
+              Set up this project: see <Link href={`/warm-up/#${projectAnchor(idea.repository)}`}>Warm-up</Link> for the exact commands, how to tell they
+              worked and known limitations. No private keys needed.
+            </p>
+          </Section>
 
           <section className="idea-section" aria-labelledby="details">
             <h2 id="details">Skills, size and mentors</h2>

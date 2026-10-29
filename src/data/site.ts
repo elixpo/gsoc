@@ -76,7 +76,7 @@ export const GSOC_LOGO_LABEL = "Elixpo is applying to";
 export const CONFIG_ACCESS_HEADING = "Configuration and access";
 export const CONFIG_ACCESS_ANCHOR = "/contributor-guide/#configuration-and-access";
 export const CONFIG_ACCESS_MARKDOWN = [
-  "- **Before acceptance.** The warm-up tasks and the core of every idea run locally without decrypting any Elixpo configuration. Local databases, fixtures and fake services stand in for real ones; features that need real services are skipped or mocked.",
+  "- **Before acceptance.** The warm-up tasks and the core of every idea run locally without decrypting any Elixpo configuration. Local databases, fixtures and fake services stand in for real ones; features that need real services are skipped or mocked. The [warm-up page](/warm-up/) gives the commands for each project.",
   "- **Encrypted configuration.** Elixpo uses [SOPS](https://github.com/getsops/sops) to keep configuration encrypted in its repositories. Do not try to decrypt configuration or commit it. If setup asks you for a secret, report it as a setup issue in the repository.",
   "- **After acceptance.** The organisation administrators grant SOPS access scoped to what the project needs, for example integration tests or a staging environment, and revoke it when the programme ends. Never share keys. Access follows the [Code of Conduct](/code-of-conduct/) and the commitment on the [agreements page](/agreements/).",
 ].join("\n");
@@ -112,6 +112,7 @@ export const SITE_MAP = [
   { href: "/ideas/", label: "Project ideas", about: "The six project ideas, with size, difficulty and mentors." },
   { href: "/projects/", label: "Participating projects", about: "The five codebases the ideas belong to." },
   { href: "/contributor-guide/", label: "Get involved", about: "How to prepare and apply, step by step." },
+  { href: "/warm-up/", label: "Warm-up", about: "Set up each project without keys: commands, checks and known limitations." },
   { href: "/proposal/", label: "Proposal template", about: "The sections every proposal must contain." },
   { href: "/selection/", label: "Selection criteria", about: "How mentors evaluate applications." },
   { href: "/ai-policy/", label: "AI policy", about: "Permitted use of AI tools, and what you must disclose." },

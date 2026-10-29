@@ -77,7 +77,8 @@ export default function ProjectsPage() {
                 <dt>Setup and contributing</dt>
                 <dd>
                   <a href={`${project.repository}/blob/main/README.md`}>README</a> ·{" "}
-                  <a href={`${project.repository}/blob/main/CONTRIBUTING.md`}>CONTRIBUTING</a>
+                  <a href={`${project.repository}/blob/main/CONTRIBUTING.md`}>CONTRIBUTING</a> ·{" "}
+                  <Link href={`/warm-up/#${project.slug}`}>Warm-up without keys</Link>
                 </dd>
               </div>
               <div>
