@@ -51,19 +51,22 @@ export function PageHero({ eyebrow, headingHtml, lead, children, aside }: { eyeb
 }
 
 /**
- * The TL;DR box near the top of every page: a hairline box with a mono label
- * and three to five short lines (from `tldr:` in the page frontmatter).
+ * The TL;DR row under the hero: the page summary, spanning the content width,
+ * with a mono label and three to six numbered points (from `tldr:` in the page
+ * frontmatter, rendered as inline Markdown). The last point links back to the
+ * relevant project idea(s). Hairline rules only, no shadow.
  */
 export function Tldr({ items }: { items: string[] }) {
+  if (!items.length) return null;
   return (
     <aside className="content tldr-wrap" aria-label="TL;DR: the short version">
       <div className="tldr">
         <p className="tldr-label">TL;DR</p>
-        <ul>
+        <ol>
           {items.map((html) => (
             <li key={html} dangerouslySetInnerHTML={{ __html: html }} />
           ))}
-        </ul>
+        </ol>
       </div>
     </aside>
   );

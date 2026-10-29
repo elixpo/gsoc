@@ -3,11 +3,6 @@ title: Timeline
 description: The stages of Google Summer of Code and where Google publishes the official 2027 dates. Elixpo lists the 2027 dates here once Google publishes them.
 heading: Programme *timeline*
 lead: Google Summer of Code follows the same sequence of stages each year. This page describes them. Google publishes the official dates, and we list the 2027 dates here once they are available.
-tldr:
-  - Six stages: organisations apply, organisations are announced, contributors apply, community bonding, coding and evaluations.
-  - Google publishes the official dates on its [timeline](https://developers.google.com/open-source/gsoc/timeline).
-  - We add the 2027 dates here once Google publishes them.
-  - You can prepare now with the [contributor guide](/contributor-guide/).
 next:
   - /contributor-guide/
   - /ideas/

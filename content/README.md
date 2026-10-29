@@ -26,10 +26,13 @@ banner, capacity statement, contact email) in `src/data/site.ts`.
 | `pages/why-elixpo.md` | `/why-elixpo/` (questions a programme reviewer may ask, each `##` heading one question with an evidence link) |
 | `pages/about.md` | `/about/` (history from `elixpo/content/history.json`; each step is `### Date — Title` with its evidence) |
 
-Every page in `pages/` has a `tldr:` list in its frontmatter: three to five
-short lines with the page's most important facts or actions, shown in the
-TL;DR box at the top of the page. Keep them identical to the page body. Idea
-pages build their TL;DR from the idea's frontmatter.
+Every page in `pages/` except `timeline.md` has a `tldr:` list in its
+frontmatter: three to six short points with the page's most important facts or
+actions, shown as the numbered TL;DR row under the hero. Points are inline
+Markdown, so they may contain links. Keep them identical to the page body. The
+last point links back to the relevant project idea(s): the ideas of a codebase,
+or "Browse the six project ideas" (`/ideas/`) on general pages. Idea pages
+build their TL;DR from the idea's frontmatter and end with "See all six ideas".
 
 ## Ideas
 

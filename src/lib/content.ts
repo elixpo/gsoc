@@ -101,14 +101,32 @@ export type Page = {
   html: string;
   /** Routes for the "What next?" block at the end of the page. */
   next: string[];
-  /** The TL;DR box near the top of the page: 3-5 short lines, as inline HTML. */
+  /** The TL;DR row near the top of the page: 3-6 numbered points, as inline HTML (empty on TLDR_EXEMPT pages). */
   tldrHtml: string[];
 };
 
-/** Inline Markdown for the TL;DR box, checked for length so every page stays scannable. */
+/** Pages without a TL;DR: the timeline is only the (coming soon) timeline and a call to action. */
+export const TLDR_EXEMPT = ["timeline"] as const;
+export const TLDR_MIN = 3;
+export const TLDR_MAX = 6;
+
+/**
+ * Inline Markdown for the TL;DR row (links and emphasis), via the same marked
+ * setup as the page bodies; the content is trusted Markdown from content/.
+ * Checked for length so every page stays scannable.
+ */
 export function tldr(items: string[], file: string): string[] {
-  if (items.length < 3 || items.length > 5) throw new Error(`${file}: "tldr" must have 3 to 5 items (found ${items.length})`);
+  if (items.length < TLDR_MIN || items.length > TLDR_MAX) throw new Error(`${file}: "tldr" must have ${TLDR_MIN} to ${TLDR_MAX} items (found ${items.length})`);
   return items.map((item) => marked.parseInline(item, { async: false }) as string);
+}
+
+function pageTldr(slug: string, data: Frontmatter, file: string): string[] {
+  const exempt = (TLDR_EXEMPT as readonly string[]).includes(slug);
+  if (exempt) {
+    if ("tldr" in data) throw new Error(`${file}: this page has no TL;DR; remove "tldr"`);
+    return [];
+  }
+  return tldr(list(data, "tldr", file), file);
 }
 
 export function getPage(slug: string): Page {
@@ -125,7 +143,7 @@ export function getPage(slug: string): Page {
     body,
     html: renderMarkdown(body),
     next: list(data, "next", file),
-    tldrHtml: tldr(list(data, "tldr", file), file),
+    tldrHtml: pageTldr(slug, data, file),
   };
 }
 

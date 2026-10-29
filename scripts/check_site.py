@@ -102,6 +102,8 @@ FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
 NAV_ROUTES = ["/ideas/", "/projects/", "/mentors/", "/contributor-guide/", "/proposal/", "/timeline/", "/faq/", "/contact/"]
 NAV_LABELS = ["Ideas", "Codebases", "Mentors", "Get involved", "Proposal", "Timeline", "FAQ", "Contact"]
 NAV_GROUP_COUNT = 3
+# Pages without a TL;DR (src/lib/content.ts TLDR_EXEMPT): the timeline is only the timeline and a call to action.
+TLDR_EXEMPT = ["/timeline/"]
 NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/", "/operations/", "/why-elixpo/", "/warm-up/"]
 # The five codebases on /projects/ (content/projects/*.md).
 PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "oreo"]
@@ -452,12 +454,19 @@ def check_site(site: Path, launched: bool) -> list[str]:
         source, page = raw.get(route), parsed.get(route)
         if not source or not page:
             continue
-        # TL;DR box near the top of every page: a mono label and 3-5 short lines (content/**/*.md `tldr:`)
-        tldr = re.search(r'<aside class="content tldr-wrap"[^>]*>\s*<div class="tldr">\s*<p class="tldr-label">TL;DR</p>\s*<ul>(.*?)</ul>', source, re.S)
-        items = re.findall(r"<li>", tldr.group(1)) if tldr else []
-        expect(bool(tldr) and 3 <= len(items) <= 5, f"{route}: TL;DR box missing or not 3-5 items (found {len(items)})")
-        if tldr:
-            expect(source.index(tldr.group(0)) < source.find('id="what-next"'), f"{route}: TL;DR box must come before the 'Next steps' block")
+        # TL;DR row near the top of every page except /timeline/: a mono label and 3-6 numbered points
+        # (content/**/*.md `tldr:`); the last point links back to the project ideas.
+        tldr = re.search(r'<aside class="content tldr-wrap"[^>]*>\s*<div class="tldr">\s*<p class="tldr-label">TL;DR</p>\s*<ol>(.*?)</ol>', source, re.S)
+        if route in TLDR_EXEMPT:
+            expect('class="content tldr-wrap"' not in source, f"{route}: this page must not have a TL;DR")
+        else:
+            items = re.findall(r"<li>(.*?)</li>", tldr.group(1), re.S) if tldr else []
+            expect(bool(tldr) and 3 <= len(items) <= 6, f"{route}: TL;DR row missing, not an ordered list, or not 3-6 items (found {len(items)})")
+            if items:
+                back = 'href="#' if route == "/ideas/" else 'href="/ideas/'
+                expect(back in items[-1], f"{route}: the last TL;DR point must link to the project idea(s)")
+            if tldr:
+                expect(source.index(tldr.group(0)) < source.find('id="what-next"'), f"{route}: TL;DR row must come before the 'Next steps' block")
         expect('id="what-next"' in source and "Next steps" in page.text, f"{route}: 'Next steps' block missing")
         what_next = re.search(r'<nav[^>]*class="what-next".*?</nav>', source, re.S)
         expect(bool(what_next and re.search(r'href="/', what_next.group(0))), f"{route}: 'Next steps' block has no internal links")
@@ -788,6 +797,10 @@ def check_site(site: Path, launched: bool) -> list[str]:
     for css in (site / "_next").rglob("*.css"):
         content = css.read_text(encoding="utf-8")
         expect(not re.search(r"::?(before|after)\b", content), f"{css.name}: uses ::before/::after pseudo-elements")
+        # The TL;DR row and the hero fact cards are hairline-only: no shadows
+        for selector in (".tldr", ".hero-panel", ".hero-facts", ".idea-facts"):
+            for rule in re.findall(re.escape(selector) + r"(?![\w-])[^{}]*\{([^}]*)\}", content):
+                expect("box-shadow" not in rule, f"{css.name}: {selector} must not have a box-shadow")
 
     return errors
 

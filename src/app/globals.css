@@ -221,12 +221,14 @@ main:focus { outline:none; }
 .prose li::marker { color:var(--leaf); }
 .prose code { padding:.1rem .35rem; border-radius:.3rem; background:var(--paper-deep); font-family:var(--font-code); font-size:.88em; overflow-wrap:anywhere; }
 .tldr-wrap { padding-top:var(--space-4); }
-.tldr { display:grid; grid-template-columns:minmax(5rem,8rem) minmax(0,1fr); gap:var(--space-1) var(--space-4); max-width:calc(var(--measure) + 12rem); padding:1.1rem 1.4rem 1.2rem; border:1px solid var(--line-strong); border-radius:var(--radius); background:var(--panel); }
-.tldr-label { margin:0; padding-top:.2rem; color:var(--leaf); font:650 .78rem/1.4 var(--font-mono); letter-spacing:.13em; text-transform:uppercase; }
-.tldr ul { display:grid; gap:.45rem; margin:0; padding:0; list-style:none; }
-.tldr li { padding-left:.85rem; border-left:2px solid var(--leaf-line); font-size:var(--text-sm); line-height:1.5; }
-.tldr a { color:var(--leaf); text-decoration:underline; text-underline-offset:.2em; }
-@media (max-width:700px) { .tldr { grid-template-columns:minmax(0,1fr); padding:1rem 1.1rem; } }
+.tldr { display:grid; grid-template-columns:minmax(6rem,9rem) minmax(0,1fr); gap:var(--space-2) var(--space-4); padding:var(--space-3) 0; border-block:1px solid var(--line-strong); }
+.tldr-label { margin:0; padding-top:.3rem; color:var(--leaf); font:650 .85rem/1.4 var(--font-mono); letter-spacing:.13em; text-transform:uppercase; }
+.tldr ol { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,26rem),1fr)); gap:.7rem clamp(2rem,4vw,4rem); margin:0; padding:0 0 0 1.6rem; list-style:decimal; }
+.tldr li { margin:0; padding-left:.35rem; font-size:clamp(1.125rem,1.05rem + .15vw,1.1875rem); line-height:1.6; }
+.tldr li::marker { color:var(--leaf); font:650 .9em/1 var(--font-mono); }
+.tldr a { color:var(--leaf); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.2em; }
+.tldr a:hover { color:var(--ink); text-decoration-thickness:2px; }
+@media (max-width:700px) { .tldr { grid-template-columns:minmax(0,1fr); gap:var(--space-1); padding:var(--space-2) 0; } }
 .prose pre { margin:0 0 1em; padding:1rem 1.2rem; border:1px solid var(--line); border-radius:.8rem; background:var(--paper-deep); overflow-x:auto; font-size:var(--text-sm); line-height:1.55; }
 .prose pre code { padding:0; background:none; overflow-wrap:normal; }
 .prose strong { font-weight:700; }
