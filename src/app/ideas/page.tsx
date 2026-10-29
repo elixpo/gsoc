@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeroCard } from "@/components/HeroCards";
 import { Capacity, IdeaCards, IdeaTable, JsonLd, nextLinks, PageHero, Prose, Tldr, WhatNext } from "@/components/blocks";
 import { getPage, IDEAS } from "@/lib/content";
 import { absoluteUrl, breadcrumbJsonLd, ORGANIZATION_ID, pageMetadata } from "@/lib/seo";
@@ -25,7 +26,7 @@ export default function IdeasPage() {
   return (
     <>
       <JsonLd data={[structured, breadcrumbJsonLd([{ name: "Ideas", path: "/ideas/" }])]} />
-      <PageHero eyebrow="Project ideas" headingHtml={page.headingHtml} lead={page.lead}>
+      <PageHero eyebrow="Project ideas" headingHtml={page.headingHtml} lead={page.lead} aside={<PageHeroCard slug="ideas" />}>
         <Capacity />
       </PageHero>
       <Tldr items={page.tldrHtml} />

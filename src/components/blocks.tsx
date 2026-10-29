@@ -72,6 +72,114 @@ export function Tldr({ items }: { items: string[] }) {
   );
 }
 
+export type Cta = { href: string; label: string };
+
+/** A call-to-action link: internal routes and anchors use next/link, external ones a plain anchor. */
+function CtaLink({ href, label }: Cta) {
+  if (/^(https?:|mailto:)/.test(href)) {
+    return (
+      <a href={href} rel={href.startsWith("http") ? "noopener" : undefined}>
+        {label}
+        {href.startsWith("http") && (
+          <>
+            {"\u00a0"}
+            <span aria-hidden="true">↗</span>
+          </>
+        )}
+      </a>
+    );
+  }
+  return <Link href={href}>{label}</Link>;
+}
+
+/** A row of call-to-action buttons; the first is the dark primary button. */
+export function CtaActions({ links }: { links: Cta[] }) {
+  return (
+    <div className="actions">
+      {links.map((link) => (
+        <CtaLink key={link.href} {...link} />
+      ))}
+    </div>
+  );
+}
+
+/** A closing call-to-action band inside a page body (used on /timeline/). */
+export function CtaBlock({ id, title, text, links }: { id: string; title: string; text: string; links: Cta[] }) {
+  return (
+    <section className="page-section cta-block" aria-labelledby={id}>
+      <h2 id={id}>{title}</h2>
+      <p>{text}</p>
+      <CtaActions links={links} />
+    </section>
+  );
+}
+
+export type HeroFact = { label: string; value: React.ReactNode };
+
+/**
+ * The card on the right of an inner page hero: a few crucial facts from the
+ * page and one next action. One component for every page, so the cards look
+ * the same: hairline border, no shadow, vertically centred beside the copy,
+ * stacked under it on small screens. Use only facts already on the site.
+ */
+export function HeroCard({
+  label,
+  title,
+  stats = [],
+  facts = [],
+  points = [],
+  cta,
+  note,
+}: {
+  label: string;
+  title: string;
+  /** Large numerals, as on the mentors page. */
+  stats?: { value: number | string; label: string }[];
+  facts?: HeroFact[];
+  points?: React.ReactNode[];
+  cta?: Cta;
+  note?: React.ReactNode;
+}) {
+  return (
+    <aside className="hero-panel hero-facts" aria-label={label}>
+      <p className="eyebrow">{title}</p>
+      {stats.length > 0 && (
+        <dl className="hero-stats">
+          {stats.map((item) => (
+            <div key={item.label}>
+              <dt>{item.label}</dt>
+              <dd>{item.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {facts.length > 0 && (
+        <dl className="hero-fact-list">
+          {facts.map((fact) => (
+            <div key={fact.label}>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {points.length > 0 && (
+        <ul className="summary-points">
+          {points.map((point, index) => (
+            <li key={index}>{point}</li>
+          ))}
+        </ul>
+      )}
+      {cta && (
+        <p className="hero-cta">
+          <CtaLink {...cta} />
+        </p>
+      )}
+      {note && <p className="hero-panel-note">{note}</p>}
+    </aside>
+  );
+}
+
 export function Prose({ html, className = "" }: { html: string; className?: string }) {
   return <div className={`prose ${className}`.trim()} dangerouslySetInnerHTML={{ __html: html }} />;
 }

@@ -104,6 +104,8 @@ NAV_LABELS = ["Ideas", "Codebases", "Mentors", "Get involved", "Proposal", "Time
 NAV_GROUP_COUNT = 3
 # Pages without a TL;DR (src/lib/content.ts TLDR_EXEMPT): the timeline is only the timeline and a call to action.
 TLDR_EXEMPT = ["/timeline/"]
+# Inner pages without a hero card: the timeline (coming soon) is only the timeline and a call to action.
+HERO_CARD_EXEMPT = ["/timeline/"]
 NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/", "/operations/", "/why-elixpo/", "/warm-up/"]
 # The five codebases on /projects/ (content/projects/*.md).
 PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "oreo"]
@@ -457,6 +459,14 @@ def check_site(site: Path, launched: bool) -> list[str]:
         # TL;DR row near the top of every page except /timeline/: a mono label and 3-6 numbered points
         # (content/**/*.md `tldr:`); the last point links back to the project ideas.
         tldr = re.search(r'<aside class="content tldr-wrap"[^>]*>\s*<div class="tldr">\s*<p class="tldr-label">TL;DR</p>\s*<ol>(.*?)</ol>', source, re.S)
+        # Hero card (src/components/HeroCards.tsx) on every inner page except /timeline/; the home page keeps its own panel
+        if route != "/":
+            hero_header = re.search(r'<header class="[^"]*hero-card[^"]*".*?</header>', source, re.S)
+            has_card = bool(hero_header and '<aside class="hero-panel hero-facts"' in hero_header.group(0))
+            if route in HERO_CARD_EXEMPT:
+                expect(not has_card, f"{route}: this page must not have a hero card")
+            else:
+                expect(has_card, f"{route}: hero card missing from the page hero")
         if route in TLDR_EXEMPT:
             expect('class="content tldr-wrap"' not in source, f"{route}: this page must not have a TL;DR")
         else:
