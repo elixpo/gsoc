@@ -1,0 +1,19 @@
+import type { MetadataRoute } from "next";
+
+export const dynamic = "force-static";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: "Elixpo · Google Summer of Code 2027",
+    short_name: "Elixpo GSoC",
+    description: "Elixpo's Google Summer of Code 2027 project ideas, mentors and contributor guide.",
+    start_url: "/",
+    display: "browser",
+    background_color: "#fbfbf8",
+    theme_color: "#fbfbf8",
+    icons: [
+      { src: "/favicon.ico", sizes: "any", type: "image/x-icon" },
+      { src: "/elixpo-logo.png", sizes: "1024x1024", type: "image/png" },
+    ],
+  };
+}
