@@ -22,19 +22,22 @@ from pathlib import Path
 
 SITE_URL = "https://gsoc.elixpo.com"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-STATIC_ROUTES = ["/", "/ideas/", "/people/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/about/"]
+STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/people/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/about/"]
 SIZES = {90, 175}
 DIFFICULTIES = {"Easy", "Intermediate", "Hard"}
-STATUS_BANNER = "Elixpo is preparing to apply as a GSoC 2027 mentoring organisation. Google has not yet announced GSoC 2027."
-CAPACITY = "Elixpo is a first-time applicant and plans to mentor one contributor in 2027."
+STATUS_BANNER = (
+    "Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. "
+    "Google announces accepted organisations after the application period."
+)
+CAPACITY = "In 2027 we expect to mentor one contributor."
 # Google's brand rules: the trademark notice appears in the footer of every page.
 DISCLAIMER = (
-    "Google Summer of Code and the GSoC logo are trademarks of Google LLC. Elixpo is preparing to apply as a "
+    "Google Summer of Code and the GSoC logo are trademarks of Google LLC. Elixpo is applying as a "
     "mentoring organisation and is not affiliated with or endorsed by Google."
 )
 GSOC_LOGO_SRC = "/brand/gsoc/GSoC-Horizontal.png"
 GSOC_LOGO_ALT = "Google Summer of Code logo"
-GSOC_LOGO_LABEL = "Elixpo is preparing to apply to"
+GSOC_LOGO_LABEL = "Elixpo is applying to"
 GSOC_BRAND_FILES = ["GSoC-Horizontal.svg", "GSoC-Horizontal.png", "GSoC-Vertical.svg", "GSoC-Vertical.png", "GSoC-icon-192.png"]
 # Evidence for the history on /about/ (from elixpo/content/history.json). Each must be linked.
 HISTORY_EVIDENCE = [
@@ -49,17 +52,30 @@ CONTACT = "gsoc@elixpo.com"
 # Claims the site must never make, and links it must not contain yet.
 FORBIDDEN_TEXT = [
     re.compile(r"\bElixpo (is|has been|was) (accepted|selected)\b", re.I),
-    re.compile(r"\baccepted (mentoring )?organi[sz]ation\b", re.I),
+    re.compile(r"\b(an|our|is an?) accepted (mentoring )?organi[sz]ation\b", re.I),
+    re.compile(r"\bElixpo (is|has been) (participating|taking part) in\b", re.I),
     re.compile(r"\d+\+ (contributors|projects|users|mentors)", re.I),
     re.compile(r"\bElixpo\s*[×xX]\s*(GSoC|Google)", re.I),
     re.compile(r"\b(GSoC|Google Summer of Code|Google)( 2027)? partner", re.I),
     re.compile(r"\bglobal community\b", re.I),
 ]
+# Self-deprecating framing the site no longer uses, checked in the raw HTML (text, metadata and JSON-LD).
+FORBIDDEN_FRAMING = [
+    re.compile(r"first[- ]time", re.I),
+    re.compile(r"\bnew (mentoring )?organi[sz]ation\b", re.I),
+    re.compile(r"\bnot (yet )?(mentored|taken part|participated) in\b", re.I),
+    re.compile(r"\bpreparing to apply\b", re.I),
+]
 FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
-# Main navigation (src/data/site.ts NAV), in order of importance; Contact is last, as a button.
+# Main navigation (src/data/site.ts NAV), exactly in this order; Contact is last, as a button.
 # Each of these pages must mark its own link with aria-current="page".
-NAV_ROUTES = ["/ideas/", "/contributor-guide/", "/proposal/", "/timeline/", "/people/", "/faq/", "/contact/"]
-NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/about/"]
+NAV_ROUTES = ["/ideas/", "/projects/", "/proposal/", "/timeline/", "/faq/", "/contributor-guide/", "/contact/"]
+NAV_LABELS = ["Ideas", "Projects", "Proposal", "Timeline", "FAQ", "Get involved", "Contact"]
+NOT_IN_NAV = ["/people/", "/selection/", "/ai-policy/", "/glossary/", "/about/"]
+# The five codebases on /projects/ (content/projects/*.md).
+PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "oreo"]
+IDEA_SECTIONS = ["Description", "Expected outcomes", "Stretch goals", "Out of scope", "How success is measured", "Material",
+                 "Warm-up tasks", "Skills, size and mentors", "Terms used on this page"]
 GSOC_TIMELINE_URL = "https://developers.google.com/open-source/gsoc/timeline"
 GSOC_URL = "https://summerofcode.withgoogle.com/"
 TIMELINE_PHASES = ["Organisations apply", "Organisations are announced", "Contributors apply", "Community bonding", "Coding", "Evaluations"]
@@ -233,6 +249,8 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect(DISCLAIMER in page.text and CONTACT in page.text, f"{route}: footer disclaimer or contact missing")
         for pattern in FORBIDDEN_TEXT:
             expect(not pattern.search(page.text), f"{route}: forbidden claim matches {pattern.pattern!r}")
+        for pattern in FORBIDDEN_FRAMING:
+            expect(not pattern.search(html.unescape(source)), f"{route}: framing the site no longer uses matches {pattern.pattern!r}")
         for href in page.hrefs:
             for pattern in FORBIDDEN_LINKS:
                 expect(not pattern.search(href), f"{route}: link to a private repository: {href}")
@@ -301,15 +319,24 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect("FAQPage" in types, "/faq/: FAQPage JSON-LD missing")
         if route == "/about/":
             expect("AboutPage" in types, "/about/: AboutPage JSON-LD missing")
+        if route == "/projects/":
+            expect("CollectionPage" in types, "/projects/: CollectionPage JSON-LD missing")
+            for block in page.json_ld:
+                data = json.loads(block)
+                if data.get("@type") == "CollectionPage":
+                    items = [entry.get("item", {}) for entry in data.get("mainEntity", {}).get("itemListElement", [])]
+                    repos = [item.get("codeRepository") for item in items if item.get("@type") == "SoftwareSourceCode" and item.get("programmingLanguage")]
+                    expect(repos == [f"https://github.com/elixpo/{repo}" for repo in PROJECT_REPOS],
+                           f"/projects/: SoftwareSourceCode items with codeRepository and programmingLanguage are {repos}")
 
     # Navigation: "What next?" block, footer site map, current page in the main nav
     for route in routes:
         source, page = raw.get(route), parsed.get(route)
         if not source or not page:
             continue
-        expect('id="what-next"' in source and "What next?" in page.text, f"{route}: 'What next?' block missing")
+        expect('id="what-next"' in source and "Next steps" in page.text, f"{route}: 'Next steps' block missing")
         what_next = re.search(r'<nav[^>]*class="what-next".*?</nav>', source, re.S)
-        expect(bool(what_next and re.search(r'href="/', what_next.group(0))), f"{route}: 'What next?' block has no internal links")
+        expect(bool(what_next and re.search(r'href="/', what_next.group(0))), f"{route}: 'Next steps' block has no internal links")
         footer = re.search(r'<footer.*?</footer>', source, re.S)
         footer_links = set(re.findall(r'href="([^"]+)"', footer.group(0))) if footer else set()
         for target in STATIC_ROUTES:
@@ -319,6 +346,8 @@ def check_site(site: Path, launched: bool) -> list[str]:
         if main_nav:
             nav_hrefs = re.findall(r'href="([^"]+)"', main_nav.group(0))
             expect(nav_hrefs == NAV_ROUTES, f"{route}: main navigation order is {nav_hrefs}, expected {NAV_ROUTES}")
+            nav_labels = [html.unescape(re.sub(r"<[^>]+>", "", label)).strip() for label in re.findall(r"<a[^>]*>(.*?)</a>", main_nav.group(0), re.S)]
+            expect(nav_labels == NAV_LABELS, f"{route}: main navigation labels are {nav_labels}, expected {NAV_LABELS}")
             expect(re.search(r'class="nav-contact"[^>]*>\s*<a[^>]*href="/contact/"', main_nav.group(0)) is not None, f"{route}: Contact is not the button at the end of the main navigation")
             for target in NOT_IN_NAV:
                 expect(f'href="{target}"' not in main_nav.group(0), f"{route}: {target} belongs in the footer, not the main navigation")
@@ -328,14 +357,14 @@ def check_site(site: Path, launched: bool) -> list[str]:
         if main_nav and route in idea_routes:
             expect('aria-current="true"' in main_nav.group(0), f"{route}: 'Ideas' is not marked as the current section")
 
-    # Home page: "Start here" path and the GSoC explainer
+    # Home page: "Getting started" path and the GSoC explainer
     if "/" in raw:
         source, text = raw["/"], parsed["/"].text
-        start = re.search(r'id="start-here".*?</section>', source, re.S)
-        expect(bool(start), "/: 'Start here' section missing")
+        start = re.search(r'id="getting-started".*?</section>', source, re.S)
+        expect(bool(start), "/: 'Getting started' section missing")
         if start:
             for target in ("/ideas/", "/contributor-guide/", "/proposal/"):
-                expect(f'href="{target}"' in start.group(0), f"/: 'Start here' does not link to {target}")
+                expect(f'href="{target}"' in start.group(0), f"/: 'Getting started' does not link to {target}")
         expect("What is Google Summer of Code?" in text and f'href="{GSOC_URL}"' in source, "/: 'What is Google Summer of Code?' section or official link missing")
 
     # Home page: the GSoC logo, unmodified, labelled and separate from the Elixpo mark
@@ -349,7 +378,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
             figure = re.search(r'<figure class="gsoc-mark">.*?</figure>', hero.group(0), re.S)
             expect(bool(figure and GSOC_LOGO_LABEL in figure.group(0)), f"/: GSoC logo is not labelled {GSOC_LOGO_LABEL!r}")
             expect(bool(figure) and "icon-192.png" not in figure.group(0) and "elixpo-logo" not in figure.group(0), "/: the GSoC logo must not share a lockup with the Elixpo mark")
-        expect("Our track record" in parsed["/"].text and 'href="/about/"' in source, "/: 'Our track record' section or link to /about/ missing")
+        expect("Track record" in parsed["/"].text and 'href="/about/"' in source, "/: 'Track record' section or link to /about/ missing")
     for name in GSOC_BRAND_FILES:
         path = site / "brand" / "gsoc" / name
         expect(path.is_file(), f"Missing GSoC brand file: {name}")
@@ -363,7 +392,20 @@ def check_site(site: Path, launched: bool) -> list[str]:
         for url in HISTORY_EVIDENCE:
             expect(f'href="{html.escape(url)}"' in source or f'href="{url}"' in source, f"/about/: history evidence link missing: {url}")
         expect(text.count("Date precision:") >= 6, "/about/: date precision missing from history entries")
-        expect("Mentoring experience" in text, "/about/: 'Mentoring experience' section missing")
+        expect("Community and mentoring record" in text and "Mentoring experience" in text, "/about/: 'Community and mentoring record' or 'Mentoring experience' section missing")
+        expect("What this record does not show" not in text, "/about/: the removed self-critique section is back")
+
+    # Projects page: all five codebases, each with repository, README, CONTRIBUTING, LICENSE and its ideas
+    if "/projects/" in raw:
+        source = raw["/projects/"]
+        for repo in PROJECT_REPOS:
+            base = f"https://github.com/elixpo/{repo}"
+            for target in (base, f"{base}/blob/main/README.md", f"{base}/blob/main/CONTRIBUTING.md", f"{base}/blob/main/LICENSE"):
+                expect(f'href="{target}"' in source, f"/projects/: link missing: {target}")
+        for idea in ideas:
+            expect(f'href="/ideas/{idea["slug"]}/"' in source, f"/projects/: idea {idea['slug']} not listed under its project")
+        main = re.search(r"<main.*?</main>", source, re.S)
+        expect(bool(main) and not re.search(r"\bMIT\b", main.group(0) if main else ""), "/projects/: must not claim a licence; link the repository's LICENSE")
 
     # People page: each role is a chip in a list
     if "/people/" in raw:
@@ -399,9 +441,14 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect(bool(crumb and 'href="/"' in crumb.group(0) and 'href="/ideas/"' in crumb.group(0) and 'aria-current="page"' in crumb.group(0)),
                f"{route}: breadcrumb (Home > Ideas > title) missing")
         expect(f"In short: {idea['in_short']}" in page.text, f"{route}: 'In short' summary missing")
-        expect("Why this matters" in page.text and "Words used on this page" in page.text, f"{route}: 'Why this matters' or 'Words used on this page' missing")
-        expect('id="how-to-start"' in source and "How to start on this idea" in page.text and f'href="{idea["repository"]}"' in source,
-               f"{route}: 'How to start on this idea' box missing or without the repository link")
+        headings = [html.unescape(re.sub(r"<[^>]+>", "", h)).strip() for h in re.findall(r'<h2 id="[^"]+">(.*?)</h2>', source, re.S)]
+        found = [h for h in headings if h in IDEA_SECTIONS]
+        expect(found == IDEA_SECTIONS, f"{route}: idea sections are {found}, expected {IDEA_SECTIONS}")
+        warm = re.search(r'<h2 id="warm-up-tasks">Warm-up tasks</h2>.*?</section>', source, re.S)
+        expect(bool(warm and re.search(r"<ol>\s*<li>", warm.group(0))), f"{route}: 'Warm-up tasks' section missing or empty")
+        material = re.search(r'<h2 id="material">Material</h2>.*?</section>', source, re.S)
+        expect(bool(material and f'href="{idea["repository"]}"' in material.group(0) and f'href="{idea["setup"]}"' in material.group(0)),
+               f"{route}: 'Material' section missing the repository or setup link")
         pager = re.search(r'<nav[^>]*aria-label="More ideas".*?</nav>', source, re.S)
         expect(bool(pager), f"{route}: previous / next idea links missing")
         if pager:
