@@ -1,5 +1,5 @@
 import { IDEAS } from "./content";
 
 /** Every public route, with the trailing slash the static export uses. */
-export const STATIC_ROUTES = ["/", "/ideas/", "/people/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/about/"];
+export const STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/people/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/about/"];
 export const ALL_ROUTES = [...STATIC_ROUTES, ...IDEAS.map((idea) => `/ideas/${idea.slug}/`)];

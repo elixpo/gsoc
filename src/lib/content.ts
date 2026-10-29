@@ -135,15 +135,19 @@ export function getFaq() {
 
 /* ----------------------------------------------------------------- ideas */
 
+/**
+ * Sections of an idea file, in order. The page renders them in the field order
+ * established GSoC organisations use, with Material, Skills, Size, Difficulty
+ * and Mentors built from the frontmatter.
+ */
 export const IDEA_SECTIONS = [
-  "Why this matters",
-  "Problem",
+  "Description",
   "Expected outcomes",
   "Stretch goals",
-  "Not in scope",
-  "Proof of success",
-  "How to start",
-  "Words used on this page",
+  "Out of scope",
+  "How success is measured",
+  "Warm-up tasks",
+  "Terms used on this page",
 ] as const;
 export type IdeaSection = (typeof IDEA_SECTIONS)[number];
 
@@ -248,4 +252,65 @@ export function ideasMentoredBy(github: string): { idea: Idea; role: MentorRole 
     if (idea.backupMentor.github === github) return [{ idea, role: "Backup mentor" }];
     return [];
   });
+}
+
+/* -------------------------------------------------------------- projects */
+
+export type Project = {
+  slug: string;
+  order: number;
+  name: string;
+  repository: string;
+  repositoryName: string;
+  homepage: string;
+  /** Languages GitHub reports for the repository, largest first. */
+  languages: string[];
+  stack: string[];
+  html: string;
+  ideas: Idea[];
+  mentors: Person[];
+};
+
+function loadProject(fileName: string): Project {
+  const { file, source } = read(`projects/${fileName}`);
+  const { data, body } = parseFrontmatter(source, file);
+  const slug = str(data, "slug", file);
+  if (`${slug}.md` !== fileName) throw new Error(`${file}: slug must match the file name`);
+  const repository = str(data, "repository", file);
+  if (!/^https:\/\/github\.com\/elixpo\/[\w.-]+$/.test(repository)) throw new Error(`${file}: repository must be a github.com/elixpo URL`);
+  const ideas = IDEAS.filter((idea) => idea.repository === repository);
+  if (!ideas.length) throw new Error(`${file}: no idea uses ${repository}`);
+  const mentors = [...new Map(ideas.flatMap((idea) => [idea.primaryMentor, idea.backupMentor]).map((person) => [person.github, person])).values()];
+  return {
+    slug,
+    order: Number(data.order),
+    name: str(data, "name", file),
+    repository,
+    repositoryName: repository.replace("https://github.com/", ""),
+    homepage: str(data, "homepage", file),
+    languages: list(data, "languages", file),
+    stack: list(data, "stack", file),
+    html: renderMarkdown(body.trim()),
+    ideas,
+    mentors,
+  };
+}
+
+export const PROJECTS: Project[] = fs
+  .readdirSync(path.join(CONTENT_DIR, "projects"))
+  .filter((name) => name.endsWith(".md"))
+  .map(loadProject)
+  .sort((a, b) => a.order - b.order);
+
+for (const idea of IDEAS) {
+  if (!PROJECTS.some((project) => project.repository === idea.repository)) {
+    throw new Error(`${idea.sourcePath}: no file in content/projects/ describes ${idea.repository}`);
+  }
+}
+
+/** Anchor of the project on /projects/ that hosts a repository. */
+export function projectAnchor(repository: string): string {
+  const project = PROJECTS.find((entry) => entry.repository === repository);
+  if (!project) throw new Error(`No project in content/projects/ for ${repository}`);
+  return project.slug;
 }
