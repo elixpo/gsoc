@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   referrer: "strict-origin-when-cross-origin",
   formatDetection: { email: false, address: false, telephone: false },
   alternates: { canonical: "/" },
-  // Icons use the Elixpo mark only, never the GSoC logo.
+  // Icons and logos use the shared Elixpo GSoC mascot logo, never the GSoC logo.
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },

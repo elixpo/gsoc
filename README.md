@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/elixpo-logo.png" width="96" alt="Elixpo logo: the Oreo panda" />
+  <img src="public/logo.png" width="120" alt="Elixpo GSoC logo: a mentor panda and a mentee panda" />
 </p>
 
 <h1 align="center">Elixpo · Google Summer of Code 2027</h1>
