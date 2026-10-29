@@ -108,6 +108,11 @@ main:focus { outline:none; }
 .page-hero-copy { max-width:980px; }
 .page-hero h1 { margin:0; max-width:16ch; }
 .page-hero .lead { margin-top:var(--space-3); }
+.page-hero-with-aside { display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,400px); gap:var(--space-4) clamp(2rem,5vw,5.5rem); align-items:center; }
+.page-hero-with-aside .hero-panel { align-self:center; }
+.summary-points { display:grid; gap:.45rem; margin:0; padding:0; list-style:none; font-size:var(--text-sm); }
+.summary-points li { padding-bottom:.45rem; border-bottom:1px solid var(--line); }
+.summary-points li:last-child { padding-bottom:0; border-bottom:0; }
 
 /* Home hero: copy left, one coherent panel right (GSoC logo, stats, note) */
 .home-hero { display:grid; grid-template-columns:minmax(0,1fr) minmax(340px,410px); gap:var(--space-4) clamp(2rem,5vw,5.5rem); align-items:center; padding-bottom:clamp(2rem,3.5vw,2.75rem); }
@@ -303,6 +308,13 @@ main:focus { outline:none; }
 .roles-overview .prose > h2 { margin:0 0 var(--space-3); padding-top:0; border-top:0; }
 .roles-overview .prose ul { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 clamp(1.5rem,3vw,3rem); margin:0; padding:0; list-style:none; border-top:1px solid var(--ink); }
 .roles-overview .prose li { max-width:62ch; margin:0; padding:1.1rem 0 1.2rem; border-bottom:1px solid var(--line); }
+.roles-overview .prose ol { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; margin:0; padding:0; list-style:decimal-leading-zero inside; border-top:1px solid var(--ink); }
+.roles-overview .prose ol > li { max-width:none; margin:0; padding:1.1rem clamp(.9rem,1.6vw,1.4rem) 1.3rem; border-bottom:0; color:var(--ink-soft, #3f4943); font-family:var(--font-sans); font-size:.95rem; }
+.roles-overview .prose ol > li::marker { color:var(--muted); font-family:var(--font-mono); font-size:.78rem; }
+.roles-overview .prose ol > li + li { border-left:1px solid var(--line); }
+.roles-overview .prose ol > li:first-child { padding-left:0; }
+.roles-overview .prose ol > li p, .roles-overview .prose ol > li { line-height:1.55; }
+.roles-overview .prose ol strong { display:block; margin:.55rem 0 .4rem; color:var(--ink); font:400 1.6rem/1 var(--font-display); text-transform:uppercase; letter-spacing:.01em; }
 .mentor-rows { margin:0; padding:0; list-style:none; border-top:1px solid var(--ink); }
 .mentor-rows > li { border-bottom:1px solid var(--line); }
 .mentor-row { display:grid; grid-template-columns:minmax(16rem,1fr) minmax(0,1.7fr) minmax(14rem,.9fr); gap:var(--space-3) clamp(1.5rem,3vw,3rem); padding:var(--space-4) 0; }
@@ -426,6 +438,10 @@ a.link-chip:hover { border-color:var(--ink); background:var(--white); }
   .mentor-row { grid-template-columns:minmax(0,1fr) minmax(0,1.6fr); }
   .mentor-contact { grid-column:2; }
   .roles-overview .prose ul { grid-template-columns:minmax(0,1fr); }
+  .roles-overview .prose ol { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .roles-overview .prose ol > li:nth-child(3) { padding-left:0; border-left:0; }
+  .page-hero-with-aside { grid-template-columns:minmax(0,1fr); }
+  .page-hero-with-aside .hero-panel { max-width:560px; }
 }
 @media (max-width:700px) {
   body { font-size:1rem; }

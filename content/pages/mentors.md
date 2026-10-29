@@ -11,12 +11,15 @@ next:
 
 ## Roles
 
-- Each idea has two mentors. The **primary mentor** is the contributor's main
-  contact. The **backup mentor** knows the project and can step in, so the
-  contributor always has support.
-- Mentors review all work personally and aim to reply within 48 hours on
-  weekdays.
-- The **organisation administrators**, Ayushman Bhattacharya (lead) and
-  Vivek Yadav, manage Elixpo's application and its communication with Google.
-- The **programme coordinator** handles community questions and does not
-  mentor or review code.
+1. **Primary mentor** The contributor's main contact for the whole
+   programme: plans the work with them, reviews their pull requests
+   personally and replies within 48 hours on weekdays.
+2. **Backup mentor** Knows the same project, joins reviews and steps in
+   whenever the primary mentor is away, so the contributor always has
+   support.
+3. **Organisation administrators** Ayushman Bhattacharya (lead) and Vivek
+   Yadav manage Elixpo's application, deadlines and communication with
+   Google, and handle any concern a contributor raises.
+4. **Programme coordinator** Anwesha Chakraborty answers programme questions
+   sent to gsoc@elixpo.com and organises community sessions. She does not
+   mentor or review code.

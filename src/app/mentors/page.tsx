@@ -4,18 +4,52 @@ import Link from "next/link";
 import { JsonLd, nextLinks, PageHero, Prose, RoleChips, WhatNext } from "@/components/blocks";
 import { ContactChips, PeopleTable } from "@/components/PeopleTable";
 import { PEOPLE } from "@/data/people";
-import { getPage, ideasMentoredBy } from "@/lib/content";
+import { getPage, IDEAS, ideasMentoredBy } from "@/lib/content";
+import { CONTACT_EMAIL } from "@/data/site";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 const page = getPage("mentors");
 
 export const metadata: Metadata = pageMetadata({ title: page.title, description: page.description, path: "/mentors/", social: "mentors" });
 
+const hasRole = (role: string) => PEOPLE.filter((person) => person.roles.some((r) => r.toLowerCase().includes(role))).length;
+
+const SUMMARY = [
+  { value: PEOPLE.filter((person) => person.isMentor).length, label: "mentors" },
+  { value: IDEAS.length, label: "project ideas" },
+  { value: 2, label: "mentors on every idea" },
+  { value: hasRole("organisation administrator"), label: "admins" },
+];
+
+function MentorsSummary() {
+  return (
+    <aside className="hero-panel" aria-label="Mentoring at a glance">
+      <p className="eyebrow">At a glance</p>
+      <dl className="hero-stats">
+        {SUMMARY.map((item) => (
+          <div key={item.label}>
+            <dt>{item.label}</dt>
+            <dd>{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <ul className="summary-points">
+        <li>Every idea has a primary and a backup mentor.</li>
+        <li>Mentors reply within 48 hours on weekdays.</li>
+        <li>A programme coordinator answers general questions.</li>
+      </ul>
+      <p className="hero-panel-note">
+        Programme questions: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </p>
+    </aside>
+  );
+}
+
 export default function MentorsPage() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: page.title, path: "/mentors/" }])} />
-      <PageHero eyebrow="Mentors" headingHtml={page.headingHtml} lead={page.lead} />
+      <PageHero eyebrow="Mentors" headingHtml={page.headingHtml} lead={page.lead} aside={<MentorsSummary />} />
       <section className="content roles-overview" aria-labelledby="roles">
         <Prose html={page.html} />
       </section>

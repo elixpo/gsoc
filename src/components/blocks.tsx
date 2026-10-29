@@ -35,9 +35,9 @@ export function HeroGeometry() {
  * trusted HTML from the page frontmatter, where `*phrase*` becomes the italic
  * serif accent (see accentHeading in src/lib/content.ts).
  */
-export function PageHero({ eyebrow, headingHtml, lead, children }: { eyebrow: string; headingHtml: string; lead: string; children?: React.ReactNode }) {
+export function PageHero({ eyebrow, headingHtml, lead, children, aside }: { eyebrow: string; headingHtml: string; lead: string; children?: React.ReactNode; aside?: React.ReactNode }) {
   return (
-    <header className="page-hero hero-card">
+    <header className={aside ? "page-hero page-hero-with-aside hero-card" : "page-hero hero-card"}>
       <HeroGeometry />
       <div className="page-hero-copy">
         <p className="eyebrow">{eyebrow}</p>
@@ -45,6 +45,7 @@ export function PageHero({ eyebrow, headingHtml, lead, children }: { eyebrow: st
         <p className="lead">{lead}</p>
         {children}
       </div>
+      {aside}
     </header>
   );
 }
