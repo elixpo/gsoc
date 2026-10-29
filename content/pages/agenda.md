@@ -7,6 +7,7 @@ tldr:
   - Elixpo is an open-source project foundry: build in public, release as a project.
   - Our aim: one contributor who becomes the supported owner of one part of one codebase.
   - The ideas belong to five codebases released as hosted services, npm packages and a Debian package.
+  # TODO: Update to 'participating projects have no paid plans' after the pricing-removal PRs merge.
   - No Google Summer of Code idea involves payments, pricing or paid features.
   - Two mentors, human review, and replies within 48 hours on weekdays.
 next:
@@ -104,6 +105,8 @@ set out how changes are accepted:
 [selection criteria](/selection/).
 
 ## Money and commercial interests
+
+<!-- TODO: Update to 'participating projects have no paid plans' after the pricing-removal PRs merge. -->
 
 - Elixpo does not sell anything through this programme. No Google Summer of
   Code idea involves payments, pricing or paid features; the contest-scoring

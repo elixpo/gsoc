@@ -3,6 +3,7 @@ import path from "node:path";
 import { marked } from "marked";
 import { parseFrontmatter, type Frontmatter } from "./frontmatter";
 import { getPerson, type Person } from "@/data/people";
+import { CONFIG_ACCESS_MARKDOWN } from "@/data/site";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -22,15 +23,29 @@ export const slugify = (text: string) =>
 
 /**
  * Render trusted Markdown from content/. Second-level headings get ids, so the
- * "On this page" list can link to them. Tables get a focusable scroll wrapper
+ * "On this page" list can link to them. HTML comments are dropped. Tables get a focusable scroll wrapper
  * for small screens.
  */
 export function renderMarkdown(markdown: string): string {
-  const html = marked.parse(markdown, { async: false, gfm: true }) as string;
+  // Editorial notes (<!-- TODO ... -->) stay in the source, not in the published page.
+  const html = marked.parse(markdown.replace(/<!--[\s\S]*?-->\n?/g, ""), { async: false, gfm: true }) as string;
   return html
     .replace(/<h2>(.*?)<\/h2>/g, (_match, inner: string) => `<h2 id="${slugify(inner)}">${inner}</h2>`)
     .replace(/<table>/g, '<div class="table-scroll" role="region" tabindex="0" aria-label="Table (scrolls sideways on small screens)"><table>')
     .replace(/<\/table>/g, "</table></div>");
+}
+
+/** Shared Markdown blocks, included in content/ with `<!-- shared: name -->` on a line of its own. */
+const SHARED_BLOCKS: Record<string, string> = {
+  "configuration-and-access": CONFIG_ACCESS_MARKDOWN,
+};
+
+function expandShared(markdown: string, file: string): string {
+  return markdown.replace(/^<!-- shared: ([\w-]+) -->$/gm, (_match, name: string) => {
+    const block = SHARED_BLOCKS[name];
+    if (block === undefined) throw new Error(`${file}: unknown shared block "${name}"`);
+    return block;
+  });
 }
 
 function read(relative: string) {
@@ -41,13 +56,6 @@ function read(relative: string) {
 function str(data: Frontmatter, key: string, file: string): string {
   const value = data[key];
   if (typeof value !== "string" || !value) throw new Error(`${file}: "${key}" must be a non-empty string`);
-  return value;
-}
-
-function optionalStr(data: Frontmatter, key: string, file: string): string | null {
-  const value = data[key];
-  if (value === null || value === undefined) return null;
-  if (typeof value !== "string") throw new Error(`${file}: "${key}" must be a string or null`);
   return value;
 }
 
@@ -105,7 +113,8 @@ export function tldr(items: string[], file: string): string[] {
 
 export function getPage(slug: string): Page {
   const { file, source } = read(`pages/${slug}.md`);
-  const { data, body } = parseFrontmatter(source, file);
+  const { data, body: rawBody } = parseFrontmatter(source, file);
+  const body = expandShared(rawBody, file);
   return {
     slug,
     title: str(data, "title", file),
@@ -205,7 +214,6 @@ export type Idea = {
   repository: string;
   repositoryName: string;
   setup: string;
-  envExample: string | null;
   skills: string[];
   relatedIssues: RelatedIssue[];
   sections: Record<IdeaSection, string>;
@@ -229,6 +237,9 @@ function loadIdea(fileName: string): Idea {
     if (!mentor.isMentor) throw new Error(`${file}: ${mentor.github} is not listed as a mentor in src/data/people.ts`);
   }
   if (primaryMentor.github === backupMentor.github) throw new Error(`${file}: primary and backup mentor must differ`);
+
+  // Elixpo keeps configuration encrypted with SOPS; ideas do not link .env example files.
+  if ("env_example" in data) throw new Error(`${file}: remove "env_example"; see "Configuration and access" in content/pages/contributor-guide.md`);
 
   const repository = str(data, "repository", file);
   if (!/^https:\/\/github\.com\/elixpo\/[\w.-]+$/.test(repository)) throw new Error(`${file}: repository must be a github.com/elixpo URL`);
@@ -259,7 +270,6 @@ function loadIdea(fileName: string): Idea {
     repository,
     repositoryName: repository.replace("https://github.com/", ""),
     setup: str(data, "setup", file),
-    envExample: optionalStr(data, "env_example", file),
     skills: list(data, "skills", file),
     relatedIssues,
     sections: Object.fromEntries(found.map(({ heading, markdown }) => [heading, renderMarkdown(markdown)])) as Record<IdeaSection, string>,

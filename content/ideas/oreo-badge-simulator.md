@@ -9,7 +9,6 @@ primary_mentor: Circuit-Overtime
 backup_mentor: ez-vivek
 repository: https://github.com/elixpo/oreo
 setup: https://github.com/elixpo/oreo/blob/main/README.md
-env_example: null
 summary: Open Oreo to contributors without hardware by building a desktop simulator with headless golden-image tests.
 in_short: Build a program that runs the Oreo badge's software on an ordinary computer, so people can build and test badge apps without the hardware.
 skills:

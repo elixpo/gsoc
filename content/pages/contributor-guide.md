@@ -59,12 +59,13 @@ next:
    items and how success is measured. *Why:* a proposal must answer one
    idea's problem. *Done when:* you can explain the problem in your own words.
 2. **Set up the project locally.** Clone the repository and follow its README
-   from a fresh checkout. You do not need any private Elixpo key, password,
-   account or paid service to build the code and run the tests for your idea.
-   *Why:* every later step depends on a working setup. *Done when:* the
-   project builds and its tests run. If a step requires a private credential,
-   report it as an issue: it is a defect in our instructions, and fixing it is
-   a valid first contribution.
+   from a fresh checkout. Set up from the README; no private keys needed.
+   You do not need any Elixpo key, password, account or paid service to build
+   the code and run the tests for your idea; see
+   [configuration and access](#configuration-and-access). *Why:* every later
+   step depends on a working setup. *Done when:* the project builds and its
+   tests run. If a step asks for a secret, report it as a setup issue: it is
+   a defect in our instructions, and fixing it is a valid first contribution.
 3. **Complete a warm-up task.** Each idea page lists warm-up tasks. *Why:* it
    shows you how the code is organised and gives mentors evidence of your
    work. *Done when:* you have finished one task and recorded what you
@@ -104,6 +105,10 @@ next:
    out the weekly cadence and how evaluations work. If you are not selected,
    your merged work remains part of the project and you are welcome to keep
    contributing.
+
+## Configuration and access
+
+<!-- shared: configuration-and-access -->
 
 ## What we expect from you
 

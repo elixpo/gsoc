@@ -9,7 +9,6 @@ primary_mentor: ez-vivek
 backup_mentor: divyanshuj91
 repository: https://github.com/elixpo/sketch.elixpo
 setup: https://github.com/elixpo/sketch.elixpo/blob/main/README.md
-env_example: null
 summary: Make the LixSketch infinite canvas usable from the keyboard and with screen readers, and prove it with keyboard-only end-to-end tests in CI.
 in_short: Make the LixSketch drawing canvas usable for people who use only a keyboard or a screen reader, and add tests that prove it.
 skills:

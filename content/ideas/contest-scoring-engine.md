@@ -9,7 +9,6 @@ primary_mentor: divyanshuj91
 backup_mentor: Circuit-Overtime
 repository: https://github.com/elixpo/opensource.elixpo
 setup: https://github.com/elixpo/opensource.elixpo/blob/main/README.md
-env_example: null
 summary: Build a deterministic engine that turns GitHub events into explainable, reproducible contest points that are hard to game.
 in_short: Build the part of Elixpo Open Source that turns GitHub activity into contest points, in a way anyone can check and that is hard to cheat.
 skills:

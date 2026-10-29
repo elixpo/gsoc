@@ -67,6 +67,22 @@ export const RESPONSE_EXPECTATION = "Mentors aim to reply within 48 hours on wee
 /** Label shown above the unmodified GSoC logo. */
 export const GSOC_LOGO_LABEL = "Elixpo is applying to";
 
+/**
+ * Configuration and access: one source for the explanation shown on
+ * /contributor-guide/, /operations/ and /faq/. Markdown pages include it with
+ * the line `<!-- shared: configuration-and-access -->` (see src/lib/content.ts).
+ * Elixpo keeps configuration encrypted with SOPS; there are no .env example files.
+ */
+export const CONFIG_ACCESS_HEADING = "Configuration and access";
+export const CONFIG_ACCESS_ANCHOR = "/contributor-guide/#configuration-and-access";
+export const CONFIG_ACCESS_MARKDOWN = [
+  "- **Before acceptance.** The warm-up tasks and the core of every idea run locally without decrypting any Elixpo configuration. Local databases, fixtures and fake services stand in for real ones; features that need real services are skipped or mocked.",
+  "- **Encrypted configuration.** Elixpo uses [SOPS](https://github.com/getsops/sops) to keep configuration encrypted in its repositories. Do not try to decrypt configuration or commit it. If setup asks you for a secret, report it as a setup issue in the repository.",
+  "- **After acceptance.** The organisation administrators grant SOPS access scoped to what the project needs, for example integration tests or a staging environment, and revoke it when the programme ends. Never share keys. Access follows the [Code of Conduct](/code-of-conduct/) and the commitment on the [agreements page](/agreements/).",
+].join("\n");
+/** Short form for idea pages, next to the README link (followed by a link to CONFIG_ACCESS_ANCHOR). */
+export const SETUP_NOTE = "Set up from the README; no private keys needed.";
+
 /** Date the content was last reviewed; used for the sitemap. */
 export const CONTENT_REVIEWED = "2026-10-29";
 

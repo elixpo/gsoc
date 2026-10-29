@@ -9,7 +9,6 @@ primary_mentor: divyanshuj91
 backup_mentor: ez-vivek
 repository: https://github.com/elixpo/blogs.elixpo
 setup: https://github.com/elixpo/blogs.elixpo/blob/main/README.md
-env_example: https://github.com/elixpo/blogs.elixpo/blob/main/.env.example
 summary: Replace read-access checks copied across LixBlogs API routes with one declarative policy, and prove it with an offline harness that runs the real route handlers.
 in_short: Make one clear set of rules for who may read what on LixBlogs, and build tests that prove private posts stay private.
 skills:
@@ -78,9 +77,10 @@ reintroduce and protects everyone who writes on LixBlogs.
 
 ## Warm-up tasks
 
-1. Set up LixBlogs locally from the README and `.env.example`, and run the
-   existing tests in `tests/`. Setup does not require production secrets;
-   report any step that does as an issue.
+1. Set up LixBlogs locally from the README and run the existing tests in
+   `tests/`. Set up from the README; no private keys needed. If a step asks
+   for a secret, report it as a setup issue; see
+   [configuration and access](/contributor-guide/#configuration-and-access).
 2. Read the related issues linked under Material, identify the route each one
    touches, and summarise the cause in your own words. Send the summary to
    [gsoc@elixpo.com](mailto:gsoc@elixpo.com).

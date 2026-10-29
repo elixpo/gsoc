@@ -107,13 +107,25 @@ IDEA_SECTIONS = ["Description", "Expected outcomes", "Stretch goals", "Out of sc
                  "Warm-up tasks", "Skills, size and mentors", "Terms used on this page"]
 GSOC_TIMELINE_URL = "https://developers.google.com/open-source/gsoc/timeline"
 GSOC_URL = "https://summerofcode.withgoogle.com/"
+# Configuration and access (src/data/site.ts CONFIG_ACCESS_MARKDOWN): Elixpo keeps configuration encrypted with SOPS,
+# applicants set up without keys, accepted contributors get scoped access. Shown on these pages.
+CONFIG_ACCESS_ROUTES = ["/contributor-guide/", "/operations/", "/faq/"]
+CONFIG_ACCESS_TEXT = [
+    "The warm-up tasks and the core of every idea run locally without decrypting any Elixpo configuration.",
+    "to keep configuration encrypted in its repositories. Do not try to decrypt configuration or commit it. "
+    "If setup asks you for a secret, report it as a setup issue in the repository.",
+    "The organisation administrators grant SOPS access scoped to what the project needs, for example integration tests "
+    "or a staging environment, and revoke it when the programme ends. Never share keys.",
+]
+# Published principle on the home page; it stays true under SOPS.
+NO_KEYS_PRINCIPLE = "set up locally without private Elixpo credentials"
 # Sections a page must keep, by heading id (content/pages/*.md).
 REQUIRED_SECTIONS = {
-    "/contributor-guide/": ["why-contribute-to-elixpo", "what-each-project-is-for", "step-by-step", "what-we-expect-from-you",
+    "/contributor-guide/": ["why-contribute-to-elixpo", "what-each-project-is-for", "step-by-step", "configuration-and-access", "what-we-expect-from-you",
                             "what-you-can-expect-from-us", "communication-channels"],
     "/agenda/": ["what-elixpo-is", "what-we-want-google-summer-of-code-to-achieve", "what-we-ship-in-public",
                  "how-we-decide-what-to-approve", "money-and-commercial-interests", "care-for-contributors"],
-    "/operations/": ["who-does-what", "the-programme-phase-by-phase", "communication", "mentor-operations", "evaluations",
+    "/operations/": ["who-does-what", "the-programme-phase-by-phase", "communication", "mentor-operations", "configuration-and-access", "evaluations",
                      "escalation-and-conduct", "after-the-programme", "what-we-publish", "what-this-is-based-on"],
 }
 # How we run the programme: linked from these pages, and pointing to Google's rules and support address.
@@ -276,6 +288,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
 
     # Idea content rules
     for idea in ideas:
+        expect("env_example" not in idea, f"{idea['slug']}: remove env_example; configuration is encrypted with SOPS, not .env.example files")
         expect(int(str(idea["size_hours"])) in SIZES, f"{idea['slug']}: size must be 90 or 175")
         expect(idea["difficulty"] in DIFFICULTIES, f"{idea['slug']}: unknown difficulty {idea['difficulty']}")
         for role in ("primary_mentor", "backup_mentor"):
@@ -302,6 +315,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect(page.imgs_without_alt == 0, f"{route}: image without alt attribute")
         expect(STATUS_BANNER in page.text, f"{route}: status banner missing")
         expect(DISCLAIMER in page.text and CONTACT in page.text, f"{route}: footer disclaimer or contact missing")
+        expect(".env.example" not in source, f"{route}: mentions .env.example; Elixpo keeps configuration encrypted with SOPS")
         for pattern in FORBIDDEN_TEXT:
             expect(not pattern.search(page.text), f"{route}: forbidden claim matches {pattern.pattern!r}")
         for pattern in FORBIDDEN_FRAMING:
@@ -600,6 +614,14 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect(route_file(site, target).is_file(), f"{route}: broken internal link {ref}")
             if target.endswith("/") is False and "." not in target.rsplit("/", 1)[-1]:
                 errors.append(f"{route}: internal link without trailing slash {ref}")
+
+    # Configuration and access: one shared explanation on the guide, operations and FAQ
+    for route in CONFIG_ACCESS_ROUTES:
+        if route in parsed:
+            for sentence in CONFIG_ACCESS_TEXT:
+                expect(sentence in parsed[route].text, f"{route}: configuration-and-access text missing: {sentence[:60]!r}")
+    if "/" in parsed:
+        expect(NO_KEYS_PRINCIPLE in parsed["/"].text, f"/: published principle {NO_KEYS_PRINCIPLE!r} missing")
 
     # Consistency across pages
     for route in ("/ideas/", "/faq/"):

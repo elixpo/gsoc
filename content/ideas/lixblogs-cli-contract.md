@@ -9,7 +9,6 @@ primary_mentor: divyanshuj91
 backup_mentor: Circuit-Overtime
 repository: https://github.com/elixpo/blogs.elixpo
 setup: https://github.com/elixpo/blogs.elixpo/blob/main/README.md
-env_example: https://github.com/elixpo/blogs.elixpo/blob/main/.env.example
 summary: Version and specify the JSON output of the LixBlogs CLI so that scripts and AI agents built on it don't break silently.
 in_short: Write down and test exactly what the LixBlogs command-line tool prints, so scripts and AI tools that depend on it don't break without warning.
 skills:

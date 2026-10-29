@@ -21,8 +21,10 @@ every page that shows it changes together.
   name), `order`, `theme`, `size_hours` (90 or 175), `difficulty` (`Easy`,
   `Easy–Intermediate`, `Intermediate`, `Intermediate–Hard` or `Hard`),
   `primary_mentor` and `backup_mentor` (GitHub handles of mentors in
-  `src/data/people.ts`), `repository`, `setup`, `env_example`, `summary`,
-  `skills` and `related_issues` (entries like `"123 Issue title"`).
+  `src/data/people.ts`), `repository`, `setup`, `summary`,
+  `skills` and `related_issues` (entries like `"123 Issue title"`). There
+  is no `env_example` field: Elixpo keeps configuration encrypted with SOPS
+  (see "Configuration and access" in `content/pages/contributor-guide.md`).
 - The body has exactly these sections, in order: Problem, Expected outcomes,
   Stretch goals, Not in scope, Proof of success, How to start.
 - Describe the need, not a week-by-week plan. The applicant's proposal should

@@ -133,6 +133,10 @@ Plan status
 - **Availability.** Mentors tell the organisation administrators early if
   their capacity will drop, so that cover can be arranged.
 
+## Configuration and access
+
+<!-- shared: configuration-and-access -->
+
 ## Evaluations
 
 - **Who completes them.** The primary mentor completes Google's midterm and

@@ -9,7 +9,6 @@ primary_mentor: Circuit-Overtime
 backup_mentor: ez-vivek
 repository: https://github.com/elixpo/crumb.elixpo
 setup: https://github.com/elixpo/crumb.elixpo/blob/main/README.md
-env_example: null
 summary: Design a versioned, scoped contract for Crumb connectors to external accounts, with an offline conformance kit that proves a connector behaves correctly.
 in_short: Design a safe, standard way for Crumb to connect to outside accounts such as GitHub, and build tests that prove each connection only does what it is allowed to do.
 skills:

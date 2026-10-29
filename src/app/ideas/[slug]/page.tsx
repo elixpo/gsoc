@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HeroGeometry, nextLinks, RoleChips, sizeLabel, Tldr, WhatNext } from "@/components/blocks";
 import { escapeHtml, getIdea, IDEAS, neighbours, projectAnchor, projectOf, type Idea, type IdeaSection } from "@/lib/content";
-import { CONTACT_EMAIL, DISCUSSIONS_NOTE_SHORT, RESPONSE_EXPECTATION } from "@/data/site";
+import { CONFIG_ACCESS_ANCHOR, CONTACT_EMAIL, DISCUSSIONS_NOTE_SHORT, RESPONSE_EXPECTATION, SETUP_NOTE } from "@/data/site";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -196,11 +196,6 @@ export default async function IdeaPage({ params }: Props) {
                   <li>
                     <a href={idea.setup}>Setup instructions (README)</a>
                   </li>
-                  {idea.envExample && (
-                    <li>
-                      <a href={idea.envExample}>Example configuration (.env.example)</a>
-                    </li>
-                  )}
                   <li>
                     <a href={`${idea.repository}/blob/main/CONTRIBUTING.md`}>Contribution guidelines (CONTRIBUTING)</a>
                   </li>
@@ -208,7 +203,10 @@ export default async function IdeaPage({ params }: Props) {
                     <Link href={`/projects/#${projectAnchor(idea.repository)}`}>Project overview</Link>
                   </li>
                 </ul>
-                <p className="note">Setup does not require Elixpo credentials. Report any step that does as an issue.</p>
+                <p className="note">
+                  {SETUP_NOTE} If a step asks for a secret, report it as a setup issue. See{" "}
+                  <Link href={CONFIG_ACCESS_ANCHOR}>configuration and access</Link>.
+                </p>
               </div>
               <div>
                 <h3>Related issues</h3>

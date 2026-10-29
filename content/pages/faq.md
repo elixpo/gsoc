@@ -6,6 +6,7 @@ lead: Answers to common questions about Elixpo and Google Summer of Code 2027. I
 tldr:
   - Elixpo is applying to be a mentoring organisation for 2027. In 2027 we plan to mentor one contributor.
   - Six ideas, each with a primary and a backup mentor: Ayushman Bhattacharya, Vivek Yadav or Divyanshu.
+  # TODO: Update to 'participating projects have no paid plans' after the pricing-removal PRs merge.
   - No Google Summer of Code idea involves payments, pricing or paid features.
   - Submit your proposal on the [official GSoC website](https://summerofcode.withgoogle.com/); Google sets eligibility and deadlines.
   - Anything else: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
@@ -62,9 +63,15 @@ manage Elixpo's application and its communication with Google.
 
 ## Is Elixpo selling anything through this programme?
 
+<!-- TODO: Update to 'participating projects have no paid plans' after the pricing-removal PRs merge. -->
+
 No. No Google Summer of Code idea involves payments, pricing or paid
 features, and Elixpo does not currently accept sponsorship funds. See
 [Money and commercial interests](/agenda/#money-and-commercial-interests).
+
+## Do I need Elixpo's configuration or keys?
+
+<!-- shared: configuration-and-access -->
 
 ## Can I propose my own idea?
 
