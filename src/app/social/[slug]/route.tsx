@@ -6,7 +6,7 @@ import { sizeLabel } from "@/components/blocks";
 export const dynamic = "force-static";
 export const dynamicParams = false;
 
-const PAGE_SLUGS = ["home", "ideas", "people", "contributor-guide", "proposal", "selection", "ai-policy", "timeline", "faq", "glossary", "contact", "about"];
+const PAGE_SLUGS = ["home", "ideas", "projects", "people", "contributor-guide", "proposal", "selection", "ai-policy", "timeline", "faq", "glossary", "contact", "about"];
 
 export function generateStaticParams() {
   return [...PAGE_SLUGS, ...IDEAS.map((idea) => idea.slug)].map((slug) => ({ slug: `${slug}.png` }));
@@ -25,8 +25,8 @@ function card(slug: string) {
   const page = getPage(slug);
   return {
     title: slug === "home" ? "Google Summer of Code 2027" : page.heading,
-    summary: slug === "home" ? "First-time applicant · plans to mentor one contributor · six project ideas" : page.lead,
-    tag: "Preparing to apply · not yet announced by Google",
+    summary: slug === "home" ? "Applying as a mentoring organisation · six project ideas · one contributor expected in 2027" : page.lead,
+    tag: "Applying as a mentoring organisation",
   };
 }
 

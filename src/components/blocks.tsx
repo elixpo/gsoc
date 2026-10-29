@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Idea } from "@/lib/content";
-import { CAPACITY_STATEMENT, GSOC_LOGO, siteMapEntry } from "@/data/site";
+import { CAPACITY_STATEMENT, GSOC_LOGO, GSOC_LOGO_LABEL, siteMapEntry } from "@/data/site";
 import { jsonLd } from "@/lib/seo";
 
 /** Render one or more JSON-LD objects, each in its own script tag. */
@@ -18,14 +18,10 @@ export function JsonLd({ data }: { data: object | object[] }) {
 export function PageHero({ eyebrow, heading, lead, children }: { eyebrow: string; heading: string; lead: string; children?: React.ReactNode }) {
   return (
     <header className="page-hero">
-      <div className="page-hero-title">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1>{heading}</h1>
-      </div>
-      <div className="page-hero-lead">
-        <p className="lead">{lead}</p>
-        {children}
-      </div>
+      <p className="eyebrow">{eyebrow}</p>
+      <h1>{heading}</h1>
+      <p className="lead">{lead}</p>
+      {children}
     </header>
   );
 }
@@ -34,15 +30,19 @@ export function Prose({ html, className = "" }: { html: string; className?: stri
   return <div className={`prose ${className}`.trim()} dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
+/** Pages with fewer sections than this show no "On this page" list. */
+const TOC_MIN = 3;
+
 /**
- * Full-width page body: an "On this page" list beside the reading column on
- * wide screens, stacked above it on narrow ones. The reading column keeps a
- * comfortable measure; tables and wide blocks may use the full column.
+ * Full-width page body: a narrow "On this page" list beside the main column on
+ * wide screens, stacked above it on narrow ones. Prose keeps a readable
+ * measure; tables, cards and grids may use the full main column.
  */
 export function PageLayout({ toc, children }: { toc: { id: string; text: string }[]; children: React.ReactNode }) {
+  const showToc = toc.length >= TOC_MIN;
   return (
-    <div className={toc.length > 1 ? "page-layout" : "page-layout page-layout-single"}>
-      {toc.length > 1 && (
+    <div className={showToc ? "page-layout" : "page-layout page-layout-single"}>
+      {showToc && (
         <nav className="toc" aria-labelledby="toc-heading">
           <h2 id="toc-heading">On this page</h2>
           <ol>
@@ -84,7 +84,7 @@ export function RoleChips({ roles, label = "Roles", className = "" }: { roles: r
  * Google's unmodified GSoC logo, always with a plain label above it and on its
  * own light tile, never in a lockup with the Elixpo mark (Google brand guidelines).
  */
-export function GsocMark({ label = "Elixpo is preparing to apply to", note }: { label?: string; note?: React.ReactNode }) {
+export function GsocMark({ label = GSOC_LOGO_LABEL, note }: { label?: string; note?: React.ReactNode }) {
   return (
     <figure className="gsoc-mark">
       <figcaption>{label}</figcaption>
@@ -176,11 +176,11 @@ export type NextLink = { href: string; label: string; about: string };
 /** Turn routes from a page's `next:` frontmatter into links with plain descriptions. */
 export const nextLinks = (routes: string[]): NextLink[] => routes.map((href) => ({ ...siteMapEntry(href) }));
 
-/** The short block that ends every page and points to the logical next page(s). */
+/** The "Next steps" block that ends every page and points to the logical next page(s). */
 export function WhatNext({ links }: { links: NextLink[] }) {
   return (
     <nav className="what-next" aria-labelledby="what-next">
-      <h2 id="what-next">What next?</h2>
+      <h2 id="what-next">Next steps</h2>
       <ul>
         {links.map((link) => (
           <li key={link.href}>

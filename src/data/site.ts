@@ -20,30 +20,33 @@ export const ELIXPO_FOUNDING_DATE = "2024-02-24";
 // TODO: link the source repository (github.com/elixpo/gsoc) from the footer once it is public.
 
 export const STATUS_BANNER =
-  "Elixpo is preparing to apply as a GSoC 2027 mentoring organisation. Google has not yet announced GSoC 2027.";
-export const CAPACITY_STATEMENT = "Elixpo is a first-time applicant and plans to mentor one contributor in 2027.";
+  "Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. Google announces accepted organisations after the application period.";
+/** Intended intake, stated at the top of the ideas list as Google's mentor guide asks. */
+export const CAPACITY_STATEMENT = "In 2027 we expect to mentor one contributor.";
 /** Required wherever the GSoC name or logo appears: shown in the footer of every page. */
 export const GSOC_TRADEMARK_NOTICE =
-  "Google Summer of Code and the GSoC logo are trademarks of Google LLC. Elixpo is preparing to apply as a mentoring organisation and is not affiliated with or endorsed by Google.";
+  "Google Summer of Code and the GSoC logo are trademarks of Google LLC. Elixpo is applying as a mentoring organisation and is not affiliated with or endorsed by Google.";
 /** Google's unmodified horizontal logo, downloaded from developers.google.com/open-source/gsoc/resources/downloads. */
 export const GSOC_LOGO = { src: "/brand/gsoc/GSoC-Horizontal.png", width: 920, height: 147, alt: "Google Summer of Code logo" } as const;
 export const RESPONSE_EXPECTATION = "Mentors aim to reply within 48 hours on weekdays.";
+/** Label shown above the unmodified GSoC logo. */
+export const GSOC_LOGO_LABEL = "Elixpo is applying to";
 
 /** Date the content was last reviewed; used for the sitemap. */
 export const CONTENT_REVIEWED = "2026-10-29";
 
 /**
- * Primary navigation, in order of importance. Contact is shown as a button at
- * the end. Selection, AI policy, Glossary and About live in the footer site map
+ * Primary navigation, in this order, with Contact as a button at the end.
+ * People, Selection, AI policy, Glossary and About live in the footer site map
  * and in contextual links (the proposal page links Selection and AI policy).
  */
 export const NAV = [
   { href: "/ideas/", label: "Ideas" },
-  { href: "/contributor-guide/", label: "Get involved" },
+  { href: "/projects/", label: "Projects" },
   { href: "/proposal/", label: "Proposal" },
   { href: "/timeline/", label: "Timeline" },
-  { href: "/people/", label: "People" },
   { href: "/faq/", label: "FAQ" },
+  { href: "/contributor-guide/", label: "Get involved" },
 ] as const;
 export const NAV_CONTACT = { href: "/contact/", label: "Contact" } as const;
 
@@ -53,18 +56,19 @@ export const NAV_CONTACT = { href: "/contact/", label: "Contact" } as const;
  * steps in their frontmatter (`next:`), by route.
  */
 export const SITE_MAP = [
-  { href: "/", label: "Home", about: "What this site is and where to start." },
-  { href: "/ideas/", label: "Project ideas", about: "The six projects you can choose from." },
-  { href: "/contributor-guide/", label: "Get involved", about: "Set up the code and make a first small contribution." },
-  { href: "/proposal/", label: "Proposal template", about: "The headings to use when you write your proposal." },
-  { href: "/selection/", label: "How we select", about: "What we look at when we choose a contributor." },
-  { href: "/ai-policy/", label: "AI policy", about: "When you may use AI tools, and what you must tell us." },
-  { href: "/timeline/", label: "Timeline", about: "The usual stages of the programme. Dates come later." },
-  { href: "/people/", label: "People", about: "The mentors and organisers, and how to reach them." },
-  { href: "/faq/", label: "FAQ", about: "Short answers to common questions." },
-  { href: "/glossary/", label: "Glossary", about: "Plain explanations of words used on this site." },
-  { href: "/contact/", label: "Contact", about: "Where to ask questions, in public or by email." },
-  { href: "/about/", label: "About Elixpo", about: "A short, sourced history of Elixpo and its mentoring experience." },
+  { href: "/", label: "Home", about: "Elixpo's plans for Google Summer of Code 2027." },
+  { href: "/ideas/", label: "Project ideas", about: "The six project ideas, with size, difficulty and mentors." },
+  { href: "/projects/", label: "Participating projects", about: "The five codebases the ideas belong to." },
+  { href: "/contributor-guide/", label: "Get involved", about: "How to prepare and apply, step by step." },
+  { href: "/proposal/", label: "Proposal template", about: "The sections every proposal must contain." },
+  { href: "/selection/", label: "Selection criteria", about: "How mentors evaluate applications." },
+  { href: "/ai-policy/", label: "AI policy", about: "Permitted use of AI tools, and what you must disclose." },
+  { href: "/timeline/", label: "Timeline", about: "The stages of the programme and where official dates are published." },
+  { href: "/people/", label: "People", about: "Mentors, the organisation administrator and the programme coordinator." },
+  { href: "/faq/", label: "FAQ", about: "Answers to common questions." },
+  { href: "/glossary/", label: "Glossary", about: "Definitions of the terms used on this site." },
+  { href: "/contact/", label: "Contact", about: "Public channels and the programme email address." },
+  { href: "/about/", label: "About Elixpo", about: "Elixpo's community and mentoring record, with sources." },
 ] as const;
 
 export type SiteMapEntry = (typeof SITE_MAP)[number];
