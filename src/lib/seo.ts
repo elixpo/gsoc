@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import type { Metadata } from "next";
 import { ELIXPO_LOGO_URL, ELIXPO_URL, GITHUB_ORG_URL, SITE_NAME, SITE_URL } from "@/data/site";
 
@@ -5,8 +7,16 @@ export const absoluteUrl = (path: string) => new URL(path, SITE_URL).toString();
 export const jsonLd = (value: unknown) => JSON.stringify(value).replace(/</g, "\\u003c");
 export const stripTags = (html: string) => html.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 
-/** Path of the build-time social card for a route. */
-export const socialImage = (slug: string) => `/social/${slug}.png`;
+/**
+ * A hand-designed 1200x630 card at public/og-image.png, when present, replaces
+ * the generated home card (and with it the site-wide default).
+ */
+const CUSTOM_HOME_CARD = "/og-image.png";
+const hasCustomHomeCard = existsSync(join(process.cwd(), "public", "og-image.png"));
+
+/** Path of the social card for a route. */
+export const socialImage = (slug: string) =>
+  slug === "home" && hasCustomHomeCard ? CUSTOM_HOME_CARD : `/social/${slug}.png`;
 
 export function pageMetadata(options: { title: string; description: string; path: string; social: string; absoluteTitle?: boolean }): Metadata {
   const { title, description, path, social } = options;

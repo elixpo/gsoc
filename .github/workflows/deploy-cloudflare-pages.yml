@@ -1,0 +1,154 @@
+name: Deploy Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      promote_domain:
+        description: Attach gsoc.elixpo.com after the candidate passes every smoke test
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: gsoc-elixpo-cloudflare-pages
+  cancel-in-progress: true
+
+env:
+  CLOUDFLARE_PAGES_PROJECT: elixpo-gsoc
+  CANDIDATE_URL: https://elixpo-gsoc.pages.dev
+  PRODUCTION_HOST: gsoc.elixpo.com
+  # Launch gate: set the repository variable SITE_LAUNCHED to "true" on launch
+  # day (Settings -> Secrets and variables -> Actions -> Variables). Until then
+  # every page is noindex and robots.txt disallows all crawlers.
+  NEXT_PUBLIC_SITE_LAUNCHED: ${{ vars.SITE_LAUNCHED == 'true' && 'true' || 'false' }}
+
+jobs:
+  deploy:
+    name: Validate and deploy
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment:
+      name: cloudflare-pages-candidate
+      url: https://elixpo-gsoc.pages.dev
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint and typecheck
+        run: |
+          npm run lint
+          npm run typecheck
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Verify crawl metadata, launch gate, links and content
+        run: npm run site:check
+
+      - name: Ensure Cloudflare Pages project exists
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$CLOUDFLARE_PAGES_PROJECT"
+          status="$(curl --silent --show-error --output /tmp/cloudflare-project.json --write-out '%{http_code}' \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            --header 'Content-Type: application/json' \
+            "$endpoint")"
+
+          if [[ "$status" == 200 ]]; then
+            python3 -c 'import json; data=json.load(open("/tmp/cloudflare-project.json")); assert data.get("success"), data.get("errors")'
+          elif [[ "$status" == 404 ]]; then
+            curl --fail --silent --show-error \
+              --request POST \
+              --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+              --header 'Content-Type: application/json' \
+              --data "{\"name\":\"$CLOUDFLARE_PAGES_PROJECT\",\"production_branch\":\"main\"}" \
+              "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects" \
+              > /tmp/cloudflare-project-create.json
+            python3 -c 'import json; data=json.load(open("/tmp/cloudflare-project-create.json")); assert data.get("success"), data.get("errors")'
+          else
+            cat /tmp/cloudflare-project.json
+            exit 1
+          fi
+
+      - name: Deploy candidate to Cloudflare Pages
+        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy out --project-name=elixpo-gsoc --branch=main
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Smoke-test candidate site
+        run: |
+          fetch() {
+            curl --fail --silent --show-error --location \
+              --retry 12 --retry-all-errors --retry-delay 5 "$@"
+          }
+
+          for route in / /ideas/ /people/ /contributor-guide/ /proposal/ /faq/ /contact/ /timeline/ /robots.txt /sitemap.xml
+          do
+            fetch --output /dev/null "$CANDIDATE_URL$route"
+          done
+
+          fetch --output /tmp/gsoc-home.html "$CANDIDATE_URL/"
+          grep -q '<link rel="canonical" href="https://gsoc.elixpo.com/"' /tmp/gsoc-home.html
+          fetch --output /tmp/gsoc-robots.txt "$CANDIDATE_URL/robots.txt"
+          if [[ "$NEXT_PUBLIC_SITE_LAUNCHED" == "true" ]]; then
+            grep -q '<meta name="robots" content="index, follow"' /tmp/gsoc-home.html
+            grep -q 'Sitemap: https://gsoc.elixpo.com/sitemap.xml' /tmp/gsoc-robots.txt
+          else
+            grep -q '<meta name="robots" content="noindex, nofollow"' /tmp/gsoc-home.html
+            grep -q 'Disallow: /' /tmp/gsoc-robots.txt
+          fi
+
+      - name: Attach production custom domain
+        if: github.event_name == 'workflow_dispatch' && inputs.promote_domain
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          endpoint="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$CLOUDFLARE_PAGES_PROJECT/domains"
+          curl --fail --silent --show-error \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            --header 'Content-Type: application/json' \
+            "$endpoint" > /tmp/cloudflare-domains.json
+
+          if python3 -c 'import json,os; data=json.load(open("/tmp/cloudflare-domains.json")); raise SystemExit(0 if any(item.get("name") == os.environ["PRODUCTION_HOST"] for item in data.get("result", [])) else 1)'
+          then
+            echo "$PRODUCTION_HOST is already attached to the Pages project."
+          else
+            curl --fail --silent --show-error \
+              --request POST \
+              --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+              --header 'Content-Type: application/json' \
+              --data "{\"name\":\"$PRODUCTION_HOST\"}" \
+              "$endpoint" > /tmp/cloudflare-domain-create.json
+            python3 -c 'import json; data=json.load(open("/tmp/cloudflare-domain-create.json")); assert data.get("success"), data.get("errors")'
+          fi
+
+      - name: Verify production hostname after promotion
+        if: github.event_name == 'workflow_dispatch' && inputs.promote_domain
+        run: |
+          for route in / /ideas/ /people/ /faq/ /robots.txt /sitemap.xml
+          do
+            curl --fail --silent --show-error --location \
+              --retry 30 --retry-all-errors --retry-delay 10 \
+              --output /dev/null "https://$PRODUCTION_HOST$route"
+          done

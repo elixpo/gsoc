@@ -80,27 +80,32 @@ CI runs both. The 404 page is always `noindex`.
 
 ## Deploy
 
-The site is static, so any static host works. The intended host is a
-Cloudflare Pages project called `elixpo-gsoc`, with `public/_headers` copied
-into the export for security headers.
+The site is static and is hosted on Cloudflare Pages (project `elixpo-gsoc`),
+deployed the same way as `research.elixpo`: by the trusted GitHub Actions
+workflow [`.github/workflows/deploy-cloudflare-pages.yml`](.github/workflows/deploy-cloudflare-pages.yml).
+No Cloudflare credentials are stored in this repository or needed locally.
+
+Every push to `main` lints, typechecks, builds and checks the site, creates the
+Pages project if it is missing, deploys to `https://elixpo-gsoc.pages.dev` and
+smoke-tests the result. Running the workflow by hand with `promote_domain`
+also attaches `gsoc.elixpo.com`.
 
 ```bash
-./deploy.sh --pages build                       # build + checks
-./deploy.sh --pages build deploy --branch preview
+./deploy.sh --pages build              # local build + checks
+./deploy.sh --pages deploy             # dispatch the workflow on main
+./deploy.sh --pages deploy --promote   # ...and attach gsoc.elixpo.com
 ```
 
-`deploy.sh` runs `npx wrangler pages deploy out --project-name elixpo-gsoc`
-with the maintainer's own Wrangler login. No Cloudflare credentials or other
-secrets are stored in this repository.
+One-time setup (maintainer):
 
-TODO (maintainer) before the first deploy:
+- Add the repository secrets `CLOUDFLARE_API_TOKEN` and
+  `CLOUDFLARE_ACCOUNT_ID` (the same values `research.elixpo` uses).
+- Launch gate: the repository variable `SITE_LAUNCHED` controls indexing. Leave
+  it unset until launch; set it to `true` on launch day and redeploy.
 
-- Create the `elixpo-gsoc` Cloudflare Pages project.
-- Attach `gsoc.elixpo.com` as a custom domain in Pages, then add the DNS
-  record.
-- Decide whether to move deployment into a trusted GitHub Actions workflow,
-  as `research.elixpo` does.
-- Only set `NEXT_PUBLIC_SITE_LAUNCHED=true` for the agreed launch build.
+Social card: put a 1200x630 PNG at `public/og-image.png` to replace the
+generated home card (also the site-wide default). Other pages keep their
+generated per-page cards.
 
 ## Contributing
 
