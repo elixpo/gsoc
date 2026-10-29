@@ -24,7 +24,7 @@ people who mentor.
 
 **Status:** Elixpo is applying to be a mentoring organisation for Google Summer
 of Code 2027. Google announces accepted organisations after the application
-period. In 2027 we plan to mentor one contributor.
+period. In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention.
 
 ## Direction
 

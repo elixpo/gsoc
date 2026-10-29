@@ -32,9 +32,9 @@ export const ELIXPO_FOUNDING_DATE = "2024-02-24";
 export const STATUS_BANNER =
   "Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. Google announces accepted organisations after the application period.";
 /** Intended intake, stated at the top of the ideas list as Google's mentor guide asks. */
-export const CAPACITY_STATEMENT = "In 2027 we plan to mentor one contributor.";
+export const CAPACITY_STATEMENT = "In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention.";
 /** The same plan, stated in the home hero. */
-export const HOME_CAPACITY_SENTENCE = "In 2027 we plan to mentor one contributor, with a primary and a backup mentor on every project.";
+export const HOME_CAPACITY_SENTENCE = "In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention: a primary and a backup mentor on every project.";
 /** Mentors on every idea: one primary, one backup. */
 export const MENTORS_PER_IDEA = 2;
 /** Contributors Elixpo plans to mentor in 2027. */

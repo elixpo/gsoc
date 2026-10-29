@@ -33,8 +33,8 @@ STATUS_BANNER = (
     "Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. "
     "Google announces accepted organisations after the application period."
 )
-CAPACITY = "In 2027 we plan to mentor one contributor."
-HOME_CAPACITY = "In 2027 we plan to mentor one contributor, with a primary and a backup mentor on every project."
+CAPACITY = "In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention."
+HOME_CAPACITY = "In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention: a primary and a backup mentor on every project."
 # Home hero stats row: numerals and labels, in order (src/app/page.tsx).
 HOME_STATS = [("1", "contributor in 2027"), ("6", "project ideas"), ("2", "mentors on every idea"), ("5", "codebases")]
 # Credential strip under the home hero: verified facts from elixpo/content/history.json.
