@@ -27,11 +27,41 @@ GitHub. See [`content/README.md`](../content/README.md) for the full map.
 | `content/pages/faq.md` | `/faq/` |
 | `content/pages/contact.md` + `src/data/people.ts` | `/contact/` |
 | `content/pages/about.md` | `/about/` (history entries are `### Date — Title`) |
+| `content/pages/privacy.md` | `/privacy/` |
+| `content/pages/terms.md` | `/terms/` |
+| `content/pages/code-of-conduct.md` | `/code-of-conduct/` |
+| `content/pages/contributing.md` | `/contributing/` |
+| `content/pages/agreements.md` + `src/data/agreements.ts` | `/agreements/` |
 | `src/app/not-found.tsx` | 404 page |
+
+A `*phrase*` in a page's `heading:` frontmatter is set in the italic serif
+accent. The legal and community pages (`LEGAL_PAGES` in `src/data/site.ts`)
+appear, in order, in the footer row of every page.
 
 People, roles and emails live only in `src/data/people.ts`. Shared facts (the
 status banner, the one-contributor statement, the contact address) live only
 in `src/data/site.ts`.
+
+## Agreements
+
+Everyone who mentors or administers signs a public commitment. To publish a
+signed copy, add `public/agreements/<github>-gsoc-2027-commitment.pdf` and, in
+the same commit, set that person's `status: "signed"` and `signedOn`
+(YYYY-MM-DD) in `src/data/agreements.ts`. The build fails if someone is marked
+signed without the PDF, or if a PDF exists for someone who is not marked
+signed. The blank template link appears only once
+`public/agreements/elixpo-gsoc-2027-commitment-template.pdf` exists.
+
+## Design and fonts
+
+The visual language follows me.elixpo: floating pill navigation, hero cards on
+a soft gradient, condensed display caps with an italic serif accent, mono
+eyebrows, numbered grids with 1px hairlines and a dark footer card.
+Decoration uses real elements, never `::before`/`::after`. Fonts (Pathway
+Gothic One, Cormorant Garamond, Bitcount Grid Double; SIL OFL, see
+`LICENSES/fonts/`) are loaded with `next/font/google`, which downloads them at
+build time and serves them from this site. me.elixpo's primary display face,
+Canopee, is a commercial font and is not used.
 
 ## Stack
 
@@ -62,7 +92,12 @@ trademark notice in every footer, the exact main navigation order and labels,
 the idea page sections (including Warm-up tasks), the five repositories on
 `/projects/`, the absence of "first-time" framing, broken internal
 links, the GSoC logo placement on `/`, history evidence links on `/about/`,
-role chips on `/people/`, `security.txt`, icons and the manifest, no
+role chips on `/people/`, the home hero (numerals 1/6/2/5 in the stats
+row, the intake sentence in the lead with no callout box, the credential
+strip, the 01-04 "Getting started" grid), the footer legal row in order on
+every page, `/agreements/` against `src/data/agreements.ts` and
+`public/agreements/`, the privacy notice against any analytics, cookie or
+third-party resource in the build, `security.txt`, icons and the manifest, no
 `::before`/`::after` in the built CSS, and claims the site must not make. It also checks that idea
 sizes, difficulty levels and mentors are identical on `/`, `/ideas/`, each
 idea page, `/people/`, `/faq/` and `content/README.md`.

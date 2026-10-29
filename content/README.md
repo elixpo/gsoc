@@ -18,6 +18,8 @@ banner, capacity statement, contact email) in `src/data/site.ts`.
 | `pages/timeline.md` | `/timeline/` |
 | `pages/faq.md` | `/faq/` (each `##` heading is one question) |
 | `pages/contact.md` | `/contact/` |
+| `pages/privacy.md`, `pages/terms.md`, `pages/code-of-conduct.md`, `pages/contributing.md` | `/privacy/`, `/terms/`, `/code-of-conduct/`, `/contributing/` |
+| `pages/agreements.md` | `/agreements/` (people and signed copies come from `src/data/agreements.ts`) |
 | `pages/about.md` | `/about/` (history from `elixpo/content/history.json`; each step is `### Date — Title` with its evidence) |
 
 ## Ideas
