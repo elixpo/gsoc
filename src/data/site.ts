@@ -91,8 +91,8 @@ export const CONTENT_REVIEWED = "2026-10-29";
  * Primary navigation in three groups, shown with a hairline spacer between
  * them, then Contact as a button at the end. "Codebases" is the /projects/
  * page (the route keeps its name so existing links work).
- * Agenda, Selection, AI policy, Glossary, About, Why Elixpo, Warm-up and How we run the programme live in the footer site map
- * and in contextual links (the proposal page links Selection and AI policy).
+ * Every other page is listed in the header's "More" menu (MORE_GROUPS, derived
+ * from SITE_MAP and LEGAL_PAGES), in the footer site map and in contextual links.
  */
 export const NAV_GROUPS = [
   {
@@ -117,47 +117,78 @@ export type NavItem = { readonly href: string; readonly label: string };
 export const NAV: readonly NavItem[] = NAV_GROUPS.flatMap((group): readonly NavItem[] => group.items);
 export const NAV_CONTACT = { href: "/contact/", label: "Contact" } as const;
 
+/** Headings of the header's "More" menu, in display order. */
+export const MORE_GROUP_LABELS = ["Apply", "About the programme", "Policies"] as const;
+export type MoreGroup = (typeof MORE_GROUP_LABELS)[number];
+
+/**
+ * One page. `menu` is its group in the header's "More" menu and `short` its
+ * label there; pages in the main navigation (and Home and Contact) need neither.
+ */
+export type SiteMapEntry = {
+  readonly href: string;
+  readonly label: string;
+  readonly about: string;
+  readonly menu?: MoreGroup;
+  readonly short?: string;
+};
+
 /**
  * Every page, with a plain one-line description. Used for the footer site map
  * and the "What next?" block at the end of each page. Pages list their next
  * steps in their frontmatter (`next:`), by route.
  */
-export const SITE_MAP = [
+export const SITE_MAP: readonly SiteMapEntry[] = [
   { href: "/", label: "Home", about: "Elixpo's plans for Google Summer of Code 2027." },
   { href: "/ideas/", label: "Project ideas", about: "The six project ideas, with size, difficulty and mentors." },
   { href: "/projects/", label: "Codebases", about: "The five codebases the ideas belong to." },
   { href: "/contributor-guide/", label: "Get involved", about: "How to prepare and apply, step by step." },
-  { href: "/warm-up/", label: "Warm-up", about: "Set up each project without keys: commands, checks and known limitations." },
+  { href: "/warm-up/", label: "Warm-up", menu: "Apply", about: "Set up each project without keys: commands, checks and known limitations." },
   { href: "/proposal/", label: "Proposal template", about: "The sections every proposal must contain." },
-  { href: "/selection/", label: "Selection criteria", about: "How mentors evaluate applications." },
-  { href: "/ai-policy/", label: "AI policy", about: "Permitted use of AI tools, and what you must disclose." },
+  { href: "/selection/", label: "Selection criteria", menu: "Apply", short: "How we select", about: "How mentors evaluate applications." },
+  { href: "/ai-policy/", label: "AI policy", menu: "Apply", about: "Permitted use of AI tools, and what you must disclose." },
   { href: "/timeline/", label: "Timeline", about: "The stages of the programme and where official dates are published." },
   { href: "/mentors/", label: "Mentors", about: "Mentors, the organisation administrators and the programme coordinator." },
-  { href: "/operations/", label: "How we run the programme", about: "Weekly cadence, mentor cover, evaluations, escalation and what happens after the programme." },
+  { href: "/operations/", label: "How we run the programme", menu: "About the programme", short: "How we run it", about: "Weekly cadence, mentor cover, evaluations, escalation and what happens after the programme." },
   { href: "/faq/", label: "FAQ", about: "Answers to common questions." },
-  { href: "/glossary/", label: "Glossary", about: "Definitions of the terms used on this site." },
+  { href: "/glossary/", label: "Glossary", menu: "About the programme", about: "Definitions of the terms used on this site." },
   { href: "/contact/", label: "Contact", about: "Public channels and the programme email address." },
-  { href: "/agenda/", label: "Our agenda", about: "Why Elixpo takes part, what it ships, how it decides and what it commits to contributors." },
-  { href: "/why-elixpo/", label: "Why Elixpo for GSoC", about: "Short, evidence-linked answers for programme reviewers." },
-  { href: "/about/", label: "About Elixpo", about: "Elixpo's community and mentoring record, with sources." },
-] as const;
+  { href: "/agenda/", label: "Our agenda", menu: "About the programme", about: "Why Elixpo takes part, what it ships, how it decides and what it commits to contributors." },
+  { href: "/why-elixpo/", label: "Why Elixpo for GSoC", menu: "About the programme", short: "Why Elixpo", about: "Short, evidence-linked answers for programme reviewers." },
+  { href: "/about/", label: "About Elixpo", menu: "About the programme", about: "Elixpo's community and mentoring record, with sources." },
+];
 
 /**
  * Legal and community pages, in this order, in the footer of every page.
- * They are reachable from the footer only, not from the main navigation.
+ * They are in the footer and the header's "More" menu, not the main navigation.
  */
-export const LEGAL_PAGES = [
-  { href: "/privacy/", label: "Privacy", about: "What this site and the programme do with personal information." },
-  { href: "/terms/", label: "Terms of service", about: "Licences, trademarks and the terms for using this site." },
-  { href: "/code-of-conduct/", label: "Code of Conduct", about: "How everyone in the programme is expected to behave, and how to report a concern." },
-  { href: "/contributing/", label: "Contributing", about: "How to suggest ideas, fix this site and contribute to the projects." },
-  { href: "/agreements/", label: "Agreements", about: "The commitments signed by every mentor and administrator." },
-] as const;
+export const LEGAL_PAGES: readonly SiteMapEntry[] = [
+  { href: "/privacy/", label: "Privacy", menu: "Policies", about: "What this site and the programme do with personal information." },
+  { href: "/terms/", label: "Terms of service", menu: "Policies", about: "Licences, trademarks and the terms for using this site." },
+  { href: "/code-of-conduct/", label: "Code of Conduct", menu: "Policies", about: "How everyone in the programme is expected to behave, and how to report a concern." },
+  { href: "/contributing/", label: "Contributing", menu: "Policies", about: "How to suggest ideas, fix this site and contribute to the projects." },
+  { href: "/agreements/", label: "Agreements", menu: "About the programme", about: "The commitments signed by every mentor and administrator." },
+];
 
-export type SiteMapEntry = (typeof SITE_MAP)[number] | (typeof LEGAL_PAGES)[number];
+/** Every page with its own entry: the site map, then the legal and community pages. */
+export const ALL_PAGES: readonly SiteMapEntry[] = [...SITE_MAP, ...LEGAL_PAGES];
+
+/**
+ * The header's "More" menu: every page that is not in the main navigation
+ * (nor Home or Contact), grouped by its `menu` field. A page without one
+ * falls into the last group, so no page is ever left out of the header.
+ */
+const OUTSIDE_MORE = new Set<string>(["/", NAV_CONTACT.href, ...NAV.map((item) => item.href)]);
+export const MORE_GROUPS = MORE_GROUP_LABELS.map((label) => ({
+  label,
+  items: ALL_PAGES.filter((page) => !OUTSIDE_MORE.has(page.href))
+    .filter((page) => (page.menu ?? MORE_GROUP_LABELS[MORE_GROUP_LABELS.length - 1]) === label)
+    .map((page) => ({ href: page.href, label: page.short ?? page.label })),
+})).filter((group) => group.items.length > 0);
+export const MORE_ROUTES: readonly string[] = MORE_GROUPS.flatMap((group) => group.items.map((item) => item.href));
 
 export function siteMapEntry(href: string): SiteMapEntry {
-  const entry = [...SITE_MAP, ...LEGAL_PAGES].find((item) => item.href === href);
+  const entry = ALL_PAGES.find((item) => item.href === href);
   if (!entry) throw new Error(`Unknown page "${href}". Add it to SITE_MAP in src/data/site.ts.`);
   return entry;
 }
