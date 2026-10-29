@@ -34,7 +34,15 @@ const description =
  * (LICENSES/fonts/). next/font downloads them at build time and serves them
  * from this site, so visitors' browsers never contact a font service.
  */
-const mono = Bitcount_Grid_Double({ subsets: ["latin"], weight: "variable", variable: "--font-bitcount", display: "swap" });
+const mono = Bitcount_Grid_Double({
+  subsets: ["latin"],
+  weight: "variable",
+  variable: "--font-bitcount",
+  display: "swap",
+  // next/font has no metric overrides for this face, so it cannot generate an adjusted fallback.
+  adjustFontFallback: false,
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+});
 const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["500", "600"], style: ["normal", "italic"], variable: "--font-cormorant", display: "swap" });
 const gothic = Pathway_Gothic_One({ subsets: ["latin"], weight: "400", variable: "--font-pathway", display: "swap" });
 
