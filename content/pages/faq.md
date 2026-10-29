@@ -45,7 +45,7 @@ level.
 
 ## Who are the mentors?
 
-Vivek Yadav, Ayushman Bhattacharya and Divyanshu. Each idea has a primary
+Ayushman Bhattacharya, Vivek Yadav and Divyanshu. Each idea has a primary
 mentor (the contributor's main contact) and a backup mentor (who can step
 in). See [Mentors](/mentors/).
 

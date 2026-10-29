@@ -30,6 +30,14 @@ export const AGREEMENT_TEMPLATE = "/agreements/elixpo-gsoc-2027-commitment-templ
 
 export const AGREEMENTS: Agreement[] = [
   {
+    github: "anwe-ch",
+    roles: ["Programme coordinator"],
+    title: "Programme coordinator commitment, GSoC 2027",
+    document: "/agreements/anwe-ch-gsoc-2027-commitment.pdf",
+    status: "awaiting-signature",
+    signedOn: null,
+  },
+  {
     github: "Circuit-Overtime",
     roles: ["Lead organisation administrator", "Mentor"],
     title: "Organisation administrator and mentor commitment, GSoC 2027",
@@ -50,14 +58,6 @@ export const AGREEMENTS: Agreement[] = [
     roles: ["Mentor"],
     title: "Mentor commitment, GSoC 2027",
     document: "/agreements/divyanshuj91-gsoc-2027-commitment.pdf",
-    status: "awaiting-signature",
-    signedOn: null,
-  },
-  {
-    github: "anwe-ch",
-    roles: ["Programme coordinator"],
-    title: "Programme coordinator commitment, GSoC 2027",
-    document: "/agreements/anwe-ch-gsoc-2027-commitment.pdf",
     status: "awaiting-signature",
     signedOn: null,
   },
