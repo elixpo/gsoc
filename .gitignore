@@ -3,7 +3,5 @@ node_modules/
 out/
 *.tsbuildinfo
 *.log
-.env
-.env.*
-!.env.example
+.env.local
 __pycache__/
