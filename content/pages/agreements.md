@@ -1,12 +1,13 @@
 ---
 title: Mentor and administrator agreements
-description: The public commitments signed by everyone who mentors or administers for Elixpo in Google Summer of Code 2027 - roles, responsibilities and signed copies.
+description: The one-page commitment that every Elixpo GSoC 2027 mentor and administrator signs by hand, and the signed copies, published for contributors.
 heading: Mentor and administrator *agreements*
-lead: Everyone who mentors or administers for Elixpo in Google Summer of Code signs a public commitment that sets out their role and responsibilities. Signed copies are published here, so contributors know what they can expect.
+lead: Everyone who mentors, administers or coordinates Elixpo's Google Summer of Code programme signs the same one-page commitment by hand. Scans of the signed copies are published here, so contributors know exactly what to expect.
 tldr:
-  - Every mentor and administrator signs a public commitment.
-  - It covers time and replies, mentoring duties, evaluations, conduct, confidentiality and conflicts of interest.
-  - Signed copies are published on this page; until then each entry shows Awaiting signature.
+  - Every organiser and mentor signs the same one-page commitment, by hand.
+  - It covers conduct, 48-hour replies, absences, confidentiality, conflicts of interest and access.
+  - Mentors also commit to weekly time, reviews and honest, on-time evaluations.
+  - Each copy is countersigned by an organisation administrator, and scans are published here.
   - [Browse the six project ideas](/ideas/).
 next:
   - /mentors/
@@ -14,18 +15,52 @@ next:
   - /selection/
 ---
 
-## What each commitment covers
+## One commitment for everyone
 
-- **Time and response:** the time each person commits to the programme, and
-  replies to contributors within 48 hours on weekdays.
-- **Mentoring duties:** regular check-ins, timely code review and clear
-  feedback, with the backup mentor stepping in when the primary mentor is
-  unavailable.
-- **Evaluations:** completing every Google Summer of Code evaluation on time,
-  honestly and based on the contributor's work.
-- **Code of Conduct and AI policy:** following and upholding the
-  [Code of Conduct](/code-of-conduct/) and the [AI policy](/ai-policy/).
-- **Confidentiality:** keeping applicant information within the organisers and
-  mentors, and never publishing it.
-- **Conflicts of interest:** disclosing any personal or professional
-  relationship with an applicant, and stepping away from decisions about them.
+Every organiser and mentor signs the same printed, one-page commitment. They
+tick the roles that apply to them (organisation administrator, mentor or
+programme coordinator), list the ideas they mentor, and sign and date it by
+hand. An organisation administrator countersigns each copy. A scan of every
+signed copy is published on this page, without personal contact details.
+
+## What the commitment says
+
+**Everyone**
+
+1. **Conduct:** follow the [Code of Conduct](/code-of-conduct/), the GSoC
+   programme rules and the [AI policy](/ai-policy/). Reviews, feedback and
+   evaluations are the signer's own work, never handed to an automated system.
+2. **Responsiveness:** reply to contributors and fellow organisers within 48
+   hours on weekdays.
+3. **Availability:** announce any absence longer than two working days in
+   advance and arrange cover before it starts.
+4. **Confidentiality:** keep applicants' and contributors' personal
+   information, proposals under review, selection discussions and evaluations
+   within the organisers and mentors.
+5. **Conflicts of interest:** disclose any close personal, family, academic or
+   employment relationship with an applicant or contributor, and step back from
+   selecting or evaluating that person.
+6. **Access:** use any repository or configuration access only for the
+   programme, never share keys, and return access when the programme ends.
+
+**Mentors**
+
+7. About 2–4 hours a week for each contributor, a regular check-in, prompt
+   reviews, backup cover on their listed ideas, taking part in selection
+   (including talking with shortlisted applicants), honest and on-time midterm
+   and final evaluations, and helping the contributor stay involved afterwards.
+
+**Organisation administrators and the programme coordinator**
+
+8. Administrators prepare and submit Elixpo's application, meet Google's
+   deadlines, make sure every contributor always has a primary and a backup
+   mentor, and handle escalations and conduct reports fairly. The coordinator
+   answers programme questions, keeps the guide, FAQ and timeline accurate and
+   runs community sessions, and does not mentor or review code.
+
+**Stepping down and publication**
+
+9. Tell the administrators early and hand over work if the commitments can no
+   longer be met, so no contributor is left without support.
+10. Agree that the signed commitment is published here, without personal
+    contact details.

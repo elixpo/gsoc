@@ -41,7 +41,7 @@ export default function AgreementsPage() {
             </li>
           ))}
         </ol>
-        <p className="note">Published copies are signed electronically (typed name, GitHub account and date). Personal contact details are not included.</p>
+        <p className="note">Each copy is signed by hand and countersigned by an organisation administrator. The published scans do not include personal contact details.</p>
         {AGREEMENT_TEMPLATE_URL && (
           <p className="note">
             <a href={AGREEMENT_TEMPLATE_URL}>Read the blank commitment template (PDF)</a>
