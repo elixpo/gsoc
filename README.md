@@ -75,10 +75,28 @@ The full descriptions, warm-up tasks and mentors are on
 
 | Person | Role |
 |---|---|
+| Anwesha Chakraborty ([@anwe-ch](https://github.com/anwe-ch)) | Programme coordinator, programme point of contact |
 | Ayushman Bhattacharya ([@Circuit-Overtime](https://github.com/Circuit-Overtime)) | Lead organisation administrator, mentor, founder of Elixpo |
 | Vivek Yadav ([@ez-vivek](https://github.com/ez-vivek)) | Organisation administrator, mentor, programme point of contact |
 | Divyanshu ([@divyanshuj91](https://github.com/divyanshuj91)) | Mentor |
-| Anwesha Chakraborty ([@anwe-ch](https://github.com/anwe-ch)) | Programme coordinator, programme point of contact |
+
+## How we run the programme
+
+How Elixpo will run the programme, from selection to after the final
+evaluation, is summarised at
+[gsoc.elixpo.com/operations](https://gsoc.elixpo.com/operations/). The full
+handbook is in [`operations/`](operations/):
+
+- [Communication](operations/communication.md): weekly cadence, response
+  times and how to raise a blocker.
+- [Weekly report template](operations/weekly-report-template.md).
+- [Mentor handbook](operations/mentor-handbook.md): primary and backup
+  duties, absence cover, review standards and notes.
+- [Evaluations](operations/evaluation.md): what they are based on and the
+  early-warning process.
+- [Escalation](operations/escalation.md): who to contact, in order, and how
+  conduct reports are handled.
+- [Retention](operations/retention.md): what happens after the programme.
 
 ## Our record
 

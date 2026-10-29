@@ -128,3 +128,7 @@ set out how changes are accepted:
   commitments on the [agreements page](/agreements/).
 - **After the summer.** The contributor is invited to keep reviewing and
   maintaining the part they built.
+
+[How we run the programme](/operations/) sets out these commitments in
+detail: the weekly cadence, mentor cover, evaluations, escalation and what
+happens after the programme.

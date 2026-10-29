@@ -5,7 +5,7 @@ heading: Mentors *and organisers*
 lead: The mentors and organisers responsible for Elixpo's Google Summer of Code 2027 application, the ideas each mentor supervises, and how to contact them.
 next:
   - /ideas/
-  - /contact/
+  - /operations/
   - /contributor-guide/
 ---
 
@@ -23,3 +23,7 @@ next:
 4. **Programme coordinator** Anwesha Chakraborty answers programme questions
    sent to gsoc@elixpo.com and organises community sessions. She does not
    mentor or review code.
+
+How mentors, administrators and the coordinator work with the contributor
+week by week, cover absences and complete evaluations is set out in
+[How we run the programme](/operations/).

@@ -109,8 +109,10 @@ next:
    the results. A selected contributor then meets the mentors in the
    community bonding period, agrees milestones and a communication plan, and
    starts coding. Mentors complete Google's evaluations at the midterm and at
-   the end of the programme. If you are not selected, your merged work remains
-   part of the project and you are welcome to keep contributing.
+   the end of the programme; [How we run the programme](/operations/) sets
+   out the weekly cadence and how evaluations work. If you are not selected,
+   your merged work remains part of the project and you are welcome to keep
+   contributing.
 
 ## What we expect from you
 

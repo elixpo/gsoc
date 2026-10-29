@@ -5,7 +5,7 @@ import { JsonLd, nextLinks, PageHero, Prose, RoleChips, WhatNext } from "@/compo
 import { ContactChips, PeopleTable } from "@/components/PeopleTable";
 import { PEOPLE } from "@/data/people";
 import { getPage, IDEAS, ideasMentoredBy } from "@/lib/content";
-import { CONTACT_EMAIL } from "@/data/site";
+import { CONTACT_EMAIL, MENTORS_PER_IDEA, RESPONSE_EXPECTATION } from "@/data/site";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 const page = getPage("mentors");
@@ -17,7 +17,7 @@ const hasRole = (role: string) => PEOPLE.filter((person) => person.roles.some((r
 const SUMMARY = [
   { value: PEOPLE.filter((person) => person.isMentor).length, label: "mentors" },
   { value: IDEAS.length, label: "project ideas" },
-  { value: 2, label: "mentors on every idea" },
+  { value: MENTORS_PER_IDEA, label: "mentors on every idea" },
   { value: hasRole("organisation administrator"), label: "admins" },
 ];
 
@@ -35,8 +35,11 @@ function MentorsSummary() {
       </dl>
       <ul className="summary-points">
         <li>Every idea has a primary and a backup mentor.</li>
-        <li>Mentors reply within 48 hours on weekdays.</li>
+        <li>{RESPONSE_EXPECTATION}</li>
         <li>A programme coordinator answers general questions.</li>
+        <li>
+          <Link href="/operations/">How we run the programme</Link>
+        </li>
       </ul>
       <p className="hero-panel-note">
         Programme questions: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>

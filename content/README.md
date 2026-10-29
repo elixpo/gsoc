@@ -11,6 +11,7 @@ banner, capacity statement, contact email) in `src/data/site.ts`.
 | `ideas/<slug>.md` | `/ideas/<slug>/` (sections: Description, Expected outcomes, Stretch goals, Out of scope, How success is measured, Warm-up tasks, Terms used on this page) |
 | `pages/projects.md` + `projects/<slug>.md` | `/projects/` (one file per codebase; ideas and mentors are taken from the idea files) |
 | `pages/mentors.md` | `/mentors/` (intro; people come from `src/data/people.ts`) |
+| `pages/operations.md` | `/operations/` (how the programme runs: phases, weekly cadence and report, mentor cover, evaluations, escalation, after the programme; full handbook in `../operations/`) |
 | `pages/contributor-guide.md` | `/contributor-guide/` |
 | `pages/proposal.md` | `/proposal/` |
 | `pages/selection.md` | `/selection/` |

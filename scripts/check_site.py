@@ -22,7 +22,7 @@ from pathlib import Path
 
 SITE_URL = "https://gsoc.elixpo.com"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/mentors/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/agenda/", "/about/",
+STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/mentors/", "/operations/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/agenda/", "/about/",
                  "/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
 # Footer legal and community row (src/data/site.ts LEGAL_PAGES), exactly in this order, on every page.
 LEGAL_ROUTES = ["/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
@@ -100,7 +100,7 @@ FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
 # Each of these pages must mark its own link with aria-current="page".
 NAV_ROUTES = ["/ideas/", "/projects/", "/proposal/", "/timeline/", "/mentors/", "/faq/", "/contributor-guide/", "/contact/"]
 NAV_LABELS = ["Ideas", "Projects", "Proposal", "Timeline", "Mentors", "FAQ", "Get involved", "Contact"]
-NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/"]
+NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/", "/operations/"]
 # The five codebases on /projects/ (content/projects/*.md).
 PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "oreo"]
 IDEA_SECTIONS = ["Description", "Expected outcomes", "Stretch goals", "Out of scope", "How success is measured", "Material",
@@ -113,7 +113,13 @@ REQUIRED_SECTIONS = {
                             "what-you-can-expect-from-us", "communication-channels"],
     "/agenda/": ["what-elixpo-is", "what-we-want-google-summer-of-code-to-achieve", "what-we-ship-in-public",
                  "how-we-decide-what-to-approve", "money-and-commercial-interests", "care-for-contributors"],
+    "/operations/": ["who-does-what", "the-programme-phase-by-phase", "communication", "mentor-operations", "evaluations",
+                     "escalation-and-conduct", "after-the-programme", "what-we-publish", "what-this-is-based-on"],
 }
+# How we run the programme: linked from these pages, and pointing to Google's rules and support address.
+OPERATIONS_LINKED_FROM = ["/mentors/", "/contributor-guide/", "/agenda/"]
+OPERATIONS_LINKS = [GSOC_TIMELINE_URL, "https://developers.google.com/open-source/gsoc/help/responsibilities",
+                    "https://summerofcode.withgoogle.com/rules", "mailto:gsoc-support@google.com", "/code-of-conduct/", "/agreements/"]
 # Claims about money the evidence does not support (some hosted services have paid plans).
 FORBIDDEN_COMMERCIAL = [
     re.compile(r"\bnothing (here |in elixpo )?is commercial\b", re.I),
@@ -392,6 +398,16 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect('href="/agenda/"' in raw["/contributor-guide/"], "/contributor-guide/: does not link to /agenda/")
     if "/" in raw:
         expect('href="/agenda/"' in raw["/"] and "Read our agenda" in parsed["/"].text, "/: 'Read our agenda' link missing")
+    for route in OPERATIONS_LINKED_FROM:
+        if route in raw:
+            body = re.search(r"<main.*?</main>", raw[route], re.S)
+            expect(bool(body and 'href="/operations/"' in body.group(0)), f"{route}: does not link to /operations/")
+    if "/operations/" in raw:
+        source, text = raw["/operations/"], parsed["/operations/"].text
+        for target in OPERATIONS_LINKS:
+            expect(f'href="{target}"' in source, f"/operations/: link missing: {target}")
+        expect("Weekly progress report template" in text and re.search(r"<pre><code[^>]*>Week N", source) is not None,
+               "/operations/: weekly progress report template missing")
     for route, page in parsed.items():
         for pattern in FORBIDDEN_COMMERCIAL:
             expect(not pattern.search(page.text), f"{route}: unsupported claim about money matches {pattern.pattern!r}")

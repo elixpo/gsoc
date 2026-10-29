@@ -72,7 +72,7 @@ export const CONTENT_REVIEWED = "2026-10-29";
 
 /**
  * Primary navigation, in this order, with Contact as a button at the end.
- * Agenda, Selection, AI policy, Glossary and About live in the footer site map
+ * Agenda, Selection, AI policy, Glossary, About and How we run the programme live in the footer site map
  * and in contextual links (the proposal page links Selection and AI policy).
  */
 export const NAV = [
@@ -101,6 +101,7 @@ export const SITE_MAP = [
   { href: "/ai-policy/", label: "AI policy", about: "Permitted use of AI tools, and what you must disclose." },
   { href: "/timeline/", label: "Timeline", about: "The stages of the programme and where official dates are published." },
   { href: "/mentors/", label: "Mentors", about: "Mentors, the organisation administrators and the programme coordinator." },
+  { href: "/operations/", label: "How we run the programme", about: "Weekly cadence, mentor cover, evaluations, escalation and what happens after the programme." },
   { href: "/faq/", label: "FAQ", about: "Answers to common questions." },
   { href: "/glossary/", label: "Glossary", about: "Definitions of the terms used on this site." },
   { href: "/contact/", label: "Contact", about: "Public channels and the programme email address." },
