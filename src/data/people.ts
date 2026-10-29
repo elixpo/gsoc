@@ -48,7 +48,7 @@ export const PEOPLE: Person[] = [
     roles: ["Mentor"], // TODO confirm
     isMentor: true,
     isPointOfContact: false,
-    email: null, // TODO: Divyanshu has no elixpo.com inbox; add the address he confirms
+    email: "divyanshu.elixpo@gmail.com",
     about: "Elixpo contributor across several projects, including LixBlogs, LixSketch and Elixpo Open Source.",
   },
   {
