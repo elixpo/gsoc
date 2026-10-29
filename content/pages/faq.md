@@ -54,6 +54,12 @@ in). See [Mentors](/mentors/).
 Ayushman Bhattacharya (lead organisation administrator) and Vivek Yadav. They
 manage Elixpo's application and its communication with Google.
 
+## Is Elixpo selling anything through this programme?
+
+No. No Google Summer of Code idea involves payments, pricing or paid
+features, and Elixpo does not currently accept sponsorship funds. See
+[Money and commercial interests](/agenda/#money-and-commercial-interests).
+
 ## Can I propose my own idea?
 
 Yes. Describe it in an email to

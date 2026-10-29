@@ -22,7 +22,7 @@ from pathlib import Path
 
 SITE_URL = "https://gsoc.elixpo.com"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/mentors/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/about/",
+STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/mentors/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/agenda/", "/about/",
                  "/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
 # Footer legal and community row (src/data/site.ts LEGAL_PAGES), exactly in this order, on every page.
 LEGAL_ROUTES = ["/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
@@ -100,13 +100,26 @@ FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
 # Each of these pages must mark its own link with aria-current="page".
 NAV_ROUTES = ["/ideas/", "/projects/", "/proposal/", "/timeline/", "/mentors/", "/faq/", "/contributor-guide/", "/contact/"]
 NAV_LABELS = ["Ideas", "Projects", "Proposal", "Timeline", "Mentors", "FAQ", "Get involved", "Contact"]
-NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/about/"]
+NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/"]
 # The five codebases on /projects/ (content/projects/*.md).
 PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "oreo"]
 IDEA_SECTIONS = ["Description", "Expected outcomes", "Stretch goals", "Out of scope", "How success is measured", "Material",
                  "Warm-up tasks", "Skills, size and mentors", "Terms used on this page"]
 GSOC_TIMELINE_URL = "https://developers.google.com/open-source/gsoc/timeline"
 GSOC_URL = "https://summerofcode.withgoogle.com/"
+# Sections a page must keep, by heading id (content/pages/*.md).
+REQUIRED_SECTIONS = {
+    "/contributor-guide/": ["why-contribute-to-elixpo", "what-each-project-is-for", "step-by-step", "what-we-expect-from-you",
+                            "what-you-can-expect-from-us", "communication-channels"],
+    "/agenda/": ["what-elixpo-is", "what-we-want-google-summer-of-code-to-achieve", "what-we-ship-in-public",
+                 "how-we-decide-what-to-approve", "money-and-commercial-interests", "care-for-contributors"],
+}
+# Claims about money the evidence does not support (some hosted services have paid plans).
+FORBIDDEN_COMMERCIAL = [
+    re.compile(r"\bnothing (here |in elixpo )?is commercial\b", re.I),
+    re.compile(r"\bElixpo (has|offers) no paid\b", re.I),
+    re.compile(r"\b(every|all) (Elixpo )?(tools?|services?) (is|are) free\b", re.I),
+]
 TIMELINE_PHASES = ["Organisations apply", "Organisations are announced", "Contributors apply", "Community bonding", "Coding", "Evaluations"]
 NUMBER_WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
 
@@ -367,6 +380,21 @@ def check_site(site: Path, launched: bool) -> list[str]:
                     repos = [item.get("codeRepository") for item in items if item.get("@type") == "SoftwareSourceCode" and item.get("programmingLanguage")]
                     expect(repos == [f"https://github.com/elixpo/{repo}" for repo in PROJECT_REPOS],
                            f"/projects/: SoftwareSourceCode items with codeRepository and programmingLanguage are {repos}")
+
+    # Required sections, the in-short box on the contributor guide, and links to the agenda
+    for route, ids in REQUIRED_SECTIONS.items():
+        source = raw.get(route, "")
+        for section in ids:
+            expect(f'id="{section}"' in source, f"{route}: section #{section} missing")
+    if "/contributor-guide/" in raw:
+        expect("<blockquote>" in raw["/contributor-guide/"] and "In short" in parsed["/contributor-guide/"].text,
+               "/contributor-guide/: the 'In short' box is missing")
+        expect('href="/agenda/"' in raw["/contributor-guide/"], "/contributor-guide/: does not link to /agenda/")
+    if "/" in raw:
+        expect('href="/agenda/"' in raw["/"] and "Read our agenda" in parsed["/"].text, "/: 'Read our agenda' link missing")
+    for route, page in parsed.items():
+        for pattern in FORBIDDEN_COMMERCIAL:
+            expect(not pattern.search(page.text), f"{route}: unsupported claim about money matches {pattern.pattern!r}")
 
     # Navigation: "What next?" block, footer site map, current page in the main nav
     for route in routes:

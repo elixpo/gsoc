@@ -26,6 +26,7 @@ GitHub. See [`content/README.md`](../content/README.md) for the full map.
 | `content/pages/timeline.md` | `/timeline/` |
 | `content/pages/faq.md` | `/faq/` |
 | `content/pages/contact.md` + `src/data/people.ts` | `/contact/` |
+| `content/pages/agenda.md` | `/agenda/` |
 | `content/pages/about.md` | `/about/` (history entries are `### Date — Title`) |
 | `content/pages/privacy.md` | `/privacy/` |
 | `content/pages/terms.md` | `/terms/` |

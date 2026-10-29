@@ -93,7 +93,8 @@ with its source.
 Google Summer of Code brings new contributors into open source with the
 guidance of experienced mentors. We want to help one contributor learn how a
 production codebase works, deliver a well-defined piece of it under review,
-and remain involved after the programme.
+and remain involved after the programme. [Read our agenda](/agenda/) for what
+Elixpo is, what it ships in public and how it decides what to approve.
 
 ## How the ideas are organised
 
