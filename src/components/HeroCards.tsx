@@ -91,7 +91,7 @@ const CARDS: Record<string, () => React.ReactNode> = {
       label="The guide at a glance"
       title="Step by step"
       stats={[
-        { value: 8, label: "steps in the guide" },
+        { value: 7, label: "steps to apply" },
         { value: MENTORS_PER_IDEA, label: "mentors on every idea" },
       ]}
       facts={[
