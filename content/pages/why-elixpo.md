@@ -48,7 +48,8 @@ See the [community and mentoring record](/about/#community-and-mentoring-record)
 
 Three mentors, two organisation administrators (Ayushman Bhattacharya, lead,
 and Vivek Yadav) and a programme coordinator (Anwesha Chakraborty). In 2027
-we plan to mentor one contributor, with a primary and a backup mentor on
+we plan to mentor one contributor, so every accepted contributor gets two
+mentors' full attention: a primary and a backup mentor on
 every idea. See the [mentors page](/mentors/).
 
 ## Are the project ideas well defined?

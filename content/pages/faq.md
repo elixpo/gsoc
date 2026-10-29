@@ -4,7 +4,7 @@ description: Answers to common questions about Elixpo and Google Summer of Code 
 heading: Frequently asked *questions*
 lead: Answers to common questions about Elixpo and Google Summer of Code 2027. If your question is not answered here, email gsoc@elixpo.com.
 tldr:
-  - Elixpo is applying to be a mentoring organisation for 2027. In 2027 we plan to mentor one contributor.
+  - Elixpo is applying to be a mentoring organisation for 2027. In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention.
   - Six ideas, each with a primary and a backup mentor: Ayushman Bhattacharya, Vivek Yadav or Divyanshu.
   # TODO: Update to 'participating projects have no paid plans' after the pricing-removal PRs merge.
   - No Google Summer of Code idea involves payments, pricing or paid features.
@@ -33,7 +33,7 @@ application period.
 
 ## How many contributors will Elixpo mentor?
 
-In 2027 we plan to mentor one contributor.
+In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention.
 
 ## Who can apply?
 
