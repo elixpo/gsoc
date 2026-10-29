@@ -15,7 +15,7 @@ export default function PeoplePage() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: page.title, path: "/people/" }])} />
-      <PageHero eyebrow="People" heading={page.heading} lead={page.lead} />
+      <PageHero eyebrow="People" headingHtml={page.headingHtml} lead={page.lead} />
       <section className="content content-split" aria-labelledby="roles">
         <Prose html={page.html} />
       </section>
@@ -23,7 +23,7 @@ export default function PeoplePage() {
         <h2 id="people-list" className="visually-hidden">
           Mentors, administrators and coordinator
         </h2>
-        <ul className="people-grid">
+        <ul className="hairline-grid people-grid">
           {PEOPLE.map((person) => {
             const mentored = ideasMentoredBy(person.github);
             return (

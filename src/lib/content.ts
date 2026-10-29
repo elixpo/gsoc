@@ -59,11 +59,35 @@ function list(data: Frontmatter, key: string, file: string): string[] {
 
 /* ----------------------------------------------------------------- pages */
 
+const escapeHtml = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+/** Escape a heading and turn `*phrase*` into `<em>phrase</em>`, the italic serif accent. */
+export const accentHeading = (heading: string) => escapeHtml(heading).replace(/\*([^*]+)\*/g, "<em>$1</em>");
+
+/**
+ * Items of a Markdown ordered list written as `1. **Title**: description`, for
+ * the numbered step grids. The title keeps its inline Markdown (links).
+ */
+export function steps(markdown: string): { titleHtml: string; textHtml: string }[] {
+  return markdown
+    .split(/^\d+\.\s+/m)
+    .slice(1)
+    .map((item) => {
+      const match = /^\*\*([\s\S]+?)\*\*:?\s*([\s\S]*)$/.exec(item.trim().replace(/\s+/g, " "));
+      if (!match) throw new Error(`Step "${item.trim()}" must look like "**Title**: description"`);
+      const text = match[2].replace(/^./, (letter) => letter.toUpperCase());
+      return { titleHtml: marked.parseInline(match[1], { async: false }) as string, textHtml: marked.parseInline(text, { async: false }) as string };
+    });
+}
+
 export type Page = {
   slug: string;
   title: string;
   description: string;
+  /** Plain-text heading (accent markers removed). */
   heading: string;
+  /** Heading as HTML: `*phrase*` in the frontmatter becomes the italic serif accent. */
+  headingHtml: string;
   lead: string;
   body: string;
   html: string;
@@ -78,7 +102,8 @@ export function getPage(slug: string): Page {
     slug,
     title: str(data, "title", file),
     description: str(data, "description", file),
-    heading: str(data, "heading", file),
+    heading: str(data, "heading", file).replace(/\*/g, ""),
+    headingHtml: accentHeading(str(data, "heading", file)),
     lead: str(data, "lead", file),
     body,
     html: renderMarkdown(body),

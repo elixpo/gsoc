@@ -12,7 +12,7 @@ export default function NotFound() {
   return (
     <PageHero
       eyebrow="404"
-      heading="Page not found"
+      headingHtml="Page <em>not found</em>"
       lead="The requested page does not exist. It may have moved, or the link may be incorrect. Use the links below or the site map at the foot of the page."
     >
       <div className="actions">

@@ -1,7 +1,7 @@
 ---
 title: Project ideas
 description: Elixpo's six project ideas for Google Summer of Code 2027, each with size, difficulty, a primary and a backup mentor, expected outcomes and success measures.
-heading: Project ideas for 2027
+heading: Project ideas *for 2027*
 lead: Each idea is a defined piece of work in one Elixpo codebase, with expected outcomes, out-of-scope items, success measures and two mentors. Choose one idea and build your proposal around it.
 next:
   - /projects/

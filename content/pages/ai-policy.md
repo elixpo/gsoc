@@ -1,7 +1,7 @@
 ---
 title: AI policy
 description: Elixpo's AI policy for Google Summer of Code 2027 applicants and contributors - permitted use of AI tools, required disclosure, and grounds for rejection.
-heading: AI policy
+heading: AI *policy*
 lead: This policy covers AI tools such as chatbots and code assistants. You may use them to learn, but you must understand, test and be able to explain everything you submit.
 next:
   - /proposal/

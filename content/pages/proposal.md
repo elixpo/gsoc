@@ -1,7 +1,7 @@
 ---
 title: Proposal template
 description: The proposal template for Elixpo's Google Summer of Code 2027 ideas - contact details, synopsis, approach, deliverables, timeline with a midterm checkpoint, testing, communication and availability.
-heading: Proposal template
+heading: Proposal *template*
 lead: Your proposal is your plan for one Elixpo project idea. Use the sections below, in this order. Write it yourself; be specific and concise.
 next:
   - /selection/

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { nextLinks, RoleChips, sizeLabel, WhatNext } from "@/components/blocks";
+import { HeroGeometry, nextLinks, RoleChips, sizeLabel, WhatNext } from "@/components/blocks";
 import { getIdea, IDEAS, neighbours, projectAnchor, type IdeaSection } from "@/lib/content";
 import { CONTACT_EMAIL, DISCUSSIONS_URL, RESPONSE_EXPECTATION } from "@/data/site";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
@@ -80,28 +80,29 @@ export default async function IdeaPage({ params }: Props) {
   return (
     <article className="idea-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }} />
-      <nav aria-label="Breadcrumb" className="breadcrumb">
-        <ol>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <span className="crumb-sep" aria-hidden="true">
-              /
-            </span>
-            <Link href="/ideas/">Ideas</Link>
-          </li>
-          <li aria-current="page">
-            <span className="crumb-sep" aria-hidden="true">
-              /
-            </span>
-            {idea.title}
-          </li>
-        </ol>
-      </nav>
 
-      <header className="idea-hero">
-        <div>
+      <header className="idea-hero hero-card">
+        <HeroGeometry />
+        <nav aria-label="Breadcrumb" className="breadcrumb">
+          <ol>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <span className="crumb-sep" aria-hidden="true">
+                /
+              </span>
+              <Link href="/ideas/">Ideas</Link>
+            </li>
+            <li aria-current="page">
+              <span className="crumb-sep" aria-hidden="true">
+                /
+              </span>
+              {idea.title}
+            </li>
+          </ol>
+        </nav>
+        <div className="idea-hero-copy">
           <p className="eyebrow">
             Idea {idea.order} of {IDEAS.length} · {idea.theme}
           </p>

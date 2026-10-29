@@ -19,5 +19,13 @@ Third-party software
   used under their own licences.
 - marked (https://marked.js.org/): MIT License.
 
+Fonts
+- Pathway Gothic One (c) 2013 The Pathway Gothic Project Authors,
+  Cormorant Garamond (c) 2015 the Cormorant Project Authors, and
+  Bitcount Grid Double (c) The Bitcount Project Authors: SIL Open Font
+  License 1.1 (LICENSES/fonts/). The same families as me.elixpo. They are
+  downloaded from Google Fonts by next/font at build time and served from
+  this site; the font files are not stored in this repository.
+
 Each Elixpo project linked from the site keeps the licence stated in its own
 repository.

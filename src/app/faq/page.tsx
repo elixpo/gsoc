@@ -19,7 +19,7 @@ export default function FaqPage() {
   return (
     <>
       <JsonLd data={[structured, breadcrumbJsonLd([{ name: "FAQ", path: "/faq/" }])]} />
-      <PageHero eyebrow="FAQ" heading={page.heading} lead={page.lead} />
+      <PageHero eyebrow="FAQ" headingHtml={page.headingHtml} lead={page.lead} />
       <section className="content faq">
         {items.map((item, index) => (
           <section key={item.question} aria-labelledby={`faq-${index + 1}`}>

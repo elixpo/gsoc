@@ -1,7 +1,7 @@
 ---
 title: About Elixpo
 description: Elixpo's community and mentoring record - how its maintainers prepare work for outside contributors, review it and merge it - with a link to the public source for each step.
-heading: About Elixpo
+heading: About *Elixpo*
 lead: Elixpo is an open-source organisation that builds software in public. This page sets out its community and mentoring record, with a link to the public source for each step.
 next:
   - /ideas/

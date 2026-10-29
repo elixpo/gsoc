@@ -39,7 +39,7 @@ export default function ProjectsPage() {
   return (
     <>
       <JsonLd data={[structured, breadcrumbJsonLd([{ name: page.title, path: "/projects/" }])]} />
-      <PageHero eyebrow="Projects" heading={page.heading} lead={page.lead} />
+      <PageHero eyebrow="Projects" headingHtml={page.headingHtml} lead={page.lead} />
       <PageLayout toc={PROJECTS.map((project) => ({ id: project.slug, text: project.name }))}>
         {PROJECTS.map((project) => (
           <section className="page-section project" key={project.slug} aria-labelledby={project.slug}>

@@ -1,7 +1,7 @@
 ---
 title: People
 description: The mentors, organisation administrators and programme coordinator for Elixpo's Google Summer of Code 2027 application.
-heading: People
+heading: The *people*
 lead: The mentors and organisers responsible for Elixpo's Google Summer of Code 2027 application, the ideas each mentor supervises, and how to contact them.
 next:
   - /ideas/

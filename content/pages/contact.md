@@ -1,7 +1,7 @@
 ---
 title: Contact
 description: How to contact Elixpo about Google Summer of Code 2027 - GitHub Discussions for technical questions and gsoc@elixpo.com for programme questions.
-heading: Contact
+heading: Contact *us*
 lead: Use the public channels below for questions about the project ideas and the code, and the programme email address for programme or private matters. Ask in public first.
 next:
   - /faq/

@@ -1,7 +1,7 @@
 ---
 title: Contributor guide
 description: How to prepare for and apply to Elixpo in Google Summer of Code 2027 - the pre-application phase, the application phase, hints for applicants and communication channels.
-heading: Get involved
+heading: Get *involved*
 lead: This guide is for prospective Google Summer of Code contributors who are interested in an Elixpo project idea. It describes what to do before applications open, how to apply, and how to communicate with mentors.
 next:
   - /proposal/

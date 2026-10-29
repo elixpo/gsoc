@@ -27,7 +27,7 @@ export function MarkdownPage({
   return (
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: page.title, path: `/${slug}/` }])} />
-      <PageHero eyebrow={eyebrow} heading={page.heading} lead={page.lead} />
+      <PageHero eyebrow={eyebrow} headingHtml={page.headingHtml} lead={page.lead} />
       <PageLayout toc={[...tableOfContents(page.html), ...extraToc]}>
         <Prose html={page.html} />
         {children}

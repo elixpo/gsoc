@@ -21,7 +21,7 @@ export default function AboutPage() {
   return (
     <>
       <JsonLd data={[structured, breadcrumbJsonLd([{ name: page.title, path: "/about/" }])]} />
-      <PageHero eyebrow="About Elixpo" heading={page.heading} lead={page.lead} />
+      <PageHero eyebrow="About Elixpo" headingHtml={page.headingHtml} lead={page.lead} />
       <PageLayout toc={sections.map(({ id, heading }) => ({ id, text: heading }))}>
         {sections.map((section) => (
           <section className="page-section" key={section.id} aria-labelledby={section.id}>

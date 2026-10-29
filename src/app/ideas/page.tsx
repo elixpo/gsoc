@@ -25,7 +25,7 @@ export default function IdeasPage() {
   return (
     <>
       <JsonLd data={[structured, breadcrumbJsonLd([{ name: "Ideas", path: "/ideas/" }])]} />
-      <PageHero eyebrow="Project ideas" heading={page.heading} lead={page.lead}>
+      <PageHero eyebrow="Project ideas" headingHtml={page.headingHtml} lead={page.lead}>
         <Capacity />
       </PageHero>
       <section className="content content-split">

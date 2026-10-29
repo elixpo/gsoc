@@ -15,13 +15,36 @@ export function JsonLd({ data }: { data: object | object[] }) {
   );
 }
 
-export function PageHero({ eyebrow, heading, lead, children }: { eyebrow: string; heading: string; lead: string; children?: React.ReactNode }) {
+/**
+ * Decorative shapes behind a hero card: real elements (no ::before/::after),
+ * hidden from assistive technology.
+ */
+export function HeroGeometry() {
   return (
-    <header className="page-hero">
-      <p className="eyebrow">{eyebrow}</p>
-      <h1>{heading}</h1>
-      <p className="lead">{lead}</p>
-      {children}
+    <div className="hero-geometry" aria-hidden="true">
+      <i />
+      <i />
+      <i />
+      <i />
+    </div>
+  );
+}
+
+/**
+ * The page hero: a rounded card on a soft tinted gradient. `headingHtml` is
+ * trusted HTML from the page frontmatter, where `*phrase*` becomes the italic
+ * serif accent (see accentHeading in src/lib/content.ts).
+ */
+export function PageHero({ eyebrow, headingHtml, lead, children }: { eyebrow: string; headingHtml: string; lead: string; children?: React.ReactNode }) {
+  return (
+    <header className="page-hero hero-card">
+      <HeroGeometry />
+      <div className="page-hero-copy">
+        <p className="eyebrow">{eyebrow}</p>
+        <h1 dangerouslySetInnerHTML={{ __html: headingHtml }} />
+        <p className="lead">{lead}</p>
+        {children}
+      </div>
     </header>
   );
 }
@@ -59,11 +82,25 @@ export function PageLayout({ toc, children }: { toc: { id: string; text: string 
   );
 }
 
+/** The planned intake, stated plainly (Google's mentor guide asks for it at the top of the ideas list). */
 export function Capacity() {
+  return <p className="capacity">{CAPACITY_STATEMENT}</p>;
+}
+
+/** A numbered 01, 02, ... grid of steps with hairline dividers. */
+export function StepGrid({ steps, label }: { steps: { titleHtml: string; textHtml: string }[]; label: string }) {
   return (
-    <p className="capacity">
-      <strong>{CAPACITY_STATEMENT}</strong>
-    </p>
+    <ol className="hairline-grid step-grid" aria-label={label}>
+      {steps.map((step, index) => (
+        <li key={step.titleHtml}>
+          <span className="cell-number" aria-hidden="true">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <p className="step-title" dangerouslySetInnerHTML={{ __html: step.titleHtml }} />
+          <p className="step-text" dangerouslySetInnerHTML={{ __html: step.textHtml }} />
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -137,12 +174,12 @@ export function IdeaTable({ ideas, headingId }: { ideas: Idea[]; headingId: stri
 
 export function IdeaCards({ ideas }: { ideas: Idea[] }) {
   return (
-    <ol className="idea-cards">
+    <ol className="hairline-grid idea-cards">
       {ideas.map((idea) => (
         <li key={idea.slug}>
           <article>
             <p className="card-meta">
-              <span>{String(idea.order).padStart(2, "0")}</span> {idea.theme}
+              <span className="cell-number">{String(idea.order).padStart(2, "0")}</span> {idea.theme}
             </p>
             <h3>
               <Link href={`/ideas/${idea.slug}/`}>{idea.title}</Link>
@@ -181,9 +218,12 @@ export function WhatNext({ links }: { links: NextLink[] }) {
   return (
     <nav className="what-next" aria-labelledby="what-next">
       <h2 id="what-next">Next steps</h2>
-      <ul>
-        {links.map((link) => (
+      <ul className="hairline-grid">
+        {links.map((link, index) => (
           <li key={link.href}>
+            <span className="cell-number" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
+            </span>
             <Link href={link.href}>{link.label}</Link>
             <span>{link.about}</span>
           </li>
