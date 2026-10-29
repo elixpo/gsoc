@@ -3,26 +3,17 @@ title: Contributor guide
 description: How to get started with Elixpo in Google Summer of Code 2027 - why contribute, what each project is for, a step-by-step path from first contribution to proposal, and what contributors and mentors can expect from each other.
 heading: Getting *started*
 lead: This guide is for anyone who wants to contribute to Elixpo through Google Summer of Code 2027. It explains what Elixpo offers, what each project is for, and the steps from choosing an idea to what happens after selection.
+tldr:
+  - Elixpo is an open-source project foundry where people build in public and release projects together. Read [our agenda](/agenda/).
+  - We offer a real project used in public, two mentors on every idea, review by people, and credit for attributable work.
+  - The steps: choose an idea, set it up, complete a warm-up task, introduce yourself, make a small pull request, then write your proposal.
+  - Write to [gsoc@elixpo.com](mailto:gsoc@elixpo.com). GitHub Discussions for GSoC 2027 will open once Google announces the programme dates.
+  - Submit your final proposal on the [official GSoC website](https://summerofcode.withgoogle.com/). Proposals sent anywhere else are not considered.
 next:
   - /ideas/
   - /proposal/
   - /agenda/
 ---
-
-> **In short**
->
-> - **Elixpo** is an open-source project foundry where people build in public
->   and release projects together. Read [our agenda](/agenda/).
-> - **What we offer:** a real project used in public, two mentors on every
->   idea, review by people, and credit for attributable work.
-> - **The steps:** choose an idea, set it up locally, complete a warm-up task,
->   introduce yourself, make a small pull request, then write your proposal.
-> - **Where to ask:** [gsoc@elixpo.com](mailto:gsoc@elixpo.com). GitHub
->   Discussions for GSoC 2027 will open once Google announces the programme
->   dates.
-> - **One rule:** submit your final proposal on the
->   [official GSoC website](https://summerofcode.withgoogle.com/). Proposals
->   sent anywhere else are not considered.
 
 ## Why contribute to Elixpo
 

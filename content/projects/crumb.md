@@ -4,6 +4,7 @@ slug: crumb
 order: 3
 repository: https://github.com/elixpo/crumb.elixpo
 homepage: https://crumb.elixpo.com
+elixpo_page: https://elixpo.com/projects/crumb
 languages:
   - Rust
   - TypeScript

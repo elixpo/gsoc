@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JsonLd, nextLinks, PageHero, PageLayout, Prose, WhatNext } from "@/components/blocks";
+import { JsonLd, nextLinks, PageHero, PageLayout, Prose, Tldr, WhatNext } from "@/components/blocks";
 import { getAbout } from "@/lib/content";
 import { absoluteUrl, breadcrumbJsonLd, ORGANIZATION_ID, pageMetadata, WEBSITE_ID } from "@/lib/seo";
 
@@ -22,6 +22,7 @@ export default function AboutPage() {
     <>
       <JsonLd data={[structured, breadcrumbJsonLd([{ name: page.title, path: "/about/" }])]} />
       <PageHero eyebrow="About Elixpo" headingHtml={page.headingHtml} lead={page.lead} />
+      <Tldr items={page.tldrHtml} />
       <PageLayout toc={sections.map(({ id, heading }) => ({ id, text: heading }))}>
         {sections.map((section) => (
           <section className="page-section" key={section.id} aria-labelledby={section.id}>

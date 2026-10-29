@@ -50,6 +50,25 @@ export function PageHero({ eyebrow, headingHtml, lead, children, aside }: { eyeb
   );
 }
 
+/**
+ * The TL;DR box near the top of every page: a hairline box with a mono label
+ * and three to five short lines (from `tldr:` in the page frontmatter).
+ */
+export function Tldr({ items }: { items: string[] }) {
+  return (
+    <aside className="content tldr-wrap" aria-label="TL;DR: the short version">
+      <div className="tldr">
+        <p className="tldr-label">TL;DR</p>
+        <ul>
+          {items.map((html) => (
+            <li key={html} dangerouslySetInnerHTML={{ __html: html }} />
+          ))}
+        </ul>
+      </div>
+    </aside>
+  );
+}
+
 export function Prose({ html, className = "" }: { html: string; className?: string }) {
   return <div className={`prose ${className}`.trim()} dangerouslySetInnerHTML={{ __html: html }} />;
 }

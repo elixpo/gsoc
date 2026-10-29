@@ -1,4 +1,4 @@
-import { JsonLd, nextLinks, PageHero, WhatNext } from "@/components/blocks";
+import { JsonLd, nextLinks, PageHero, Tldr, WhatNext } from "@/components/blocks";
 import { markdownMetadata } from "@/components/MarkdownPage";
 import { getFaq } from "@/lib/content";
 import { breadcrumbJsonLd, stripTags } from "@/lib/seo";
@@ -20,6 +20,7 @@ export default function FaqPage() {
     <>
       <JsonLd data={[structured, breadcrumbJsonLd([{ name: "FAQ", path: "/faq/" }])]} />
       <PageHero eyebrow="FAQ" headingHtml={page.headingHtml} lead={page.lead} />
+      <Tldr items={page.tldrHtml} />
       <section className="content faq">
         {items.map((item, index) => (
           <section key={item.question} aria-labelledby={`faq-${index + 1}`}>

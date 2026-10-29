@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { GsocMark, HeroGeometry, IdeaCards, nextLinks, Prose, StepGrid, WhatNext } from "@/components/blocks";
+import { GsocMark, HeroGeometry, IdeaCards, nextLinks, Prose, StepGrid, Tldr, WhatNext } from "@/components/blocks";
 import { HOME_CAPACITY_SENTENCE, HOME_CREDENTIALS, MENTORS_PER_IDEA, PLANNED_CONTRIBUTORS } from "@/data/site";
 import { getPage, IDEAS, PROJECTS, renderMarkdown, sections, slugify, steps } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
@@ -69,6 +69,7 @@ export default function Home() {
           <p className="hero-panel-note">Google selects participating organisations and announces them after the application period.</p>
         </aside>
       </header>
+      <Tldr items={page.tldrHtml} />
 
       <div className="home-sections">
         {sections(page.body).map((section) => (

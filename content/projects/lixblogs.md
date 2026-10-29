@@ -4,6 +4,7 @@ slug: lixblogs
 order: 1
 repository: https://github.com/elixpo/blogs.elixpo
 homepage: https://blogs.elixpo.com
+elixpo_page: https://elixpo.com/services/blogs
 languages:
   - JavaScript
   - CSS

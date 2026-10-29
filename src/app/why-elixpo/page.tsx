@@ -1,4 +1,4 @@
-import { JsonLd, nextLinks, PageHero, WhatNext } from "@/components/blocks";
+import { JsonLd, nextLinks, PageHero, Tldr, WhatNext } from "@/components/blocks";
 import { markdownMetadata } from "@/components/MarkdownPage";
 import { getQuestions } from "@/lib/content";
 import { breadcrumbJsonLd, stripTags } from "@/lib/seo";
@@ -21,6 +21,7 @@ export default function WhyElixpoPage() {
     <>
       <JsonLd data={[structured, breadcrumbJsonLd([{ name: page.title, path: "/why-elixpo/" }])]} />
       <PageHero eyebrow="For programme reviewers" headingHtml={page.headingHtml} lead={page.lead} />
+      <Tldr items={page.tldrHtml} />
       <section className="content faq">
         {items.map((item, index) => (
           <section key={item.question} aria-labelledby={`q-${index + 1}`}>

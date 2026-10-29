@@ -218,6 +218,13 @@ main:focus { outline:none; }
 .prose li { margin:.4rem 0; }
 .prose li::marker { color:var(--leaf); }
 .prose code { padding:.1rem .35rem; border-radius:.3rem; background:var(--paper-deep); font-family:var(--font-code); font-size:.88em; overflow-wrap:anywhere; }
+.tldr-wrap { padding-top:var(--space-4); }
+.tldr { display:grid; grid-template-columns:minmax(5rem,8rem) minmax(0,1fr); gap:var(--space-1) var(--space-4); max-width:calc(var(--measure) + 12rem); padding:1.1rem 1.4rem 1.2rem; border:1px solid var(--line-strong); border-radius:var(--radius); background:var(--panel); }
+.tldr-label { margin:0; padding-top:.2rem; color:var(--leaf); font:650 .78rem/1.4 var(--font-mono); letter-spacing:.13em; text-transform:uppercase; }
+.tldr ul { display:grid; gap:.45rem; margin:0; padding:0; list-style:none; }
+.tldr li { padding-left:.85rem; border-left:2px solid var(--leaf-line); font-size:var(--text-sm); line-height:1.5; }
+.tldr a { color:var(--leaf); text-decoration:underline; text-underline-offset:.2em; }
+@media (max-width:700px) { .tldr { grid-template-columns:minmax(0,1fr); padding:1rem 1.1rem; } }
 .prose pre { margin:0 0 1em; padding:1rem 1.2rem; border:1px solid var(--line); border-radius:.8rem; background:var(--paper-deep); overflow-x:auto; font-size:var(--text-sm); line-height:1.55; }
 .prose pre code { padding:0; background:none; overflow-wrap:normal; }
 .prose strong { font-weight:700; }

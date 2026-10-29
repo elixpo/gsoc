@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JsonLd, nextLinks, PageHero, PageLayout, Prose, WhatNext } from "@/components/blocks";
+import { JsonLd, nextLinks, PageHero, PageLayout, Prose, Tldr, WhatNext } from "@/components/blocks";
 import { getPage, tableOfContents } from "@/lib/content";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
@@ -28,6 +28,7 @@ export function MarkdownPage({
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: page.title, path: `/${slug}/` }])} />
       <PageHero eyebrow={eyebrow} headingHtml={page.headingHtml} lead={page.lead} />
+      <Tldr items={page.tldrHtml} />
       <PageLayout toc={[...tableOfContents(page.html), ...extraToc]}>
         <Prose html={page.html} />
         {children}

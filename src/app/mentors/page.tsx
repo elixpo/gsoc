@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { JsonLd, nextLinks, PageHero, Prose, RoleChips, WhatNext } from "@/components/blocks";
+import { JsonLd, nextLinks, PageHero, Prose, RoleChips, Tldr, WhatNext } from "@/components/blocks";
 import { ContactChips, PeopleTable } from "@/components/PeopleTable";
 import { PEOPLE } from "@/data/people";
 import { getPage, IDEAS, ideasMentoredBy } from "@/lib/content";
@@ -63,6 +63,7 @@ export default function MentorsPage() {
           Every mentor and organiser signs a public commitment. <Link href="/agreements/">Read the agreements</Link>.
         </p>
       </PageHero>
+      <Tldr items={page.tldrHtml} />
       <section className="content roles-overview" aria-labelledby="roles">
         <Prose html={page.html} />
       </section>

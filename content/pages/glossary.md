@@ -3,6 +3,10 @@ title: Glossary
 description: Definitions of the terms used on Elixpo's Google Summer of Code 2027 site, from mentor and proposal to pull request and stretch goal.
 heading: Glossary *of terms*
 lead: Definitions of the terms used across this site, grouped by topic.
+tldr:
+  - Definitions of the terms used on this site, in three groups: the programme, ideas and proposals, and working with code.
+  - Each idea page also defines the terms it uses.
+  - The [FAQ](/faq/) answers common questions.
 next:
   - /
   - /ideas/

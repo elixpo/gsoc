@@ -4,6 +4,7 @@ slug: elixpo-open-source
 order: 4
 repository: https://github.com/elixpo/opensource.elixpo
 homepage: https://opensource.elixpo.com
+elixpo_page: https://elixpo.com/services/opensource
 languages:
   - TypeScript
   - CSS

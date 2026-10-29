@@ -3,6 +3,11 @@ title: Terms of service
 description: Terms for using the Elixpo Google Summer of Code site - content licences, trademarks, no warranty, no guarantee of selection, third-party links and contact.
 heading: Terms of *service*
 lead: These terms apply to your use of gsoc.elixpo.com, the Elixpo Google Summer of Code site. By using the site you accept them.
+tldr:
+  - Site code is licensed under MIT; site text under CC BY 4.0.
+  - The Elixpo name and marks are reserved and not covered by either licence.
+  - Google's official rules, dates and eligibility requirements take precedence over this site.
+  - Nothing on this site guarantees selection.
 next:
   - /privacy/
   - /code-of-conduct/

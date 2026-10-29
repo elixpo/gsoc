@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { HeroGeometry, nextLinks, RoleChips, sizeLabel, WhatNext } from "@/components/blocks";
-import { getIdea, IDEAS, neighbours, projectAnchor, type IdeaSection } from "@/lib/content";
+import { HeroGeometry, nextLinks, RoleChips, sizeLabel, Tldr, WhatNext } from "@/components/blocks";
+import { escapeHtml, getIdea, IDEAS, neighbours, projectAnchor, projectOf, type Idea, type IdeaSection } from "@/lib/content";
 import { CONTACT_EMAIL, DISCUSSIONS_NOTE_SHORT, RESPONSE_EXPECTATION } from "@/data/site";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 
@@ -47,6 +47,17 @@ const TOC = [
   { id: "terms", text: "Terms used on this page" },
 ];
 
+/** The idea's TL;DR, built from its frontmatter so it always matches the page. */
+function ideaTldr(idea: Idea): string[] {
+  return [
+    `<strong>In short:</strong> ${escapeHtml(idea.inShort)}`,
+    `${sizeLabel(idea.sizeHours)} · ${idea.difficulty} · ${escapeHtml(idea.theme)}`,
+    `Mentors: ${escapeHtml(idea.primaryMentor.name)} (primary) and ${escapeHtml(idea.backupMentor.name)} (backup).`,
+    `First step: set up <a href="${idea.setup}">${escapeHtml(idea.repositoryName)}</a> from its README, then pick a <a href="#warm-up-tasks">warm-up task</a>.`,
+    `Questions: <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`,
+  ];
+}
+
 function Section({ id, title, html }: { id: string; title: IdeaSection; html: string }) {
   return (
     <section className="idea-section" aria-labelledby={id}>
@@ -63,6 +74,7 @@ export default async function IdeaPage({ params }: Props) {
 
   const url = absoluteUrl(`/ideas/${idea.slug}/`);
   const { previous, next } = neighbours(idea.slug);
+  const project = projectOf(idea);
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -107,9 +119,6 @@ export default async function IdeaPage({ params }: Props) {
             Idea {idea.order} of {IDEAS.length} · {idea.theme}
           </p>
           <h1>{idea.title}</h1>
-          <p className="in-short">
-            <strong>In short:</strong> {idea.inShort}
-          </p>
           <p className="lead">{idea.summary}</p>
         </div>
         <aside className="idea-facts" aria-label="Key facts about this idea">
@@ -136,12 +145,25 @@ export default async function IdeaPage({ params }: Props) {
                 <a href={idea.repository}>{idea.repositoryName}</a>
               </dd>
             </div>
+            <div>
+              <dt>Live product</dt>
+              <dd>
+                <a href={project.homepage}>{project.homepage.replace("https://", "")}</a>
+              </dd>
+            </div>
+            <div>
+              <dt>Project page on elixpo.com</dt>
+              <dd>
+                <a href={project.elixpoPage}>{project.elixpoPage.replace("https://", "")}</a>
+              </dd>
+            </div>
           </dl>
           <p className="note">
             <a href="#warm-up-tasks">Warm-up tasks</a> · <Link href="/glossary/">Glossary</Link>
           </p>
         </aside>
       </header>
+      <Tldr items={ideaTldr(idea)} />
 
       <div className="idea-body">
         <nav className="toc" aria-labelledby="toc-heading">

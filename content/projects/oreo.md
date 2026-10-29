@@ -4,6 +4,7 @@ slug: oreo
 order: 5
 repository: https://github.com/elixpo/oreo
 homepage: https://oreo.elixpo.com
+elixpo_page: https://elixpo.com/projects/oreo
 languages:
   - Python
   - TypeScript

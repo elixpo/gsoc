@@ -4,6 +4,7 @@ slug: lixsketch
 order: 2
 repository: https://github.com/elixpo/sketch.elixpo
 homepage: https://sketch.elixpo.com
+elixpo_page: https://elixpo.com/projects/lixsketch
 languages:
   - JavaScript
   - CSS

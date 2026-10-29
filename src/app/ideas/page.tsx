@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Capacity, IdeaCards, IdeaTable, JsonLd, nextLinks, PageHero, Prose, WhatNext } from "@/components/blocks";
+import { Capacity, IdeaCards, IdeaTable, JsonLd, nextLinks, PageHero, Prose, Tldr, WhatNext } from "@/components/blocks";
 import { getPage, IDEAS } from "@/lib/content";
 import { absoluteUrl, breadcrumbJsonLd, ORGANIZATION_ID, pageMetadata } from "@/lib/seo";
 
@@ -28,6 +28,7 @@ export default function IdeasPage() {
       <PageHero eyebrow="Project ideas" headingHtml={page.headingHtml} lead={page.lead}>
         <Capacity />
       </PageHero>
+      <Tldr items={page.tldrHtml} />
       <section className="content content-split">
         <Prose html={page.html} />
       </section>

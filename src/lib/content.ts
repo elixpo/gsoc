@@ -59,7 +59,7 @@ function list(data: Frontmatter, key: string, file: string): string[] {
 
 /* ----------------------------------------------------------------- pages */
 
-const escapeHtml = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+export const escapeHtml = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 /** Escape a heading and turn `*phrase*` into `<em>phrase</em>`, the italic serif accent. */
 export const accentHeading = (heading: string) => escapeHtml(heading).replace(/\*([^*]+)\*/g, "<em>$1</em>");
@@ -93,7 +93,15 @@ export type Page = {
   html: string;
   /** Routes for the "What next?" block at the end of the page. */
   next: string[];
+  /** The TL;DR box near the top of the page: 3-5 short lines, as inline HTML. */
+  tldrHtml: string[];
 };
+
+/** Inline Markdown for the TL;DR box, checked for length so every page stays scannable. */
+export function tldr(items: string[], file: string): string[] {
+  if (items.length < 3 || items.length > 5) throw new Error(`${file}: "tldr" must have 3 to 5 items (found ${items.length})`);
+  return items.map((item) => marked.parseInline(item, { async: false }) as string);
+}
 
 export function getPage(slug: string): Page {
   const { file, source } = read(`pages/${slug}.md`);
@@ -108,6 +116,7 @@ export function getPage(slug: string): Page {
     body,
     html: renderMarkdown(body),
     next: list(data, "next", file),
+    tldrHtml: tldr(list(data, "tldr", file), file),
   };
 }
 
@@ -290,7 +299,10 @@ export type Project = {
   name: string;
   repository: string;
   repositoryName: string;
+  /** The live product or project site (checked to return HTTP 200). */
   homepage: string;
+  /** The project's page on elixpo.com: `publication.canonical_url` in the repository's .elixpo/project.yml. */
+  elixpoPage: string;
   /** Languages GitHub reports for the repository, largest first. */
   languages: string[];
   stack: string[];
@@ -316,6 +328,7 @@ function loadProject(fileName: string): Project {
     repository,
     repositoryName: repository.replace("https://github.com/", ""),
     homepage: str(data, "homepage", file),
+    elixpoPage: str(data, "elixpo_page", file),
     languages: list(data, "languages", file),
     stack: list(data, "stack", file),
     html: renderMarkdown(body.trim()),
@@ -323,6 +336,13 @@ function loadProject(fileName: string): Project {
     mentors,
   };
 }
+
+/** The participating project an idea belongs to. */
+export const projectOf = (idea: Idea): Project => {
+  const project = PROJECTS.find((entry) => entry.repository === idea.repository);
+  if (!project) throw new Error(`No project in content/projects/ for ${idea.repository}`);
+  return project;
+};
 
 export const PROJECTS: Project[] = fs
   .readdirSync(path.join(CONTENT_DIR, "projects"))

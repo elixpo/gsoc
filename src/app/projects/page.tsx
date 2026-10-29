@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { JsonLd, nextLinks, PageHero, PageLayout, Prose, WhatNext } from "@/components/blocks";
+import { JsonLd, nextLinks, PageHero, PageLayout, Prose, Tldr, WhatNext } from "@/components/blocks";
 import { getPage, PROJECTS } from "@/lib/content";
 import { absoluteUrl, breadcrumbJsonLd, ORGANIZATION_ID, pageMetadata, stripTags, WEBSITE_ID } from "@/lib/seo";
 
@@ -40,6 +40,7 @@ export default function ProjectsPage() {
     <>
       <JsonLd data={[structured, breadcrumbJsonLd([{ name: page.title, path: "/projects/" }])]} />
       <PageHero eyebrow="Projects" headingHtml={page.headingHtml} lead={page.lead} />
+      <Tldr items={page.tldrHtml} />
       <PageLayout toc={PROJECTS.map((project) => ({ id: project.slug, text: project.name }))}>
         {PROJECTS.map((project) => (
           <section className="page-section project" key={project.slug} aria-labelledby={project.slug}>
@@ -57,7 +58,19 @@ export default function ProjectsPage() {
               <div>
                 <dt>Repository</dt>
                 <dd>
-                  <a href={project.repository}>{project.repositoryName}</a> · <a href={project.homepage}>{project.homepage.replace("https://", "")}</a>
+                  <a href={project.repository}>{project.repositoryName}</a>
+                </dd>
+              </div>
+              <div>
+                <dt>Live product</dt>
+                <dd>
+                  <a href={project.homepage}>{project.homepage.replace("https://", "")}</a>
+                </dd>
+              </div>
+              <div>
+                <dt>Project page on elixpo.com</dt>
+                <dd>
+                  <a href={project.elixpoPage}>{project.elixpoPage.replace("https://", "")}</a>
                 </dd>
               </div>
               <div>

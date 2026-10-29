@@ -25,6 +25,11 @@ banner, capacity statement, contact email) in `src/data/site.ts`.
 | `pages/why-elixpo.md` | `/why-elixpo/` (questions a programme reviewer may ask, each `##` heading one question with an evidence link) |
 | `pages/about.md` | `/about/` (history from `elixpo/content/history.json`; each step is `### Date — Title` with its evidence) |
 
+Every page in `pages/` has a `tldr:` list in its frontmatter: three to five
+short lines with the page's most important facts or actions, shown in the
+TL;DR box at the top of the page. Keep them identical to the page body. Idea
+pages build their TL;DR from the idea's frontmatter.
+
 ## Ideas
 
 | # | Idea | Theme | Size | Difficulty | Primary / backup mentor |

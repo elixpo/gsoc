@@ -3,6 +3,12 @@ title: Our agenda
 description: Why Elixpo takes part in Google Summer of Code 2027 - what Elixpo is, what it ships in public, how it decides what to approve, its position on money and commercial interests, and its commitments to contributors.
 heading: Our *agenda*
 lead: Elixpo takes part in Google Summer of Code to help one contributor become the supported owner of one part of a real project. This page sets out what Elixpo is, what it ships in public, how it decides what to approve, and what it commits to contributors.
+tldr:
+  - Elixpo is an open-source project foundry: build in public, release as a project.
+  - Our aim: one contributor who becomes the supported owner of one part of one codebase.
+  - The ideas belong to five codebases released as hosted services, npm packages and a Debian package.
+  - No Google Summer of Code idea involves payments, pricing or paid features.
+  - Two mentors, human review, and replies within 48 hours on weekdays.
 next:
   - /contributor-guide/
   - /ideas/

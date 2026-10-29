@@ -3,6 +3,12 @@ title: Frequently asked questions
 description: Answers to common questions about Elixpo and Google Summer of Code 2027 - status, intake, project sizes and difficulty, mentors, eligibility and contact.
 heading: Frequently asked *questions*
 lead: Answers to common questions about Elixpo and Google Summer of Code 2027. If your question is not answered here, email gsoc@elixpo.com.
+tldr:
+  - Elixpo is applying to be a mentoring organisation for 2027. In 2027 we plan to mentor one contributor.
+  - Six ideas, each with a primary and a backup mentor: Ayushman Bhattacharya, Vivek Yadav or Divyanshu.
+  - No Google Summer of Code idea involves payments, pricing or paid features.
+  - Submit your proposal on the [official GSoC website](https://summerofcode.withgoogle.com/); Google sets eligibility and deadlines.
+  - Anything else: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 next:
   - /ideas/
   - /glossary/

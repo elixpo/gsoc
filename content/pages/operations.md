@@ -3,21 +3,17 @@ title: How we run the programme
 description: How Elixpo will run Google Summer of Code 2027 - what happens in each phase, the weekly communication cadence and progress report, mentor duties and absence cover, evaluations, escalation, and what happens after the programme.
 heading: How we run *the programme*
 lead: This page sets out how Elixpo will run Google Summer of Code 2027 from selection to the end of the programme and after it. These are our commitments, based on Google's published responsibilities for organisations, mentors and contributors. We will follow them for every contributor.
+tldr:
+  - One contributor, two mentors: the primary mentor leads and the backup mentor takes over during any absence.
+  - Every week: a call with the primary mentor, at least one more written exchange, and a short public progress report.
+  - If work falls behind, we say so early, in writing, and agree a recovery plan before any evaluation.
+  - Escalation runs from the primary mentor to the backup mentor, the organisation administrators, then Google.
+  - Questions and concerns: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 next:
   - /mentors/
   - /contributor-guide/
   - /timeline/
 ---
-
-> **In short**
->
-> - **One contributor, two mentors.** A primary mentor leads; a backup mentor
->   knows the project and takes over during any absence.
-> - **Every week:** a one-to-one call with the primary mentor, at least one
->   more written exchange, and a short public progress report.
-> - **No surprises.** If work falls behind, we say so early, in writing, and
->   agree a plan to recover before any evaluation.
-> - **Questions and concerns:** [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 
 ## Who does what
 

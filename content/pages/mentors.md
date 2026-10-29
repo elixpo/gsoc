@@ -3,6 +3,12 @@ title: Mentors and organisers
 description: The mentors, organisation administrators and programme coordinator for Elixpo's Google Summer of Code 2027 application.
 heading: Mentors *and organisers*
 lead: The mentors and organisers responsible for Elixpo's Google Summer of Code 2027 application, the ideas each mentor supervises, and how to contact them.
+tldr:
+  - Three mentors: Ayushman Bhattacharya, Vivek Yadav and Divyanshu.
+  - Every idea has a primary and a backup mentor.
+  - Organisation administrators: Ayushman Bhattacharya (lead) and Vivek Yadav. Programme coordinator: Anwesha Chakraborty.
+  - Mentors aim to reply within 48 hours on weekdays.
+  - Programme questions: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 next:
   - /ideas/
   - /operations/

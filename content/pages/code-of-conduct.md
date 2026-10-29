@@ -3,6 +3,11 @@ title: Code of Conduct
 description: The Elixpo Community Code of Conduct as it applies to Google Summer of Code 2027 - expected behaviour, unacceptable behaviour, how to report a concern and how reports are handled.
 heading: Code of *Conduct*
 lead: Everyone who takes part in Elixpo's Google Summer of Code programme - applicants, contributors, mentors and organisers - follows the Elixpo Community Code of Conduct. This page summarises it and explains how to report a concern.
+tldr:
+  - The Elixpo Community Code of Conduct applies in every Elixpo space, including this programme.
+  - Be kind and respectful; harassment, plagiarism and misuse of a role are not acceptable.
+  - Report a concern privately to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) with the subject Code of Conduct report.
+  - If a report involves an organisation administrator, write to the other administrator.
 next:
   - /contributing/
   - /ai-policy/

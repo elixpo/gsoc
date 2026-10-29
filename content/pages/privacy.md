@@ -3,6 +3,12 @@ title: Privacy notice
 description: How the Elixpo Google Summer of Code site and programme handle personal information - a static site with no cookies or analytics, hosted on Cloudflare Pages.
 heading: Privacy *notice*
 lead: This notice explains what happens to personal information when you visit this site, write to us or apply to work with Elixpo in Google Summer of Code. It describes how the site and the programme work today.
+tldr:
+  - A static site: no accounts, no forms, no cookies and no analytics.
+  - Mentors' GitHub profile pictures load from GitHub; everything else is served from this site.
+  - Cloudflare Pages hosts the site and processes standard request information.
+  - Email to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) is used only to answer you and to run the programme.
+  - You submit applications and proposals to Google, through the Google Summer of Code site.
 next:
   - /terms/
   - /contact/

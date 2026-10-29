@@ -253,6 +253,9 @@ def check_site(site: Path, launched: bool) -> list[str]:
     ideas = [frontmatter(path) for path in sorted(Path("content/ideas").glob("*.md")) if path.name != "README.md"]
     ideas.sort(key=lambda idea: int(str(idea["order"])))
     idea_routes = [f"/ideas/{idea['slug']}/" for idea in ideas]
+    # Participating projects (content/projects/*.md): product site and elixpo.com page, linked from /projects/ and each idea
+    projects = [frontmatter(path) for path in sorted(Path("content/projects").glob("*.md"))]
+    project_of = {str(project["repository"]): project for project in projects}
     routes = STATIC_ROUTES + idea_routes
 
     # Launch gate: robots.txt
@@ -391,14 +394,12 @@ def check_site(site: Path, launched: bool) -> list[str]:
                     expect(repos == [f"https://github.com/elixpo/{repo}" for repo in PROJECT_REPOS],
                            f"/projects/: SoftwareSourceCode items with codeRepository and programmingLanguage are {repos}")
 
-    # Required sections, the in-short box on the contributor guide, and links to the agenda
+    # Required sections and links to the agenda
     for route, ids in REQUIRED_SECTIONS.items():
         source = raw.get(route, "")
         for section in ids:
             expect(f'id="{section}"' in source, f"{route}: section #{section} missing")
     if "/contributor-guide/" in raw:
-        expect("<blockquote>" in raw["/contributor-guide/"] and "In short" in parsed["/contributor-guide/"].text,
-               "/contributor-guide/: the 'In short' box is missing")
         expect('href="/agenda/"' in raw["/contributor-guide/"], "/contributor-guide/: does not link to /agenda/")
     if "/" in raw:
         expect('href="/agenda/"' in raw["/"] and "Read our agenda" in parsed["/"].text, "/: 'Read our agenda' link missing")
@@ -430,6 +431,12 @@ def check_site(site: Path, launched: bool) -> list[str]:
         source, page = raw.get(route), parsed.get(route)
         if not source or not page:
             continue
+        # TL;DR box near the top of every page: a mono label and 3-5 short lines (content/**/*.md `tldr:`)
+        tldr = re.search(r'<aside class="content tldr-wrap"[^>]*>\s*<div class="tldr">\s*<p class="tldr-label">TL;DR</p>\s*<ul>(.*?)</ul>', source, re.S)
+        items = re.findall(r"<li>", tldr.group(1)) if tldr else []
+        expect(bool(tldr) and 3 <= len(items) <= 5, f"{route}: TL;DR box missing or not 3-5 items (found {len(items)})")
+        if tldr:
+            expect(source.index(tldr.group(0)) < source.find('id="what-next"'), f"{route}: TL;DR box must come before the 'Next steps' block")
         expect('id="what-next"' in source and "Next steps" in page.text, f"{route}: 'Next steps' block missing")
         what_next = re.search(r'<nav[^>]*class="what-next".*?</nav>', source, re.S)
         expect(bool(what_next and re.search(r'href="/', what_next.group(0))), f"{route}: 'Next steps' block has no internal links")
@@ -523,6 +530,9 @@ def check_site(site: Path, launched: bool) -> list[str]:
                 expect(f'href="{target}"' in source, f"/projects/: link missing: {target}")
         for idea in ideas:
             expect(f'href="/ideas/{idea["slug"]}/"' in source, f"/projects/: idea {idea['slug']} not listed under its project")
+        for project in projects:
+            for label, key in (("Live product", "homepage"), ("Project page on elixpo.com", "elixpo_page")):
+                expect(f'<dt>{label}</dt><dd><a href="{project[key]}">' in source, f"/projects/: {project['name']}: '{label}' link missing")
         main = re.search(r"<main.*?</main>", source, re.S)
         expect(bool(main) and not re.search(r"\bMIT\b", main.group(0) if main else ""), "/projects/: must not claim a licence; link the repository's LICENSE")
 
@@ -568,6 +578,11 @@ def check_site(site: Path, launched: bool) -> list[str]:
         material = re.search(r'<h2 id="material">Material</h2>.*?</section>', source, re.S)
         expect(bool(material and f'href="{idea["repository"]}"' in material.group(0) and f'href="{idea["setup"]}"' in material.group(0)),
                f"{route}: 'Material' section missing the repository or setup link")
+        project = project_of.get(str(idea["repository"]))
+        expect(bool(project), f"{route}: no project in content/projects/ for {idea['repository']}")
+        if project:
+            for label, key in (("Live product", "homepage"), ("Project page on elixpo.com", "elixpo_page")):
+                expect(f'<dt>{label}</dt><dd><a href="{project[key]}">' in source, f"{route}: '{label}' link missing")
         pager = re.search(r'<nav[^>]*aria-label="More ideas".*?</nav>', source, re.S)
         expect(bool(pager), f"{route}: previous / next idea links missing")
         if pager:

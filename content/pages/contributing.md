@@ -3,6 +3,11 @@ title: Contributing
 description: How to contribute to Elixpo's Google Summer of Code programme - suggest or improve a project idea, fix text on this site, and contribute to the participating projects.
 heading: Contributing to *the programme*
 lead: You do not have to wait for Google Summer of Code to take part. You can help shape the project ideas, improve this site and contribute to the participating projects now.
+tldr:
+  - Suggest or improve an idea by writing to [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+  - Report mistakes on this site to the same address until its source repository is public.
+  - Small fixes, tests and documentation are welcome in the [participating projects](/projects/) at any time.
+  - The Code of Conduct and the AI policy apply everywhere.
 next:
   - /projects/
   - /contributor-guide/
