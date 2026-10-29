@@ -1,2 +1,4 @@
-/mentors /people/ 301
-/mentors/ /people/ 301
+/mentor /mentors/ 301
+/mentor/ /mentors/ 301
+/people /mentors/ 301
+/people/ /mentors/ 301

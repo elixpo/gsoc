@@ -22,7 +22,7 @@ from pathlib import Path
 
 SITE_URL = "https://gsoc.elixpo.com"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/people/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/about/",
+STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/mentors/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/", "/about/",
                  "/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
 # Footer legal and community row (src/data/site.ts LEGAL_PAGES), exactly in this order, on every page.
 LEGAL_ROUTES = ["/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
@@ -98,8 +98,8 @@ FORBIDDEN_FRAMING = [
 FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
 # Main navigation (src/data/site.ts NAV), exactly in this order; Contact is last, as a button.
 # Each of these pages must mark its own link with aria-current="page".
-NAV_ROUTES = ["/ideas/", "/projects/", "/proposal/", "/timeline/", "/people/", "/faq/", "/contributor-guide/", "/contact/"]
-NAV_LABELS = ["Ideas", "Projects", "Proposal", "Timeline", "People", "FAQ", "Get involved", "Contact"]
+NAV_ROUTES = ["/ideas/", "/projects/", "/proposal/", "/timeline/", "/mentors/", "/faq/", "/contributor-guide/", "/contact/"]
+NAV_LABELS = ["Ideas", "Projects", "Proposal", "Timeline", "Mentors", "FAQ", "Get involved", "Contact"]
 NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/about/"]
 # The five codebases on /projects/ (content/projects/*.md).
 PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "oreo"]
@@ -469,16 +469,16 @@ def check_site(site: Path, launched: bool) -> list[str]:
         main = re.search(r"<main.*?</main>", source, re.S)
         expect(bool(main) and not re.search(r"\bMIT\b", main.group(0) if main else ""), "/projects/: must not claim a licence; link the repository's LICENSE")
 
-    # People page: each role is a chip in a list
-    if "/people/" in raw:
-        source = raw["/people/"]
+    # Mentors page: each role is a chip in a list
+    if "/mentors/" in raw:
+        source = raw["/mentors/"]
         roles_source = Path("src/data/people.ts").read_text(encoding="utf-8")
         for roles in re.findall(r"roles: \[([^\]]*)\]", roles_source):
             for role in re.findall(r'"([^"]+)"', roles):
                 expect(re.search(r'<ul class="chips[^"]*"[^>]*>(?:(?!</ul>).)*<li class="chip">' + re.escape(html.escape(role, quote=False)) + "</li>", source, re.S) is not None,
-                       f"/people/: role {role!r} is not shown as a chip")
+                       f"/mentors/: role {role!r} is not shown as a chip")
         for role in ("Primary mentor", "Backup mentor"):
-            expect(f'<li class="chip">{role}</li>' in source, f"/people/: {role!r} chip missing")
+            expect(f'<li class="chip">{role}</li>' in source, f"/mentors/: {role!r} chip missing")
 
     # Timeline: usual phases, no dates, link to Google's timeline
     if "/timeline/" in raw:
@@ -533,7 +533,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
     for route in ("/ideas/", "/faq/"):
         if route in parsed:
             expect(CAPACITY in parsed[route].text, f"{route}: capacity statement missing")
-    listing, home, faq, people_page = (parsed.get(r) for r in ("/ideas/", "/", "/faq/", "/people/"))
+    listing, home, faq, people_page = (parsed.get(r) for r in ("/ideas/", "/", "/faq/", "/mentors/"))
     for idea in ideas:
         primary, backup = team[str(idea["primary_mentor"])]["name"], team[str(idea["backup_mentor"])]["name"]
         facts = [str(idea["title"]), f"{idea['size_hours']} hours", str(idea["difficulty"]), str(primary), str(backup)]
@@ -542,7 +542,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
                 for fact in facts:
                     expect(fact in page.text, f"{where}: missing {fact!r} for idea {idea['slug']}")
         if people_page:
-            expect(str(idea["title"]) in people_page.text, f"/people/: idea {idea['slug']} not listed under its mentors")
+            expect(str(idea["title"]) in people_page.text, f"/mentors/: idea {idea['slug']} not listed under its mentors")
     if faq:
         for info in mentors.values():
             expect(str(info["name"]) in faq.text, f"/faq/: mentor {info['name']} missing from the FAQ")
@@ -551,7 +551,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect(sentence in faq.text, f"/faq/: size counts out of date; expected {sentence!r}")
     if people_page:
         for info in team.values():
-            expect(str(info["name"]) in people_page.text, f"/people/: {info['name']} missing")
+            expect(str(info["name"]) in people_page.text, f"/mentors/: {info['name']} missing")
     if home:
         expect(f"See the {len(ideas)} project ideas" in home.text, "/: idea count in the call to action is wrong")
 
@@ -652,6 +652,11 @@ def check_site(site: Path, launched: bool) -> list[str]:
     for name in sorted(public_pdfs - known):
         errors.append(f"public/agreements/{name} does not belong to anyone in src/data/agreements.ts")
 
+    # Old and short URLs for the mentors page redirect to /mentors/ (Cloudflare Pages _redirects)
+    redirects_file = site / "_redirects"
+    redirects = redirects_file.read_text(encoding="utf-8").split("\n") if redirects_file.is_file() else []
+    for alias in ("/mentor", "/mentor/", "/people", "/people/"):
+        expect(f"{alias} /mentors/ 301" in redirects, f"_redirects: {alias} must redirect to /mentors/ with 301")
     # No decorative ::before / ::after pseudo-elements in the built CSS
     for css in (site / "_next").rglob("*.css"):
         content = css.read_text(encoding="utf-8")

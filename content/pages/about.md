@@ -5,7 +5,7 @@ heading: About *Elixpo*
 lead: Elixpo is an open-source organisation that builds software in public. This page sets out its community and mentoring record, with a link to the public source for each step.
 next:
   - /ideas/
-  - /people/
+  - /mentors/
   - /contributor-guide/
 ---
 
@@ -98,5 +98,5 @@ Evidence: [community partnership programme](https://elixpo.com/partnerships).
   for Elixpo since 2024. Ayushman was also a mentor in GirlScript Summer of Code 2025,
   Open Source Contribution Initiative (OSCI) 2025 and ESSOC 2026.
 
-The [people page](/people/) lists every mentor and organiser and the ideas
+The [mentors page](/mentors/) lists every mentor and organiser and the ideas
 each mentor supervises.

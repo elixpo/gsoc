@@ -18,7 +18,7 @@ GitHub. See [`content/README.md`](../content/README.md) for the full map.
 | `content/pages/ideas.md` + `content/ideas/*.md` | `/ideas/` |
 | `content/ideas/<slug>.md` | `/ideas/<slug>/` |
 | `content/pages/projects.md` + `content/projects/*.md` | `/projects/` (ideas and mentors come from the idea files) |
-| `content/pages/people.md` + `src/data/people.ts` | `/people/` |
+| `content/pages/mentors.md` + `src/data/people.ts` | `/mentors/` |
 | `content/pages/contributor-guide.md` | `/contributor-guide/` |
 | `content/pages/proposal.md` | `/proposal/` |
 | `content/pages/selection.md` | `/selection/` |
@@ -92,7 +92,7 @@ trademark notice in every footer, the exact main navigation order and labels,
 the idea page sections (including Warm-up tasks), the five repositories on
 `/projects/`, the absence of "first-time" framing, broken internal
 links, the GSoC logo placement on `/`, history evidence links on `/about/`,
-role chips on `/people/`, the home hero (numerals 1/6/2/5 in the stats
+role chips on `/mentors/`, the home hero (numerals 1/6/2/5 in the stats
 row, the intake sentence in the lead with no callout box, the credential
 strip, the 01-04 "Getting started" grid), the footer legal row in order on
 every page, `/agreements/` against `src/data/agreements.ts` and
@@ -100,7 +100,7 @@ every page, `/agreements/` against `src/data/agreements.ts` and
 third-party resource in the build, `security.txt`, icons and the manifest, no
 `::before`/`::after` in the built CSS, and claims the site must not make. It also checks that idea
 sizes, difficulty levels and mentors are identical on `/`, `/ideas/`, each
-idea page, `/people/`, `/faq/` and `content/README.md`.
+idea page, `/mentors/`, `/faq/` and `content/README.md`.
 
 ## Launch gate
 

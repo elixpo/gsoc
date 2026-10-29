@@ -102,7 +102,7 @@ jobs:
               --retry 12 --retry-all-errors --retry-delay 5 "$@"
           }
 
-          for route in / /ideas/ /people/ /contributor-guide/ /proposal/ /faq/ /contact/ /timeline/ /robots.txt /sitemap.xml
+          for route in / /ideas/ /mentors/ /contributor-guide/ /proposal/ /faq/ /contact/ /timeline/ /robots.txt /sitemap.xml
           do
             fetch --output /dev/null "$CANDIDATE_URL$route"
           done
@@ -146,7 +146,7 @@ jobs:
       - name: Verify production hostname after promotion
         if: github.event_name == 'workflow_dispatch' && inputs.promote_domain
         run: |
-          for route in / /ideas/ /people/ /faq/ /robots.txt /sitemap.xml
+          for route in / /ideas/ /mentors/ /faq/ /robots.txt /sitemap.xml
           do
             curl --fail --silent --show-error --location \
               --retry 30 --retry-all-errors --retry-delay 10 \

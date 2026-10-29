@@ -6,5 +6,5 @@ lead: Every Elixpo project idea belongs to one of the five codebases below. Each
 next:
   - /ideas/
   - /contributor-guide/
-  - /people/
+  - /mentors/
 ---

@@ -24,7 +24,7 @@ about this notice go to [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 - **No analytics or tracking.** The site contains no analytics, advertising
   or tracking scripts, and no social media widgets.
 - **Fonts and images are served from this site,** with one exception: the
-  People page and each project idea page show mentors' public GitHub profile
+  Mentors page and each project idea page show mentors' public GitHub profile
   pictures, which your browser loads from GitHub. GitHub receives that
   request under the
   [GitHub General Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).

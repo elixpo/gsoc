@@ -56,7 +56,7 @@ export const HOME_CREDENTIALS = [
     href: "https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2025-10-01..2025-10-31",
   },
   { label: "Organisation since 2024", detail: "github.com/elixpo", href: "https://github.com/elixpo" },
-  { label: "Two mentors per idea", detail: "primary and backup", href: "/people/" },
+  { label: "Two mentors per idea", detail: "primary and backup", href: "/mentors/" },
 ] as const;
 /** Required wherever the GSoC name or logo appears: shown in the footer of every page. */
 export const GSOC_TRADEMARK_NOTICE =
@@ -72,7 +72,7 @@ export const CONTENT_REVIEWED = "2026-10-29";
 
 /**
  * Primary navigation, in this order, with Contact as a button at the end.
- * People, Selection, AI policy, Glossary and About live in the footer site map
+ * Selection, AI policy, Glossary and About live in the footer site map
  * and in contextual links (the proposal page links Selection and AI policy).
  */
 export const NAV = [
@@ -80,7 +80,7 @@ export const NAV = [
   { href: "/projects/", label: "Projects" },
   { href: "/proposal/", label: "Proposal" },
   { href: "/timeline/", label: "Timeline" },
-  { href: "/people/", label: "People" },
+  { href: "/mentors/", label: "Mentors" },
   { href: "/faq/", label: "FAQ" },
   { href: "/contributor-guide/", label: "Get involved" },
 ] as const;
@@ -100,7 +100,7 @@ export const SITE_MAP = [
   { href: "/selection/", label: "Selection criteria", about: "How mentors evaluate applications." },
   { href: "/ai-policy/", label: "AI policy", about: "Permitted use of AI tools, and what you must disclose." },
   { href: "/timeline/", label: "Timeline", about: "The stages of the programme and where official dates are published." },
-  { href: "/people/", label: "People", about: "Mentors, the organisation administrators and the programme coordinator." },
+  { href: "/mentors/", label: "Mentors", about: "Mentors, the organisation administrators and the programme coordinator." },
   { href: "/faq/", label: "FAQ", about: "Answers to common questions." },
   { href: "/glossary/", label: "Glossary", about: "Definitions of the terms used on this site." },
   { href: "/contact/", label: "Contact", about: "Public channels and the programme email address." },

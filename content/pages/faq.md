@@ -47,7 +47,7 @@ level.
 
 Vivek Yadav, Ayushman Bhattacharya and Divyanshu. Each idea has a primary
 mentor (the contributor's main contact) and a backup mentor (who can step
-in). See [People](/people/).
+in). See [Mentors](/mentors/).
 
 ## Who are the organisation administrators?
 

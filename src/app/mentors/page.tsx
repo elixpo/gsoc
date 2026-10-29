@@ -7,15 +7,15 @@ import { PEOPLE } from "@/data/people";
 import { getPage, ideasMentoredBy } from "@/lib/content";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
-const page = getPage("people");
+const page = getPage("mentors");
 
-export const metadata: Metadata = pageMetadata({ title: page.title, description: page.description, path: "/people/", social: "people" });
+export const metadata: Metadata = pageMetadata({ title: page.title, description: page.description, path: "/mentors/", social: "mentors" });
 
-export default function PeoplePage() {
+export default function MentorsPage() {
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd([{ name: page.title, path: "/people/" }])} />
-      <PageHero eyebrow="People" headingHtml={page.headingHtml} lead={page.lead} />
+      <JsonLd data={breadcrumbJsonLd([{ name: page.title, path: "/mentors/" }])} />
+      <PageHero eyebrow="Mentors" headingHtml={page.headingHtml} lead={page.lead} />
       <section className="content content-split" aria-labelledby="roles">
         <Prose html={page.html} />
       </section>

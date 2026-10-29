@@ -4,7 +4,7 @@ description: The public commitments signed by everyone who mentors or administer
 heading: Mentor and administrator *agreements*
 lead: Everyone who mentors or administers for Elixpo in Google Summer of Code signs a public commitment that sets out their role and responsibilities. Signed copies are published here, so contributors know what they can expect.
 next:
-  - /people/
+  - /mentors/
   - /code-of-conduct/
   - /selection/
 ---

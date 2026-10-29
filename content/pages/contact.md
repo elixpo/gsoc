@@ -5,7 +5,7 @@ heading: Contact *us*
 lead: Write to gsoc@elixpo.com with questions about the programme or a project idea. Report defects and setup problems as an issue in the relevant repository.
 next:
   - /faq/
-  - /people/
+  - /mentors/
   - /contributor-guide/
 ---
 

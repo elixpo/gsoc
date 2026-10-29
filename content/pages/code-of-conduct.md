@@ -72,7 +72,7 @@ including Google's code of conduct for the programme where it applies.
   organisation administrators, Ayushman Bhattacharya (lead) and Vivek Yadav.
 - **Conflict of interest.** If your report involves one of the organisation
   administrators, write directly to the other administrator, using the
-  addresses on the [people page](/people/). Anyone handling a report who has
+  addresses on the [mentors page](/mentors/). Anyone handling a report who has
   a conflict of interest steps away from the decision.
 
 Reports are acknowledged and reviewed as promptly and fairly as the available
