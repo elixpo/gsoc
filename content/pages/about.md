@@ -94,9 +94,15 @@ Evidence: [community partnership programme](https://elixpo.com/partnerships).
 
 ## Mentoring experience
 
-- **Ayushman Bhattacharya** has been the Hacktoberfest project administrator
-  for Elixpo since 2024. Ayushman was also a mentor in GirlScript Summer of Code 2025,
-  Open Source Contribution Initiative (OSCI) 2025 and ESSOC 2026.
+- **Ayushman Bhattacharya** (lead organisation administrator): member of
+  GitHub's Maintainer Advisory community; maintainer of the open-source
+  generative AI platform
+  [pollinations/pollinations](https://github.com/pollinations/pollinations);
+  Hacktoberfest project administrator and student coordinator since 2024,
+  mentoring contributors through Hacktoberfest 2024 and 2025; GDG on Campus
+  organiser at JIS University in 2025–26, running a season of 21 events for
+  student developers; mentor in GirlScript Summer of Code 2025, Open Source
+  Contribution Initiative (OSCI) 2025 and ESSOC 2026.
 
 The [mentors page](/mentors/) lists every mentor and organiser and the ideas
 each mentor supervises.

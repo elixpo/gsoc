@@ -69,41 +69,59 @@ described in more detail on the [projects page](/projects/):
 
 ## Track record
 
-Elixpo maintainers have prepared, reviewed and merged work from outside
-contributors in public:
+### Elixpo in open source
 
-- **October 2024:** our first recorded Hacktoberfest. Maintainers opened the
-  Chapter repository to Hacktoberfest work, labelled and reviewed submissions,
-  and merged three Hacktoberfest-labelled pull requests.
+- **Hacktoberfest 2024:** our first recorded participation. Maintainers
+  opened the Chapter repository, reviewed submissions and merged three
+  Hacktoberfest-labelled pull requests.
   [View the pull requests](https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2024-10-01..2024-10-31).
-- **October 2025:** a second Hacktoberfest. The Chapter repository merged 47
-  Hacktoberfest-labelled pull requests from 24 GitHub accounts; maintainers
-  prepared the work, reviewed, labelled and merged it.
+- **Hacktoberfest 2025:** 47 Hacktoberfest-labelled pull requests merged from
+  24 GitHub accounts, with every change prepared, reviewed and merged by
+  maintainers.
   [View the pull requests](https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2025-10-01..2025-10-31).
-- **Mentoring in other programmes:** Ayushman Bhattacharya was a mentor in
-  GirlScript Summer of Code 2025, Open Source Contribution Initiative (OSCI)
-  2025 and ESSOC 2026.
+
+### Mentor experience
+
+Ayushman Bhattacharya, lead organisation administrator:
+
+- **GitHub Maintainer Advisory:** member of GitHub's Maintainer Advisory
+  community.
+- **Pollinations.ai:** maintainer of the open-source generative AI platform
+  [pollinations/pollinations](https://github.com/pollinations/pollinations).
+- **Hacktoberfest:** project administrator and student coordinator since
+  2024, mentoring contributors through Hacktoberfest 2024 and 2025.
+- **Google Developer Groups:** GDG on Campus organiser at JIS University in
+  2025–26, running a season of 21 events for student developers.
+- **Mentoring programmes:** mentor in GirlScript Summer of Code 2025, Open
+  Source Contribution Initiative (OSCI) 2025 and ESSOC 2026.
 
 Google Summer of Code extends this work to one contributor, one project and a
 full programme. The [community and mentoring record](/about/) lists each step
 with its source.
-
 ## Why we are applying
 
-Google Summer of Code brings new contributors into open source with the
-guidance of experienced mentors. We want to help one contributor learn how a
-production codebase works, deliver a well-defined piece of it under review,
-and remain involved after the programme. [Read our agenda](/agenda/) for what
-Elixpo is, what it ships in public and how it decides what to approve.
+- **One contributor, done well.** A newcomer learns a production codebase and
+  ships one well-defined piece of it under review.
+- **Mentorship, not just merges.** Two mentors on every idea, human review and
+  replies within 48 hours on weekdays.
+- **Ownership after the summer.** The contributor is invited to keep reviewing
+  and maintaining what they built.
+- **Open by default.** Every idea lives in a public, open-source codebase you
+  can set up without private keys.
+- **Proven at a smaller scale.** Our Hacktoberfest work shows we can prepare,
+  review and merge newcomers' contributions; GSoC is the deeper version.
 
+[Read our agenda](/agenda/) for what Elixpo is, what it ships in public and
+how it decides what to approve.
 ## How the ideas are organised
 
-- Each idea addresses one problem in one codebase and states what is out of
-  scope.
-- Each idea has two mentors: a primary mentor, who is the contributor's main
-  contact, and a backup mentor, who can step in.
-- Each idea states how success is measured, for example with tests that
-  anyone can run.
-- Each codebase can be set up locally without private Elixpo credentials.
-- Every page on this site is built from one set of Markdown files, so the
+- Each idea addresses **one problem in one codebase** and states what is
+  **out of scope**.
+- Each idea has **two mentors**: a **primary mentor**, who is the
+  contributor's main contact, and a **backup mentor**, who can step in.
+- Each idea states **how success is measured**, for example with **tests that
+  anyone can run**.
+- Each codebase can be **set up locally without private Elixpo
+  credentials**.
+- Every page on this site is built from **one set of Markdown files**, so the
   facts on each page agree.
