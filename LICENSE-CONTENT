@@ -1,16 +1,17 @@
 Site text licence
 
-The text in the content/ directory of this repository (the pages and project
-ideas published at https://gsoc.elixpo.com) is licensed under the Creative
-Commons Attribution 4.0 International licence (CC BY 4.0):
-https://creativecommons.org/licenses/by/4.0/
+The text in the content/ directory of this repository (the pages, project
+ideas and project descriptions published at https://gsoc.elixpo.com) is
+licensed under the Creative Commons Attribution 4.0 International licence
+(CC BY 4.0). The full legal code is in LICENSES/CC-BY-4.0.txt and at
+https://creativecommons.org/licenses/by/4.0/legalcode
 
 Copyright (c) 2026 Elixpo contributors
 
 The site's source code (everything outside content/) is licensed under the
 MIT licence in LICENSE.
 
-Not covered by either licence: the Elixpo name and logo (public/elixpo-logo.png
-and src/app/favicon.ico), which are Elixpo brand marks, and the "Google Summer
-of Code" name, which belongs to Google. The Elixpo projects linked from the
+Not covered by either licence: the Elixpo name and logos, and the Google
+Summer of Code name and logo files in public/brand/gsoc/, which belong to
+Google LLC. See TRADEMARKS.md and NOTICE. The Elixpo projects linked from the
 site keep the licences stated in their own repositories.

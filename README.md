@@ -1,146 +1,124 @@
-# Elixpo GSoC site
+<p align="center">
+  <img src="public/elixpo-logo.png" width="96" alt="Elixpo logo: the Oreo panda" />
+</p>
 
-The source of **https://gsoc.elixpo.com**, Elixpo's Google Summer of Code
-programme site: project ideas, participating projects, mentors, contributor
-guide, proposal template, selection criteria, AI policy and FAQ.
+<h1 align="center">Elixpo · Google Summer of Code 2027</h1>
 
-Elixpo is applying to be a mentoring organisation for GSoC 2027. The site
-must never claim that Elixpo has been accepted.
+<p align="center">
+  <strong>Learn open source by working on a real project, with two mentors beside you.</strong><br/>
+  <a href="https://gsoc.elixpo.com">gsoc.elixpo.com</a> ·
+  <a href="https://gsoc.elixpo.com/ideas/">Project ideas</a> ·
+  <a href="https://gsoc.elixpo.com/contributor-guide/">Get involved</a> ·
+  <a href="https://github.com/orgs/elixpo/discussions">Discussions</a> ·
+  <a href="mailto:gsoc@elixpo.com">gsoc@elixpo.com</a>
+</p>
 
-## How content maps to routes
+---
 
-Markdown in [`content/`](content/) is the source of truth and reads well on
-GitHub. See [`content/README.md`](content/README.md) for the full map.
+## About
 
-| Source | Route |
-|---|---|
-| `content/pages/home.md` | `/` |
-| `content/pages/ideas.md` + `content/ideas/*.md` | `/ideas/` |
-| `content/ideas/<slug>.md` | `/ideas/<slug>/` |
-| `content/pages/projects.md` + `content/projects/*.md` | `/projects/` (ideas and mentors come from the idea files) |
-| `content/pages/people.md` + `src/data/people.ts` | `/people/` |
-| `content/pages/contributor-guide.md` | `/contributor-guide/` |
-| `content/pages/proposal.md` | `/proposal/` |
-| `content/pages/selection.md` | `/selection/` |
-| `content/pages/ai-policy.md` | `/ai-policy/` |
-| `content/pages/timeline.md` | `/timeline/` |
-| `content/pages/faq.md` | `/faq/` |
-| `content/pages/contact.md` + `src/data/people.ts` | `/contact/` |
-| `content/pages/about.md` | `/about/` (history entries are `### Date — Title`) |
-| `src/app/not-found.tsx` | 404 page |
+This repository is the home of Elixpo's Google Summer of Code (GSoC)
+programme. It holds everything a prospective contributor needs to read before
+applying: the project ideas, the projects they belong to, how to get involved,
+how to write a proposal, how we select contributors, our AI policy and the
+people who mentor.
 
-People, roles and emails live only in `src/data/people.ts`. Shared facts (the
-status banner, the one-contributor statement, the contact address) live only
-in `src/data/site.ts`.
+**Status:** Elixpo is applying to be a mentoring organisation for Google Summer
+of Code 2027. Google announces accepted organisations after the application
+period. In 2027 we expect to mentor one contributor.
 
-## Stack
+## Direction
 
-Next.js 16 static export (`output: "export"`, `trailingSlash: true`), React 19
-and TypeScript, following `research.elixpo`. Markdown is rendered at build
-time with [`marked`](https://marked.js.org/) (pinned). The site works without
-JavaScript. Social cards (`/social/<page>.png`) are generated at build time.
+Short contributions bring people into open source, but they rarely turn
+newcomers into maintainers. Our aim for GSoC is the longer path:
 
-## Run, build and check
+> **newcomer → first contribution → understands one part of a project →
+> designs and ships it with review → helps review others → keeps it running**
 
-Use Node.js 24.
+Everything in this programme is built around that path:
 
-```bash
-npm ci
-npm run dev          # http://localhost:3000
-npm run typecheck
-npm run lint
-npm run build        # static export in out/
-npm run site:check   # crawl metadata, launch gate, links, consistency
-```
+- **One problem per idea.** Each idea is one clear problem in one codebase,
+  with what is in and out of scope written down.
+- **Two mentors per idea.** A primary mentor is the main contact; a backup
+  mentor knows the project and can step in.
+- **Proof, not promises.** Every idea says how success is measured, usually
+  with tests anyone can run.
+- **No private keys.** Every project can be set up from its public repository.
+- **Ownership after the summer.** The contributor is invited to keep reviewing
+  and maintaining the part they built.
 
-`scripts/check_site.py` checks every exported page for title, canonical URL,
-description, Open Graph and Twitter tags (with `og:image` sizes that match the
-real PNG), JSON-LD (Organization and WebSite everywhere, BreadcrumbList on
-inner pages, ItemList on `/ideas/`, CollectionPage of SoftwareSourceCode on
-`/projects/`, FAQPage on `/faq/`, AboutPage on `/about/`), one `<h1>`, `lang="en"`, the skip link, the status banner, the GSoC
-trademark notice in every footer, the exact main navigation order and labels,
-the idea page sections (including Warm-up tasks), the five repositories on
-`/projects/`, the absence of "first-time" framing, broken internal
-links, the GSoC logo placement on `/`, history evidence links on `/about/`,
-role chips on `/people/`, `security.txt`, icons and the manifest, no
-`::before`/`::after` in the built CSS, and claims the site must not make. It also checks that idea
-sizes, difficulty levels and mentors are identical on `/`, `/ideas/`, each
-idea page, `/people/`, `/faq/` and `content/README.md`.
+## Project ideas
 
-## Launch gate
+| # | Idea | Project | Theme | Size | Difficulty |
+|---|---|---|---|---|---|
+| 1 | [LixBlogs read-access policy and offline conformance harness](https://gsoc.elixpo.com/ideas/lixblogs-read-access-policy/) | LixBlogs | Security | 175 h | Hard |
+| 2 | [Accessible LixSketch canvas](https://gsoc.elixpo.com/ideas/accessible-lixsketch-canvas/) | LixSketch | Accessibility | 175 h | Intermediate |
+| 3 | [Crumb connector contract and offline conformance kit](https://gsoc.elixpo.com/ideas/crumb-connector-contract/) | Crumb | Rust, agent security | 175 h | Hard |
+| 4 | [Explainable contest-scoring engine](https://gsoc.elixpo.com/ideas/contest-scoring-engine/) | Elixpo Open Source | Community, data | 90 h | Intermediate |
+| 5 | [Oreo badge desktop simulator](https://gsoc.elixpo.com/ideas/oreo-badge-simulator/) | Oreo | Embedded, open hardware | 175 h | Intermediate |
+| 6 | [LixBlogs CLI automation contract v1](https://gsoc.elixpo.com/ideas/lixblogs-cli-contract/) | LixBlogs | Developer tools | 90 h | Easy |
 
-The site must not be indexed until the team decides to launch.
+The full descriptions, warm-up tasks and mentors are on
+[gsoc.elixpo.com/ideas](https://gsoc.elixpo.com/ideas/). The source text is in
+[`content/ideas/`](content/ideas/).
 
-| `NEXT_PUBLIC_SITE_LAUNCHED` at build time | robots.txt | Every page |
+## Participating projects
+
+| Project | What it is | Repository |
 |---|---|---|
-| unset, or anything but `true` (default) | `Disallow: /`, no sitemap | `<meta name="robots" content="noindex, nofollow">` |
-| `true` | `Allow: /` and `Sitemap: https://gsoc.elixpo.com/sitemap.xml` | `index, follow` |
+| **LixBlogs** | A collaborative publishing platform with an API and a CLI | [elixpo/blogs.elixpo](https://github.com/elixpo/blogs.elixpo) |
+| **LixSketch** | A shared canvas for sketches, diagrams and documents | [elixpo/sketch.elixpo](https://github.com/elixpo/sketch.elixpo) |
+| **Crumb** | A self-hosted agent harness and terminal, written in Rust | [elixpo/crumb.elixpo](https://github.com/elixpo/crumb.elixpo) |
+| **Elixpo Open Source** | A platform for running open-source contests and mentorship programmes | [elixpo/opensource.elixpo](https://github.com/elixpo/opensource.elixpo) |
+| **Oreo** | An open MicroPython OS and hardware platform for an ESP32-S3 badge | [elixpo/oreo](https://github.com/elixpo/oreo) |
 
-The value is baked in at build time, so changing it needs a rebuild. Check
-both states with:
+## People
 
-```bash
-npm run build && npm run site:check -- --not-launched
-NEXT_PUBLIC_SITE_LAUNCHED=true npm run build && npm run site:check -- --launched
-```
+| Person | Role |
+|---|---|
+| Ayushman Bhattacharya ([@Circuit-Overtime](https://github.com/Circuit-Overtime)) | Lead organisation administrator, mentor, founder of Elixpo |
+| Vivek Yadav ([@ez-vivek](https://github.com/ez-vivek)) | Organisation administrator, mentor, programme point of contact |
+| Divyanshu ([@divyanshuj91](https://github.com/divyanshuj91)) | Mentor |
+| Anwesha Chakraborty ([@anwe-ch](https://github.com/anwe-ch)) | Programme coordinator, programme point of contact |
 
-CI runs both. The 404 page is always `noindex`.
+## Our record
 
-## Deploy
+Elixpo has run open contribution in public since 2024. Maintainers took part
+in Hacktoberfest in October 2024 and October 2025: preparing work for outside
+contributors, reviewing their pull requests and merging them. In October 2025
+the Chapter repository merged 47 Hacktoberfest-labelled pull requests from 24
+GitHub accounts. The dated record, with links to the evidence, is on
+[gsoc.elixpo.com/about](https://gsoc.elixpo.com/about/).
 
-The site is static and is hosted on Cloudflare Pages (project `elixpo-gsoc`),
-deployed the same way as `research.elixpo`: by the trusted GitHub Actions
-workflow [`.github/workflows/deploy-cloudflare-pages.yml`](.github/workflows/deploy-cloudflare-pages.yml).
-No Cloudflare credentials are stored in this repository or needed locally.
+## Get involved
 
-Every push to `main` lints, typechecks, builds and checks the site, creates the
-Pages project if it is missing, deploys to `https://elixpo-gsoc.pages.dev` and
-smoke-tests the result. Running the workflow by hand with `promote_domain`
-also attaches `gsoc.elixpo.com`.
+1. Read the [project ideas](https://gsoc.elixpo.com/ideas/) and pick one or two.
+2. Set up the project from its repository and try a
+   [warm-up task](https://gsoc.elixpo.com/contributor-guide/).
+3. Introduce yourself and ask questions in
+   [GitHub Discussions](https://github.com/orgs/elixpo/discussions).
+4. Write your proposal with our [template](https://gsoc.elixpo.com/proposal/)
+   and submit it through the official
+   [Google Summer of Code website](https://summerofcode.withgoogle.com/).
 
-```bash
-./deploy.sh --pages build              # local build + checks
-./deploy.sh --pages deploy             # dispatch the workflow on main
-./deploy.sh --pages deploy --promote   # ...and attach gsoc.elixpo.com
-```
+Programme questions and private matters: **gsoc@elixpo.com**.
 
-One-time setup (maintainer):
+## Improving this site
 
-- Add the repository secrets `CLOUDFLARE_API_TOKEN` and
-  `CLOUDFLARE_ACCOUNT_ID` (the same values `research.elixpo` uses).
-- Launch gate: the repository variable `SITE_LAUNCHED` controls indexing. Leave
-  it unset until launch; set it to `true` on launch day and redeploy.
+Spotted a mistake or have a suggestion for an idea? Open an issue or a pull
+request; see [CONTRIBUTING.md](CONTRIBUTING.md). Developer notes (building,
+checks and deployment) are in [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md). This
+project follows the [Elixpo Code of Conduct](CODE_OF_CONDUCT.md); report
+security issues as described in [SECURITY.md](SECURITY.md).
 
-Social card: put a PNG at `public/og-image.png` (the Elixpo branding pipeline
-outputs 1280x720) to replace the generated home card (also the site-wide
-default). Its real size is read from the file at build time. Other pages keep
-their generated 1200x630 cards. Never use the GSoC logo as a social card or icon.
+## License
 
-Search Console (optional): set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` at build
-time to emit `<meta name="google-site-verification">`. Unset, nothing is emitted.
-
-## GSoC logo and brand rules
-
-`public/brand/gsoc/` holds Google's official GSoC logo files, unmodified, from
-[Google's downloads](https://developers.google.com/open-source/gsoc/resources/downloads/).
-Follow Google's [brand guidelines](https://developers.google.com/open-source/gsoc/resources/brand_guidelines):
-do not alter or recolour the logo, never combine it with the Elixpo mark in one
-lockup, always label it ("Elixpo is applying to"), and never imply
-that Google endorses Elixpo. Every page carries the trademark notice in its
-footer (`GSOC_TRADEMARK_NOTICE` in `src/data/site.ts`).
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md). This project follows the
-[Elixpo Code of Conduct](CODE_OF_CONDUCT.md). Report security issues as
-described in [SECURITY.md](SECURITY.md).
-
-## Licence
-
-- Site source code: MIT, see [LICENSE](LICENSE).
-- Site text in `content/`: CC BY 4.0, see [LICENSE-CONTENT](LICENSE-CONTENT).
-- The Elixpo name and logo are brand marks and are not covered by either
-  licence. Each Elixpo project linked from the site keeps its own licence.
+- **Site code:** MIT. See [LICENSE](LICENSE).
+- **Site text** (`content/`): Creative Commons Attribution 4.0. See
+  [LICENSE-CONTENT](LICENSE-CONTENT) and
+  [LICENSES/CC-BY-4.0.txt](LICENSES/CC-BY-4.0.txt).
+- **Names and logos** are not covered by either licence. See
+  [TRADEMARKS.md](TRADEMARKS.md) and [NOTICE](NOTICE).
 
 Google Summer of Code and the GSoC logo are trademarks of Google LLC. Elixpo
 is applying as a mentoring organisation and is not affiliated with or endorsed
