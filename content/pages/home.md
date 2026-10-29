@@ -1,8 +1,8 @@
 ---
 title: Elixpo and Google Summer of Code 2027
 description: Elixpo is preparing to apply to Google Summer of Code 2027 as a first-time mentoring organisation and plans to mentor one contributor. Learn what the programme is and read the six project ideas.
-heading: Learn open source by working on a real project, with a mentor.
-lead: This site explains Elixpo's plans for Google Summer of Code 2027. It is for students and anyone new to open source who might want to take part. Here you can learn what the programme is, read our six project ideas and find out how to start.
+heading: Elixpo is preparing to apply to Google Summer of Code 2027.
+lead: If Google accepts us, we plan to mentor one contributor on one of six real open-source projects. Each project has two mentors. This site is for students and anyone new to open source. Learn what the programme is, read the ideas and find out how to start.
 next:
   - /ideas/
   - /contributor-guide/
@@ -70,6 +70,27 @@ since February 2024. The projects in our ideas list are:
 - **[Oreo](https://github.com/elixpo/oreo)**: an open operating system and
   hardware design for an electronic badge built on the ESP32-S3 chip. It is
   written in MicroPython, a small version of Python for tiny computers.
+
+## Our track record
+
+Elixpo has not mentored in Google Summer of Code before. We have done a
+shorter version of the work, in public:
+
+- **October 2024:** our first recorded Hacktoberfest. Maintainers opened the
+  Chapter repository to Hacktoberfest work, labelled and reviewed submissions,
+  and merged three Hacktoberfest-labelled pull requests.
+  [See the pull requests](https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2024-10-01..2024-10-31).
+- **October 2025:** a second Hacktoberfest. The Chapter repository merged 47
+  Hacktoberfest-labelled pull requests from 24 GitHub accounts; maintainers
+  prepared the work, reviewed, labelled and merged it.
+  [See the pull requests](https://github.com/elixpo/elixpo_chapter/pulls?q=is%3Apr+is%3Amerged+label%3Ahacktoberfest+merged%3A2025-10-01..2025-10-31).
+- **Mentoring elsewhere:** Ayushman Bhattacharya was a mentor in GirlScript
+  Summer of Code 2025, Open Source Contribution Initiative (OSCI) 2025 and
+  ESSOC 2026.
+
+Google Summer of Code is the longer, deeper version of this: one contributor,
+one project and a whole summer. [Read the short history of Elixpo](/about/),
+with a link to the record behind each step.
 
 ## Why we want to take part
 

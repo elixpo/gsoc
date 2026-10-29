@@ -15,6 +15,8 @@ next:
 - Share a draft with us in
   [GitHub Discussions](https://github.com/orgs/elixpo/discussions) before
   the deadline, so we can ask questions.
+- Read [how we select a contributor](/selection/) and our
+  [AI policy](/ai-policy/). Your proposal must be your own writing.
 - When applications open, you submit the final proposal through Google's
   [Summer of Code site](https://summerofcode.withgoogle.com/), not to us
   directly.
