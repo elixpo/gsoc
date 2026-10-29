@@ -147,10 +147,10 @@ One-time setup (maintainer):
 - Launch gate: the repository variable `SITE_LAUNCHED` controls indexing. Leave
   it unset until launch; set it to `true` on launch day and redeploy.
 
-Social card: put a PNG at `public/og-image.png` (the Elixpo branding pipeline
-outputs 1280x720) to replace the generated home card (also the site-wide
-default). Its real size is read from the file at build time. Other pages keep
-their generated 1200x630 cards. Never use the GSoC logo as a social card or icon.
+Social card: `public/og-image.png` (the Elixpo branding pipeline outputs
+1280x720) is the social card for every route. Its real size is read from the
+file at build time. If the file is removed, each page falls back to its
+generated 1200x630 card. Never use the GSoC logo as a social card or icon.
 
 Search Console (optional): set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` at build
 time to emit `<meta name="google-site-verification">`. Unset, nothing is emitted.

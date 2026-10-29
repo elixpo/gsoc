@@ -31,7 +31,9 @@ const customHomeCardSize = existsSync(customHomeCardFile) ? pngSize(customHomeCa
 
 /** The social card for a route: its path and its real size. */
 export function socialCard(slug: string): { url: string; width: number; height: number } {
-  if (slug === "home" && customHomeCardSize) return { url: CUSTOM_HOME_CARD, ...customHomeCardSize };
+  // One shared card for every route when public/og-image.png exists; the
+  // generated per-page cards are only a fallback.
+  if (customHomeCardSize) return { url: CUSTOM_HOME_CARD, ...customHomeCardSize };
   return { url: `/social/${slug}.png`, ...GENERATED_CARD_SIZE };
 }
 
