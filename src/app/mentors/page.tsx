@@ -49,7 +49,17 @@ export default function MentorsPage() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: page.title, path: "/mentors/" }])} />
-      <PageHero eyebrow="Mentors" headingHtml={page.headingHtml} lead={page.lead} aside={<MentorsSummary />} />
+      <PageHero eyebrow="Mentors" headingHtml={page.headingHtml} lead={page.lead} aside={<MentorsSummary />}>
+        <div className="actions">
+          <a href="#people-list">Meet the mentors</a>
+          <a href="https://me.elixpo.com/" rel="noopener">
+            Member portfolios{"\u00a0"}<span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <p className="hero-subnote">
+          Every mentor and organiser signs a public commitment. <Link href="/agreements/">Read the agreements</Link>.
+        </p>
+      </PageHero>
       <section className="content roles-overview" aria-labelledby="roles">
         <Prose html={page.html} />
       </section>
