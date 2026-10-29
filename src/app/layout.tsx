@@ -8,12 +8,13 @@ import {
   DISCUSSIONS_URL,
   GITHUB_ORG_URL,
   GSOC_URL,
-  NAV,
   SITE_LAUNCHED,
+  SITE_MAP,
   SITE_NAME,
   SITE_URL,
   STATUS_BANNER,
 } from "@/data/site";
+import { MainNav } from "@/components/MainNav";
 import { jsonLd, organizationJsonLd, socialImage } from "@/lib/seo";
 
 const description =
@@ -62,7 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </a>
         <div className="status-banner" role="region" aria-label="Programme status">
           <p>
-            <strong>Status:</strong> {STATUS_BANNER}
+            <strong>Status:</strong> {STATUS_BANNER} <Link href="/#where-things-stand">What this means for you</Link>
           </p>
         </div>
         <header className="site-header">
@@ -73,15 +74,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <small>GSoC 2027</small>
             </span>
           </Link>
-          <nav aria-label="Main">
-            <ul>
-              {NAV.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <MainNav />
         </header>
         <main id="main" tabIndex={-1}>
           {children}
@@ -92,14 +85,25 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <div>
               <strong>Elixpo · Google Summer of Code 2027</strong>
               <p>
-                Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+                Questions? Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or ask in <a href={DISCUSSIONS_URL}>GitHub Discussions</a>.
               </p>
             </div>
           </div>
-          <nav aria-label="Footer">
+          <nav aria-labelledby="footer-sitemap" className="footer-sitemap">
+            <h2 id="footer-sitemap">All pages on this site</h2>
+            <ul>
+              {SITE_MAP.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav aria-labelledby="footer-elsewhere" className="footer-elsewhere">
+            <h2 id="footer-elsewhere">Elixpo elsewhere</h2>
             <ul>
               <li>
-                <a href={GITHUB_ORG_URL}>GitHub organisation</a>
+                <a href={GITHUB_ORG_URL}>Elixpo on GitHub</a>
               </li>
               <li>
                 <a href={DISCUSSIONS_URL}>GitHub Discussions</a>
@@ -108,10 +112,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <a href={CODE_OF_CONDUCT_URL}>Code of Conduct</a>
               </li>
               <li>
-                <Link href="/ai-policy/">AI policy</Link>
-              </li>
-              <li>
-                <Link href="/timeline/">Timeline</Link>
+                <a href={GSOC_URL}>Official Google Summer of Code site</a>
               </li>
             </ul>
           </nav>

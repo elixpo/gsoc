@@ -20,7 +20,7 @@ from pathlib import Path
 
 SITE_URL = "https://gsoc.elixpo.com"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-STATIC_ROUTES = ["/", "/ideas/", "/people/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/contact/"]
+STATIC_ROUTES = ["/", "/ideas/", "/people/", "/contributor-guide/", "/proposal/", "/selection/", "/ai-policy/", "/timeline/", "/faq/", "/glossary/", "/contact/"]
 SIZES = {90, 175}
 DIFFICULTIES = {"Easy", "Intermediate", "Hard"}
 STATUS_BANNER = "Elixpo is preparing to apply as a GSoC 2027 mentoring organisation. Google has not yet announced GSoC 2027."
@@ -34,6 +34,11 @@ FORBIDDEN_TEXT = [
     re.compile(r"\d+\+ (contributors|projects|users|mentors)", re.I),
 ]
 FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
+# Main navigation (src/data/site.ts NAV): each of these pages must mark its own link with aria-current="page".
+NAV_ROUTES = ["/ideas/", "/contributor-guide/", "/proposal/", "/selection/", "/people/", "/faq/", "/contact/"]
+GSOC_TIMELINE_URL = "https://developers.google.com/open-source/gsoc/timeline"
+GSOC_URL = "https://summerofcode.withgoogle.com/"
+TIMELINE_PHASES = ["Organisations apply", "Organisations are announced", "Contributors apply", "Community bonding", "Coding", "Evaluations"]
 NUMBER_WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
 
 
@@ -176,14 +181,17 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect(idea[role] in mentors, f"{idea['slug']}: {role} {idea[role]} is not a mentor in src/data/people.ts")
 
     parsed: dict[str, PageParser] = {}
+    raw: dict[str, str] = {}
     for route in routes + ["/404.html"]:
         path = route_file(site, route)
         if not path.is_file():
             errors.append(f"Missing page for {route}: {path}")
             continue
+        source = path.read_text(encoding="utf-8")
         page = PageParser()
-        page.feed(path.read_text(encoding="utf-8"))
+        page.feed(source)
         parsed[route] = page
+        raw[route] = source
         canonical = f"{SITE_URL}{route}"
         robots_meta = ", ".join(page.meta.get("robots", []))
 
@@ -233,6 +241,64 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect("BreadcrumbList" in types, f"{route}: BreadcrumbList JSON-LD missing")
         if route == "/faq/":
             expect("FAQPage" in types, "/faq/: FAQPage JSON-LD missing")
+
+    # Navigation: "What next?" block, footer site map, current page in the main nav
+    for route in routes:
+        source, page = raw.get(route), parsed.get(route)
+        if not source or not page:
+            continue
+        expect('id="what-next"' in source and "What next?" in page.text, f"{route}: 'What next?' block missing")
+        what_next = re.search(r'<nav[^>]*class="what-next".*?</nav>', source, re.S)
+        expect(bool(what_next and re.search(r'href="/', what_next.group(0))), f"{route}: 'What next?' block has no internal links")
+        footer = re.search(r'<footer.*?</footer>', source, re.S)
+        footer_links = set(re.findall(r'href="([^"]+)"', footer.group(0))) if footer else set()
+        for target in STATIC_ROUTES:
+            expect(target in footer_links, f"{route}: footer site map does not link to {target}")
+        main_nav = re.search(r'<nav[^>]*aria-label="Main".*?</nav>', source, re.S)
+        expect(bool(main_nav), f"{route}: main navigation missing")
+        if main_nav and route in NAV_ROUTES:
+            expect(re.search(rf'<a[^>]*href="{re.escape(route)}"[^>]*aria-current="page"|<a[^>]*aria-current="page"[^>]*href="{re.escape(route)}"', main_nav.group(0)) is not None,
+                   f"{route}: main navigation does not mark the current page with aria-current")
+        if main_nav and route in idea_routes:
+            expect('aria-current="true"' in main_nav.group(0), f"{route}: 'Ideas' is not marked as the current section")
+
+    # Home page: "Start here" path and the GSoC explainer
+    if "/" in raw:
+        source, text = raw["/"], parsed["/"].text
+        start = re.search(r'id="start-here".*?</section>', source, re.S)
+        expect(bool(start), "/: 'Start here' section missing")
+        if start:
+            for target in ("/ideas/", "/contributor-guide/", "/proposal/"):
+                expect(f'href="{target}"' in start.group(0), f"/: 'Start here' does not link to {target}")
+        expect("What is Google Summer of Code?" in text and f'href="{GSOC_URL}"' in source, "/: 'What is Google Summer of Code?' section or official link missing")
+
+    # Timeline: usual phases, no dates, link to Google's timeline
+    if "/timeline/" in raw:
+        text = parsed["/timeline/"].text
+        for phase in TIMELINE_PHASES:
+            expect(phase in text, f"/timeline/: phase {phase!r} missing")
+        expect(f'href="{GSOC_TIMELINE_URL}"' in raw["/timeline/"], "/timeline/: link to Google's official timeline missing")
+
+    # Idea pages: breadcrumb, plain summary, start box, previous / next links
+    for index, idea in enumerate(ideas):
+        route = idea_routes[index]
+        source, page = raw.get(route), parsed.get(route)
+        if not source or not page:
+            continue
+        crumb = re.search(r'<nav[^>]*aria-label="Breadcrumb".*?</nav>', source, re.S)
+        expect(bool(crumb and 'href="/"' in crumb.group(0) and 'href="/ideas/"' in crumb.group(0) and 'aria-current="page"' in crumb.group(0)),
+               f"{route}: breadcrumb (Home > Ideas > title) missing")
+        expect(f"In short: {idea['in_short']}" in page.text, f"{route}: 'In short' summary missing")
+        expect("Why this matters" in page.text and "Words used on this page" in page.text, f"{route}: 'Why this matters' or 'Words used on this page' missing")
+        expect('id="how-to-start"' in source and "How to start on this idea" in page.text and f'href="{idea["repository"]}"' in source,
+               f"{route}: 'How to start on this idea' box missing or without the repository link")
+        pager = re.search(r'<nav[^>]*aria-label="More ideas".*?</nav>', source, re.S)
+        expect(bool(pager), f"{route}: previous / next idea links missing")
+        if pager:
+            if index > 0:
+                expect(f'href="{idea_routes[index - 1]}"' in pager.group(0), f"{route}: link to the previous idea missing")
+            if index < len(ideas) - 1:
+                expect(f'href="{idea_routes[index + 1]}"' in pager.group(0), f"{route}: link to the next idea missing")
 
     # Internal links and assets resolve
     for route, page in parsed.items():

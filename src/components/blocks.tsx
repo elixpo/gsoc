@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Idea } from "@/lib/content";
-import { CAPACITY_STATEMENT } from "@/data/site";
+import { CAPACITY_STATEMENT, siteMapEntry } from "@/data/site";
 
 export function PageHero({ eyebrow, heading, lead, children }: { eyebrow: string; heading: string; lead: string; children?: React.ReactNode }) {
   return (
@@ -75,7 +75,7 @@ export function IdeaCards({ ideas }: { ideas: Idea[] }) {
             <h3>
               <Link href={`/ideas/${idea.slug}/`}>{idea.title}</Link>
             </h3>
-            <p>{idea.summary}</p>
+            <p>{idea.inShort}</p>
             <dl className="card-facts">
               <div>
                 <dt>Size</dt>
@@ -96,5 +96,27 @@ export function IdeaCards({ ideas }: { ideas: Idea[] }) {
         </li>
       ))}
     </ol>
+  );
+}
+
+export type NextLink = { href: string; label: string; about: string };
+
+/** Turn routes from a page's `next:` frontmatter into links with plain descriptions. */
+export const nextLinks = (routes: string[]): NextLink[] => routes.map((href) => ({ ...siteMapEntry(href) }));
+
+/** The short block that ends every page and points to the logical next page(s). */
+export function WhatNext({ links }: { links: NextLink[] }) {
+  return (
+    <nav className="what-next" aria-labelledby="what-next">
+      <h2 id="what-next">What next?</h2>
+      <ul>
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href}>{link.label}</Link>
+            <span>{link.about}</span>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }

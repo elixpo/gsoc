@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Capacity, IdeaCards, IdeaTable, PageHero, Prose } from "@/components/blocks";
+import { Capacity, IdeaCards, IdeaTable, nextLinks, PageHero, Prose, WhatNext } from "@/components/blocks";
 import { getPage, IDEAS } from "@/lib/content";
 import { absoluteUrl, jsonLd, ORGANIZATION_ID, pageMetadata } from "@/lib/seo";
 
@@ -28,17 +28,18 @@ export default function IdeasPage() {
       <PageHero eyebrow="Project ideas" heading={page.heading} lead={page.lead}>
         <Capacity />
       </PageHero>
+      <section className="content">
+        <Prose html={page.html} />
+      </section>
       <section className="content" aria-labelledby="ideas-overview">
         <h2 id="ideas-overview">All ideas at a glance</h2>
         <IdeaTable ideas={IDEAS} headingId="ideas-overview" />
-      </section>
-      <section className="content">
-        <Prose html={page.html} />
       </section>
       <section className="content" aria-labelledby="ideas-summaries">
         <h2 id="ideas-summaries">What each idea is about</h2>
         <IdeaCards ideas={IDEAS} />
       </section>
+      <WhatNext links={nextLinks(page.next)} />
     </>
   );
 }

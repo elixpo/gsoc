@@ -34,3 +34,30 @@ export const NAV = [
   { href: "/faq/", label: "FAQ" },
   { href: "/contact/", label: "Contact" },
 ] as const;
+
+/**
+ * Every page, with a plain one-line description. Used for the footer site map
+ * and the "What next?" block at the end of each page. Pages list their next
+ * steps in their frontmatter (`next:`), by route.
+ */
+export const SITE_MAP = [
+  { href: "/", label: "Home", about: "What this site is and where to start." },
+  { href: "/ideas/", label: "Project ideas", about: "The six projects you can choose from." },
+  { href: "/contributor-guide/", label: "Get involved", about: "Set up the code and make a first small contribution." },
+  { href: "/proposal/", label: "Proposal template", about: "The headings to use when you write your proposal." },
+  { href: "/selection/", label: "How we select", about: "What we look at when we choose a contributor." },
+  { href: "/ai-policy/", label: "AI policy", about: "When you may use AI tools, and what you must tell us." },
+  { href: "/timeline/", label: "Timeline", about: "The usual stages of the programme. Dates come later." },
+  { href: "/people/", label: "People", about: "The mentors and organisers, and how to reach them." },
+  { href: "/faq/", label: "FAQ", about: "Short answers to common questions." },
+  { href: "/glossary/", label: "Glossary", about: "Plain explanations of words used on this site." },
+  { href: "/contact/", label: "Contact", about: "Where to ask questions, in public or by email." },
+] as const;
+
+export type SiteMapEntry = (typeof SITE_MAP)[number];
+
+export function siteMapEntry(href: string): SiteMapEntry {
+  const entry = SITE_MAP.find((item) => item.href === href);
+  if (!entry) throw new Error(`Unknown page "${href}". Add it to SITE_MAP in src/data/site.ts.`);
+  return entry;
+}

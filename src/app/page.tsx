@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Capacity, IdeaCards, Prose } from "@/components/blocks";
+import { Capacity, IdeaCards, nextLinks, Prose, WhatNext } from "@/components/blocks";
 import { getPage, IDEAS, sections, renderMarkdown } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
 const page = getPage("home");
+
+/** Stable anchor for a home section heading, e.g. "What is Google Summer of Code?" -> "what-is-google-summer-of-code". */
+const anchor = (heading: string) => heading.toLowerCase().replace(/\W+/g, "-").replace(/^-|-$/g, "");
 
 export const metadata: Metadata = pageMetadata({
   title: "Elixpo · Google Summer of Code 2027",
@@ -25,7 +28,7 @@ export default function Home() {
           <Capacity />
           <div className="actions">
             <Link href="/ideas/">See the {IDEAS.length} project ideas</Link>
-            <Link href="/contributor-guide/">How to get involved</Link>
+            <Link href="#start-here">Where to start</Link>
           </div>
         </div>
         <div className="hero-objects" aria-hidden="true">
@@ -46,8 +49,8 @@ export default function Home() {
 
       <div className="home-sections">
         {sections(page.body).map((section) => (
-          <section className="split" key={section.heading} aria-labelledby={`home-${section.heading.toLowerCase().replace(/\W+/g, "-")}`}>
-            <h2 id={`home-${section.heading.toLowerCase().replace(/\W+/g, "-")}`}>{section.heading}</h2>
+          <section className={`split split-${anchor(section.heading)}`} key={section.heading} aria-labelledby={anchor(section.heading)}>
+            <h2 id={anchor(section.heading)}>{section.heading}</h2>
             <Prose html={renderMarkdown(section.markdown)} />
           </section>
         ))}
@@ -56,13 +59,15 @@ export default function Home() {
       <section className="band" aria-labelledby="home-ideas">
         <div className="band-head">
           <p className="eyebrow">Project ideas</p>
-          <h2 id="home-ideas">Six ideas, one contributor</h2>
+          <h2 id="home-ideas">The six project ideas</h2>
           <p>
-            Pick the idea that fits you best. <Link href="/ideas/">Compare all ideas in one table</Link>.
+            Each idea is a project you could work on over the summer. Read the short summaries, then open the one that interests you. You can also{" "}
+            <Link href="/ideas/">compare all ideas in one table</Link>.
           </p>
         </div>
         <IdeaCards ideas={IDEAS} />
       </section>
+      <WhatNext links={nextLinks(page.next)} />
     </>
   );
 }

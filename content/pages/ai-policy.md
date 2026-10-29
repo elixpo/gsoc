@@ -2,18 +2,22 @@
 title: AI policy
 description: Elixpo's AI policy for Google Summer of Code 2027 applicants and contributors - what AI use is allowed, what must be disclosed, and what leads to rejection.
 heading: AI policy
-lead: You may use AI tools to learn. You must understand and stand behind everything you submit.
+lead: This page explains when you may use AI tools, such as chatbots and code assistants, and what you must tell us. In short, you may use AI to learn, but you must understand and stand behind everything you submit.
+next:
+  - /proposal/
+  - /selection/
+  - /contributor-guide/
 ---
 
 ## Allowed
 
-- Using AI tools for research and learning: understanding a codebase, an
-  error message or a concept.
+- Using AI tools to research and learn: for example, to understand a
+  codebase, an error message or an idea.
 
-## Must be disclosed
+## You must tell us
 
-- Meaningful AI use in code. Say so in the pull request description: which
-  tool, and what it helped with.
+- If an AI tool did a meaningful part of the work in your code, say so in
+  the pull request description: which tool, and what it helped with.
 
 ## Your responsibility
 
@@ -22,12 +26,12 @@ lead: You may use AI tools to learn. You must understand and stand behind everyt
 
 ## Not accepted
 
-- **AI-generated proposals.** Your proposal must be your own writing and
+- **Proposals written by AI.** Your proposal must be your own writing and
   your own plan.
-- **Fabricated evidence.** Invented test results, contributions, references
+- **Made-up evidence.** Invented test results, contributions, references
   or experience lead to rejection.
 
 ## From our side
 
-Mentors are humans, and review is done by humans. Automated checks may run
-on pull requests, but a person decides.
+Mentors are people, and people review your work. Automated checks may run
+on pull requests, but a person makes the decision.

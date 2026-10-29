@@ -1,4 +1,4 @@
-import { PageHero } from "@/components/blocks";
+import { nextLinks, PageHero, WhatNext } from "@/components/blocks";
 import { markdownMetadata } from "@/components/MarkdownPage";
 import { getFaq } from "@/lib/content";
 import { jsonLd, stripTags } from "@/lib/seo";
@@ -28,6 +28,7 @@ export default function FaqPage() {
           </section>
         ))}
       </section>
+      <WhatNext links={nextLinks(page.next)} />
     </>
   );
 }

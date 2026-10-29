@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sizeLabel } from "@/components/blocks";
-import { getIdea, IDEAS } from "@/lib/content";
-import { DISCUSSIONS_URL, RESPONSE_EXPECTATION } from "@/data/site";
+import { nextLinks, sizeLabel, WhatNext } from "@/components/blocks";
+import { getIdea, IDEAS, neighbours, type IdeaSection } from "@/lib/content";
+import { CONTACT_EMAIL, DISCUSSIONS_URL, RESPONSE_EXPECTATION } from "@/data/site";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -24,10 +24,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function Section({ id, title, html }: { id: string; title: string; html: string }) {
+/** Plain one-line hints shown under each formal section heading. */
+const HINTS: Partial<Record<IdeaSection, string>> = {
+  Problem: "What is broken or missing today.",
+  "Expected outcomes": "What should exist at the end of the project.",
+  "Stretch goals": "Extra work to try only if the main goals are finished early.",
+  "Not in scope": "Work that is not part of this project, even if it seems related.",
+  "Proof of success": "How you and your mentors will know the work is done.",
+};
+
+function Section({ id, title, html }: { id: string; title: IdeaSection; html: string }) {
   return (
     <section className="idea-section" aria-labelledby={id}>
       <h2 id={id}>{title}</h2>
+      {HINTS[title] && <p className="section-hint">{HINTS[title]}</p>}
       <div className="prose" dangerouslySetInnerHTML={{ __html: html }} />
     </section>
   );
@@ -38,12 +48,13 @@ export default async function IdeaPage({ params }: Props) {
   if (!idea) notFound();
 
   const url = absoluteUrl(`/ideas/${idea.slug}/`);
+  const { previous, next } = neighbours(idea.slug);
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Elixpo GSoC", item: absoluteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Project ideas", item: absoluteUrl("/ideas/") },
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Ideas", item: absoluteUrl("/ideas/") },
       { "@type": "ListItem", position: 3, name: idea.title, item: url },
     ],
   };
@@ -61,7 +72,7 @@ export default async function IdeaPage({ params }: Props) {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/ideas/">Project ideas</Link>
+            <Link href="/ideas/">Ideas</Link>
           </li>
           <li aria-current="page">{idea.title}</li>
         </ol>
@@ -73,9 +84,12 @@ export default async function IdeaPage({ params }: Props) {
             Idea {idea.order} of {IDEAS.length} · {idea.theme}
           </p>
           <h1>{idea.title}</h1>
+          <p className="in-short">
+            <strong>In short:</strong> {idea.inShort}
+          </p>
           <p className="lead">{idea.summary}</p>
         </div>
-        <aside className="idea-facts" aria-label="Idea summary">
+        <aside className="idea-facts" aria-label="Key facts about this idea">
           <dl>
             <div>
               <dt>Size</dt>
@@ -100,17 +114,76 @@ export default async function IdeaPage({ params }: Props) {
               </dd>
             </div>
           </dl>
+          <p className="note">
+            <Link href="/glossary/">What do these words mean?</Link>
+          </p>
         </aside>
       </header>
 
       <div className="idea-body">
         <div className="idea-main">
+          <section className="idea-section" aria-labelledby="why">
+            <h2 id="why">Why this matters</h2>
+            <div className="prose" dangerouslySetInnerHTML={{ __html: idea.sections["Why this matters"] }} />
+            <p className="section-hint">
+              New to some of the words below? See <a href="#words">words used on this page</a>.
+            </p>
+          </section>
           <Section id="problem" title="Problem" html={idea.sections["Problem"]} />
           <Section id="outcomes" title="Expected outcomes" html={idea.sections["Expected outcomes"]} />
           <Section id="stretch" title="Stretch goals" html={idea.sections["Stretch goals"]} />
           <Section id="not-in-scope" title="Not in scope" html={idea.sections["Not in scope"]} />
           <Section id="proof" title="Proof of success" html={idea.sections["Proof of success"]} />
-          <Section id="how-to-start" title="How to start" html={idea.sections["How to start"]} />
+
+          <section className="start-box" aria-labelledby="how-to-start">
+            <h2 id="how-to-start">How to start on this idea</h2>
+            <div className="prose" dangerouslySetInnerHTML={{ __html: idea.sections["How to start"] }} />
+            <div className="start-links">
+              <div>
+                <h3>Links you will need</h3>
+                <ul className="link-list">
+                  <li>
+                    <a href={idea.repository}>Code repository: {idea.repositoryName}</a>
+                  </li>
+                  <li>
+                    <a href={idea.setup}>Setup instructions (README)</a>
+                  </li>
+                  {idea.envExample && (
+                    <li>
+                      <a href={idea.envExample}>Example settings file (.env.example)</a>
+                    </li>
+                  )}
+                  <li>
+                    <a href={`${idea.repository}/blob/main/CONTRIBUTING.md`}>How to send changes (CONTRIBUTING)</a>
+                  </li>
+                </ul>
+                <p className="note">You should not need any Elixpo secret to set up the project. If you do, tell us: that is a bug.</p>
+              </div>
+              <div>
+                <h3>Where to ask</h3>
+                <ul className="link-list">
+                  <li>
+                    <a href={DISCUSSIONS_URL}>Ask in GitHub Discussions</a> (public, preferred)
+                  </li>
+                  <li>
+                    Private questions: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+                  </li>
+                  <li>
+                    <Link href="/contributor-guide/">Read the contributor guide</Link>
+                  </li>
+                </ul>
+                <p className="note">{RESPONSE_EXPECTATION}</p>
+              </div>
+            </div>
+          </section>
+
+          <section className="idea-section words" aria-labelledby="words">
+            <h2 id="words">Words used on this page</h2>
+            <div className="prose" dangerouslySetInnerHTML={{ __html: idea.sections["Words used on this page"] }} />
+            <p className="note">
+              For general terms such as mentor, proposal or pull request, see the <Link href="/glossary/">glossary</Link>.
+            </p>
+          </section>
         </div>
 
         <div className="idea-side">
@@ -138,62 +211,56 @@ export default async function IdeaPage({ params }: Props) {
                 </li>
               ))}
             </ul>
-            <p className="note">{RESPONSE_EXPECTATION}</p>
-          </section>
-
-          <section aria-labelledby="repository">
-            <h2 id="repository">Repository and setup</h2>
-            <ul className="link-list">
-              <li>
-                <a href={idea.repository}>{idea.repositoryName}</a>
-              </li>
-              <li>
-                <a href={idea.setup}>Setup instructions (README)</a>
-              </li>
-              {idea.envExample && (
-                <li>
-                  <a href={idea.envExample}>Example environment file (.env.example)</a>
-                </li>
-              )}
-              <li>
-                <a href={`${idea.repository}/blob/main/CONTRIBUTING.md`}>Contributing guide</a>
-              </li>
-            </ul>
-            <p className="note">You should not need any Elixpo secret to set up the project. If you do, tell us.</p>
+            <p className="note">Your primary mentor is your main contact. Your backup mentor can step in.</p>
           </section>
 
           <section aria-labelledby="related-issues">
             <h2 id="related-issues">Related issues</h2>
             {idea.relatedIssues.length ? (
-              <ul className="link-list">
-                {idea.relatedIssues.map((issue) => (
-                  <li key={issue.number}>
-                    <a href={issue.url}>
-                      #{issue.number} {issue.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <>
+                <p className="note">Public bug reports and plans in the repository that this idea builds on.</p>
+                <ul className="link-list">
+                  {idea.relatedIssues.map((issue) => (
+                    <li key={issue.number}>
+                      <a href={issue.url}>
+                        #{issue.number} {issue.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
             ) : (
               <p className="note">No issues are linked yet. Ask about this idea in GitHub Discussions.</p>
             )}
           </section>
-
-          <section aria-labelledby="ask">
-            <h2 id="ask">Questions?</h2>
-            <p>
-              Ask in <a href={DISCUSSIONS_URL}>GitHub Discussions</a>, then read the <Link href="/contributor-guide/">contributor guide</Link> and{" "}
-              <Link href="/proposal/">proposal template</Link>.
-            </p>
-          </section>
         </div>
       </div>
 
-      <p>
-        <Link className="back" href="/ideas/">
-          ← All project ideas
-        </Link>
-      </p>
+      <nav className="idea-pager" aria-label="More ideas">
+        <ul>
+          {previous && (
+            <li className="pager-previous">
+              <Link href={`/ideas/${previous.slug}/`} rel="prev">
+                <small>Previous idea</small>
+                <span>{previous.title}</span>
+              </Link>
+            </li>
+          )}
+          <li className="pager-all">
+            <Link href="/ideas/">All {IDEAS.length} ideas</Link>
+          </li>
+          {next && (
+            <li className="pager-next">
+              <Link href={`/ideas/${next.slug}/`} rel="next">
+                <small>Next idea</small>
+                <span>{next.title}</span>
+              </Link>
+            </li>
+          )}
+        </ul>
+      </nav>
+
+      <WhatNext links={nextLinks(["/contributor-guide/", "/proposal/", "/selection/"])} />
     </article>
   );
 }

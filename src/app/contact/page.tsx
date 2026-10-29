@@ -9,14 +9,15 @@ export default function ContactPage() {
     <MarkdownPage slug="contact" eyebrow="Contact">
       <section className="content" aria-labelledby="contact-shared">
         <h2 id="contact-shared">Programme email</h2>
+        <p>For private questions, or questions about the programme itself, write to:</p>
         <p className="big-link">
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </p>
       </section>
       <section className="content" aria-labelledby="contact-people">
-        <h2 id="contact-people">People</h2>
+        <h2 id="contact-people">Individual contacts</h2>
         <PeopleTable headingId="contact-people" />
-        <p className="note">Until individual addresses are confirmed, please use {CONTACT_EMAIL}.</p>
+        <p className="note">If you are not sure who to write to, use {CONTACT_EMAIL}.</p>
       </section>
     </MarkdownPage>
   );

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHero, Prose } from "@/components/blocks";
+import { nextLinks, PageHero, Prose, WhatNext } from "@/components/blocks";
 import { getPage } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
@@ -17,6 +17,7 @@ export function MarkdownPage({ slug, eyebrow, children }: { slug: string; eyebro
         <Prose html={page.html} />
       </section>
       {children}
+      <WhatNext links={nextLinks(page.next)} />
     </>
   );
 }

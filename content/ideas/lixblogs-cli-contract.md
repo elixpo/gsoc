@@ -11,12 +11,22 @@ repository: https://github.com/elixpo/blogs.elixpo
 setup: https://github.com/elixpo/blogs.elixpo/blob/main/README.md
 env_example: https://github.com/elixpo/blogs.elixpo/blob/main/.env.example
 summary: Version and specify the JSON output of the LixBlogs CLI so that scripts and AI agents built on it don't break silently.
+in_short: Write down and test exactly what the LixBlogs command-line tool prints, so scripts and AI tools that depend on it don't break without warning.
 skills:
   - Node.js
   - JSON Schema
   - Testing
 related_issues: []
 ---
+
+## Why this matters
+
+People and AI agents use the LixBlogs command-line tool from their own
+scripts, and those scripts read what it prints. If the output changes, even
+slightly, the scripts can break without anyone noticing.
+
+A written, versioned description of the output, checked by tests, protects
+everyone who builds on the tool.
 
 ## Problem
 
@@ -59,3 +69,26 @@ An unnoticed change breaks every script and agent skill built on it.
 3. Write down every JSON shape you see, including errors.
 4. Make a small, reviewed contribution to the repository, then share your
    notes in GitHub Discussions.
+
+## Words used on this page
+
+- **CLI**: a command-line interface, a tool you use by typing commands in a
+  terminal.
+- **npm**: the main place to publish and install JavaScript packages.
+- **JSON**: a common text format for structured data.
+- **`--json --no-input`**: options that make the CLI print JSON and never
+  stop to ask questions, so scripts can use it.
+- **Contract**: a promise about the exact shape of the output.
+- **JSON Schema, `schemaVersion`**: a standard way to describe what JSON must
+  look like, and a number in the output saying which version it follows.
+- **Error envelope**: the standard shape of the output when something goes
+  wrong.
+- **Snapshot test**: a test that saves the output once and fails if it later
+  changes.
+- **Idempotent**: doing it twice has the same effect as doing it once.
+- **Shell completions**: suggestions when you press Tab in the terminal.
+- **Packed tarball, packed artifact**: the exact package file that is
+  published to npm.
+- **Test matrix**: running the same tests on several systems.
+- **CI**: tests that run automatically on every proposed change.
+- **Telemetry**: sending usage data back to the developers.

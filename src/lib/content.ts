@@ -52,6 +52,8 @@ export type Page = {
   lead: string;
   body: string;
   html: string;
+  /** Routes for the "What next?" block at the end of the page. */
+  next: string[];
 };
 
 export function getPage(slug: string): Page {
@@ -65,6 +67,7 @@ export function getPage(slug: string): Page {
     lead: str(data, "lead", file),
     body,
     html: renderMarkdown(body),
+    next: list(data, "next", file),
   };
 }
 
@@ -89,8 +92,17 @@ export function getFaq() {
 
 /* ----------------------------------------------------------------- ideas */
 
-const IDEA_SECTIONS = ["Problem", "Expected outcomes", "Stretch goals", "Not in scope", "Proof of success", "How to start"] as const;
-type IdeaSection = (typeof IDEA_SECTIONS)[number];
+export const IDEA_SECTIONS = [
+  "Why this matters",
+  "Problem",
+  "Expected outcomes",
+  "Stretch goals",
+  "Not in scope",
+  "Proof of success",
+  "How to start",
+  "Words used on this page",
+] as const;
+export type IdeaSection = (typeof IDEA_SECTIONS)[number];
 
 export type RelatedIssue = { number: number; title: string; url: string };
 
@@ -99,6 +111,8 @@ export type Idea = {
   order: number;
   title: string;
   summary: string;
+  /** One plain-language sentence for readers new to the topic. */
+  inShort: string;
   theme: string;
   sizeHours: (typeof SIZES)[number];
   difficulty: Difficulty;
@@ -152,6 +166,7 @@ function loadIdea(fileName: string): Idea {
     order: Number(data.order),
     title: str(data, "title", file),
     summary: str(data, "summary", file),
+    inShort: str(data, "in_short", file),
     theme: str(data, "theme", file),
     sizeHours: size as (typeof SIZES)[number],
     difficulty: difficulty as Difficulty,
@@ -175,6 +190,12 @@ export const IDEAS: Idea[] = fs
   .sort((a, b) => a.order - b.order);
 
 export const getIdea = (slug: string) => IDEAS.find((idea) => idea.slug === slug);
+
+/** The ideas before and after this one in the list, if any. */
+export function neighbours(slug: string): { previous?: Idea; next?: Idea } {
+  const index = IDEAS.findIndex((idea) => idea.slug === slug);
+  return { previous: index > 0 ? IDEAS[index - 1] : undefined, next: index >= 0 && index < IDEAS.length - 1 ? IDEAS[index + 1] : undefined };
+}
 
 export type MentorRole = "Primary mentor" | "Backup mentor";
 

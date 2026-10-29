@@ -12,10 +12,11 @@ export default function NotFound() {
     <header className="page-hero">
       <p className="eyebrow">404</p>
       <h1>Page not found</h1>
-      <p className="lead">This page does not exist, or it has moved.</p>
+      <p className="lead">We could not find this page. It may have moved, or the link may be wrong. These links will help you find your way.</p>
       <div className="actions">
         <Link href="/">Go to the home page</Link>
         <Link href="/ideas/">See the project ideas</Link>
+        <Link href="/faq/">Read the FAQ</Link>
       </div>
     </header>
   );

@@ -11,6 +11,7 @@ repository: https://github.com/elixpo/oreo
 setup: https://github.com/elixpo/oreo/blob/main/README.md
 env_example: null
 summary: Open Oreo to contributors without hardware by building a desktop simulator with headless golden-image tests.
+in_short: Build a program that runs the Oreo badge's software on an ordinary computer, so people can build and test badge apps without the hardware.
 skills:
   - Python and MicroPython
   - pygame or SDL
@@ -18,6 +19,15 @@ skills:
   - Basic embedded knowledge
 related_issues: []
 ---
+
+## Why this matters
+
+Today, Oreo apps only run on the physical badge, and the badges are
+hand-built. So almost nobody else can try or test a change.
+
+A simulator, a program that pretends to be the badge on your own computer,
+lets anyone contribute. It also lets automated tests check the apps on every
+change.
 
 ## Problem
 
@@ -68,3 +78,30 @@ bypass it.
    needs hardware.
 4. Make a small, reviewed contribution to the repository, then share your
    findings in GitHub Discussions.
+
+## Words used on this page
+
+- **MicroPython**: a small version of Python for tiny computers.
+- **ESP32-S3**: the small computer chip inside the badge.
+- **Simulator**: a program that pretends to be the hardware, on an ordinary
+  computer.
+- **Hardware abstraction layer**: one shared layer of code that apps use to
+  talk to the hardware. Here it is `oreoOS/api.py`.
+- **Leak, bypass**: code that talks to the hardware directly instead of
+  going through that layer.
+- **Inject dependencies**: pass in the parts a module needs, so a test or the
+  simulator can swap in fakes.
+- **IR**: infrared, the invisible light the badges use to talk to each other.
+- **MicroPython unix port**: the version of MicroPython that runs on Linux
+  and macOS.
+- **Headless**: running without a window, for automated tests.
+- **Deterministic clock**: a fake clock that tests control, so results are
+  always the same.
+- **pytest, pygame, SDL**: pytest is a Python testing tool. pygame and SDL
+  are libraries for drawing windows and graphics.
+- **Golden-image tests**: tests that compare the screen with a saved,
+  known-good picture.
+- **CI**: tests that run automatically on every proposed change.
+- **Cycle-accurate emulation**: copying the chip's exact behaviour, step by
+  step.
+- **BLE**: Bluetooth Low Energy.
