@@ -15,7 +15,7 @@ next:
   matters:** [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 - **Defects and setup problems:** an issue in the relevant repository.
 - **Code of Conduct reports:** follow the reporting steps in the
-  [Code of Conduct](https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md).
+  [Code of Conduct](/code-of-conduct/).
 
 GitHub Discussions for GSoC 2027 will open once Google announces the
 programme dates, at

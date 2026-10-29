@@ -32,9 +32,18 @@ next:
 We do not select on the proposal alone, and we do not select on the number of
 pull requests opened.
 
+## After the decision
+
+- A selected contributor starts the community bonding period with both
+  mentors, agrees milestones and a communication plan, and then begins
+  coding. The [contributor guide](/contributor-guide/#step-by-step)
+  describes each stage.
+- If you are not selected, your merged work remains part of the project and
+  you are welcome to keep contributing.
+
 ## Grounds for rejection
 
 - A proposal written by AI. See the [AI policy](/ai-policy/).
 - Fabricated evidence, such as claimed contributions or results that do not
   exist.
-- A breach of the [Code of Conduct](https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md).
+- A breach of the [Code of Conduct](/code-of-conduct/).
