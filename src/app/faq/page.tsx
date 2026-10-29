@@ -1,3 +1,4 @@
+import { PageHeroCard } from "@/components/HeroCards";
 import { JsonLd, nextLinks, PageHero, Tldr, WhatNext } from "@/components/blocks";
 import { markdownMetadata } from "@/components/MarkdownPage";
 import { getFaq } from "@/lib/content";
@@ -19,7 +20,7 @@ export default function FaqPage() {
   return (
     <>
       <JsonLd data={[structured, breadcrumbJsonLd([{ name: "FAQ", path: "/faq/" }])]} />
-      <PageHero eyebrow="FAQ" headingHtml={page.headingHtml} lead={page.lead} />
+      <PageHero eyebrow="FAQ" headingHtml={page.headingHtml} lead={page.lead} aside={<PageHeroCard slug="faq" />} />
       <Tldr items={page.tldrHtml} />
       <section className="content faq">
         {items.map((item, index) => (

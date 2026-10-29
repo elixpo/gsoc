@@ -9,6 +9,7 @@ tldr:
   - You must understand, test and be able to explain every line you submit.
   - Proposals written by AI and fabricated evidence are not accepted.
   - Mentors review all work personally and make every decision.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /proposal/
   - /selection/

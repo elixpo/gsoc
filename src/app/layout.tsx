@@ -24,7 +24,7 @@ import { JsonLd } from "@/components/blocks";
 import { organizationJsonLd, socialCard, websiteJsonLd } from "@/lib/seo";
 
 const description =
-  "Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. Project ideas, participating projects, mentors, the contributor guide and selection criteria.";
+  "Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. Project ideas, participating codebases, mentors, the contributor guide and selection criteria.";
 
 /*
  * Type follows me.elixpo: Pathway Gothic One for tall condensed display caps

@@ -7,6 +7,7 @@ tldr:
   - Definitions of the terms used on this site, in three groups: the programme, ideas and proposals, and working with code.
   - Each idea page also defines the terms it uses.
   - The [FAQ](/faq/) answers common questions.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /
   - /ideas/

@@ -9,6 +9,7 @@ tldr:
   - We do not select on the proposal alone or on the number of pull requests opened.
   - A proposal written by AI, fabricated evidence or a Code of Conduct breach leads to rejection.
   - In 2027 we plan to mentor one contributor.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /proposal/
   - /contributor-guide/

@@ -36,7 +36,7 @@ STATUS_BANNER = (
 CAPACITY = "In 2027 we plan to mentor one contributor."
 HOME_CAPACITY = "In 2027 we plan to mentor one contributor, with a primary and a backup mentor on every project."
 # Home hero stats row: numerals and labels, in order (src/app/page.tsx).
-HOME_STATS = [("1", "contributor in 2027"), ("6", "project ideas"), ("2", "mentors on every idea"), ("5", "participating projects")]
+HOME_STATS = [("1", "contributor in 2027"), ("6", "project ideas"), ("2", "mentors on every idea"), ("5", "codebases")]
 # Credential strip under the home hero: verified facts from elixpo/content/history.json.
 HOME_CREDENTIALS = [("Hacktoberfest 2024 & 2025", "maintainer-led participation"),
                     ("47 pull requests merged", "Hacktoberfest 2025, from 24 GitHub accounts"),
@@ -96,10 +96,16 @@ FORBIDDEN_FRAMING = [
     re.compile(r"\bpreparing to apply\b", re.I),
 ]
 FORBIDDEN_LINKS = [re.compile(r"github\.com/elixpo/gsoc(?![\w.-])")]
-# Main navigation (src/data/site.ts NAV), exactly in this order; Contact is last, as a button.
+# Main navigation (src/data/site.ts NAV_GROUPS), exactly in this order, in three groups
+# (Ideas, Codebases, Mentors | Get involved, Proposal, Timeline | FAQ); Contact is last, as a button.
 # Each of these pages must mark its own link with aria-current="page".
-NAV_ROUTES = ["/ideas/", "/projects/", "/proposal/", "/timeline/", "/mentors/", "/faq/", "/contributor-guide/", "/contact/"]
-NAV_LABELS = ["Ideas", "Projects", "Proposal", "Timeline", "Mentors", "FAQ", "Get involved", "Contact"]
+NAV_ROUTES = ["/ideas/", "/projects/", "/mentors/", "/contributor-guide/", "/proposal/", "/timeline/", "/faq/", "/contact/"]
+NAV_LABELS = ["Ideas", "Codebases", "Mentors", "Get involved", "Proposal", "Timeline", "FAQ", "Contact"]
+NAV_GROUP_COUNT = 3
+# Pages without a TL;DR (src/lib/content.ts TLDR_EXEMPT): the timeline is only the timeline and a call to action.
+TLDR_EXEMPT = ["/timeline/"]
+# Inner pages without a hero card: the timeline (coming soon) is only the timeline and a call to action.
+HERO_CARD_EXEMPT = ["/timeline/"]
 NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/", "/operations/", "/why-elixpo/", "/warm-up/"]
 # The five codebases on /projects/ (content/projects/*.md).
 PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "oreo"]
@@ -450,12 +456,27 @@ def check_site(site: Path, launched: bool) -> list[str]:
         source, page = raw.get(route), parsed.get(route)
         if not source or not page:
             continue
-        # TL;DR box near the top of every page: a mono label and 3-5 short lines (content/**/*.md `tldr:`)
-        tldr = re.search(r'<aside class="content tldr-wrap"[^>]*>\s*<div class="tldr">\s*<p class="tldr-label">TL;DR</p>\s*<ul>(.*?)</ul>', source, re.S)
-        items = re.findall(r"<li>", tldr.group(1)) if tldr else []
-        expect(bool(tldr) and 3 <= len(items) <= 5, f"{route}: TL;DR box missing or not 3-5 items (found {len(items)})")
-        if tldr:
-            expect(source.index(tldr.group(0)) < source.find('id="what-next"'), f"{route}: TL;DR box must come before the 'Next steps' block")
+        # TL;DR row near the top of every page except /timeline/: a mono label and 3-6 numbered points
+        # (content/**/*.md `tldr:`); the last point links back to the project ideas.
+        tldr = re.search(r'<aside class="content tldr-wrap"[^>]*>\s*<div class="tldr">\s*<p class="tldr-label">TL;DR</p>\s*<ol>(.*?)</ol>', source, re.S)
+        # Hero card (src/components/HeroCards.tsx) on every inner page except /timeline/; the home page keeps its own panel
+        if route != "/":
+            hero_header = re.search(r'<header class="[^"]*hero-card[^"]*".*?</header>', source, re.S)
+            has_card = bool(hero_header and '<aside class="hero-panel hero-facts"' in hero_header.group(0))
+            if route in HERO_CARD_EXEMPT:
+                expect(not has_card, f"{route}: this page must not have a hero card")
+            else:
+                expect(has_card, f"{route}: hero card missing from the page hero")
+        if route in TLDR_EXEMPT:
+            expect('class="content tldr-wrap"' not in source, f"{route}: this page must not have a TL;DR")
+        else:
+            items = re.findall(r"<li>(.*?)</li>", tldr.group(1), re.S) if tldr else []
+            expect(bool(tldr) and 3 <= len(items) <= 6, f"{route}: TL;DR row missing, not an ordered list, or not 3-6 items (found {len(items)})")
+            if items:
+                back = 'href="#' if route == "/ideas/" else 'href="/ideas/'
+                expect(back in items[-1], f"{route}: the last TL;DR point must link to the project idea(s)")
+            if tldr:
+                expect(source.index(tldr.group(0)) < source.find('id="what-next"'), f"{route}: TL;DR row must come before the 'Next steps' block")
         expect('id="what-next"' in source and "Next steps" in page.text, f"{route}: 'Next steps' block missing")
         what_next = re.search(r'<nav[^>]*class="what-next".*?</nav>', source, re.S)
         expect(bool(what_next and re.search(r'href="/', what_next.group(0))), f"{route}: 'Next steps' block has no internal links")
@@ -470,6 +491,10 @@ def check_site(site: Path, launched: bool) -> list[str]:
             expect(nav_hrefs == NAV_ROUTES, f"{route}: main navigation order is {nav_hrefs}, expected {NAV_ROUTES}")
             nav_labels = [html.unescape(re.sub(r"<[^>]+>", "", label)).strip() for label in re.findall(r"<a[^>]*>(.*?)</a>", main_nav.group(0), re.S)]
             expect(nav_labels == NAV_LABELS, f"{route}: main navigation labels are {nav_labels}, expected {NAV_LABELS}")
+            groups = re.findall(r'<ul aria-label="[^"]+"', main_nav.group(0))
+            spacers = re.findall(r'class="nav-spacer"', main_nav.group(0))
+            expect(len(groups) == NAV_GROUP_COUNT and len(spacers) == NAV_GROUP_COUNT - 1,
+                   f"{route}: main navigation must have {NAV_GROUP_COUNT} labelled groups with spacers between them (found {len(groups)} groups, {len(spacers)} spacers)")
             expect(re.search(r'class="nav-contact"[^>]*>\s*<a[^>]*href="/contact/"', main_nav.group(0)) is not None, f"{route}: Contact is not the button at the end of the main navigation")
             for target in NOT_IN_NAV:
                 expect(f'href="{target}"' not in main_nav.group(0), f"{route}: {target} belongs in the footer, not the main navigation")
@@ -540,7 +565,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect("Community and mentoring record" in text and "Mentoring experience" in text, "/about/: 'Community and mentoring record' or 'Mentoring experience' section missing")
         expect("What this record does not show" not in text, "/about/: the removed self-critique section is back")
 
-    # Projects page: all five codebases, each with repository, README, CONTRIBUTING, LICENSE and its ideas
+    # Codebases page (/projects/): all five codebases, each with repository, README, CONTRIBUTING, LICENSE and its ideas
     if "/projects/" in raw:
         source = raw["/projects/"]
         for repo in PROJECT_REPOS:
@@ -782,6 +807,10 @@ def check_site(site: Path, launched: bool) -> list[str]:
     for css in (site / "_next").rglob("*.css"):
         content = css.read_text(encoding="utf-8")
         expect(not re.search(r"::?(before|after)\b", content), f"{css.name}: uses ::before/::after pseudo-elements")
+        # The TL;DR row and the hero fact cards are hairline-only: no shadows
+        for selector in (".tldr", ".hero-panel", ".hero-facts", ".idea-facts"):
+            for rule in re.findall(re.escape(selector) + r"(?![\w-])[^{}]*\{([^}]*)\}", content):
+                expect("box-shadow" not in rule, f"{css.name}: {selector} must not have a box-shadow")
 
     return errors
 

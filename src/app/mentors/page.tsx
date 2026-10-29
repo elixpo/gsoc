@@ -2,57 +2,21 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { JsonLd, nextLinks, PageHero, Prose, RoleChips, Tldr, WhatNext } from "@/components/blocks";
+import { PageHeroCard } from "@/components/HeroCards";
 import { ContactChips, PeopleTable } from "@/components/PeopleTable";
 import { PEOPLE } from "@/data/people";
-import { getPage, IDEAS, ideasMentoredBy } from "@/lib/content";
-import { CONTACT_EMAIL, MENTORS_PER_IDEA, RESPONSE_EXPECTATION } from "@/data/site";
+import { getPage, ideasMentoredBy } from "@/lib/content";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 const page = getPage("mentors");
 
 export const metadata: Metadata = pageMetadata({ title: page.title, description: page.description, path: "/mentors/", social: "mentors" });
 
-const hasRole = (role: string) => PEOPLE.filter((person) => person.roles.some((r) => r.toLowerCase().includes(role))).length;
-
-const SUMMARY = [
-  { value: PEOPLE.filter((person) => person.isMentor).length, label: "mentors" },
-  { value: IDEAS.length, label: "project ideas" },
-  { value: MENTORS_PER_IDEA, label: "mentors on every idea" },
-  { value: hasRole("organisation administrator"), label: "admins" },
-];
-
-function MentorsSummary() {
-  return (
-    <aside className="hero-panel" aria-label="Mentoring at a glance">
-      <p className="eyebrow">At a glance</p>
-      <dl className="hero-stats">
-        {SUMMARY.map((item) => (
-          <div key={item.label}>
-            <dt>{item.label}</dt>
-            <dd>{item.value}</dd>
-          </div>
-        ))}
-      </dl>
-      <ul className="summary-points">
-        <li>Every idea has a primary and a backup mentor.</li>
-        <li>{RESPONSE_EXPECTATION}</li>
-        <li>A programme coordinator answers general questions.</li>
-        <li>
-          <Link href="/operations/">How we run the programme</Link>
-        </li>
-      </ul>
-      <p className="hero-panel-note">
-        Programme questions: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-      </p>
-    </aside>
-  );
-}
-
 export default function MentorsPage() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: page.title, path: "/mentors/" }])} />
-      <PageHero eyebrow="Mentors" headingHtml={page.headingHtml} lead={page.lead} aside={<MentorsSummary />}>
+      <PageHero eyebrow="Mentors" headingHtml={page.headingHtml} lead={page.lead} aside={<PageHeroCard slug="mentors" />}>
         <div className="actions">
           <a href="#people-list">Meet the mentors</a>
           <a href="https://me.elixpo.com/" rel="noopener">

@@ -2,19 +2,21 @@
 title: Timeline
 description: The stages of Google Summer of Code and where Google publishes the official 2027 dates. Elixpo lists the 2027 dates here once Google publishes them.
 heading: Programme *timeline*
-lead: Google Summer of Code follows the same sequence of stages each year. This page describes them. Google publishes the official dates, and we list the 2027 dates here once they are available.
-tldr:
-  - Six stages: organisations apply, organisations are announced, contributors apply, community bonding, coding and evaluations.
-  - Google publishes the official dates on its [timeline](https://developers.google.com/open-source/gsoc/timeline).
-  - We add the 2027 dates here once Google publishes them.
-  - You can prepare now with the [contributor guide](/contributor-guide/).
+lead: The GSoC 2027 timeline is coming soon. Google has not announced the 2027 dates yet. Until then, this page lists the usual stages in order, without dates.
 next:
   - /contributor-guide/
   - /ideas/
   - /faq/
 ---
 
-## Programme stages
+## Coming soon
+
+Google has not announced the dates for Google Summer of Code 2027. The
+official source is the
+[Google Summer of Code timeline](https://developers.google.com/open-source/gsoc/timeline).
+We add the 2027 dates to this page once Google publishes them.
+
+## The usual stages, in order
 
 The dates and rules change each year; the official timeline is authoritative.
 
@@ -30,15 +32,3 @@ The dates and rules change each year; the official timeline is authoritative.
    their mentors.
 6. **Evaluations.** Mentors and contributors evaluate progress at the midterm
    and at the end of the programme.
-
-## Official dates
-
-The official source is the
-[Google Summer of Code timeline](https://developers.google.com/open-source/gsoc/timeline).
-We add the 2027 dates to this page once Google publishes them.
-
-## Preparing now
-
-Prospective contributors can prepare before the contributor application
-period. The [contributor guide](/contributor-guide/) describes the
-pre-application phase.

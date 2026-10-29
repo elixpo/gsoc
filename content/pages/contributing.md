@@ -6,8 +6,9 @@ lead: You do not have to wait for Google Summer of Code to take part. You can he
 tldr:
   - Suggest or improve an idea by writing to [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
   - Report mistakes on this site to the same address until its source repository is public.
-  - Small fixes, tests and documentation are welcome in the [participating projects](/projects/) at any time.
+  - Small fixes, tests and documentation are welcome in the [participating codebases](/projects/) at any time.
   - The Code of Conduct and the AI policy apply everywhere.
+  - [Browse the six project ideas](/ideas/).
 next:
   - /projects/
   - /contributor-guide/
@@ -33,10 +34,10 @@ public, you can fix a mistake by opening a pull request against `content/`.
 Until then, report the mistake to
 [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 
-## Contribute to the participating projects
+## Contribute to the codebases
 
 The project ideas belong to five Elixpo codebases, listed on the
-[participating projects page](/projects/) with their repositories, setup
+[codebases page](/projects/) with their repositories, setup
 instructions and contribution guidelines. Small fixes, tests and
 documentation are welcome at any time. If you plan to apply, the
 [Get involved guide](/contributor-guide/) explains how to start.

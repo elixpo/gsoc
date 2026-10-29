@@ -10,6 +10,7 @@ tldr:
   - No Google Summer of Code idea involves payments, pricing or paid features.
   - Submit your proposal on the [official GSoC website](https://summerofcode.withgoogle.com/); Google sets eligibility and deadlines.
   - Anything else: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+  - [Browse the six project ideas](/ideas/).
 next:
   - /ideas/
   - /glossary/

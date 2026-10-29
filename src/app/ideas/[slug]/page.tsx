@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { HeroGeometry, nextLinks, RoleChips, sizeLabel, Tldr, WhatNext } from "@/components/blocks";
+import { HeroCard, HeroGeometry, nextLinks, RoleChips, sizeLabel, Tldr, WhatNext } from "@/components/blocks";
 import { escapeHtml, getIdea, IDEAS, neighbours, projectAnchor, projectOf, type Idea, type IdeaSection } from "@/lib/content";
 import { CONFIG_ACCESS_ANCHOR, CONTACT_EMAIL, DISCUSSIONS_NOTE_SHORT, RESPONSE_EXPECTATION, SETUP_NOTE } from "@/data/site";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
@@ -47,7 +47,10 @@ const TOC = [
   { id: "terms", text: "Terms used on this page" },
 ];
 
-/** The idea's TL;DR, built from its frontmatter so it always matches the page. */
+const COUNT_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+const countWord = (count: number) => COUNT_WORDS[count] ?? String(count);
+
+/** The idea's TL;DR, built from its frontmatter so it always matches the page; the last point links back to all ideas. */
 function ideaTldr(idea: Idea): string[] {
   return [
     `<strong>In short:</strong> ${escapeHtml(idea.inShort)}`,
@@ -55,6 +58,7 @@ function ideaTldr(idea: Idea): string[] {
     `Mentors: ${escapeHtml(idea.primaryMentor.name)} (primary) and ${escapeHtml(idea.backupMentor.name)} (backup).`,
     `First step: set up <a href="${idea.setup}">${escapeHtml(idea.repositoryName)}</a> from its README, then pick a <a href="#warm-up-tasks">warm-up task</a>.`,
     `Questions: <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`,
+    `<a href="/ideas/">See all ${countWord(IDEAS.length)} ideas</a>, with size, difficulty and mentors.`,
   ];
 }
 
@@ -122,47 +126,26 @@ export default async function IdeaPage({ params }: Props) {
           <h1>{idea.title}</h1>
           <p className="lead">{idea.summary}</p>
         </div>
-        <aside className="idea-facts" aria-label="Key facts about this idea">
-          <dl>
-            <div>
-              <dt>Size</dt>
-              <dd>{sizeLabel(idea.sizeHours)}</dd>
-            </div>
-            <div>
-              <dt>Difficulty</dt>
-              <dd>{idea.difficulty}</dd>
-            </div>
-            <div>
-              <dt>Primary mentor</dt>
-              <dd>{idea.primaryMentor.name}</dd>
-            </div>
-            <div>
-              <dt>Backup mentor</dt>
-              <dd>{idea.backupMentor.name}</dd>
-            </div>
-            <div>
-              <dt>Repository</dt>
-              <dd>
-                <a href={idea.repository}>{idea.repositoryName}</a>
-              </dd>
-            </div>
-            <div>
-              <dt>Product site</dt>
-              <dd>
-                <a href={project.homepage}>{project.homepage.replace("https://", "")}</a>
-              </dd>
-            </div>
-            <div>
-              <dt>Project page on elixpo.com</dt>
-              <dd>
-                <a href={project.elixpoPage}>{project.elixpoPage.replace("https://", "")}</a>
-              </dd>
-            </div>
-          </dl>
-          <p className="note">
-            <a href="#warm-up-tasks">Warm-up tasks</a> · <Link href="/glossary/">Glossary</Link>
-          </p>
-        </aside>
+        <HeroCard
+          label="Key facts about this idea"
+          title="Key facts"
+          facts={[
+            { label: "Size", value: sizeLabel(idea.sizeHours) },
+            { label: "Difficulty", value: idea.difficulty },
+            { label: "Primary mentor", value: idea.primaryMentor.name },
+            { label: "Backup mentor", value: idea.backupMentor.name },
+            { label: "Codebase", value: <Link href={`/projects/#${project.slug}`}>{project.name}</Link> },
+            { label: "Repository", value: <a href={idea.repository}>{idea.repositoryName}</a> },
+            { label: "Product site", value: <a href={project.homepage}>{project.homepage.replace("https://", "")}</a> },
+            { label: "Project page on elixpo.com", value: <a href={project.elixpoPage}>{project.elixpoPage.replace("https://", "")}</a> },
+          ]}
+          cta={{ href: `/warm-up/#${project.slug}`, label: "Warm-up for this project" }}
+          note={
+            <>
+              <a href="#warm-up-tasks">Warm-up tasks</a> · <Link href="/glossary/">Glossary</Link>
+            </>
+          }
+        />
       </header>
       <Tldr items={ideaTldr(idea)} />
 
@@ -201,7 +184,7 @@ export default async function IdeaPage({ params }: Props) {
                     <a href={`${idea.repository}/blob/main/CONTRIBUTING.md`}>Contribution guidelines (CONTRIBUTING)</a>
                   </li>
                   <li>
-                    <Link href={`/projects/#${projectAnchor(idea.repository)}`}>Project overview</Link>
+                    <Link href={`/projects/#${projectAnchor(idea.repository)}`}>Codebase overview</Link>
                   </li>
                 </ul>
                 <p className="note">

@@ -23,7 +23,7 @@ const STATS = [
   { value: PLANNED_CONTRIBUTORS, label: "contributor in 2027" },
   { value: IDEAS.length, label: "project ideas" },
   { value: MENTORS_PER_IDEA, label: "mentors on every idea" },
-  { value: PROJECTS.length, label: "participating projects" },
+  { value: PROJECTS.length, label: "codebases" },
 ];
 
 /** Sections rendered as a numbered step grid instead of prose. */
