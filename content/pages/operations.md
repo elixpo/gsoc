@@ -25,8 +25,8 @@ next:
 | Organisation administrators | Ayushman Bhattacharya (lead) and Vivek Yadav | Communication with Google, deadlines, evaluation oversight, mentor cover, and any concern a contributor raises |
 | Programme coordinator | Anwesha Chakraborty | Programme questions at gsoc@elixpo.com, onboarding sessions and the public weekly progress log; does not mentor or review code |
 
-Every mentor and administrator signs the commitments published on the
-[agreements page](/agreements/). The people are listed on the
+Every mentor and administrator signs the same one-page commitment.
+{{commitment-status}} The people are listed on the
 [mentors page](/mentors/).
 
 ## The programme, phase by phase
@@ -88,9 +88,7 @@ and our [timeline page](/timeline/).
   reply within 48 hours on weekdays, write to the backup mentor, then to
   [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 
-GitHub Discussions for GSoC 2027 will open once Google announces the
-programme dates. Until then, the programme email is the channel for
-questions.
+{{discussions}}
 
 ### Weekly progress report template
 
@@ -133,6 +131,10 @@ Plan status
   on memory.
 - **Availability.** Mentors tell the organisation administrators early if
   their capacity will drop, so that cover can be arranged.
+
+## Capacity and cover
+
+<!-- shared: capacity-and-cover -->
 
 ## Configuration and access
 

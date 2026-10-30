@@ -15,7 +15,9 @@ skills:
   - TypeScript
   - Test design
   - GitHub event semantics
-related_issues: []
+related_issues:
+  - "101 Scoring engine and event-normalisation contract"
+  - "103 Document the D1 schema in workers/migrations"
 ---
 
 ## Description
@@ -34,19 +36,18 @@ and that points cannot be earned through tricks.
 
 ## Expected outcomes
 
-- A typed, versioned rules configuration with schema validation, not a
-  free-form DSL.
-- A deterministic, pure engine that turns normalised GitHub events into
-  ledger entries with idempotency keys.
-- Two or three anti-gaming rules (for example self-merge, bot actors,
-  trivial diffs), each producing an explicit "held" or "denied" entry with a
-  reason.
-- A replay CLI using recorded webhook fixtures.
-- An explanation trace for every ledger entry.
+- Contest points come from one deterministic engine: the same GitHub events
+  always give the same ledger, and every entry says which rule and which
+  events produced it.
+- Common tricks for earning points are caught and shown openly, with a
+  reason, instead of being silently counted or dropped.
+- Anyone can replay recorded events and check the scores for themselves.
 
 ## Stretch goals
 
-- More anti-gaming rules (PR splitting, unlinked PRs).
+- Schema validation and versioning for the rules configuration.
+- More anti-gaming rules (trivial diffs, PR splitting, unlinked PRs).
+- A readable explanation report for every ledger entry.
 - A dry-run diff showing who moves when a rule changes.
 - A D1 adapter.
 - Tie-breakers.
@@ -56,11 +57,16 @@ and that points cannot be earned through tricks.
 - Webhook ingestion.
 - The GitHub App.
 - UI.
-- Payouts.
+- Payouts, prizes or any link between points and money.
 
 ## How success is measured
 
-- 20 or more fixture scenarios with golden outputs.
+- The engine is pure and is driven by a small typed rules configuration,
+  not a free-form DSL. Idempotency keys stop an event from counting twice.
+- Two anti-gaming rules (for example self-merge and bot actors) each produce
+  an explicit "held" or "denied" entry with a reason.
+- A replay CLI runs recorded webhook fixtures through the engine.
+- 10 or more fixture scenarios with golden outputs.
 - Two replays produce byte-identical output.
 - Every point traces back to its events and the rule that awarded it.
 

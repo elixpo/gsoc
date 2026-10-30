@@ -114,7 +114,8 @@ GitHub accounts. The dated record, with links to the evidence, is on
    [warm-up task](https://gsoc.elixpo.com/contributor-guide/).
 3. Introduce yourself and ask questions at
    [gsoc@elixpo.com](mailto:gsoc@elixpo.com). GitHub Discussions for GSoC
-   2027 will open once Google announces the programme dates.
+   2027, where applicants will introduce themselves and ask about the ideas,
+   opens soon.
 4. Write your proposal with our [template](https://gsoc.elixpo.com/proposal/)
    and submit it through the official
    [Google Summer of Code website](https://summerofcode.withgoogle.com/).

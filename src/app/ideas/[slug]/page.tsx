@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HeroCard, HeroGeometry, nextLinks, RoleChips, sizeLabel, Tldr, WhatNext } from "@/components/blocks";
 import { escapeHtml, getIdea, IDEAS, neighbours, projectAnchor, projectOf, type Idea, type IdeaSection } from "@/lib/content";
-import { CONFIG_ACCESS_ANCHOR, CONTACT_EMAIL, DISCUSSIONS_NOTE_SHORT, RESPONSE_EXPECTATION, SETUP_NOTE } from "@/data/site";
+import { CONFIG_ACCESS_ANCHOR, CONTACT_EMAIL, DISCUSSIONS_NOTE_SHORT, DISCUSSIONS_OPEN, DISCUSSIONS_URL, RESPONSE_EXPECTATION, SETUP_NOTE } from "@/data/site";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -260,9 +260,19 @@ export default async function IdeaPage({ params }: Props) {
               </div>
             </dl>
             <p className="note">
-              The primary mentor is the contributor&apos;s main contact; the backup mentor can step in. Send questions about this idea or the
-              programme to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>, and report defects as an issue in the{" "}
-              <a href={idea.repository}>repository</a>. {RESPONSE_EXPECTATION} {DISCUSSIONS_NOTE_SHORT}
+              The primary mentor is the contributor&apos;s main contact; the backup mentor can step in.{" "}
+              {DISCUSSIONS_OPEN ? (
+                <>
+                  Ask questions about this idea and share warm-up results in <a href={DISCUSSIONS_URL}>GitHub Discussions</a>, write to{" "}
+                  <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> about private matters, and report defects as an issue in the{" "}
+                  <a href={idea.repository}>repository</a>. {RESPONSE_EXPECTATION}
+                </>
+              ) : (
+                <>
+                  Send questions about this idea or the programme to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>, and report defects
+                  as an issue in the <a href={idea.repository}>repository</a>. {RESPONSE_EXPECTATION} {DISCUSSIONS_NOTE_SHORT}
+                </>
+              )}
             </p>
           </section>
 

@@ -8,6 +8,7 @@ tldr:
   - Its maintainers took part in Hacktoberfest in 2024 and 2025, reviewing and merging outside contributors' pull requests.
   - In October 2025 the Chapter repository merged 47 Hacktoberfest pull requests from 24 GitHub accounts.
   - Every step in the record links its public source and states the precision of its date.
+  - Outside contributors also work in the participating projects: Senthil455 had 44 pull requests merged in LixBlogs in October 2026.
   - [Browse the six project ideas](/ideas/).
 next:
   - /ideas/
@@ -97,6 +98,44 @@ non-monetary: Elixpo does not currently ask for, accept, hold or pass on
 organisation-level sponsorship money.
 
 Evidence: [community partnership programme](https://elixpo.com/partnerships).
+
+## Outside contributors in the participating projects
+
+The record above comes from the Chapter repository. Outside contributors also
+work in the five codebases that the ideas belong to:
+
+- **Senthil Raja R ([Senthil455](https://github.com/Senthil455))** had 44
+  pull requests merged in LixBlogs between 15 and 24 October 2026. In the
+  same month he reported nine privacy defects in how LixBlogs decides who may
+  read a post ([#507](https://github.com/elixpo/blogs.elixpo/issues/507), #510–#512 and #515–#519) and opened
+  fixes for them, which are now on `main`, merged directly or in a
+  maintainer's combined pull request ([#548](https://github.com/elixpo/blogs.elixpo/pull/548),
+  [#549](https://github.com/elixpo/blogs.elixpo/pull/549)). Those reports led to the
+  [read-access policy idea](/ideas/lixblogs-read-access-policy/).
+- **Karan Ray ([karanray06](https://github.com/karanray06))** had five pull
+  requests merged in Elixpo Open Source in August 2026.
+
+Evidence: [Senthil455's merged LixBlogs pull requests](https://github.com/elixpo/blogs.elixpo/pulls?q=is%3Apr+is%3Amerged+author%3ASenthil455),
+[karanray06's merged Elixpo Open Source pull requests](https://github.com/elixpo/opensource.elixpo/pulls?q=is%3Apr+is%3Amerged+author%3Akaranray06).
+
+## How Elixpo uses automation
+
+The [`elixpoo`](https://github.com/elixpoo) GitHub account is Elixpo's own AI
+agent. Maintainers use it for triage and maintenance: finding defects,
+proposing fixes and keeping repositories tidy. It is not a contributor, and
+it is not counted in any contributor figure on this site.
+
+In the five participating repositories it has opened nine pull requests.
+The five that were merged were merged by a maintainer, but none has a
+recorded GitHub review. From November 2026, every change from `elixpoo` goes
+through a pull request that a maintainer reviews and approves on GitHub
+before it is merged, and the maintainer who merges it is responsible for it.
+
+This follows the same rules as the [AI policy](/ai-policy/): contributors may
+use AI tools if they disclose meaningful use and understand and can explain
+their work, and proposals must be their own. Mentoring, reviews of a
+contributor's work, selection and evaluations are done by people, never by
+the agent.
 
 ## Mentoring experience
 

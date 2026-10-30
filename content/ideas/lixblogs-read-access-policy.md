@@ -18,6 +18,7 @@ skills:
   - Test design
   - Cloudflare D1 (helpful)
 related_issues:
+  - "559 Centralise read-access rules for posts and organisations"
   - "507 Popular tags count drafts, trashed, and secret posts"
   - "510 Collab status endpoint exposes draft editor identity without permission"
   - "511 Blog collaborator list is readable for any draft by any signed-in user"
@@ -35,9 +36,14 @@ LixBlogs decides who can read a post, draft, secret post or
 private-organisation item separately in each of its ~135 API routes. The same
 SQL filter is copied about 100 times, and there is no shared `canRead` rule.
 
-In October 2026 that duplication led to a cluster of privacy-leak reports,
-linked under Material. Nothing prevents the next one. There are no
-route-level tests: the 47 existing tests stub the database by hand.
+In October 2026 an outside contributor reported a cluster of privacy
+defects caused by that duplication (#507, #510–#512 and #515–#519, linked
+under Material). They are fixed on `main`, route by route, in
+[#535](https://github.com/elixpo/blogs.elixpo/pull/535)–[#537](https://github.com/elixpo/blogs.elixpo/pull/537), [#548](https://github.com/elixpo/blogs.elixpo/pull/548) and
+[#549](https://github.com/elixpo/blogs.elixpo/pull/549). Nothing keeps them fixed: there are no route-level
+tests, and the 47 existing tests stub the database by hand. This project
+builds the guard that keeps them fixed, as proposed in
+[#559](https://github.com/elixpo/blogs.elixpo/issues/559).
 
 **Impact.** LixBlogs holds content that must remain private: drafts, secret
 posts and posts in private organisations. One shared policy, tested against
@@ -46,15 +52,12 @@ reintroduce and protects everyone who writes on LixBlogs.
 
 ## Expected outcomes
 
-- One declarative read-access policy covering each type of viewer and each
-  content state, with shared query rules derived from it.
-- A harness that runs the real route handlers against a local SQLite or D1
-  database built from `migrations/`, with no secrets, a fake session and a
-  fixture "world".
-- A generated route inventory, plus a CI check that fails when a route is
-  left unclassified.
-- High-risk read routes migrated to the shared policy (cap agreed in the
-  proposal).
+- Who may read what on LixBlogs is decided in one declarative policy, so a
+  new or changed route cannot quietly invent its own rules.
+- Anyone can prove, offline and without secrets, that private content stays
+  private, by running the real route handlers against a local database.
+- Every route is known and classified, so a gap shows up in CI rather than
+  in a privacy report.
 
 ## Stretch goals
 
@@ -71,8 +74,16 @@ reintroduce and protects everyone who writes on LixBlogs.
 
 ## How success is measured
 
-- Reverting the October fix commits makes the suite fail.
-- 100% of routes are classified.
+- The policy covers each type of viewer and each content state, and the
+  shared query rules are derived from it.
+- The harness runs the real route handlers against a local SQLite or D1
+  database built from `migrations/`, with a fake session and a fixture
+  "world".
+- A generated route inventory classifies 100% of routes, and CI fails when
+  a route is left unclassified.
+- The high-risk read routes use the shared policy (how many is agreed in the
+  proposal).
+- Reverting the October fixes linked above makes the suite fail.
 - CI needs no secrets.
 
 ## Warm-up tasks
@@ -81,9 +92,9 @@ reintroduce and protects everyone who writes on LixBlogs.
    `tests/`. Set up from the README; no private keys needed. If a step asks
    for a secret, report it as a setup issue; see
    [configuration and access](/contributor-guide/#configuration-and-access).
-2. Read the related issues linked under Material, identify the route each one
-   touches, and summarise the cause in your own words. Send the summary to
-   [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+2. Read the October reports linked under Material and the pull requests
+   that fixed them, identify the route each one touches, and summarise the
+   cause in your own words, then {{warm-up-results}}.
 3. Read `migrations/` and the existing tests in `tests/`, and describe how data
    and tests are structured today.
 4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.

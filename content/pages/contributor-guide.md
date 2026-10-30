@@ -7,7 +7,7 @@ tldr:
   - Elixpo is an open-source project foundry where people build in public and release projects together. Read [our agenda](/agenda/).
   - We offer a real project used in public, two mentors on every idea, review by people, and credit for attributable work.
   - The steps: choose an idea, set it up, complete a warm-up task, introduce yourself, make a small pull request, then write your proposal.
-  - Write to [gsoc@elixpo.com](mailto:gsoc@elixpo.com). GitHub Discussions for GSoC 2027 will open once Google announces the programme dates.
+  - Questions and introductions: {{ask-channel}}. {{discussions}}
   - Submit your final proposal on the [official GSoC website](https://summerofcode.withgoogle.com/). Proposals sent anywhere else are not considered.
   - Step one is choosing an idea: [browse the six project ideas](/ideas/).
 next:
@@ -73,13 +73,10 @@ next:
    shows you how the code is organised and gives mentors evidence of your
    work. *Done when:* you have finished one task and recorded what you
    learned.
-4. **Introduce yourself.** Write to
-   [gsoc@elixpo.com](mailto:gsoc@elixpo.com) with the idea you intend to
-   apply for, your background and a link to your warm-up work. GitHub
-   Discussions for GSoC 2027 will open once Google announces the programme
-   dates. Use the programme address rather than mentors' personal accounts,
-   so that every message reaches both mentors on the idea. *Done when:* a
-   mentor has replied.
+4. **Introduce yourself.** {{write-to}} with the idea you intend to apply
+   for, your background and a link to your warm-up work. {{discussions}}
+   Don't write to mentors' personal accounts, so that every message reaches
+   both mentors on the idea. *Done when:* a mentor has replied.
 5. **Make a first small pull request and respond to review.** Fix a small
    defect, add a test or improve the documentation in the repository for
    your idea. State what you changed and how you tested it, and disclose
@@ -136,21 +133,21 @@ next:
   your draft proposal.
 - **Human decisions.** Mentors review all work personally and make every
   decision.
-- **Published commitments.** Every mentor and administrator signs the
-  commitments published on the [agreements page](/agreements/).
+- **Written commitments.** Every mentor and administrator signs the
+  same one-page commitment. {{commitment-status}}
 
 ## Communication channels
 
 | Purpose | Channel |
 |---|---|
-| Questions about an idea or the code | [gsoc@elixpo.com](mailto:gsoc@elixpo.com) |
+| Introductions, questions about an idea or the code, warm-up results | {{ask-channel}} |
 | Defects and setup problems | An issue in the relevant repository |
 | Programme questions and private matters | [gsoc@elixpo.com](mailto:gsoc@elixpo.com) |
 | Code of Conduct reports | The [Code of Conduct](/code-of-conduct/) reporting steps |
 
-GitHub Discussions for GSoC 2027 will open once Google announces the
-programme dates. Until then, write to
-[gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+{{discussions}}
+
+<!-- shared: whatsapp -->
 
 If you have not received a reply within 48 hours on weekdays, send a reminder
-in the same email thread.
+in the same thread.
