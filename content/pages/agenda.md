@@ -133,7 +133,7 @@ set out how changes are accepted:
 - **Conduct.** Everyone follows the [Code of Conduct](/code-of-conduct/), and
   reports are handled privately.
 - **Written commitments.** Every mentor and administrator signs the
-  commitment on the [agreements page](/agreements/). {{commitment-status}}
+  same one-page commitment. {{commitment-status}}
 - **After the summer.** The contributor is invited to keep reviewing and
   maintaining the part they built.
 

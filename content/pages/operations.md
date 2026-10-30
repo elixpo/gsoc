@@ -25,8 +25,8 @@ next:
 | Organisation administrators | Ayushman Bhattacharya (lead) and Vivek Yadav | Communication with Google, deadlines, evaluation oversight, mentor cover, and any concern a contributor raises |
 | Programme coordinator | Anwesha Chakraborty | Programme questions at gsoc@elixpo.com, onboarding sessions and the public weekly progress log; does not mentor or review code |
 
-Every mentor and administrator signs the commitment on the
-[agreements page](/agreements/). {{commitment-status}} The people are listed on the
+Every mentor and administrator signs the same one-page commitment.
+{{commitment-status}} The people are listed on the
 [mentors page](/mentors/).
 
 ## The programme, phase by phase

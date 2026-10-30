@@ -111,8 +111,8 @@ GirlScript Summer of Code 2025, OSCI 2025 and ESSOC 2026. See
 
 ## Are the commitments written down?
 
-Yes. Every organiser and mentor signs the same one-page commitment, written
-out in full on the [agreements page](/agreements/). {{commitment-status}}
+Yes. Every organiser and mentor signs the same one-page commitment.
+{{commitment-status}}
 Everyone follows the [Code of Conduct](/code-of-conduct/).
 
 ## How can we contact the organisers?
