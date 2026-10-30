@@ -26,6 +26,11 @@ banner, capacity statement, contact email) in `src/data/site.ts`.
 | `pages/why-elixpo.md` | `/why-elixpo/` (questions a programme reviewer may ask, each `##` heading one question with an evidence link) |
 | `pages/about.md` | `/about/` (history from `elixpo/content/history.json`; each step is `### Date — Title` with its evidence) |
 
+Facts that change with the site's data are written inline as `{{name}}` and
+filled in at build time (`INLINE_FACTS` in `src/lib/content.ts`). For example,
+`{{commitment-status}}` says whether the commitments are signed yet, from
+`src/data/agreements.ts`; never state that by hand.
+
 Every page in `pages/` except `timeline.md` has a `tldr:` list in its
 frontmatter: three to six short points with the page's most important facts or
 actions, shown as the numbered TL;DR row under the hero. Points are inline

@@ -1,13 +1,13 @@
 ---
 title: Mentor and administrator agreements
-description: The one-page commitment that every Elixpo GSoC 2027 mentor and administrator signs by hand, and the signed copies, published for contributors.
+description: The one-page commitment every Elixpo GSoC 2027 mentor and administrator signs by hand, with signed copies published as they are completed.
 heading: Mentor and administrator *agreements*
-lead: Everyone who mentors, administers or coordinates Elixpo's Google Summer of Code programme signs the same one-page commitment by hand. Scans of the signed copies are published here, so contributors know exactly what to expect.
+lead: Everyone who mentors, administers or coordinates Elixpo's Google Summer of Code programme signs the same one-page commitment by hand. Scans of the signed copies are published here as they are completed, so contributors know exactly what to expect.
 tldr:
   - Every organiser and mentor signs the same one-page commitment, by hand.
   - It covers conduct, 48-hour replies, absences, confidentiality, conflicts of interest and access.
   - Mentors also commit to weekly time, reviews and honest, on-time evaluations.
-  - Each copy is countersigned by an organisation administrator, and scans are published here.
+  - Each copy is countersigned by an organisation administrator. {{commitment-status}}
   - [Browse the six project ideas](/ideas/).
 next:
   - /mentors/
@@ -22,6 +22,7 @@ tick the roles that apply to them (organisation administrator, mentor or
 programme coordinator), list the ideas they mentor, and sign and date it by
 hand. An organisation administrator countersigns each copy. A scan of every
 signed copy is published on this page, without personal contact details.
+{{commitment-status}}
 
 ## What the commitment says
 

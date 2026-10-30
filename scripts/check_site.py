@@ -144,6 +144,16 @@ WHY_ELIXPO_LINKS = ["https://github.com/orgs/elixpo/repositories", "/projects/",
 OPERATIONS_LINKED_FROM = ["/mentors/", "/contributor-guide/", "/agenda/"]
 OPERATIONS_LINKS = [GSOC_TIMELINE_URL, "https://developers.google.com/open-source/gsoc/help/responsibilities",
                     "https://summerofcode.withgoogle.com/rules", "mailto:gsoc-support@google.com", "/code-of-conduct/", "/agreements/"]
+# Commitment status (src/data/agreements.ts COMMITMENT_STATUS_TEXT), shown on these pages.
+COMMITMENT_PENDING = "Each organiser and mentor will sign the commitment by January 2027; signed copies appear on the agreements page as they are completed."
+COMMITMENT_SIGNED = "Every organiser and mentor has signed the commitment; the signed copies are on the agreements page."
+COMMITMENT_ROUTES = ["/why-elixpo/", "/mentors/", "/agreements/", "/operations/", "/contributor-guide/"]
+COMMITMENT_OVERCLAIMS = [
+    re.compile(r"\bsigns? (a|the) public commitment, published\b", re.I),
+    re.compile(r"\bcommitments? (are |is )?published on the agreements page\b", re.I),
+    re.compile(r"\bsigns? the commitments published\b", re.I),
+    re.compile(r"\bscans are published here\.", re.I),
+]
 # Claims about money the evidence does not support (some hosted services have paid plans).
 FORBIDDEN_COMMERCIAL = [
     re.compile(r"\bnothing (here |in elixpo )?is commercial\b", re.I),
@@ -848,6 +858,18 @@ def check_site(site: Path, launched: bool) -> list[str]:
     known = {document.rsplit("/", 1)[-1] for _, document, _, _ in entries} | {template}
     for name in sorted(public_pdfs - known):
         errors.append(f"public/agreements/{name} does not belong to anyone in src/data/agreements.ts")
+    # Commitment wording follows src/data/agreements.ts: until every copy is signed, no page may say they are.
+    all_signed = bool(entries) and all(status == "signed" for _, _, status, _ in entries)
+    commitment_sentence = (COMMITMENT_SIGNED if all_signed else COMMITMENT_PENDING)
+    for route in COMMITMENT_ROUTES:
+        if route in parsed:
+            expect(commitment_sentence in parsed[route].text, f"{route}: commitment status sentence missing: {commitment_sentence!r}")
+    if not all_signed:
+        for route, page in parsed.items():
+            for pattern in COMMITMENT_OVERCLAIMS:
+                expect(not pattern.search(page.text), f"{route}: says the commitments are signed or published, but {sum(st != 'signed' for _, _, st, _ in entries)} await signature ({pattern.pattern!r})")
+    for route, page in parsed.items():
+        expect("{{" not in page.text, f"{route}: an inline fact ({{{{name}}}}) was not filled in")
 
     # Old and short URLs for the mentors page redirect to /mentors/ (Cloudflare Pages _redirects)
     redirects_file = site / "_redirects"

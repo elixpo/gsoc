@@ -27,14 +27,17 @@ had changes pushed in October 2026. See the
 ## Is the software under an OSI-approved licence?
 
 The source code of all five participating repositories is licensed under the
-MIT License, which is OSI-approved. Each repository's current `LICENSE` file
-combines the MIT terms with Elixpo's brand terms; open pull requests replace
-it with the standard MIT text and move the brand rules to `TRADEMARKS.md`
-([LixBlogs](https://github.com/elixpo/blogs.elixpo/pull/555),
-[LixSketch](https://github.com/elixpo/sketch.elixpo/pull/209),
-[Crumb](https://github.com/elixpo/crumb.elixpo/pull/251),
-[Elixpo Open Source](https://github.com/elixpo/opensource.elixpo/pull/98),
-[Oreo](https://github.com/elixpo/oreo/pull/61)).
+MIT License, which is OSI-approved. LixBlogs and LixSketch use the standard
+MIT text, which GitHub detects as MIT
+([LixBlogs #555](https://github.com/elixpo/blogs.elixpo/pull/555),
+[LixSketch #209](https://github.com/elixpo/sketch.elixpo/pull/209), both
+merged). In Crumb, Elixpo Open Source and Oreo the `LICENSE` file still
+combines the MIT terms with Elixpo's brand terms, so GitHub does not yet
+detect a licence; open pull requests replace it with the standard MIT text
+and move the brand rules to `TRADEMARKS.md`
+([Crumb #251](https://github.com/elixpo/crumb.elixpo/pull/251),
+[Elixpo Open Source #98](https://github.com/elixpo/opensource.elixpo/pull/98),
+[Oreo #61](https://github.com/elixpo/oreo/pull/61)).
 
 ## Is there an active contributor community?
 
@@ -108,9 +111,9 @@ GirlScript Summer of Code 2025, OSCI 2025 and ESSOC 2026. See
 
 ## Are the commitments written down?
 
-Yes. Every mentor and administrator signs a public commitment, published on
-the [agreements page](/agreements/), and everyone follows the
-[Code of Conduct](/code-of-conduct/).
+Yes. Every organiser and mentor signs the same one-page commitment, written
+out in full on the [agreements page](/agreements/). {{commitment-status}}
+Everyone follows the [Code of Conduct](/code-of-conduct/).
 
 ## How can we contact the organisers?
 

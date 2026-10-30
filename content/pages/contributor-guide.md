@@ -136,8 +136,8 @@ next:
   your draft proposal.
 - **Human decisions.** Mentors review all work personally and make every
   decision.
-- **Published commitments.** Every mentor and administrator signs the
-  commitments published on the [agreements page](/agreements/).
+- **Written commitments.** Every mentor and administrator signs the
+  commitment on the [agreements page](/agreements/). {{commitment-status}}
 
 ## Communication channels
 

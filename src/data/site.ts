@@ -167,7 +167,7 @@ export const LEGAL_PAGES: readonly SiteMapEntry[] = [
   { href: "/terms/", label: "Terms of service", menu: "Policies", about: "Licences, trademarks and the terms for using this site." },
   { href: "/code-of-conduct/", label: "Code of Conduct", menu: "Policies", about: "How everyone in the programme is expected to behave, and how to report a concern." },
   { href: "/contributing/", label: "Contributing", menu: "Policies", about: "How to suggest ideas, fix this site and contribute to the projects." },
-  { href: "/agreements/", label: "Agreements", menu: "About the programme", about: "The commitments signed by every mentor and administrator." },
+  { href: "/agreements/", label: "Agreements", menu: "About the programme", about: "The commitment every mentor and administrator signs, with signed copies as they are completed." },
 ];
 
 /** Every page with its own entry: the site map, then the legal and community pages. */

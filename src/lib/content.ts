@@ -4,6 +4,7 @@ import { marked } from "marked";
 import { parseFrontmatter, type Frontmatter } from "./frontmatter";
 import { getPerson, type Person } from "@/data/people";
 import { CONFIG_ACCESS_MARKDOWN } from "@/data/site";
+import { COMMITMENT_STATUS_MARKDOWN } from "@/data/agreements";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -40,12 +41,30 @@ const SHARED_BLOCKS: Record<string, string> = {
   "configuration-and-access": CONFIG_ACCESS_MARKDOWN,
 };
 
+/**
+ * Shared facts that depend on site state (src/data/), written inline in
+ * content/ as `{{name}}`, in a body or a TL;DR point. Each is one sentence or
+ * phrase of inline Markdown.
+ */
+const INLINE_FACTS: Record<string, string> = {
+  "commitment-status": COMMITMENT_STATUS_MARKDOWN,
+};
+
+function expandInline(text: string, file: string): string {
+  return text.replace(/\{\{([\w-]+)\}\}/g, (_match, name: string) => {
+    const fact = INLINE_FACTS[name];
+    if (fact === undefined) throw new Error(`${file}: unknown inline fact "{{${name}}}"`);
+    return fact;
+  });
+}
+
 function expandShared(markdown: string, file: string): string {
-  return markdown.replace(/^<!-- shared: ([\w-]+) -->$/gm, (_match, name: string) => {
+  const blocks = markdown.replace(/^<!-- shared: ([\w-]+) -->$/gm, (_match, name: string) => {
     const block = SHARED_BLOCKS[name];
     if (block === undefined) throw new Error(`${file}: unknown shared block "${name}"`);
     return block;
   });
+  return expandInline(blocks, file);
 }
 
 function read(relative: string) {
@@ -126,7 +145,7 @@ function pageTldr(slug: string, data: Frontmatter, file: string): string[] {
     if ("tldr" in data) throw new Error(`${file}: this page has no TL;DR; remove "tldr"`);
     return [];
   }
-  return tldr(list(data, "tldr", file), file);
+  return tldr(list(data, "tldr", file).map((item) => expandInline(item, file)), file);
 }
 
 export function getPage(slug: string): Page {
@@ -240,7 +259,8 @@ export type Idea = {
 
 function loadIdea(fileName: string): Idea {
   const { file, source } = read(`ideas/${fileName}`);
-  const { data, body } = parseFrontmatter(source, file);
+  const { data, body: rawBody } = parseFrontmatter(source, file);
+  const body = expandShared(rawBody, file);
   const slug = str(data, "slug", file);
   if (`${slug}.md` !== fileName) throw new Error(`${file}: slug must match the file name`);
 

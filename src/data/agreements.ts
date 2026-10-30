@@ -1,7 +1,7 @@
 /**
  * Mentor and administrator agreements for Google Summer of Code 2027.
  *
- * Everyone who mentors or administers for Elixpo signs a public commitment.
+ * Everyone who mentors or administers for Elixpo signs the same commitment by hand.
  * A signed copy is published at public/agreements/<github>-gsoc-2027-commitment.pdf.
  *
  * To publish a signed copy: add the PDF to public/agreements/, then set
@@ -62,3 +62,14 @@ export const AGREEMENTS: Agreement[] = [
     signedOn: null,
   },
 ];
+
+/** True once every organiser and mentor has signed; pages word the commitment from this, never by hand. */
+export const ALL_COMMITMENTS_SIGNED = AGREEMENTS.every((agreement) => agreement.status === "signed");
+/** Deadline stated while copies are still awaiting signature. */
+export const COMMITMENT_DEADLINE = "January 2027";
+/** The commitment's status as plain text, for components. */
+export const COMMITMENT_STATUS_TEXT = ALL_COMMITMENTS_SIGNED
+  ? "Every organiser and mentor has signed the commitment; the signed copies are on the agreements page."
+  : `Each organiser and mentor will sign the commitment by ${COMMITMENT_DEADLINE}; signed copies appear on the agreements page as they are completed.`;
+/** The same sentence as Markdown, included in content/ with `{{commitment-status}}`. */
+export const COMMITMENT_STATUS_MARKDOWN = COMMITMENT_STATUS_TEXT.replace("the agreements page", "the [agreements page](/agreements/)");
