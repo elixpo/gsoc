@@ -35,12 +35,11 @@ tests to check the apps on every change.
 
 ## Expected outcomes
 
-- Close the abstraction-layer leaks: inject dependencies into the launcher,
-  and put IR, wifi and battery behind the API.
-- A desktop backend on the MicroPython unix port, with a windowed mode and a
-  headless mode.
-- Scripted button input and a deterministic clock.
-- A pytest harness that starts apps headless and runs them in CI.
+- Anyone can run and develop Oreo apps on an ordinary computer, with no
+  badge hardware.
+- Badge apps are tested automatically on every change.
+- The OS reaches the hardware only through its abstraction layer, so the
+  simulator and the real badge run the same app code.
 
 ## Stretch goals
 
@@ -58,9 +57,13 @@ tests to check the apps on every change.
 
 ## How success is measured
 
+- The launcher receives its dependencies by injection, and IR, wifi and
+  battery sit behind `oreoOS/api.py`.
+- A desktop backend on the MicroPython unix port runs in a windowed mode and
+  a headless mode, with scripted button input and a deterministic clock.
 - At least 10 of the 21 apps start and respond to scripted input
   unmodified.
-- Headless CI runs the apps on every change.
+- A pytest harness runs the apps headless in CI on every change.
 - A new contributor builds an app from `app_templates/` without hardware.
 
 ## Warm-up tasks

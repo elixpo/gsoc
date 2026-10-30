@@ -35,12 +35,11 @@ and adds automated tests so that it stays usable.
 
 ## Expected outcomes
 
-- An accessible shape tree mirrored from the scene, kept in sync through
-  undo/redo and live collaboration.
-- Keyboard navigation between shapes, frames and connections.
-- Keyboard select, move, resize, connect and label editing.
-- A live announcer for selections, connections and edits.
-- A Playwright and axe suite of keyboard-only scenarios in CI.
+- People who use only a keyboard, or a screen reader, can find, create,
+  connect and edit shapes on the canvas, not only use the toolbar.
+- The canvas stays understandable to assistive technology as a diagram
+  changes, including through undo/redo and live collaboration.
+- Automated tests keep the canvas accessible after the project ends.
 
 ## Stretch goals
 
@@ -56,9 +55,13 @@ and adds automated tests so that it stays usable.
 
 ## How success is measured
 
+- Shapes, frames and connections can be reached, selected, moved, resized,
+  connected and labelled from the keyboard.
+- Screen readers are told about selections, connections and edits, and an
+  accessible shape tree stays in sync with the scene.
 - Zero serious axe violations on the canvas.
-- At least 8 keyboard-only end-to-end scenarios pass, such as building a
-  three-node flowchart.
+- At least 8 keyboard-only end-to-end scenarios pass in CI with Playwright,
+  such as building a three-node flowchart.
 - NVDA and VoiceOver test scripts exist.
 - A WCAG checklist is mapped to the tests.
 

@@ -46,15 +46,12 @@ reintroduce and protects everyone who writes on LixBlogs.
 
 ## Expected outcomes
 
-- One declarative read-access policy covering each type of viewer and each
-  content state, with shared query rules derived from it.
-- A harness that runs the real route handlers against a local SQLite or D1
-  database built from `migrations/`, with no secrets, a fake session and a
-  fixture "world".
-- A generated route inventory, plus a CI check that fails when a route is
-  left unclassified.
-- High-risk read routes migrated to the shared policy (cap agreed in the
-  proposal).
+- Who may read what on LixBlogs is decided in one declarative policy, so a
+  new or changed route cannot quietly invent its own rules.
+- Anyone can prove, offline and without secrets, that private content stays
+  private, by running the real route handlers against a local database.
+- Every route is known and classified, so a gap shows up in CI rather than
+  in a privacy report.
 
 ## Stretch goals
 
@@ -71,8 +68,16 @@ reintroduce and protects everyone who writes on LixBlogs.
 
 ## How success is measured
 
+- The policy covers each type of viewer and each content state, and the
+  shared query rules are derived from it.
+- The harness runs the real route handlers against a local SQLite or D1
+  database built from `migrations/`, with a fake session and a fixture
+  "world".
+- A generated route inventory classifies 100% of routes, and CI fails when
+  a route is left unclassified.
+- The high-risk read routes use the shared policy (how many is agreed in the
+  proposal).
 - Reverting the October fix commits makes the suite fail.
-- 100% of routes are classified.
 - CI needs no secrets.
 
 ## Warm-up tasks

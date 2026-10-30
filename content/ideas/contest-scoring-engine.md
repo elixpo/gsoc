@@ -34,13 +34,12 @@ and that points cannot be earned through tricks.
 
 ## Expected outcomes
 
-- A deterministic, pure engine that turns normalised GitHub events into
-  ledger entries with idempotency keys, driven by a small typed rules
-  configuration (not a free-form DSL). Each entry records the rule and the
-  events behind it.
-- Two anti-gaming rules (for example self-merge and bot actors), each
-  producing an explicit "held" or "denied" entry with a reason.
-- A replay CLI using recorded webhook fixtures.
+- Contest points come from one deterministic engine: the same GitHub events
+  always give the same ledger, and every entry says which rule and which
+  events produced it.
+- Common tricks for earning points are caught and shown openly, with a
+  reason, instead of being silently counted or dropped.
+- Anyone can replay recorded events and check the scores for themselves.
 
 ## Stretch goals
 
@@ -60,6 +59,11 @@ and that points cannot be earned through tricks.
 
 ## How success is measured
 
+- The engine is pure and is driven by a small typed rules configuration,
+  not a free-form DSL. Idempotency keys stop an event from counting twice.
+- Two anti-gaming rules (for example self-merge and bot actors) each produce
+  an explicit "held" or "denied" entry with a reason.
+- A replay CLI runs recorded webhook fixtures through the engine.
 - 10 or more fixture scenarios with golden outputs.
 - Two replays produce byte-identical output.
 - Every point traces back to its events and the rule that awarded it.

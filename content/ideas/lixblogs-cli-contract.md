@@ -30,9 +30,10 @@ everyone who builds scripts and agent tools on the CLI.
 
 ## Expected outcomes
 
-- A JSON Schema with a `schemaVersion` for every command's output and error
-  envelope.
-- Snapshot tests for human-readable and JSON output.
+- Scripts and AI agents built on the LixBlogs CLI can rely on a written,
+  versioned description of every command's output, including errors.
+- An accidental change to that output is caught by tests before it reaches
+  npm.
 
 ## Stretch goals
 
@@ -50,6 +51,8 @@ everyone who builds scripts and agent tools on the CLI.
 
 ## How success is measured
 
+- A JSON Schema with a `schemaVersion` exists for every command's output and
+  error envelope.
 - The schemas validate every snapshot.
 - Every command has snapshot tests for its JSON and human-readable output.
 - A deliberate change to an output shape fails the tests until the schema

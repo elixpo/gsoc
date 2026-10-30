@@ -39,14 +39,13 @@ contract makes that guarantee explicit and unblocks the planned connectors.
 
 ## Expected outcomes
 
-- A versioned connector manifest with scopes and an effects classification,
-  validated by the existing marketplace crate.
-- A connector trait and host that work with Crumb's approval flow and the OS
-  keyring. Credentials are never stored in plain text.
-- An offline conformance kit: fake HTTP servers, recorded fixtures and the
-  existing mock LLM provider. It covers scope enforcement, fail-closed
-  handling of revoked or expired tokens, redaction and cancellation.
-- The GitHub tools migrated onto the contract as the reference connector.
+- Crumb has one versioned contract that every connector to an outside
+  account follows: what it may do, how its credentials are kept, and when
+  the user must approve.
+- An offline conformance kit proves, without secrets or network access,
+  that a connector does only what it declares.
+- The GitHub tools become the first connector on the contract, as the
+  reference for the planned connectors.
 
 ## Stretch goals
 
@@ -63,6 +62,13 @@ contract makes that guarantee explicit and unblocks the planned connectors.
 
 ## How success is measured
 
+- The connector manifest declares scopes and an effects classification, and
+  the existing marketplace crate validates it.
+- Credentials live in the OS keyring, never in plain text, and read approval
+  is separate from write approval in Crumb's approval flow.
+- The kit uses fake HTTP servers, recorded fixtures and the existing mock LLM
+  provider, and covers scope enforcement, fail-closed handling of revoked or
+  expired tokens, redaction and cancellation.
 - The kit runs in CI on Linux, macOS and Windows with no secrets.
 - Negative tests prove that undeclared scopes are denied.
 - The GitHub connector passes the kit and the existing GitHub tests still
