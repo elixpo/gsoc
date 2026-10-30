@@ -4,9 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 import {
+  WHATSAPP_LABEL,
+  WHATSAPP_NOTE,
+  WHATSAPP_URL,
   CODE_OF_CONDUCT_URL,
   CONTACT_EMAIL,
+  DISCUSSIONS_LINK_LABEL,
   DISCUSSIONS_NOTE,
+  DISCUSSIONS_OPEN,
   DISCUSSIONS_URL,
   GITHUB_ORG_URL,
   GSOC_TRADEMARK_NOTICE,
@@ -134,10 +139,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Image src="/icon-192.png" width="44" height="44" alt="" unoptimized />
               <div>
                 <strong>Elixpo · Google Summer of Code 2027</strong>
-                <p>
-                  Questions about the programme or an idea: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Defects and setup
-                  problems: an issue in the relevant repository.
-                </p>
+                {DISCUSSIONS_OPEN ? (
+                  <p>
+                    Introductions and questions about an idea: <a href={DISCUSSIONS_URL}>GitHub Discussions</a>. Programme questions and
+                    private matters: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Defects and setup problems: an issue in the
+                    relevant repository.
+                  </p>
+                ) : (
+                  <p>
+                    Questions about the programme or an idea: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Defects and setup
+                    problems: an issue in the relevant repository.
+                  </p>
+                )}
               </div>
             </div>
             <nav aria-labelledby="footer-sitemap" className="footer-sitemap">
@@ -157,8 +170,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                   <a href={GITHUB_ORG_URL}>Elixpo on GitHub</a>
                 </li>
                 <li>
-                  <a href={DISCUSSIONS_URL}>GitHub Discussions (opens with the 2027 dates)</a>
+                  <a href={DISCUSSIONS_URL}>{DISCUSSIONS_LINK_LABEL}</a>
                 </li>
+                {WHATSAPP_URL ? (
+                  <li>
+                    <a href={WHATSAPP_URL} rel="noopener">
+                      {WHATSAPP_LABEL}
+                    </a>
+                    <small className="footer-whatsapp-note"> {WHATSAPP_NOTE}</small>
+                  </li>
+                ) : null}
                 <li>
                   <a href={CODE_OF_CONDUCT_URL}>Elixpo Code of Conduct (full text)</a>
                 </li>

@@ -88,9 +88,7 @@ and our [timeline page](/timeline/).
   reply within 48 hours on weekdays, write to the backup mentor, then to
   [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 
-GitHub Discussions for GSoC 2027 will open once Google announces the
-programme dates. Until then, the programme email is the channel for
-questions.
+{{discussions}}
 
 ### Weekly progress report template
 

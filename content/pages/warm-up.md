@@ -327,6 +327,6 @@ try the MicroPython unix port from MicroPython's own documentation.
 
 ## Where to ask
 
-Write to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) with the project, the
-command you ran and its full output. GitHub Discussions for GSoC 2027 will
-open once Google announces the programme dates.
+{{write-to}} with the project, the command you ran and its full output.
+{{discussions}} A defect in a project's setup also belongs in an issue in
+that repository.

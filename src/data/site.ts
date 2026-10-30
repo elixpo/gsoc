@@ -11,14 +11,50 @@ export const CONTACT_EMAIL = "gsoc@elixpo.com"; // TODO confirm the mailbox is l
 export const GITHUB_ORG_URL = "https://github.com/elixpo";
 export const DISCUSSIONS_URL = "https://github.com/orgs/elixpo/discussions";
 /**
- * GitHub Discussions for the programme open only once Google announces the
- * GSoC 2027 dates. Until then the programme email is the primary channel.
+ * The single switch for the public channel. GitHub Discussions is the primary
+ * public channel: introductions, one thread per idea and warm-up results.
+ * Set to true once Discussions are enabled with those categories; every page
+ * (contributor guide, warm-up, idea pages, FAQ, contact, footer) follows, and
+ * scripts/check_site.py checks the wording against it. While false, the
+ * programme email is the main channel and pages say Discussions opens soon.
  */
-export const DISCUSSIONS_OPEN = false;
-export const DISCUSSIONS_NOTE =
-  "GitHub Discussions for GSoC 2027 will open once Google announces the programme dates. Until then, write to gsoc@elixpo.com.";
+export const DISCUSSIONS_OPEN: boolean = false;
+/** What Discussions is for, once open. */
+const DISCUSSIONS_PURPOSE = "GitHub Discussions is where applicants introduce themselves, ask about the ideas and share warm-up results.";
+const DISCUSSIONS_SOON = "GitHub Discussions for GSoC 2027 opens soon.";
+/** Footer note, under the programme email. */
+export const DISCUSSIONS_NOTE = DISCUSSIONS_OPEN ? DISCUSSIONS_PURPOSE : `${DISCUSSIONS_SOON} Until then, write to ${CONTACT_EMAIL}.`;
 /** The same fact, for places that already give the email address. */
-export const DISCUSSIONS_NOTE_SHORT = "GitHub Discussions for GSoC 2027 will open once Google announces the programme dates.";
+export const DISCUSSIONS_NOTE_SHORT = DISCUSSIONS_OPEN ? DISCUSSIONS_PURPOSE : DISCUSSIONS_SOON;
+/** Label of the Discussions link in the footer. */
+export const DISCUSSIONS_LINK_LABEL = DISCUSSIONS_OPEN ? "GitHub Discussions" : "GitHub Discussions (opens soon)";
+const EMAIL_LINK = `[${CONTACT_EMAIL}](mailto:${CONTACT_EMAIL})`;
+const DISCUSSIONS_LINK = `[GitHub Discussions](${DISCUSSIONS_URL})`;
+/**
+ * Channel wording for content/, written inline as `{{name}}` (src/lib/content.ts).
+ * - `discussions`: the status sentence.
+ * - `ask-channel`: where questions about an idea or the code go (a link).
+ * - `write-to`: the same, as the start of a sentence.
+ * - `warm-up-results`: where warm-up notes go, as the end of a sentence.
+ */
+export const CHANNEL_FACTS: Record<string, string> = {
+  discussions: DISCUSSIONS_OPEN
+    ? `[GitHub Discussions](${DISCUSSIONS_URL}) is where applicants introduce themselves, ask about the ideas and share warm-up results.`
+    : `${DISCUSSIONS_SOON.replace(".", ";")} until then, email is the main channel.`,
+  "ask-channel": DISCUSSIONS_OPEN ? DISCUSSIONS_LINK : EMAIL_LINK,
+  "write-to": DISCUSSIONS_OPEN ? `Post in ${DISCUSSIONS_LINK}` : `Write to ${EMAIL_LINK}`,
+  "warm-up-results": DISCUSSIONS_OPEN ? `post the notes in the idea's thread in ${DISCUSSIONS_LINK}` : `send the notes to ${EMAIL_LINK}`,
+};
+/**
+ * Optional secondary chat (Elixpo's WhatsApp group). null renders nothing.
+ * Never the only or the primary channel: technical questions stay in Discussions.
+ */
+export const WHATSAPP_URL: string | null = null;
+export const WHATSAPP_LABEL = "Quick chat (WhatsApp)";
+export const WHATSAPP_NOTE =
+  "Joining shares your phone number with the group. The Code of Conduct applies. Technical questions and decisions go to GitHub Discussions so everyone can find them.";
+/** Shown on /contact/ and in the contributor guide with `<!-- shared: whatsapp -->`; empty while WHATSAPP_URL is null. */
+export const WHATSAPP_MARKDOWN = WHATSAPP_URL ? `**${WHATSAPP_LABEL}:** [join the group](${WHATSAPP_URL}). ${WHATSAPP_NOTE}` : "";
 export const CODE_OF_CONDUCT_URL = "https://github.com/elixpo/elixpo/blob/main/CODE_OF_CONDUCT.md";
 export const GSOC_TIMELINE_URL = "https://developers.google.com/open-source/gsoc/timeline";
 export const GSOC_URL = "https://summerofcode.withgoogle.com/";

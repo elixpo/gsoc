@@ -66,8 +66,8 @@ everyone who builds scripts and agent tools on the CLI.
 1. Install the CLI from npm and run several commands with
    `--json --no-input`.
 2. Read the CLI source in `packages/lixblogs-cli` in the LixBlogs repository.
-3. Record every JSON output shape you observe, including errors, and send the
-   notes to [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+3. Record every JSON output shape you observe, including errors, then
+   {{warm-up-results}}.
 4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.
 
 ## Terms used on this page

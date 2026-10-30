@@ -109,7 +109,7 @@ programme stages and a link to Google's timeline.
 
 ## Whom do I contact?
 
-Email [gsoc@elixpo.com](mailto:gsoc@elixpo.com) with questions about the
-programme or an idea, and report defects as an issue in the relevant
-repository. GitHub Discussions for GSoC 2027 will open once Google announces the
-programme dates. See [Contact](/contact/).
+Introductions and questions about an idea: {{ask-channel}}. Programme
+questions and private matters: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+Defects: an issue in the relevant repository. {{discussions}} See
+[Contact](/contact/).

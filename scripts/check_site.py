@@ -71,9 +71,31 @@ HISTORY_EVIDENCE = [
     "https://elixpo.com/partnerships",
 ]
 CONTACT = "gsoc@elixpo.com"
-# GitHub Discussions for the programme open only once Google announces the GSoC 2027 dates (src/data/site.ts).
-DISCUSSIONS_NOTE = "GitHub Discussions for GSoC 2027 will open once Google announces the programme dates."
-# Wording that presents Discussions as open now; checked in page text.
+# GitHub Discussions is the primary public channel, behind one switch (src/data/site.ts DISCUSSIONS_OPEN).
+# While it is false, pages say it opens soon; once true, they point applicants to it. Wording is checked against the switch.
+def discussions_open() -> bool:
+    match = re.search(r"export const DISCUSSIONS_OPEN(?:: boolean)? = (true|false);", Path("src/data/site.ts").read_text(encoding="utf-8"))
+    assert match, "Could not read DISCUSSIONS_OPEN from src/data/site.ts"
+    return match.group(1) == "true"
+
+
+def whatsapp_url() -> str | None:
+    match = re.search(r"export const WHATSAPP_URL: string \| null = (null|\"([^\"]+)\");", Path("src/data/site.ts").read_text(encoding="utf-8"))
+    assert match, "Could not read WHATSAPP_URL from src/data/site.ts"
+    return match.group(2)
+
+
+DISCUSSIONS_URL = "https://github.com/orgs/elixpo/discussions"
+DISCUSSIONS_NOTE_CLOSED = "GitHub Discussions for GSoC 2027 opens soon."
+DISCUSSIONS_NOTE_OPEN = "GitHub Discussions is where applicants introduce themselves, ask about the ideas and share warm-up results."
+# Pages that name the public channel; each must carry the wording that matches the switch.
+DISCUSSIONS_ROUTES = ["/contributor-guide/", "/warm-up/", "/faq/", "/contact/"]
+WHATSAPP_LABEL = "Quick chat (WhatsApp)"
+WHATSAPP_NOTE = "Joining shares your phone number with the group. The Code of Conduct applies. Technical questions and decisions go to GitHub Discussions so everyone can find them."
+WHATSAPP_ROUTES = ["/contact/", "/contributor-guide/"]
+# Wording that ties Discussions to Google's announcement; never used.
+DISCUSSIONS_WAITING = [re.compile(r"Discussions[^.]{0,80}\b(once|when|after) Google announces", re.I), re.compile(r"opens with the 2027 dates", re.I)]
+# Wording that presents Discussions as open now; checked in page text while the switch is false.
 DISCUSSIONS_AS_OPEN = [
     re.compile(r"\b(ask|post|discuss|share|introduce yourself|open a discussion)\b[^.]{0,60}\bin (GitHub )?Discussions\b", re.I),
     re.compile(r"Ask in GitHub Discussions", re.I),
@@ -290,6 +312,9 @@ def check_site(site: Path, launched: bool) -> list[str]:
         if not condition:
             errors.append(message)
 
+    open_discussions = discussions_open()
+    whatsapp = whatsapp_url()
+
     team = people()
     mentors = {handle: info for handle, info in team.items() if info["mentor"]}
     ideas = [frontmatter(path) for path in sorted(Path("content/ideas").glob("*.md")) if path.name != "README.md"]
@@ -388,9 +413,22 @@ def check_site(site: Path, launched: bool) -> list[str]:
         footer_source = footer_html.group(0) if footer_html else ""
         footer_text = html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", footer_source)))
         expect(f'href="mailto:{CONTACT}"' in footer_source, f"{route}: footer lacks the mailto:{CONTACT} link")
-        expect(DISCUSSIONS_NOTE in footer_text, f"{route}: footer lacks the note that GitHub Discussions open once Google announces the dates")
-        for pattern in DISCUSSIONS_AS_OPEN:
-            expect(not pattern.search(page.text), f"{route}: presents GitHub Discussions as open now ({pattern.pattern!r})")
+        for pattern in DISCUSSIONS_WAITING:
+            expect(not pattern.search(page.text), f"{route}: ties GitHub Discussions to Google's announcement ({pattern.pattern!r}); say it opens soon")
+        if open_discussions:
+            expect(DISCUSSIONS_NOTE_OPEN in footer_text and f'href="{DISCUSSIONS_URL}"' in footer_source,
+                   f"{route}: footer must point applicants to GitHub Discussions (DISCUSSIONS_OPEN is true)")
+            expect(DISCUSSIONS_NOTE_CLOSED not in page.text and "opens soon" not in page.text,
+                   f"{route}: says GitHub Discussions opens soon, but DISCUSSIONS_OPEN is true")
+        else:
+            expect(DISCUSSIONS_NOTE_CLOSED in footer_text, f"{route}: footer lacks the note that GitHub Discussions opens soon")
+            for pattern in DISCUSSIONS_AS_OPEN:
+                expect(not pattern.search(page.text), f"{route}: presents GitHub Discussions as open now ({pattern.pattern!r})")
+        if whatsapp:
+            expect(f'href="{html.escape(whatsapp)}"' in footer_source and WHATSAPP_LABEL in footer_text and WHATSAPP_NOTE in footer_text,
+                   f"{route}: footer lacks the WhatsApp link and its note")
+        else:
+            expect("WhatsApp" not in page.text, f"{route}: mentions WhatsApp, but WHATSAPP_URL is null")
 
         if route == "/404.html":
             expect("noindex" in robots_meta, "404 page must be noindex")
@@ -627,6 +665,22 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect("What this record does not show" not in text, "/about/: the removed self-critique section is back")
         expect("How Elixpo uses automation" in text and "elixpoo" in text, "/about/: 'How Elixpo uses automation' section (the elixpoo agent) missing")
         expect("Outside contributors in the participating projects" in text, "/about/: 'Outside contributors in the participating projects' section missing")
+    # The public channel: wording on the pages that name it follows DISCUSSIONS_OPEN; WhatsApp is only ever secondary
+    for route in DISCUSSIONS_ROUTES:
+        if route in parsed:
+            text = parsed[route].text
+            if open_discussions:
+                expect(DISCUSSIONS_NOTE_OPEN in text and f'href="{DISCUSSIONS_URL}"' in raw[route], f"{route}: must point applicants to GitHub Discussions (DISCUSSIONS_OPEN is true)")
+            else:
+                expect(DISCUSSIONS_NOTE_CLOSED.rstrip(".") in text, f"{route}: must say GitHub Discussions for GSoC 2027 opens soon")
+    for route in WHATSAPP_ROUTES:
+        if route in parsed and whatsapp:
+            expect(WHATSAPP_LABEL in parsed[route].text and WHATSAPP_NOTE in parsed[route].text, f"{route}: WhatsApp link or its note missing")
+    for route in idea_routes:
+        if route in parsed:
+            text = parsed[route].text
+            expect(("GitHub Discussions" in text and f'href="{DISCUSSIONS_URL}"' in raw[route]) if open_discussions else DISCUSSIONS_NOTE_CLOSED in text,
+                   f"{route}: channel wording does not match DISCUSSIONS_OPEN")
     for route in ("/mentors/", "/operations/"):
         if route in parsed:
             text = parsed[route].text

@@ -30,6 +30,10 @@ Facts that change with the site's data are written inline as `{{name}}` and
 filled in at build time (`INLINE_FACTS` in `src/lib/content.ts`). For example,
 `{{commitment-status}}` says whether the commitments are signed yet, from
 `src/data/agreements.ts`; never state that by hand.
+The channel facts `{{discussions}}`, `{{ask-channel}}`, `{{write-to}}` and
+`{{warm-up-results}}` follow the `DISCUSSIONS_OPEN` switch in
+`src/data/site.ts`, and `<!-- shared: whatsapp -->` shows the optional
+WhatsApp link only when `WHATSAPP_URL` is set.
 
 Every page in `pages/` except `timeline.md` has a `tldr:` list in its
 frontmatter: three to six short points with the page's most important facts or

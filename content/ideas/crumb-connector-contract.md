@@ -83,8 +83,7 @@ contract makes that guarantee explicit and unblocks the planned connectors.
 2. Read the `crumb-marketplace` crate and describe how skill manifests are
    verified today.
 3. Read the connector planning issues linked under Material and summarise
-   their requirements in your own words, and send the summary to
-   [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+   their requirements in your own words, then {{warm-up-results}}.
 4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.
 
 ## Terms used on this page

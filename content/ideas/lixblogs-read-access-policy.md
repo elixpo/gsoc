@@ -94,8 +94,7 @@ reintroduce and protects everyone who writes on LixBlogs.
    [configuration and access](/contributor-guide/#configuration-and-access).
 2. Read the October reports linked under Material and the pull requests
    that fixed them, identify the route each one touches, and summarise the
-   cause in your own words. Send the summary to
-   [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+   cause in your own words, then {{warm-up-results}}.
 3. Read `migrations/` and the existing tests in `tests/`, and describe how data
    and tests are structured today.
 4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.

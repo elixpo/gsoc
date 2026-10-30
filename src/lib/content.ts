@@ -3,7 +3,7 @@ import path from "node:path";
 import { marked } from "marked";
 import { parseFrontmatter, type Frontmatter } from "./frontmatter";
 import { getPerson, type Person } from "@/data/people";
-import { CAPACITY_COVER_MARKDOWN, CONFIG_ACCESS_MARKDOWN } from "@/data/site";
+import { CAPACITY_COVER_MARKDOWN, CHANNEL_FACTS, CONFIG_ACCESS_MARKDOWN, WHATSAPP_MARKDOWN } from "@/data/site";
 import { COMMITMENT_STATUS_MARKDOWN } from "@/data/agreements";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
@@ -40,6 +40,7 @@ export function renderMarkdown(markdown: string): string {
 const SHARED_BLOCKS: Record<string, string> = {
   "configuration-and-access": CONFIG_ACCESS_MARKDOWN,
   "capacity-and-cover": CAPACITY_COVER_MARKDOWN,
+  whatsapp: WHATSAPP_MARKDOWN,
 };
 
 /**
@@ -49,6 +50,7 @@ const SHARED_BLOCKS: Record<string, string> = {
  */
 const INLINE_FACTS: Record<string, string> = {
   "commitment-status": COMMITMENT_STATUS_MARKDOWN,
+  ...CHANNEL_FACTS,
 };
 
 function expandInline(text: string, file: string): string {
