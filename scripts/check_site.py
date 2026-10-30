@@ -625,6 +625,10 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect(text.count("Date precision:") >= 6, "/about/: date precision missing from history entries")
         expect("Community and mentoring record" in text and "Mentoring experience" in text, "/about/: 'Community and mentoring record' or 'Mentoring experience' section missing")
         expect("What this record does not show" not in text, "/about/: the removed self-critique section is back")
+        expect("How Elixpo uses automation" in text and "elixpoo" in text, "/about/: 'How Elixpo uses automation' section (the elixpoo agent) missing")
+        expect("Outside contributors in the participating projects" in text, "/about/: 'Outside contributors in the participating projects' section missing")
+    if "/ai-policy/" in raw:
+        expect('href="/about/#how-elixpo-uses-automation"' in raw["/ai-policy/"], "/ai-policy/: link to /about/#how-elixpo-uses-automation missing")
 
     # Codebases page (/projects/): all five codebases, each with repository, README, CONTRIBUTING, LICENSE and its ideas
     if "/projects/" in raw:

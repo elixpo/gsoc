@@ -43,3 +43,6 @@ next:
 
 Mentors review all work personally. Automated checks may run on pull
 requests, but a mentor makes every decision.
+
+Elixpo's own AI agent follows the same rules; see
+[How Elixpo uses automation](/about/#how-elixpo-uses-automation).
