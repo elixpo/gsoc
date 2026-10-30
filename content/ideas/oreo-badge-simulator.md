@@ -16,7 +16,9 @@ skills:
   - pygame or SDL
   - pytest
   - Basic embedded knowledge
-related_issues: []
+related_issues:
+  - "64 Running OreoOS apps without hardware"
+  - "67 List the modules that import hardware directly"
 ---
 
 ## Description
@@ -83,7 +85,7 @@ tests to check the apps on every change.
   computer.
 - **Hardware abstraction layer**: one shared layer of code that apps use to
   talk to the hardware. Here it is `oreoOS/api.py`.
-- **Leak, bypass**: code that talks to the hardware directly instead of
+- **Bypass**: code that talks to the hardware directly instead of
   going through that layer.
 - **Inject dependencies**: pass in the parts a module needs, so a test or the
   simulator can swap in fakes.

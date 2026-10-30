@@ -15,7 +15,9 @@ skills:
   - TypeScript
   - Test design
   - GitHub event semantics
-related_issues: []
+related_issues:
+  - "101 Scoring engine and event-normalisation contract"
+  - "103 Document the D1 schema in workers/migrations"
 ---
 
 ## Description

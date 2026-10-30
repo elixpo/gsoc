@@ -318,6 +318,8 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect("env_example" not in idea, f"{idea['slug']}: remove env_example; configuration is encrypted with SOPS, not .env.example files")
         expect(int(str(idea["size_hours"])) in SIZES, f"{idea['slug']}: size must be 90 or 175")
         expect(idea["difficulty"] in DIFFICULTIES, f"{idea['slug']}: unknown difficulty {idea['difficulty']}")
+        issues = idea.get("related_issues") or []
+        expect(isinstance(issues, list) and len(issues) >= 1, f"{idea['slug']}: link at least one real issue in related_issues (the idea's discovery issue)")
         for role in ("primary_mentor", "backup_mentor"):
             expect(idea[role] in mentors, f"{idea['slug']}: {role} {idea[role]} is not a mentor in src/data/people.ts")
 

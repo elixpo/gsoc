@@ -18,6 +18,7 @@ skills:
   - Test design
   - Cloudflare D1 (helpful)
 related_issues:
+  - "559 Centralise read-access rules for posts and organisations"
   - "507 Popular tags count drafts, trashed, and secret posts"
   - "510 Collab status endpoint exposes draft editor identity without permission"
   - "511 Blog collaborator list is readable for any draft by any signed-in user"
@@ -35,9 +36,14 @@ LixBlogs decides who can read a post, draft, secret post or
 private-organisation item separately in each of its ~135 API routes. The same
 SQL filter is copied about 100 times, and there is no shared `canRead` rule.
 
-In October 2026 that duplication led to a cluster of privacy-leak reports,
-linked under Material. Nothing prevents the next one. There are no
-route-level tests: the 47 existing tests stub the database by hand.
+In October 2026 an outside contributor reported a cluster of privacy
+defects caused by that duplication (#507, #510–#512 and #515–#519, linked
+under Material). They are fixed on `main`, route by route, in
+[#535](https://github.com/elixpo/blogs.elixpo/pull/535)–[#537](https://github.com/elixpo/blogs.elixpo/pull/537), [#548](https://github.com/elixpo/blogs.elixpo/pull/548) and
+[#549](https://github.com/elixpo/blogs.elixpo/pull/549). Nothing keeps them fixed: there are no route-level
+tests, and the 47 existing tests stub the database by hand. This project
+builds the guard that keeps them fixed, as proposed in
+[#559](https://github.com/elixpo/blogs.elixpo/issues/559).
 
 **Impact.** LixBlogs holds content that must remain private: drafts, secret
 posts and posts in private organisations. One shared policy, tested against
@@ -77,7 +83,7 @@ reintroduce and protects everyone who writes on LixBlogs.
   a route is left unclassified.
 - The high-risk read routes use the shared policy (how many is agreed in the
   proposal).
-- Reverting the October fix commits makes the suite fail.
+- Reverting the October fixes linked above makes the suite fail.
 - CI needs no secrets.
 
 ## Warm-up tasks
@@ -86,8 +92,9 @@ reintroduce and protects everyone who writes on LixBlogs.
    `tests/`. Set up from the README; no private keys needed. If a step asks
    for a secret, report it as a setup issue; see
    [configuration and access](/contributor-guide/#configuration-and-access).
-2. Read the related issues linked under Material, identify the route each one
-   touches, and summarise the cause in your own words. Send the summary to
+2. Read the October reports linked under Material and the pull requests
+   that fixed them, identify the route each one touches, and summarise the
+   cause in your own words. Send the summary to
    [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 3. Read `migrations/` and the existing tests in `tests/`, and describe how data
    and tests are structured today.

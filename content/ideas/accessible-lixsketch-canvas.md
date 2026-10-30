@@ -15,7 +15,9 @@ skills:
   - JavaScript and DOM
   - ARIA and WCAG
   - Playwright
-related_issues: []
+related_issues:
+  - "213 Canvas accessibility baseline"
+  - "152 Accessibility audit: toolbar, More-tools flyout and menus"
 ---
 
 ## Description

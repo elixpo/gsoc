@@ -15,7 +15,10 @@ skills:
   - Node.js
   - JSON Schema
   - Testing
-related_issues: []
+related_issues:
+  - "563 Version the LixBlogs CLI's JSON output contract"
+  - "564 Run the CLI test suite in pull request CI"
+  - "171 Panda UX, automation contracts, doctor, completions, and npm packaging"
 ---
 
 ## Description

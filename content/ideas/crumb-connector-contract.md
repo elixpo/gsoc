@@ -16,6 +16,7 @@ skills:
   - HTTP and OAuth basics
   - Test design
 related_issues:
+  - "254 Connector contract for external accounts (unblocks #29, #30, #31)"
   - "29 Plan professional productivity connectors"
   - "30 Plan GitHub connector for repository workflows"
   - "31 Plan storage connectors for media workflows"
