@@ -134,6 +134,10 @@ Plan status
 - **Availability.** Mentors tell the organisation administrators early if
   their capacity will drop, so that cover can be arranged.
 
+## Capacity and cover
+
+<!-- shared: capacity-and-cover -->
+
 ## Configuration and access
 
 <!-- shared: configuration-and-access -->

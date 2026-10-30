@@ -81,6 +81,17 @@ export const CONFIG_ACCESS_MARKDOWN = [
   "- **Encrypted configuration.** Elixpo uses [SOPS](https://github.com/getsops/sops) to keep configuration encrypted in its repositories. Do not try to decrypt configuration or commit it. If setup asks you for a secret, report it as a setup issue in the repository.",
   "- **After acceptance.** The organisation administrators grant SOPS access scoped to what the project needs, for example integration tests or a staging environment, and revoke it when the programme ends. Never share keys. Access follows the [Code of Conduct](/code-of-conduct/) and the commitment on the [agreements page](/agreements/).",
 ].join("\n");
+/**
+ * Capacity and cover: one statement shown on /mentors/ and /operations/ with
+ * the line `<!-- shared: capacity-and-cover -->` under a "Capacity and cover" heading.
+ */
+export const CAPACITY_COVER_HEADING = "Capacity and cover";
+export const CAPACITY_COVER_MARKDOWN = [
+  "- **February 2027.** Ayushman Bhattacharya, the lead organisation administrator, sits the GATE examination in February 2027. He is also a maintainer of [Pollinations](https://github.com/pollinations/pollinations) and a proposed mentor in its own application to Google Summer of Code 2027.",
+  "- **Who covers.** During that period Vivek Yadav, organisation administrator, covers deadlines and communication with Google, and the backup mentor on each of Ayushman's ideas answers questions and reviews pull requests.",
+  "- **Two mentors per contributor.** Every contributor has a primary and a backup mentor, so no project depends on one person.",
+  "- **Backup mentors prepare.** Each backup mentor commits to ramping up in their idea's codebase before the programme starts: setting it up, reading the code the idea touches and reviewing pull requests there.",
+].join("\n");
 /** Short form for idea pages, next to the README link (followed by a link to CONFIG_ACCESS_ANCHOR). */
 export const SETUP_NOTE = "Set up from the README; no private keys needed.";
 

@@ -627,6 +627,11 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect("What this record does not show" not in text, "/about/: the removed self-critique section is back")
         expect("How Elixpo uses automation" in text and "elixpoo" in text, "/about/: 'How Elixpo uses automation' section (the elixpoo agent) missing")
         expect("Outside contributors in the participating projects" in text, "/about/: 'Outside contributors in the participating projects' section missing")
+    for route in ("/mentors/", "/operations/"):
+        if route in parsed:
+            text = parsed[route].text
+            expect("Capacity and cover" in text and "GATE" in text and "Vivek Yadav" in text,
+                   f"{route}: 'Capacity and cover' statement (src/data/site.ts CAPACITY_COVER_MARKDOWN) missing")
     if "/ai-policy/" in raw:
         expect('href="/about/#how-elixpo-uses-automation"' in raw["/ai-policy/"], "/ai-policy/: link to /about/#how-elixpo-uses-automation missing")
 

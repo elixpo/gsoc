@@ -3,7 +3,7 @@ import path from "node:path";
 import { marked } from "marked";
 import { parseFrontmatter, type Frontmatter } from "./frontmatter";
 import { getPerson, type Person } from "@/data/people";
-import { CONFIG_ACCESS_MARKDOWN } from "@/data/site";
+import { CAPACITY_COVER_MARKDOWN, CONFIG_ACCESS_MARKDOWN } from "@/data/site";
 import { COMMITMENT_STATUS_MARKDOWN } from "@/data/agreements";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
@@ -39,6 +39,7 @@ export function renderMarkdown(markdown: string): string {
 /** Shared Markdown blocks, included in content/ with `<!-- shared: name -->` on a line of its own. */
 const SHARED_BLOCKS: Record<string, string> = {
   "configuration-and-access": CONFIG_ACCESS_MARKDOWN,
+  "capacity-and-cover": CAPACITY_COVER_MARKDOWN,
 };
 
 /**
