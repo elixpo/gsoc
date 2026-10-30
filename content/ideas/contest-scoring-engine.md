@@ -34,19 +34,19 @@ and that points cannot be earned through tricks.
 
 ## Expected outcomes
 
-- A typed, versioned rules configuration with schema validation, not a
-  free-form DSL.
 - A deterministic, pure engine that turns normalised GitHub events into
-  ledger entries with idempotency keys.
-- Two or three anti-gaming rules (for example self-merge, bot actors,
-  trivial diffs), each producing an explicit "held" or "denied" entry with a
-  reason.
+  ledger entries with idempotency keys, driven by a small typed rules
+  configuration (not a free-form DSL). Each entry records the rule and the
+  events behind it.
+- Two anti-gaming rules (for example self-merge and bot actors), each
+  producing an explicit "held" or "denied" entry with a reason.
 - A replay CLI using recorded webhook fixtures.
-- An explanation trace for every ledger entry.
 
 ## Stretch goals
 
-- More anti-gaming rules (PR splitting, unlinked PRs).
+- Schema validation and versioning for the rules configuration.
+- More anti-gaming rules (trivial diffs, PR splitting, unlinked PRs).
+- A readable explanation report for every ledger entry.
 - A dry-run diff showing who moves when a rule changes.
 - A D1 adapter.
 - Tie-breakers.
@@ -56,11 +56,11 @@ and that points cannot be earned through tricks.
 - Webhook ingestion.
 - The GitHub App.
 - UI.
-- Payouts.
+- Payouts, prizes or any link between points and money.
 
 ## How success is measured
 
-- 20 or more fixture scenarios with golden outputs.
+- 10 or more fixture scenarios with golden outputs.
 - Two replays produce byte-identical output.
 - Every point traces back to its events and the rule that awarded it.
 

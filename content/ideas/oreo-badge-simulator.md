@@ -9,7 +9,7 @@ primary_mentor: Circuit-Overtime
 backup_mentor: ez-vivek
 repository: https://github.com/elixpo/oreo
 setup: https://github.com/elixpo/oreo/blob/main/README.md
-summary: Open Oreo to contributors without hardware by building a desktop simulator with headless golden-image tests.
+summary: Open Oreo to contributors without hardware by building a desktop simulator with a headless mode that runs badge apps in CI.
 in_short: Build a program that runs the Oreo badge's software on an ordinary computer, so people can build and test badge apps without the hardware.
 skills:
   - Python and MicroPython
@@ -40,11 +40,12 @@ tests to check the apps on every change.
 - A desktop backend on the MicroPython unix port, with a windowed mode and a
   headless mode.
 - Scripted button input and a deterministic clock.
-- A fake IR bus connecting two simulator instances.
-- A pytest harness with golden-image tests, running in CI.
+- A pytest harness that starts apps headless and runs them in CI.
 
 ## Stretch goals
 
+- A fake IR bus connecting two simulator instances.
+- Golden-image tests that compare the screen with saved pictures.
 - A web-canvas build.
 - Wifi and HTTP mocks.
 - A video playback fallback.
@@ -57,9 +58,9 @@ tests to check the apps on every change.
 
 ## How success is measured
 
-- At least 15 of the 21 apps run unmodified.
-- Two simulated badges exchange an IR frame.
-- Headless CI checks golden images.
+- At least 10 of the 21 apps start and respond to scripted input
+  unmodified.
+- Headless CI runs the apps on every change.
 - A new contributor builds an app from `app_templates/` without hardware.
 
 ## Warm-up tasks

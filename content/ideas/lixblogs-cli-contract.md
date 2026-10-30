@@ -33,13 +33,13 @@ everyone who builds scripts and agent tools on the CLI.
 - A JSON Schema with a `schemaVersion` for every command's output and error
   envelope.
 - Snapshot tests for human-readable and JSON output.
-- Idempotent media-upload retries.
-- Shell completions and a `doctor` command.
-- A packed-tarball test matrix on three operating systems.
 
 ## Stretch goals
 
 - CI detection of breaking contract changes.
+- Idempotent media-upload retries, if they need no new API endpoint.
+- Shell completions and a `doctor` command.
+- A packed-tarball test matrix on three operating systems.
 
 ## Out of scope
 
@@ -51,8 +51,9 @@ everyone who builds scripts and agent tools on the CLI.
 ## How success is measured
 
 - The schemas validate every snapshot.
-- A forced duplicate upload creates exactly one record.
-- The packed artifact passes CI on three operating systems.
+- Every command has snapshot tests for its JSON and human-readable output.
+- A deliberate change to an output shape fails the tests until the schema
+  version is raised.
 
 ## Warm-up tasks
 
