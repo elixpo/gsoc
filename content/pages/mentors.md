@@ -31,6 +31,10 @@ next:
    sent to gsoc@elixpo.com and organises community sessions. She does not
    mentor or review code.
 
+## Capacity and cover
+
+<!-- shared: capacity-and-cover -->
+
 How mentors, administrators and the coordinator work with the contributor
 week by week, cover absences and complete evaluations is set out in
 [How we run the programme](/operations/).

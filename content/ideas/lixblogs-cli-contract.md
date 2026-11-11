@@ -15,7 +15,10 @@ skills:
   - Node.js
   - JSON Schema
   - Testing
-related_issues: []
+related_issues:
+  - "563 Version the LixBlogs CLI's JSON output contract"
+  - "564 Run the CLI test suite in pull request CI"
+  - "171 Panda UX, automation contracts, doctor, completions, and npm packaging"
 ---
 
 ## Description
@@ -30,16 +33,17 @@ everyone who builds scripts and agent tools on the CLI.
 
 ## Expected outcomes
 
-- A JSON Schema with a `schemaVersion` for every command's output and error
-  envelope.
-- Snapshot tests for human-readable and JSON output.
-- Idempotent media-upload retries.
-- Shell completions and a `doctor` command.
-- A packed-tarball test matrix on three operating systems.
+- Scripts and AI agents built on the LixBlogs CLI can rely on a written,
+  versioned description of every command's output, including errors.
+- An accidental change to that output is caught by tests before it reaches
+  npm.
 
 ## Stretch goals
 
 - CI detection of breaking contract changes.
+- Idempotent media-upload retries, if they need no new API endpoint.
+- Shell completions and a `doctor` command.
+- A packed-tarball test matrix on three operating systems.
 
 ## Out of scope
 
@@ -50,17 +54,20 @@ everyone who builds scripts and agent tools on the CLI.
 
 ## How success is measured
 
+- A JSON Schema with a `schemaVersion` exists for every command's output and
+  error envelope.
 - The schemas validate every snapshot.
-- A forced duplicate upload creates exactly one record.
-- The packed artifact passes CI on three operating systems.
+- Every command has snapshot tests for its JSON and human-readable output.
+- A deliberate change to an output shape fails the tests until the schema
+  version is raised.
 
 ## Warm-up tasks
 
 1. Install the CLI from npm and run several commands with
    `--json --no-input`.
 2. Read the CLI source in `packages/lixblogs-cli` in the LixBlogs repository.
-3. Record every JSON output shape you observe, including errors, and send the
-   notes to [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+3. Record every JSON output shape you observe, including errors, then
+   {{warm-up-results}}.
 4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.
 
 ## Terms used on this page

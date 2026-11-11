@@ -7,7 +7,7 @@ tldr:
   - Questions about the programme, an idea or the code, and private matters: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
   - Defects and setup problems: an issue in the relevant repository.
   - Mentors aim to reply within 48 hours on weekdays.
-  - GitHub Discussions for GSoC 2027 will open once Google announces the programme dates.
+  - Introductions and questions about an idea: {{ask-channel}}. {{discussions}}
   - [Browse the six project ideas](/ideas/).
 next:
   - /faq/
@@ -17,16 +17,16 @@ next:
 
 ## Channels
 
-- **Questions about the programme, an idea or the code, and private
-  matters:** [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
+- **Introductions and questions about an idea or the code:** {{ask-channel}}.
+- **Programme questions and private matters:**
+  [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
 - **Defects and setup problems:** an issue in the relevant repository.
 - **Code of Conduct reports:** follow the reporting steps in the
   [Code of Conduct](/code-of-conduct/).
 
-GitHub Discussions for GSoC 2027 will open once Google announces the
-programme dates, at
-[github.com/orgs/elixpo/discussions](https://github.com/orgs/elixpo/discussions).
-Until then, email is the primary channel.
+{{discussions}}
+
+<!-- shared: whatsapp -->
 
 Mentors aim to reply within 48 hours on weekdays. Questions about Elixpo's
 application are handled by the organisation administrators, Ayushman

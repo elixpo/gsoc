@@ -21,9 +21,13 @@ Google Summer of Code 2027 programme. The public summary is at
 - **Private matters** (availability, personal circumstances, concerns about
   people): gsoc@elixpo.com.
 - **Code of Conduct reports**: see [escalation.md](escalation.md).
-- **GitHub Discussions** for GSoC 2027 will open once Google announces the
-  programme dates. Until then, the programme email is the channel for
-  questions.
+- **GitHub Discussions** is the primary public channel: introductions, one
+  thread per idea and warm-up results. It opens soon; until then, the
+  programme email is the channel for questions. The site follows the
+  `DISCUSSIONS_OPEN` switch in `src/data/site.ts`.
+- **WhatsApp** (optional, secondary): shown only when `WHATSAPP_URL` is set.
+  Joining shares a phone number with the group, the Code of Conduct applies,
+  and technical questions and decisions go to GitHub Discussions.
 
 ## Response times
 

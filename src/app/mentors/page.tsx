@@ -4,6 +4,7 @@ import Link from "next/link";
 import { JsonLd, nextLinks, PageHero, Prose, RoleChips, Tldr, WhatNext } from "@/components/blocks";
 import { PageHeroCard } from "@/components/HeroCards";
 import { ContactChips, PeopleTable } from "@/components/PeopleTable";
+import { COMMITMENT_STATUS_TEXT } from "@/data/agreements";
 import { PEOPLE } from "@/data/people";
 import { getPage, ideasMentoredBy } from "@/lib/content";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
@@ -24,7 +25,7 @@ export default function MentorsPage() {
           </a>
         </div>
         <p className="hero-subnote">
-          Every mentor and organiser signs a public commitment. <Link href="/agreements/">Read the agreements</Link>.
+          {COMMITMENT_STATUS_TEXT} <Link href="/agreements/">Read the agreements</Link>.
         </p>
       </PageHero>
       <Tldr items={page.tldrHtml} />

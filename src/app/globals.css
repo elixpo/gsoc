@@ -448,6 +448,7 @@ a.link-chip:hover { border-color:var(--ink); background:var(--white); }
 .site-footer nav h2 { margin:0 0 .5rem; color:#9fb1a6; font:650 .75rem/1.4 var(--font-mono); letter-spacing:.13em; text-transform:uppercase; }
 .site-footer nav ul { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0 1rem; margin:0; padding:0; list-style:none; }
 .site-footer .footer-elsewhere ul { grid-template-columns:1fr; }
+.footer-whatsapp-note { display:block; margin-top:.25rem; color:#b8c4bc; font-size:.85em; }
 .site-footer nav a { display:inline-flex; align-items:center; min-height:40px; font-weight:700; }
 .footer-legal-nav { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem 2rem; padding:var(--space-2) 0; border-top:1px solid rgba(255,255,255,.18); }
 .site-footer .footer-legal-nav h2 { margin:0; }

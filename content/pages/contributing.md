@@ -23,8 +23,7 @@ missing setup step or a better warm-up task. Name the idea and the codebase,
 and describe the problem it solves. A new idea, or a change to an idea's size
 or mentors, needs agreement from both mentors named on it.
 
-GitHub Discussions for GSoC 2027 will open once Google announces the
-programme dates. Until then, email is the channel for suggestions.
+{{discussions}}
 
 ## Fix text on this site
 
