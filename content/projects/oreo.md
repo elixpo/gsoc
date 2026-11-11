@@ -17,5 +17,8 @@ stack:
 ---
 
 Oreo is an open-source MicroPython operating system and hardware platform for
-an ESP32-S3 conference badge. It includes apps, over-the-air updates, device
-drivers and KiCad hardware files.
+an ESP32-S3 conference badge. It includes apps, an App Store, over-the-air
+updates, device drivers, KiCad hardware files and `oreo`, a command-line tool
+that installs apps and sends files to the badge over USB. Its video format,
+RV565, is a separate library for ESP32, Raspberry Pi Pico and CircuitPython
+boards.

@@ -51,7 +51,7 @@ build their TL;DR from the idea's frontmatter and end with "See all six ideas".
 | 2 | [Accessible LixSketch canvas](ideas/accessible-lixsketch-canvas.md) | Accessibility | 175 h | Intermediate | Vivek Yadav / Divyanshu |
 | 3 | [Crumb connector contract and offline conformance kit](ideas/crumb-connector-contract.md) | Rust, agent security | 175 h | Hard | Ayushman Bhattacharya / Vivek Yadav |
 | 4 | [Explainable contest-scoring engine for Elixpo Open Source](ideas/contest-scoring-engine.md) | Community, data | 90 h | Intermediate | Divyanshu / Ayushman Bhattacharya |
-| 5 | [Oreo badge desktop simulator](ideas/oreo-badge-simulator.md) | Embedded, open hardware | 175 h | Intermediate | Ayushman Bhattacharya / Vivek Yadav |
+| 5 | [Oreo badge simulator and CLI test bench](ideas/oreo-badge-simulator.md) | Embedded, open hardware | 175 h | Intermediate | Ayushman Bhattacharya / Vivek Yadav |
 | 6 | [LixBlogs CLI automation contract v1](ideas/lixblogs-cli-contract.md) | Developer tools | 90 h | Easy | Divyanshu / Ayushman Bhattacharya |
 
 This table is for reading on GitHub. The site builds its own table from the
