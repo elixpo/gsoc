@@ -51,7 +51,7 @@ next:
   Idea: [contest-scoring engine](/ideas/contest-scoring-engine/).
 - **[Oreo](/projects/#oreo)** is an open MicroPython operating system and
   hardware design for an ESP32-S3 conference badge. Idea:
-  [desktop simulator](/ideas/oreo-badge-simulator/).
+  [badge simulator and CLI test bench](/ideas/oreo-badge-simulator/).
 
 ## Step by step
 

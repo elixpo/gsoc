@@ -56,7 +56,7 @@ Use this format:
 
 > Elixpo GSoC 2027: &lt;idea title&gt; — &lt;your name&gt;
 
-For example: *Elixpo GSoC 2027: Oreo badge desktop simulator — Jane Doe*.
+For example: *Elixpo GSoC 2027: Oreo badge simulator and CLI test bench — Jane Doe*.
 
 ## 1. Contact details
 
