@@ -54,7 +54,7 @@ Everything in this programme is built around that path:
 | 2 | [Accessible LixSketch canvas](https://gsoc.elixpo.com/ideas/accessible-lixsketch-canvas/) | LixSketch | Accessibility | 175 h | Intermediate |
 | 3 | [Crumb connector contract and offline conformance kit](https://gsoc.elixpo.com/ideas/crumb-connector-contract/) | Crumb | Rust, agent security | 175 h | Hard |
 | 4 | [Explainable contest-scoring engine](https://gsoc.elixpo.com/ideas/contest-scoring-engine/) | Elixpo Open Source | Community, data | 90 h | Intermediate |
-| 5 | [Oreo badge desktop simulator](https://gsoc.elixpo.com/ideas/oreo-badge-simulator/) | Oreo | Embedded, open hardware | 175 h | Intermediate |
+| 5 | [Oreo badge simulator and CLI test bench](https://gsoc.elixpo.com/ideas/oreo-badge-simulator/) | Oreo | Embedded, open hardware | 175 h | Intermediate |
 | 6 | [LixBlogs CLI automation contract v1](https://gsoc.elixpo.com/ideas/lixblogs-cli-contract/) | LixBlogs | Developer tools | 90 h | Easy |
 
 The full descriptions, warm-up tasks and mentors are on

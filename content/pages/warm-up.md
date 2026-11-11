@@ -266,15 +266,14 @@ idea page. The points ledger schema is in `workers/migrations/`.
 ## Oreo
 
 Repository: [elixpo/oreo](https://github.com/elixpo/oreo).
-Idea: [desktop simulator](/ideas/oreo-badge-simulator/#warm-up-tasks).
+Idea: [badge simulator and CLI test bench](/ideas/oreo-badge-simulator/#warm-up-tasks).
 
 ### What runs without keys
 
-Without the badge, you can install the host tools and read and change the
-code. OreoOS apps run only on the ESP32-S3 badge today, and the repository has
-no tests. Running apps on a computer is exactly what the simulator idea
-builds, so the warm-up is hardware-free reading and analysis, not running
-apps.
+Without the badge, you can run the OS and CLI test suites, check every app,
+install the `oreo` command-line tool and create a new app. Running apps on a
+computer is what the simulator idea builds, so apps themselves still run only
+on the ESP32-S3 badge.
 
 ### Prerequisites
 
@@ -285,33 +284,38 @@ Git and Python 3.9 or newer (`pyproject.toml`). No badge hardware.
 ```bash
 git clone https://github.com/elixpo/oreo
 cd oreo
+python3 -m unittest discover -s tests
+python3 tools/validate_app.py
 python -m venv .venv && source .venv/bin/activate
-pip install -r oreoOS/requirements.txt
+pip install -e cli/
+oreo new my_app
 ```
 
-Source: the
-[README](https://github.com/elixpo/oreo/blob/main/README.md) "Get going"
-section. Stop there: the README's next command, `tools/deploy.py`, flashes a
-connected badge.
+Source: [CONTRIBUTING.md](https://github.com/elixpo/oreo/blob/main/CONTRIBUTING.md)
+and the CLI guide,
+[docs/CLI.md](https://github.com/elixpo/oreo/blob/main/docs/CLI.md). Do not run
+`tools/deploy.py` or `oreo flash`: they write to a connected badge.
 
 ### How you know it worked
 
-`pip` finishes installing the host tools listed in
-`oreoOS/requirements.txt`. Then open `oreoOS/api.py`, the hardware
-abstraction every app is meant to go through.
+The OS tests end with `OK` (407 tests in November 2026), the validator prints
+`0 failed`, and `oreo new` creates a `my_app` folder that
+`python3 tools/validate_app.py my_app` accepts. Then open `oreoOS/api.py`, the
+hardware abstraction every app is meant to go through.
 
 ### Warm-up tasks
 
-See the [desktop simulator](/ideas/oreo-badge-simulator/#warm-up-tasks) idea
-page: read `oreoOS/api.py`, find modules that import hardware directly, and
-try the MicroPython unix port from MicroPython's own documentation.
+See the [simulator and CLI test bench](/ideas/oreo-badge-simulator/#warm-up-tasks)
+idea page: run the tests, try the CLI without a badge, find modules that
+import hardware directly, and try the MicroPython unix port from
+MicroPython's own documentation.
 
 ### Known limitations
 
-- No automated tests and no way to run apps without the badge yet.
+- Apps run only on the badge until a simulator exists. The CLI's commands
+  that talk to a badge stop with exit status 3, "no badge found".
 - The deploy tool reads secrets from the encrypted `.env` file. You do not
   need it for the warm-up; do not try to decrypt it.
-- The README links `templates/example_app/`; the folder is `app_templates/`.
 
 ## Common problems
 
