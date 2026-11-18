@@ -12,7 +12,7 @@ email gsoc@elixpo.com with the subject **Security report**. Include the
 affected file or page, the impact and steps to reproduce.
 
 A vulnerability in an Elixpo project linked from the site (LixBlogs,
-LixSketch, Crumb, Elixpo Open Source, Oreo) belongs to that project: follow
+LixSketch, Crumb, Elixpo Open Source, Falera) belongs to that project: follow
 the `SECURITY.md` in its repository.
 
 Broken links and content mistakes are not security issues. Open an issue or

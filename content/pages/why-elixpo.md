@@ -31,13 +31,13 @@ MIT License, which is OSI-approved. LixBlogs and LixSketch use the standard
 MIT text, which GitHub detects as MIT
 ([LixBlogs #555](https://github.com/elixpo/blogs.elixpo/pull/555),
 [LixSketch #209](https://github.com/elixpo/sketch.elixpo/pull/209), both
-merged). In Crumb, Elixpo Open Source and Oreo the `LICENSE` file still
+merged). In Crumb, Elixpo Open Source and Falera the `LICENSE` file still
 combines the MIT terms with Elixpo's brand terms, so GitHub does not yet
 detect a licence; open pull requests replace it with the standard MIT text
 and move the brand rules to `TRADEMARKS.md`
 ([Crumb #251](https://github.com/elixpo/crumb.elixpo/pull/251),
 [Elixpo Open Source #98](https://github.com/elixpo/opensource.elixpo/pull/98),
-[Oreo #61](https://github.com/elixpo/oreo/pull/61)).
+[Falera #61](https://github.com/elixpo/falera/pull/61)).
 
 ## Is there an active contributor community?
 

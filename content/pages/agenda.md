@@ -56,8 +56,8 @@ The ideas belong to five codebases, described on the
   APT repository at [packages.elixpo.com](https://packages.elixpo.com).
 - **Elixpo Open Source**, in development at
   [opensource.elixpo.com](https://opensource.elixpo.com).
-- **Oreo**, with its operating system and hardware files on
-  [GitHub](https://github.com/elixpo/oreo).
+- **Falera**, with its operating system and hardware files on
+  [GitHub](https://github.com/elixpo/falera).
 
 Packages released on npm, as listed by the registry in October 2026:
 

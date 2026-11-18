@@ -1,5 +1,5 @@
 ---
-title: Oreo badge simulator and CLI test bench
+title: Falera badge simulator and CLI test bench
 slug: oreo-badge-simulator
 order: 5
 theme: Embedded, open hardware
@@ -7,10 +7,10 @@ size_hours: 175
 difficulty: Intermediate
 primary_mentor: Circuit-Overtime
 backup_mentor: ez-vivek
-repository: https://github.com/elixpo/oreo
-setup: https://github.com/elixpo/oreo/blob/main/CONTRIBUTING.md
-summary: Run the Oreo badge's OS and apps on a computer, and let the oreo CLI drive that simulated badge so CI tests the whole path without hardware.
-in_short: Build a program that runs the Oreo badge's software on an ordinary computer and answers the oreo command-line tool like a real badge, so people can build and test without the hardware.
+repository: https://github.com/elixpo/falera
+setup: https://github.com/elixpo/falera/blob/main/CONTRIBUTING.md
+summary: Run the Falera badge's OS and apps on a computer, and let the falera CLI drive that simulated badge so CI tests the whole path without hardware.
+in_short: Build a program that runs the Falera badge's software on an ordinary computer and answers the falera command-line tool like a real badge, so people can build and test without the hardware.
 skills:
   - Python and MicroPython
   - pygame or SDL
@@ -24,10 +24,10 @@ related_issues:
 
 ## Description
 
-Oreo is an open MicroPython OS for an ESP32-S3 conference badge: about 39,000
+Falera is an open MicroPython OS for an ESP32-S3 conference badge: about 39,000
 lines of MicroPython across the OS, the drivers and 20 built-in apps, with 11
 more apps in its App Store. Since November 2026 it also has a released
-command-line tool, `oreo` (oreo-cli 1.0.0, about 12,700 lines of Python). The
+command-line tool, `falera` (falera-cli, first released as oreo-cli 1.0.0, about 12,700 lines of Python). The
 tool finds the badge over USB and installs apps, sends files to the Transfer
 app, sets the owner's profile and updates the OS, all through MicroPython's
 raw REPL.
@@ -43,15 +43,15 @@ The OS already defines a hardware abstraction layer (`oreoOS/api.py`), but
 several modules bypass it.
 
 **Impact.** A simulator that runs the badge software on an ordinary computer,
-and that the `oreo` tool can connect to as if it were a badge, opens Oreo to
+and that the `falera` tool can connect to as if it were a badge, opens Falera to
 contributors without hardware. It also lets CI test every change from the
 command line down to the app on the screen.
 
 ## Expected outcomes
 
-- Anyone can run OreoOS and its apps on an ordinary computer, in a window or
+- Anyone can run FaleraOS and its apps on an ordinary computer, in a window or
   headless, with no badge hardware.
-- The `oreo` tool works against the simulator as it does against a badge, so
+- The `falera` tool works against the simulator as it does against a badge, so
   the contracts between the CLI and the OS are tested end to end on every
   change.
 - The OS reaches the hardware only through its abstraction layer, so the
@@ -81,19 +81,19 @@ command line down to the app on the screen.
   a headless mode, with scripted button input and a deterministic clock.
 - At least 10 of the 20 built-in apps start and respond to scripted input
   unmodified.
-- `oreo` connects to a simulated badge, and `oreo info`, `oreo app install`,
-  `oreo push`, `oreo pull`, `oreo setup` and `oreo transfer send` pass
+- `falera` connects to a simulated badge, and `falera info`, `falera app install`,
+  `falera push`, `falera pull`, `falera setup` and `falera transfer send` pass
   against it in CI.
-- A new contributor goes from `oreo new` to the app running in the simulator
+- A new contributor goes from `falera new` to the app running in the simulator
   without hardware, following the documentation alone.
 
 ## Warm-up tasks
 
-1. Clone Oreo and read `CONTRIBUTING.md`. No badge hardware is required.
+1. Clone Falera and read `CONTRIBUTING.md`. No badge hardware is required.
 2. Run `python3 -m unittest discover -s tests` and
    `python3 tools/validate_app.py`. They need only the standard library.
 3. Install the CLI from the checkout (`pip install -e cli/`), create an app
-   with `oreo new my_app`, and list which `oreo` commands would need a badge
+   with `falera new my_app`, and list which `falera` commands would need a badge
    to go further.
 4. Read `oreoOS/api.py`, then identify one module that imports hardware
    directly instead of going through it.
@@ -106,11 +106,11 @@ command line down to the app on the screen.
 
 - **MicroPython**: a small version of Python for tiny computers.
 - **ESP32-S3**: the small computer chip inside the badge.
-- **CLI**: a command-line tool. Here it is `oreo`, which talks to the badge
+- **CLI**: a command-line tool. Here it is `falera`, which talks to the badge
   over USB.
 - **Raw REPL**: the mode of MicroPython's interactive prompt that programs
   use to send code to a board and read the result. `mpremote` is the
-  official tool for it, and `oreo` uses it as a library.
+  official tool for it, and `falera` uses it as a library.
 - **Contract**: something both sides must agree on, such as the names of
   profile keys or the messages of the file-transfer protocol.
 - **Simulator**: a program that pretends to be the hardware, on an ordinary
