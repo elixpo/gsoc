@@ -7,7 +7,7 @@ names or logos below.
 
 ## Elixpo
 
-"Elixpo", "Oreo", the Oreo mascot, the E-badge mark and the elixpo.com domains
+"Elixpo", "Lumi", the Lumi mascot, the E-badge mark and the elixpo.com domains
 are trademarks of the Elixpo project. You may use them to refer to this
 project truthfully, for example "a fork of the Elixpo GSoC site". You may not
 use them as the name of your own product, programme or service, or in a way
