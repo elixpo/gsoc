@@ -28,7 +28,7 @@ next:
 
 ## Trademarks
 
-- The Elixpo name, the Elixpo and Oreo marks, and the elixpo.com domains are
+- The Elixpo name, the Elixpo and Lumi marks, and the elixpo.com domains are
   reserved by Elixpo and are not covered by either licence above. You may use
   them to refer to Elixpo truthfully, but not as the name of your own product
   or in a way that suggests Elixpo endorses it.
