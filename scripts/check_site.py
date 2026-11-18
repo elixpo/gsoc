@@ -131,7 +131,7 @@ TLDR_EXEMPT = ["/timeline/"]
 HERO_CARD_EXEMPT = ["/timeline/"]
 NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/", "/operations/", "/why-elixpo/", "/warm-up/"]
 # The five codebases on /projects/ (content/projects/*.md).
-PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "oreo"]
+PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "falera"]
 IDEA_SECTIONS = ["Description", "Expected outcomes", "Stretch goals", "Out of scope", "How success is measured", "Material",
                  "Warm-up tasks", "Skills, size and mentors", "Terms used on this page"]
 GSOC_TIMELINE_URL = "https://developers.google.com/open-source/gsoc/timeline"
@@ -154,7 +154,7 @@ REQUIRED_SECTIONS = {
                             "what-you-can-expect-from-us", "communication-channels"],
     "/agenda/": ["what-elixpo-is", "what-we-want-google-summer-of-code-to-achieve", "what-we-ship-in-public",
                  "how-we-decide-what-to-approve", "money-and-commercial-interests", "care-for-contributors"],
-    "/warm-up/": ["our-warm-up-policy", "lixblogs", "lixsketch", "crumb", "elixpo-open-source", "oreo", "common-problems", "where-to-ask"],
+    "/warm-up/": ["our-warm-up-policy", "lixblogs", "lixsketch", "crumb", "elixpo-open-source", "falera", "common-problems", "where-to-ask"],
     "/operations/": ["who-does-what", "the-programme-phase-by-phase", "communication", "mentor-operations", "configuration-and-access", "evaluations",
                      "escalation-and-conduct", "after-the-programme", "what-we-publish", "what-this-is-based-on"],
 }

@@ -49,7 +49,7 @@ next:
 - **[Elixpo Open Source](/projects/#elixpo-open-source)** is a platform, in
   development, for running open-source contests and mentoring programmes.
   Idea: [contest-scoring engine](/ideas/contest-scoring-engine/).
-- **[Oreo](/projects/#oreo)** is an open MicroPython operating system and
+- **[Falera](/projects/#oreo)** is an open MicroPython operating system and
   hardware design for an ESP32-S3 conference badge. Idea:
   [badge simulator and CLI test bench](/ideas/oreo-badge-simulator/).
 

@@ -71,7 +71,7 @@ described in more detail on the [projects page](/projects/):
 - **[Elixpo Open Source](https://github.com/elixpo/opensource.elixpo)**: a
   platform, in development, for running open-source contests and mentoring
   programmes.
-- **[Oreo](https://github.com/elixpo/oreo)**: an open operating system and
+- **[Falera](https://github.com/elixpo/falera)**: an open operating system and
   hardware design for an electronic badge built on the ESP32-S3 chip, written
   in MicroPython (a compact Python for microcontrollers).
 

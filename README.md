@@ -54,7 +54,7 @@ Everything in this programme is built around that path:
 | 2 | [Accessible LixSketch canvas](https://gsoc.elixpo.com/ideas/accessible-lixsketch-canvas/) | LixSketch | Accessibility | 175 h | Intermediate |
 | 3 | [Crumb connector contract and offline conformance kit](https://gsoc.elixpo.com/ideas/crumb-connector-contract/) | Crumb | Rust, agent security | 175 h | Hard |
 | 4 | [Explainable contest-scoring engine](https://gsoc.elixpo.com/ideas/contest-scoring-engine/) | Elixpo Open Source | Community, data | 90 h | Intermediate |
-| 5 | [Oreo badge simulator and CLI test bench](https://gsoc.elixpo.com/ideas/oreo-badge-simulator/) | Oreo | Embedded, open hardware | 175 h | Intermediate |
+| 5 | [Falera badge simulator and CLI test bench](https://gsoc.elixpo.com/ideas/oreo-badge-simulator/) | Falera | Embedded, open hardware | 175 h | Intermediate |
 | 6 | [LixBlogs CLI automation contract v1](https://gsoc.elixpo.com/ideas/lixblogs-cli-contract/) | LixBlogs | Developer tools | 90 h | Easy |
 
 The full descriptions, warm-up tasks and mentors are on
@@ -69,7 +69,7 @@ The full descriptions, warm-up tasks and mentors are on
 | **LixSketch** | A shared canvas for sketches, diagrams and documents | [elixpo/sketch.elixpo](https://github.com/elixpo/sketch.elixpo) |
 | **Crumb** | A self-hosted agent harness and terminal, written in Rust | [elixpo/crumb.elixpo](https://github.com/elixpo/crumb.elixpo) |
 | **Elixpo Open Source** | A platform for running open-source contests and mentorship programmes | [elixpo/opensource.elixpo](https://github.com/elixpo/opensource.elixpo) |
-| **Oreo** | An open MicroPython OS and hardware platform for an ESP32-S3 badge | [elixpo/oreo](https://github.com/elixpo/oreo) |
+| **Falera** | An open MicroPython OS and hardware platform for an ESP32-S3 badge | [elixpo/falera](https://github.com/elixpo/falera) |
 
 ## People
 

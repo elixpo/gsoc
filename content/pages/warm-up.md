@@ -263,15 +263,15 @@ idea page. The points ledger schema is in `workers/migrations/`.
 - The repository contains an encrypted `.env` file, which the development
   server reads. Do not try to decrypt it; the frontend does not need it.
 
-## Oreo
+## Falera
 
-Repository: [elixpo/oreo](https://github.com/elixpo/oreo).
+Repository: [elixpo/falera](https://github.com/elixpo/falera).
 Idea: [badge simulator and CLI test bench](/ideas/oreo-badge-simulator/#warm-up-tasks).
 
 ### What runs without keys
 
 Without the badge, you can run the OS and CLI test suites, check every app,
-install the `oreo` command-line tool and create a new app. Running apps on a
+install the `falera` command-line tool and create a new app. Running apps on a
 computer is what the simulator idea builds, so apps themselves still run only
 on the ESP32-S3 badge.
 
@@ -282,24 +282,24 @@ Git and Python 3.9 or newer (`pyproject.toml`). No badge hardware.
 ### Commands
 
 ```bash
-git clone https://github.com/elixpo/oreo
-cd oreo
+git clone https://github.com/elixpo/falera
+cd falera
 python3 -m unittest discover -s tests
 python3 tools/validate_app.py
 python -m venv .venv && source .venv/bin/activate
 pip install -e cli/
-oreo new my_app
+falera new my_app
 ```
 
-Source: [CONTRIBUTING.md](https://github.com/elixpo/oreo/blob/main/CONTRIBUTING.md)
+Source: [CONTRIBUTING.md](https://github.com/elixpo/falera/blob/main/CONTRIBUTING.md)
 and the CLI guide,
-[docs/CLI.md](https://github.com/elixpo/oreo/blob/main/docs/CLI.md). Do not run
-`tools/deploy.py` or `oreo flash`: they write to a connected badge.
+[docs/CLI.md](https://github.com/elixpo/falera/blob/main/docs/CLI.md). Do not run
+`tools/deploy.py` or `falera flash`: they write to a connected badge.
 
 ### How you know it worked
 
 The OS tests end with `OK` (407 tests in November 2026), the validator prints
-`0 failed`, and `oreo new` creates a `my_app` folder that
+`0 failed`, and `falera new` creates a `my_app` folder that
 `python3 tools/validate_app.py my_app` accepts. Then open `oreoOS/api.py`, the
 hardware abstraction every app is meant to go through.
 
