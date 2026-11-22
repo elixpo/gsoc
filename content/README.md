@@ -49,10 +49,10 @@ build their TL;DR from the idea's frontmatter and end with "See all seven ideas"
 |---|---|---|---|---|---|
 | 1 | [LixBlogs Access Policy: one read rule for every route](ideas/lixblogs-read-access-policy.md) | Security | 350 h | Hard | Vivek Yadav / Divyanshu |
 | 2 | [Accessible LixSketch canvas](ideas/accessible-lixsketch-canvas.md) | Accessibility | 175 h | Intermediate | Divyanshu / Vivek Yadav |
-| 3 | [LixSketch collaborative agent editing](ideas/lixsketch-agent-editing.md) | Agents, collaboration | 350 h | Hard | Ayushman Bhattacharya / Divyanshu |
+| 3 | [LixSketch collaborative agent editing](ideas/lixsketch-agent-editing.md) | Agents, collaboration | 175 h | Intermediate | Ayushman Bhattacharya / Divyanshu |
 | 4 | [Crumb Sandbox: one policy for everything an agent runs](ideas/crumb-sandbox.md) | Rust, agent security | 350 h | Hard | Ayushman Bhattacharya / Vivek Yadav |
-| 5 | [Crumb connector contract and offline conformance kit](ideas/crumb-connector-contract.md) | Rust, agent security | 175 h | Hard | Vivek Yadav / Ayushman Bhattacharya |
-| 6 | [Falera Simulator: FaleraOS and its CLI without a badge](ideas/oreo-badge-simulator.md) | Embedded, open hardware | 350 h | Hard | Ayushman Bhattacharya / Vivek Yadav |
+| 5 | [Crumb connector contract and offline conformance kit](ideas/crumb-connector-contract.md) | Rust, agent security | 175 h | Intermediate | Vivek Yadav / Ayushman Bhattacharya |
+| 6 | [Falera Simulator: FaleraOS and its CLI without a badge](ideas/oreo-badge-simulator.md) | Embedded, open hardware | 175 h | Intermediate | Ayushman Bhattacharya / Vivek Yadav |
 | 7 | [FaleraOS update trust: signed OTA and App Store](ideas/falera-update-trust.md) | Embedded security | 175 h | Hard | Ayushman Bhattacharya / Divyanshu |
 
 This table is for reading on GitHub. The site builds its own table from the

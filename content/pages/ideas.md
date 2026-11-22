@@ -4,9 +4,9 @@ description: Elixpo's seven project ideas for Google Summer of Code 2027, each w
 heading: Project ideas *for 2027*
 lead: Each idea is a defined piece of work in one Elixpo codebase, with expected outcomes, out-of-scope items, success measures and two mentors. Choose one idea and build your proposal around it.
 tldr:
-  - Seven ideas in four codebases: four are 350 hours and three are 175 hours.
-  - Each 350-hour idea also defines a 175-hour core you can propose instead.
-  - Six ideas are Hard and one is Intermediate.
+  - Seven ideas in four codebases: two are 350 hours and five are 175 hours.
+  - The 350-hour ideas define a 175-hour core, and two 175-hour ideas describe a 350-hour version.
+  - Three ideas are Hard and four are Intermediate; the warm-up tasks are the easy way in.
   - Every idea has a primary mentor and a backup mentor.
   - Complete at least one warm-up task before you write your proposal.
   - Your own idea? Describe it to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) first.
@@ -20,9 +20,10 @@ next:
 ## Reading the list
 
 - **Size** is the expected total effort: 175 hours (medium) or 350 hours
-  (large). Every 350-hour idea also defines a 175-hour core, so you can
-  propose either size; say which in your proposal.
-- **Difficulty** follows Google's levels: six ideas are Hard and one is
+  (large). The two 350-hour ideas each define a 175-hour core, and two
+  175-hour ideas describe a 350-hour extended version; say which size you
+  propose.
+- **Difficulty** follows Google's levels: three ideas are Hard and four are
   Intermediate.
 - **Mentors**: each idea has a primary mentor, who is the contributor's main
   contact, and a backup mentor, who knows the project and can step in.

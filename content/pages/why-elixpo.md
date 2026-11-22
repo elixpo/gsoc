@@ -55,7 +55,7 @@ every idea. See the [mentors page](/mentors/).
 
 Each of the seven ideas is one problem in one codebase, with expected
 outcomes, what is out of scope, how success is measured, warm-up tasks, a
-size of 175 or 350 hours (every 350-hour idea also defines a 175-hour core),
+size of 175 or 350 hours (the 350-hour ideas also define a 175-hour core),
 and two named mentors. Each idea has a public issue where design discussion
 is open now. Every project can be set up
 from its public repository without private keys. See the

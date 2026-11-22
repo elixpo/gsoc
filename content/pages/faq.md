@@ -41,15 +41,14 @@ Google sets eligibility, and the rules can change each year. Read them on the
 
 ## How large are the projects?
 
-175 hours (medium) or 350 hours (large). Four ideas are 350 hours and three
-are 175 hours. Every 350-hour idea also defines a 175-hour core, so you can
-propose either size; say which in your proposal.
+175 hours (medium) or 350 hours (large). Two ideas are 350 hours and five are 175 hours. The two 350-hour ideas each
+define a 175-hour core, and two 175-hour ideas describe a 350-hour extended
+version, so you can propose either size; say which in your proposal.
 
 ## How difficult are the projects?
 
-Difficulty is Easy, Intermediate or Hard, as Google defines them. Six ideas are
-Hard and one is Intermediate. Each idea page states its
-level.
+Difficulty is Easy, Intermediate or Hard, as Google defines them. Three ideas are Hard and four are Intermediate. None is rated Easy: each
+needs real design work, and the warm-up tasks are the easy way in. Each idea page states its level.
 
 ## Who are the mentors?
 

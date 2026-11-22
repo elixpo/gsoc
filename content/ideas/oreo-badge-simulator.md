@@ -3,8 +3,8 @@ title: "Falera Simulator: FaleraOS and its CLI without a badge"
 slug: oreo-badge-simulator
 order: 6
 theme: Embedded, open hardware
-size_hours: 350
-difficulty: Hard
+size_hours: 175
+difficulty: Intermediate
 primary_mentor: Circuit-Overtime
 backup_mentor: ez-vivek
 repository: https://github.com/elixpo/falera
@@ -63,9 +63,9 @@ every change from the command line down to the app on the screen.
 - CI runs the main `falera` flows (push, pull, profile, transfer, app
   install) against a headless simulator on every change.
 
-The project can be proposed at **175 hours**: the unix-port runtime with the
-hardware shim, the raw-REPL bridge and the `falera` flows in CI. The **350-hour**
-version adds the windowed backend, golden-frame tests, mpremote `mount`, a
+The project is **175 hours**: the unix-port runtime with the hardware shim,
+the raw-REPL bridge and the `falera` flows in CI. An experienced applicant
+may propose an extended **350-hour** version, which adds the windowed backend, golden-frame tests, mpremote `mount`, a
 deterministic clock and building or stubbing the C usermods.
 
 ## Stretch goals
@@ -94,7 +94,7 @@ deterministic clock and building or stubbing the C usermods.
 - The first design question is answered in writing before the midterm:
   whether the unix port's REPL can serve raw REPL and raw-paste as it is, or
   needs a bridge.
-- For 350 hours: a windowed backend, golden-frame tests that reuse the
+- Extended version (350 hours): a windowed backend, golden-frame tests that reuse the
   framebuffer capture behind `falera screenshot`, mpremote `mount`, a
   deterministic clock, and the C usermods (`firmware/usermods/oreo_ir`,
   `oreo_rv565`) built for the unix port or stubbed.

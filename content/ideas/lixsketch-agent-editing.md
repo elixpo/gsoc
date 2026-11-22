@@ -3,8 +3,8 @@ title: LixSketch collaborative agent editing
 slug: lixsketch-agent-editing
 order: 3
 theme: Agents, collaboration
-size_hours: 350
-difficulty: Hard
+size_hours: 175
+difficulty: Intermediate
 primary_mentor: Circuit-Overtime
 backup_mentor: divyanshuj91
 repository: https://github.com/elixpo/sketch.elixpo
@@ -52,11 +52,11 @@ agents that draw.
   different shapes, and real conflicts come back as clear, per-shape errors.
 - Agents can ask what changed since a revision, and arrows stay attached to
   their shapes through headless edits.
-- For 350 hours: a keyless diagram benchmark, scored structurally, measures
+- Extended version (350 hours): a keyless diagram benchmark, scored structurally, measures
   how well any MCP client draws.
 
-The project can be proposed at **175 hours**: rebase, `canvas_diff` and
-bound arrows. The **350-hour** version adds the benchmark and layout
+The project is **175 hours**: rebase, `canvas_diff` and bound arrows. An
+experienced applicant may propose an extended **350-hour** version, which adds the benchmark and layout
 operations such as align and distribute.
 
 ## Stretch goals
@@ -76,7 +76,7 @@ operations such as align and distribute.
   edits and reports per-shape conflicts, backed by property-based tests.
 - `canvas_diff(sinceRevision)` returns what changed, and moving a shape keeps
   its bound arrows attached, in headless tests.
-- For 350 hours: about 30 diagram tasks are scored on the headless scene
+- Extended version (350 hours): about 30 diagram tasks are scored on the headless scene
   (required edges present, no overlapping shapes, labels inside their shapes,
   edge crossings), and the benchmark runs without any API key against
   recorded or scripted agent output.

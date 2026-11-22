@@ -4,7 +4,7 @@ slug: crumb-connector-contract
 order: 5
 theme: Rust, agent security
 size_hours: 175
-difficulty: Hard
+difficulty: Intermediate
 primary_mentor: ez-vivek
 backup_mentor: Circuit-Overtime
 repository: https://github.com/elixpo/crumb.elixpo
