@@ -9,7 +9,7 @@ tldr:
   - Complete at least one of the idea's warm-up tasks first.
   - Use the sections of [the template](#the-template), in order, including a timeline with a midterm checkpoint.
   - Send a draft to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) so that mentors can comment on it.
-  - Choose your idea first: [browse the six project ideas](/ideas/).
+  - Choose your idea first: [browse the seven project ideas](/ideas/).
 next:
   - /selection/
   - /ai-policy/
@@ -56,7 +56,7 @@ Use this format:
 
 > Elixpo GSoC 2027: &lt;idea title&gt; — &lt;your name&gt;
 
-For example: *Elixpo GSoC 2027: Falera badge simulator and CLI test bench — Jane Doe*.
+For example: *Elixpo GSoC 2027: Falera Simulator — Jane Doe*.
 
 ## 1. Contact details
 

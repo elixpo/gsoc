@@ -187,8 +187,8 @@ export type SiteMapEntry = {
  */
 export const SITE_MAP: readonly SiteMapEntry[] = [
   { href: "/", label: "Home", about: "Elixpo's plans for Google Summer of Code 2027." },
-  { href: "/ideas/", label: "Project ideas", about: "The six project ideas, with size, difficulty and mentors." },
-  { href: "/projects/", label: "Codebases", about: "The five codebases the ideas belong to." },
+  { href: "/ideas/", label: "Project ideas", about: "The seven project ideas, with size, difficulty and mentors." },
+  { href: "/projects/", label: "Codebases", about: "The four codebases the ideas belong to." },
   { href: "/contributor-guide/", label: "Get involved", about: "How to prepare and apply, step by step." },
   { href: "/warm-up/", label: "Warm-up", menu: "Apply", about: "Set up each project without keys: commands, checks and known limitations." },
   { href: "/proposal/", label: "Proposal template", about: "The sections every proposal must contain." },

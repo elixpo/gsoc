@@ -8,7 +8,7 @@ tldr:
   - Defects and setup problems: an issue in the relevant repository.
   - Mentors aim to reply within 48 hours on weekdays.
   - Introductions and questions about an idea: {{ask-channel}}. {{discussions}}
-  - [Browse the six project ideas](/ideas/).
+  - [Browse the seven project ideas](/ideas/).
 next:
   - /faq/
   - /mentors/

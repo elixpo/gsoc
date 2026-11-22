@@ -90,10 +90,10 @@ real PNG), JSON-LD (Organization and WebSite everywhere, BreadcrumbList on
 inner pages, ItemList on `/ideas/`, CollectionPage of SoftwareSourceCode on
 `/projects/`, FAQPage on `/faq/`, AboutPage on `/about/`), one `<h1>`, `lang="en"`, the skip link, the status banner, the GSoC
 trademark notice in every footer, the exact main navigation order and labels,
-the idea page sections (including Warm-up tasks), the five repositories on
+the idea page sections (including Warm-up tasks), the four repositories on
 `/projects/`, the absence of "first-time" framing, broken internal
 links, the GSoC logo placement on `/`, history evidence links on `/about/`,
-role chips on `/mentors/`, the home hero (numerals 1/6/2/5 in the stats
+role chips on `/mentors/`, the home hero (numerals 1/7/2/4 in the stats
 row, the intake sentence in the lead with no callout box, the credential
 strip, the 01-04 "Getting started" grid), the footer legal row in order on
 every page, `/agreements/` against `src/data/agreements.ts` and

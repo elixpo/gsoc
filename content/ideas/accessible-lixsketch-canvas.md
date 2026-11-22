@@ -5,8 +5,8 @@ order: 2
 theme: Accessibility
 size_hours: 175
 difficulty: Intermediate
-primary_mentor: ez-vivek
-backup_mentor: divyanshuj91
+primary_mentor: divyanshuj91
+backup_mentor: ez-vivek
 repository: https://github.com/elixpo/sketch.elixpo
 setup: https://github.com/elixpo/sketch.elixpo/blob/main/README.md
 summary: Make the LixSketch infinite canvas usable from the keyboard and with screen readers, and prove it with keyboard-only end-to-end tests in CI.
@@ -23,13 +23,21 @@ related_issues:
 ## Description
 
 LixSketch's infinite canvas is SVG drawn with rough.js. The toolbar and menus
-are accessible, but the canvas is not. Shapes cannot be focused, nothing is
-announced to screen readers, and there is no way to connect or edit shapes
-from the keyboard.
+are accessible, but the canvas is not. Once a shape is selected with the
+mouse, some keyboard commands already work: arrow-key nudging, layer order and
+label editing (`packages/lixsketch/src/core/CanvasCommands.js`). But shapes
+cannot be reached or selected from the keyboard, nothing on the canvas has a
+role or a focus order, nothing is announced to screen readers, and there is
+no way to connect shapes without a mouse.
 
 This fails WCAG success criteria 2.1.1, 2.4.3, 2.4.7, 4.1.2 and 4.1.3.
 Shapes already have IDs, types, labels, frames and arrow bindings, so an
-accessible model can be layered on without a rewrite.
+accessible model can be layered on without a rewrite. Excalidraw and tldraw
+have each approached keyboard and screen-reader access on a canvas; a
+proposal should compare them. The accessible shape tree here and the agent
+scene model in [LixSketch collaborative agent
+editing](/ideas/lixsketch-agent-editing/) describe the same scene, so a
+proposal should also say where they can share code.
 
 **Impact.** People who cannot use a mouse, and people who use a screen reader,
 cannot use the canvas today. This project makes the canvas usable for them
@@ -73,9 +81,10 @@ and adds automated tests so that it stays usable.
 2. Attempt to draw and connect three shapes using only the keyboard, then with
    a screen reader. Record each point at which you cannot continue, then
    {{warm-up-results}}.
-3. Locate where shapes are created and rendered in `src/`, and how a shape's
-   ID, label and bindings are stored.
-4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.
+3. Locate where shapes are created and rendered in `packages/lixsketch/src/`,
+   and how a shape's ID, label and bindings are stored.
+4. Take a small accessibility issue such as #233 or #234, open a pull
+   request, and respond to review until it is merged or closed.
 
 ## Terms used on this page
 

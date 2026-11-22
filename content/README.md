@@ -8,7 +8,7 @@ banner, capacity statement, contact email) in `src/data/site.ts`.
 |---|---|
 | `pages/home.md` | `/` |
 | `pages/ideas.md` | `/ideas/` (intro; the table is built from `ideas/*.md`) |
-| `ideas/<slug>.md` | `/ideas/<slug>/` (sections: Description, Expected outcomes, Stretch goals, Out of scope, How success is measured, Warm-up tasks, Terms used on this page) |
+| `ideas/<slug>.md` | `/ideas/<slug>/` (sections: Description, Expected outcomes, Stretch goals, Out of scope, How success is measured, Warm-up tasks, Terms used on this page; `size_hours` is 90, 175 or 350) |
 | `pages/projects.md` + `projects/<slug>.md` | `/projects/` (one file per codebase; ideas and mentors are taken from the idea files) |
 | `pages/mentors.md` | `/mentors/` (intro; people come from `src/data/people.ts`) |
 | `pages/operations.md` | `/operations/` (how the programme runs: phases, weekly cadence and report, mentor cover, evaluations, escalation, after the programme; full handbook in `../operations/`) |
@@ -40,19 +40,20 @@ frontmatter: three to six short points with the page's most important facts or
 actions, shown as the numbered TL;DR row under the hero. Points are inline
 Markdown, so they may contain links. Keep them identical to the page body. The
 last point links back to the relevant project idea(s): the ideas of a codebase,
-or "Browse the six project ideas" (`/ideas/`) on general pages. Idea pages
-build their TL;DR from the idea's frontmatter and end with "See all six ideas".
+or "Browse the seven project ideas" (`/ideas/`) on general pages. Idea pages
+build their TL;DR from the idea's frontmatter and end with "See all seven ideas".
 
 ## Ideas
 
 | # | Idea | Theme | Size | Difficulty | Primary / backup mentor |
 |---|---|---|---|---|---|
-| 1 | [LixBlogs read-access policy and offline conformance harness](ideas/lixblogs-read-access-policy.md) | Security | 175 h | Hard | Divyanshu / Vivek Yadav |
-| 2 | [Accessible LixSketch canvas](ideas/accessible-lixsketch-canvas.md) | Accessibility | 175 h | Intermediate | Vivek Yadav / Divyanshu |
-| 3 | [Crumb connector contract and offline conformance kit](ideas/crumb-connector-contract.md) | Rust, agent security | 175 h | Hard | Ayushman Bhattacharya / Vivek Yadav |
-| 4 | [Explainable contest-scoring engine for Elixpo Open Source](ideas/contest-scoring-engine.md) | Community, data | 90 h | Intermediate | Divyanshu / Ayushman Bhattacharya |
-| 5 | [Falera badge simulator and CLI test bench](ideas/oreo-badge-simulator.md) | Embedded, open hardware | 175 h | Intermediate | Ayushman Bhattacharya / Vivek Yadav |
-| 6 | [LixBlogs CLI automation contract v1](ideas/lixblogs-cli-contract.md) | Developer tools | 90 h | Easy | Divyanshu / Ayushman Bhattacharya |
+| 1 | [LixBlogs Access Policy: one read rule for every route](ideas/lixblogs-read-access-policy.md) | Security | 350 h | Hard | Vivek Yadav / Divyanshu |
+| 2 | [Accessible LixSketch canvas](ideas/accessible-lixsketch-canvas.md) | Accessibility | 175 h | Intermediate | Divyanshu / Vivek Yadav |
+| 3 | [LixSketch collaborative agent editing](ideas/lixsketch-agent-editing.md) | Agents, collaboration | 175 h | Intermediate | Ayushman Bhattacharya / Divyanshu |
+| 4 | [Crumb Sandbox: one policy for everything an agent runs](ideas/crumb-sandbox.md) | Rust, agent security | 350 h | Hard | Ayushman Bhattacharya / Vivek Yadav |
+| 5 | [Crumb connector contract and offline conformance kit](ideas/crumb-connector-contract.md) | Rust, agent security | 175 h | Hard | Vivek Yadav / Ayushman Bhattacharya |
+| 6 | [Falera Simulator: FaleraOS and its CLI without a badge](ideas/oreo-badge-simulator.md) | Embedded, open hardware | 175 h | Intermediate | Ayushman Bhattacharya / Vivek Yadav |
+| 7 | [FaleraOS update trust: signed OTA and App Store](ideas/falera-update-trust.md) | Embedded security | 175 h | Hard | Ayushman Bhattacharya / Divyanshu |
 
 This table is for reading on GitHub. The site builds its own table from the
 idea files, so if you change an idea, update this table in the same pull

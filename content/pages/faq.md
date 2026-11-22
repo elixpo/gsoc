@@ -5,11 +5,11 @@ heading: Frequently asked *questions*
 lead: Answers to common questions about Elixpo and Google Summer of Code 2027. If your question is not answered here, email gsoc@elixpo.com.
 tldr:
   - Elixpo is applying to be a mentoring organisation for 2027. In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention.
-  - Six ideas, each with a primary and a backup mentor: Ayushman Bhattacharya, Vivek Yadav or Divyanshu.
+  - Seven ideas, each with a primary and a backup mentor: Ayushman Bhattacharya, Vivek Yadav or Divyanshu.
   - No Google Summer of Code idea involves payments, pricing or paid features.
   - Submit your proposal on the [official GSoC website](https://summerofcode.withgoogle.com/); Google sets eligibility and deadlines.
   - Anything else: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
-  - [Browse the six project ideas](/ideas/).
+  - [Browse the seven project ideas](/ideas/).
 next:
   - /ideas/
   - /glossary/
@@ -41,14 +41,14 @@ Google sets eligibility, and the rules can change each year. Read them on the
 
 ## How large are the projects?
 
-90 hours (small) or 175 hours (medium). Four ideas are 175 hours and two are
-90 hours. We do not offer 350-hour projects.
+175 hours (medium) or 350 hours (large). Two ideas are 350 hours and five are 175 hours. The two 350-hour ideas each
+define a 175-hour core, and two 175-hour ideas describe a 350-hour extended
+version, so you can propose either size; say which in your proposal.
 
 ## How difficult are the projects?
 
-Difficulty is Easy, Intermediate or Hard, as Google defines them. One idea is
-Easy, three are Intermediate and two are Hard. Each idea page states its
-level.
+Difficulty is Easy, Intermediate or Hard, as Google defines them. Four ideas are Hard and three are Intermediate. None is rated Easy: each
+needs real design work, and the warm-up tasks are the easy way in. Each idea page states its level.
 
 ## Who are the mentors?
 

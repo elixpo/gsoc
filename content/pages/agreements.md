@@ -8,7 +8,7 @@ tldr:
   - It covers conduct, 48-hour replies, absences, confidentiality, conflicts of interest and access.
   - Mentors also commit to weekly time, reviews and honest, on-time evaluations.
   - Each copy is countersigned by an organisation administrator. {{commitment-status}}
-  - [Browse the six project ideas](/ideas/).
+  - [Browse the seven project ideas](/ideas/).
 next:
   - /mentors/
   - /code-of-conduct/

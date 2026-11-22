@@ -1,15 +1,15 @@
 ---
 title: Elixpo and Google Summer of Code 2027
-description: Elixpo is applying to mentor in Google Summer of Code 2027: six project ideas across five open-source codebases, each with a primary and a backup mentor.
+description: Elixpo is applying to mentor in Google Summer of Code 2027: seven project ideas across four open-source codebases, each with a primary and a backup mentor.
 heading: Elixpo is applying to mentor in *Google Summer of Code 2027*.
-lead: Elixpo builds open-source software for writing, drawing, agent tooling, community programmes and open hardware. We have prepared six project ideas across five codebases. In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention: a primary and a backup mentor on every project. This site sets out the ideas, how to prepare an application and how we select contributors.
+lead: Elixpo builds open-source software for writing, drawing, agent tooling and open hardware. We have prepared seven project ideas across four codebases. In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention: a primary and a backup mentor on every project. This site sets out the ideas, how to prepare an application and how we select contributors.
 tldr:
   - Elixpo is applying to mentor in Google Summer of Code 2027. Google decides which organisations take part.
-  - [Six project ideas](/ideas/) across five open-source codebases, each with a primary and a backup mentor.
+  - [Seven project ideas](/ideas/) across four open-source codebases, each with a primary and a backup mentor.
   - In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention.
   - To start: choose an idea, set it up, complete a warm-up task, then follow the [contributor guide](/contributor-guide/).
   - Questions: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
-  - [Browse the six project ideas](/ideas/).
+  - [Browse the seven project ideas](/ideas/).
 next:
   - /ideas/
   - /contributor-guide/
@@ -57,7 +57,7 @@ the repositories now.
 
 Elixpo is an open-source organisation that builds software in public. Our
 code is on [GitHub](https://github.com/elixpo), and the organisation has been
-active since February 2024. The project ideas belong to five codebases,
+active since February 2024. The project ideas belong to four codebases,
 described in more detail on the [projects page](/projects/):
 
 - **[LixBlogs](https://github.com/elixpo/blogs.elixpo)**: a collaborative
@@ -68,9 +68,6 @@ described in more detail on the [projects page](/projects/):
 - **[Crumb](https://github.com/elixpo/crumb.elixpo)**: a self-hosted agent
   harness and natural-language terminal, written in Rust. An agent harness
   runs AI agents and controls what they may do.
-- **[Elixpo Open Source](https://github.com/elixpo/opensource.elixpo)**: a
-  platform, in development, for running open-source contests and mentoring
-  programmes.
 - **[Falera](https://github.com/elixpo/falera)**: an open operating system and
   hardware design for an electronic badge built on the ESP32-S3 chip, written
   in MicroPython (a compact Python for microcontrollers).

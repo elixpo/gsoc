@@ -50,12 +50,13 @@ Everything in this programme is built around that path:
 
 | # | Idea | Project | Theme | Size | Difficulty |
 |---|---|---|---|---|---|
-| 1 | [LixBlogs read-access policy and offline conformance harness](https://gsoc.elixpo.com/ideas/lixblogs-read-access-policy/) | LixBlogs | Security | 175 h | Hard |
+| 1 | [LixBlogs Access Policy: one read rule for every route](https://gsoc.elixpo.com/ideas/lixblogs-read-access-policy/) | LixBlogs | Security | 350 h (175 h core) | Hard |
 | 2 | [Accessible LixSketch canvas](https://gsoc.elixpo.com/ideas/accessible-lixsketch-canvas/) | LixSketch | Accessibility | 175 h | Intermediate |
-| 3 | [Crumb connector contract and offline conformance kit](https://gsoc.elixpo.com/ideas/crumb-connector-contract/) | Crumb | Rust, agent security | 175 h | Hard |
-| 4 | [Explainable contest-scoring engine](https://gsoc.elixpo.com/ideas/contest-scoring-engine/) | Elixpo Open Source | Community, data | 90 h | Intermediate |
-| 5 | [Falera badge simulator and CLI test bench](https://gsoc.elixpo.com/ideas/oreo-badge-simulator/) | Falera | Embedded, open hardware | 175 h | Intermediate |
-| 6 | [LixBlogs CLI automation contract v1](https://gsoc.elixpo.com/ideas/lixblogs-cli-contract/) | LixBlogs | Developer tools | 90 h | Easy |
+| 3 | [LixSketch collaborative agent editing](https://gsoc.elixpo.com/ideas/lixsketch-agent-editing/) | LixSketch | Agents, collaboration | 175 h | Intermediate |
+| 4 | [Crumb Sandbox: one policy for everything an agent runs](https://gsoc.elixpo.com/ideas/crumb-sandbox/) | Crumb | Rust, agent security | 350 h (175 h core) | Hard |
+| 5 | [Crumb connector contract and offline conformance kit](https://gsoc.elixpo.com/ideas/crumb-connector-contract/) | Crumb | Rust, agent security | 175 h | Hard |
+| 6 | [Falera Simulator: FaleraOS and its CLI without a badge](https://gsoc.elixpo.com/ideas/oreo-badge-simulator/) | Falera | Embedded, open hardware | 175 h | Intermediate |
+| 7 | [FaleraOS update trust: signed OTA and App Store](https://gsoc.elixpo.com/ideas/falera-update-trust/) | Falera | Embedded security | 175 h | Hard |
 
 The full descriptions, warm-up tasks and mentors are on
 [gsoc.elixpo.com/ideas](https://gsoc.elixpo.com/ideas/). The source text is in
@@ -68,7 +69,6 @@ The full descriptions, warm-up tasks and mentors are on
 | **LixBlogs** | A collaborative publishing platform with an API and a CLI | [elixpo/blogs.elixpo](https://github.com/elixpo/blogs.elixpo) |
 | **LixSketch** | A shared canvas for sketches, diagrams and documents | [elixpo/sketch.elixpo](https://github.com/elixpo/sketch.elixpo) |
 | **Crumb** | A self-hosted agent harness and terminal, written in Rust | [elixpo/crumb.elixpo](https://github.com/elixpo/crumb.elixpo) |
-| **Elixpo Open Source** | A platform for running open-source contests and mentorship programmes | [elixpo/opensource.elixpo](https://github.com/elixpo/opensource.elixpo) |
 | **Falera** | An open MicroPython OS and hardware platform for an ESP32-S3 badge | [elixpo/falera](https://github.com/elixpo/falera) |
 
 ## People

@@ -16,7 +16,7 @@ const mail = <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>;
 const hasRole = (role: string) => PEOPLE.filter((person) => person.roles.some((r) => r.toLowerCase().includes(role))).length;
 const mentorCount = PEOPLE.filter((person) => person.isMentor).length;
 
-/** "4 × 175 hours, 2 × 90 hours", largest first. */
+/** "4 × 350 hours, 3 × 175 hours", largest first. */
 const sizeMix = [...SIZES]
   .reverse()
   .map((hours) => ({ hours, n: IDEAS.filter((idea) => idea.sizeHours === hours).length }))

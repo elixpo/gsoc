@@ -27,7 +27,7 @@ STATIC_ROUTES = ["/", "/ideas/", "/projects/", "/mentors/", "/operations/", "/co
 # Footer legal and community row (src/data/site.ts LEGAL_PAGES), exactly in this order, on every page.
 LEGAL_ROUTES = ["/privacy/", "/terms/", "/code-of-conduct/", "/contributing/", "/agreements/"]
 LEGAL_LABELS = ["Privacy", "Terms of service", "Code of Conduct", "Contributing", "Agreements"]
-SIZES = {90, 175}
+SIZES = {90, 175, 350}
 DIFFICULTIES = {"Easy", "Intermediate", "Hard"}
 STATUS_BANNER = (
     "Elixpo is applying to be a mentoring organisation for Google Summer of Code 2027. "
@@ -36,7 +36,7 @@ STATUS_BANNER = (
 CAPACITY = "In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention."
 HOME_CAPACITY = "In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention: a primary and a backup mentor on every project."
 # Home hero stats row: numerals and labels, in order (src/app/page.tsx).
-HOME_STATS = [("1", "contributor in 2027"), ("6", "project ideas"), ("2", "mentors on every idea"), ("5", "codebases")]
+HOME_STATS = [("1", "contributor in 2027"), ("7", "project ideas"), ("2", "mentors on every idea"), ("4", "codebases")]
 # Credential strip under the home hero: verified facts from elixpo/content/history.json.
 HOME_CREDENTIALS = [("Hacktoberfest 2024 & 2025", "maintainer-led participation"),
                     ("47 pull requests merged", "Hacktoberfest 2025, from 24 GitHub accounts"),
@@ -130,8 +130,8 @@ TLDR_EXEMPT = ["/timeline/"]
 # Inner pages without a hero card: the timeline (coming soon) is only the timeline and a call to action.
 HERO_CARD_EXEMPT = ["/timeline/"]
 NOT_IN_NAV = ["/selection/", "/ai-policy/", "/glossary/", "/agenda/", "/about/", "/operations/", "/why-elixpo/", "/warm-up/"]
-# The five codebases on /projects/ (content/projects/*.md).
-PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "opensource.elixpo", "falera"]
+# The four codebases on /projects/ (content/projects/*.md).
+PROJECT_REPOS = ["blogs.elixpo", "sketch.elixpo", "crumb.elixpo", "falera"]
 IDEA_SECTIONS = ["Description", "Expected outcomes", "Stretch goals", "Out of scope", "How success is measured", "Material",
                  "Warm-up tasks", "Skills, size and mentors", "Terms used on this page"]
 GSOC_TIMELINE_URL = "https://developers.google.com/open-source/gsoc/timeline"
@@ -154,7 +154,7 @@ REQUIRED_SECTIONS = {
                             "what-you-can-expect-from-us", "communication-channels"],
     "/agenda/": ["what-elixpo-is", "what-we-want-google-summer-of-code-to-achieve", "what-we-ship-in-public",
                  "how-we-decide-what-to-approve", "money-and-commercial-interests", "care-for-contributors"],
-    "/warm-up/": ["our-warm-up-policy", "lixblogs", "lixsketch", "crumb", "elixpo-open-source", "falera", "common-problems", "where-to-ask"],
+    "/warm-up/": ["our-warm-up-policy", "lixblogs", "lixsketch", "crumb", "falera", "common-problems", "where-to-ask"],
     "/operations/": ["who-does-what", "the-programme-phase-by-phase", "communication", "mentor-operations", "configuration-and-access", "evaluations",
                      "escalation-and-conduct", "after-the-programme", "what-we-publish", "what-this-is-based-on"],
 }
@@ -183,7 +183,7 @@ FORBIDDEN_COMMERCIAL = [
     re.compile(r"\b(every|all) (Elixpo )?(tools?|services?) (is|are) free\b", re.I),
 ]
 TIMELINE_PHASES = ["Organisations apply", "Organisations are announced", "Contributors apply", "Community bonding", "Coding", "Evaluations"]
-NUMBER_WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
+NUMBER_WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine", 10: "ten"}
 
 
 class PageParser(HTMLParser):
@@ -689,7 +689,7 @@ def check_site(site: Path, launched: bool) -> list[str]:
     if "/ai-policy/" in raw:
         expect('href="/about/#how-elixpo-uses-automation"' in raw["/ai-policy/"], "/ai-policy/: link to /about/#how-elixpo-uses-automation missing")
 
-    # Codebases page (/projects/): all five codebases, each with repository, README, CONTRIBUTING, LICENSE and its ideas
+    # Codebases page (/projects/): all four codebases, each with repository, README, CONTRIBUTING, LICENSE and its ideas
     if "/projects/" in raw:
         source = raw["/projects/"]
         for repo in PROJECT_REPOS:
@@ -817,7 +817,8 @@ def check_site(site: Path, launched: bool) -> list[str]:
         for info in mentors.values():
             expect(str(info["name"]) in faq.text, f"/faq/: mentor {info['name']} missing from the FAQ")
         counts = {size: sum(1 for idea in ideas if int(str(idea["size_hours"])) == size) for size in SIZES}
-        sentence = f"{NUMBER_WORDS[counts[175]].capitalize()} ideas are 175 hours and {NUMBER_WORDS[counts[90]]} are 90 hours"
+        mix = [(size, counts[size]) for size in sorted(SIZES, reverse=True) if counts[size]]
+        sentence = f"{NUMBER_WORDS[mix[0][1]].capitalize()} ideas are {mix[0][0]} hours" + "".join(f" and {NUMBER_WORDS[n]} are {size} hours" for size, n in mix[1:])
         expect(sentence in faq.text, f"/faq/: size counts out of date; expected {sentence!r}")
     if people_page:
         for info in team.values():

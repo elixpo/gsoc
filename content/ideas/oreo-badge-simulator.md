@@ -1,7 +1,7 @@
 ---
-title: Falera badge simulator and CLI test bench
+title: "Falera Simulator: FaleraOS and its CLI without a badge"
 slug: oreo-badge-simulator
-order: 5
+order: 6
 theme: Embedded, open hardware
 size_hours: 175
 difficulty: Intermediate
@@ -9,57 +9,67 @@ primary_mentor: Circuit-Overtime
 backup_mentor: ez-vivek
 repository: https://github.com/elixpo/falera
 setup: https://github.com/elixpo/falera/blob/main/CONTRIBUTING.md
-summary: Run the Falera badge's OS and apps on a computer, and let the falera CLI drive that simulated badge so CI tests the whole path without hardware.
-in_short: Build a program that runs the Falera badge's software on an ordinary computer and answers the falera command-line tool like a real badge, so people can build and test without the hardware.
+summary: Run FaleraOS on the MicroPython unix port behind a raw-REPL bridge, so the real falera CLI drives a simulated badge and CI tests both together.
+in_short: Build a simulated Falera badge on an ordinary computer that the falera command-line tool can talk to exactly like real hardware, so everything can be tested without a badge.
 skills:
   - Python and MicroPython
-  - pygame or SDL
-  - Serial protocols and MicroPython's raw REPL (mpremote)
+  - Serial protocols, ptys and MicroPython's raw REPL (mpremote)
+  - pygame or SDL (for the windowed backend)
   - unittest or pytest
   - Basic embedded knowledge
 related_issues:
-  - "64 Running OreoOS apps without hardware"
+  - "64 Falera Simulator: run FaleraOS and the falera CLI end to end without a badge"
   - "67 List the modules that import hardware directly"
+  - "227 Read the battery through api.py in home.py"
+  - "47 feat: Oreo 2.0 Mega-Refactor, Simulator & Market Apps (prior art)"
 ---
 
 ## Description
 
-Falera is an open MicroPython OS for an ESP32-S3 conference badge: about 39,000
-lines of MicroPython across the OS, the drivers and 20 built-in apps, with 11
-more apps in its App Store. Since November 2026 it also has a released
-command-line tool, `falera` (falera-cli, first released as oreo-cli 1.0.0, about 12,700 lines of Python). The
-tool finds the badge over USB and installs apps, sends files to the Transfer
-app, sets the owner's profile and updates the OS, all through MicroPython's
-raw REPL.
+Falera is an open MicroPython OS and hardware platform for an ESP32-S3 badge.
+Its command-line tool, `falera` (the `falera-cli` package), finds the badge
+over USB and installs apps, pushes and pulls files, sets the owner's profile
+and sends files to the Transfer app. It talks to the badge only through one
+transport, `SerialLink` in `cli/oreo_cli/transport.py`, which drives
+MicroPython's raw REPL using the methods `open`, `enter`, `exec`, `restart`,
+`close`, `interrupt`, `mount` and `friendly`.
 
-The project has 407 host tests for the OS and 313 for the CLI, using only the
-standard library, plus an app validator that runs on every pull request. They
-test pieces with fakes. Nothing runs a whole app, and nothing runs the CLI
-against a running OS. The two sides share contracts (profile keys, the
-Transfer protocol, the app checks, the screens the CLI shows on the badge),
-and today those are checked together only on a physical badge.
+The project has about 600 host tests for the OS and about 350 for the CLI.
+`cli/tests/fake.py` and `cli/tests/test_contract.py` already run the CLI's
+code snippets in CPython against the real OS modules. What has never happened
+is running them on a real MicroPython runtime, over the real raw-REPL
+protocol, the way a badge runs them. The contracts between the two sides
+(profile keys, the Transfer protocol, the app checks) are therefore only
+proven together on a physical badge.
 
-The OS already defines a hardware abstraction layer (`oreoOS/api.py`), but
-several modules bypass it.
+An outside contributor, sea-deep, built a desktop simulator prototype in
+CPython and pygame ([#47](https://github.com/elixpo/falera/pull/47)). Parts
+of it were merged with credit in
+[#196](https://github.com/elixpo/falera/pull/196); the simulator itself was
+kept for this project. It is prior art to study, not a base: it runs CPython
+rather than MicroPython, and the CLI cannot drive it.
 
-**Impact.** A simulator that runs the badge software on an ordinary computer,
-and that the `falera` tool can connect to as if it were a badge, opens Falera to
-contributors without hardware. It also lets CI test every change from the
-command line down to the app on the screen.
+**Impact.** A simulator that the real `falera` tool can connect to as if it
+were a badge opens Falera to contributors without hardware, and lets CI test
+every change from the command line down to the app on the screen.
 
 ## Expected outcomes
 
-- Anyone can run FaleraOS and its apps on an ordinary computer, in a window or
-  headless, with no badge hardware.
-- The `falera` tool works against the simulator as it does against a badge, so
-  the contracts between the CLI and the OS are tested end to end on every
-  change.
-- The OS reaches the hardware only through its abstraction layer, so the
-  simulator and the real badge run the same app code.
+- FaleraOS and its apps run on the MicroPython unix port, headless and in a
+  window, with a shim standing in for the badge's hardware drivers.
+- The real `falera` tool connects to the simulator through a pty that speaks
+  raw REPL and raw-paste, including soft and hard resets, exactly as it does
+  to a badge.
+- CI runs the main `falera` flows (push, pull, profile, transfer, app
+  install) against a headless simulator on every change.
+
+The project is **175 hours**: the unix-port runtime with the hardware shim,
+the raw-REPL bridge and the `falera` flows in CI. An experienced applicant
+may propose an extended **350-hour** version, which adds the windowed backend, golden-frame tests, mpremote `mount`, a
+deterministic clock and building or stubbing the C usermods.
 
 ## Stretch goals
 
-- Golden-image tests that compare the screen with saved pictures.
 - The Gallery app plays RV565 clips, the badge's video format, in the
   simulator. The `rv565` package on PyPI already decodes them in Python.
 - A fake IR bus connecting two simulator instances.
@@ -68,24 +78,28 @@ command line down to the app on the screen.
 
 ## Out of scope
 
+- Routing every module through `oreoOS/api.py`. That refactor is warm-up
+  work (#67, #227), not part of this project.
 - Cycle-accurate ESP32 emulation.
-- Bluetooth and BLE emulation. Bluetooth is the project's last planned
-  feature.
-- A new quest protocol, or changes to the RV565 format.
+- Bluetooth and BLE emulation.
+- Changes to the RV565 format.
 
 ## How success is measured
 
-- The launcher receives its dependencies by injection, and IR, Wi-Fi and
-  battery sit behind `oreoOS/api.py` (#67).
-- A desktop backend on the MicroPython unix port runs in a windowed mode and
-  a headless mode, with scripted button input and a deterministic clock.
-- At least 10 of the 20 built-in apps start and respond to scripted input
-  unmodified.
-- `falera` connects to a simulated badge, and `falera info`, `falera app install`,
-  `falera push`, `falera pull`, `falera setup` and `falera transfer send` pass
-  against it in CI.
-- A new contributor goes from `falera new` to the app running in the simulator
-  without hardware, following the documentation alone.
+- FaleraOS boots on the MicroPython unix port with a hardware shim, headless,
+  and the built-in apps that need no radio start and respond to scripted
+  button input.
+- `falera` connects to the simulator over a pty, and push, pull, profile,
+  transfer and app install pass against it in CI with no hardware.
+- The first design question is answered in writing before the midterm:
+  whether the unix port's REPL can serve raw REPL and raw-paste as it is, or
+  needs a bridge.
+- Extended version (350 hours): a windowed backend, golden-frame tests that reuse the
+  framebuffer capture behind `falera screenshot`, mpremote `mount`, a
+  deterministic clock, and the C usermods (`firmware/usermods/oreo_ir`,
+  `oreo_rv565`) built for the unix port or stubbed.
+- A new contributor goes from `falera new` to the app running in the
+  simulator, following the documentation alone.
 
 ## Warm-up tasks
 
@@ -93,14 +107,12 @@ command line down to the app on the screen.
 2. Run `python3 -m unittest discover -s tests` and
    `python3 tools/validate_app.py`. They need only the standard library.
 3. Install the CLI from the checkout (`pip install -e cli/`), create an app
-   with `falera new my_app`, and list which `falera` commands would need a badge
-   to go further.
-4. Read `oreoOS/api.py`, then identify one module that imports hardware
-   directly instead of going through it.
-5. Install the MicroPython unix port and record how far an app runs before it
-   requires hardware.
-6. Open a small documentation or test pull request in the repository (for
-   example #65 or #66), and respond to review until it is merged or closed.
+   with `falera new my_app`, and read `cli/tests/fake.py` to see how the CLI
+   is tested today.
+4. Install the MicroPython unix port, try to enter its raw REPL the way
+   `SerialLink.enter` does, and record what works, then {{warm-up-results}}.
+5. Take a warm-up issue such as #227 or #67, open a pull request, and respond
+   to review until it is merged or closed.
 
 ## Terms used on this page
 
@@ -108,30 +120,30 @@ command line down to the app on the screen.
 - **ESP32-S3**: the small computer chip inside the badge.
 - **CLI**: a command-line tool. Here it is `falera`, which talks to the badge
   over USB.
-- **Raw REPL**: the mode of MicroPython's interactive prompt that programs
-  use to send code to a board and read the result. `mpremote` is the
-  official tool for it, and `falera` uses it as a library.
+- **Raw REPL, raw-paste**: modes of MicroPython's interactive prompt that
+  programs use to send code to a board and read the result. `mpremote` is the
+  official tool for them, and `falera` uses it as a library.
+- **pty**: a pseudo-terminal, a pretend serial port that one program can
+  offer to another.
+- **MicroPython unix port**: the version of MicroPython that runs on Linux
+  and macOS.
+- **Shim**: a thin stand-in for a real part, here the badge's hardware
+  drivers.
+- **CPython**: the standard Python interpreter.
 - **Contract**: something both sides must agree on, such as the names of
   profile keys or the messages of the file-transfer protocol.
 - **Simulator**: a program that pretends to be the hardware, on an ordinary
   computer.
-- **Hardware abstraction layer**: one shared layer of code that apps use to
-  talk to the hardware. Here it is `oreoOS/api.py`.
-- **Bypass**: code that talks to the hardware directly instead of
-  going through that layer.
-- **Inject dependencies**: pass in the parts a module needs, so a test or the
-  simulator can swap in fakes.
-- **IR**: infrared, the invisible light the badges use to talk to each other.
-- **RV565**: the badge's video format, built for small screens.
-- **MicroPython unix port**: the version of MicroPython that runs on Linux
-  and macOS.
 - **Headless**: running without a window, for automated tests.
+- **Golden-frame tests**: tests that compare the screen with a saved,
+  known-good picture.
 - **Deterministic clock**: a fake clock that tests control, so results are
   always the same.
+- **Usermod**: a module written in C and built into the MicroPython firmware.
+- **IR**: infrared, the invisible light the badges use to talk to each other.
+- **RV565**: the badge's video format, built for small screens.
 - **unittest, pytest, pygame, SDL**: unittest and pytest are Python testing
   tools. pygame and SDL are libraries for drawing windows and graphics.
-- **Golden-image tests**: tests that compare the screen with a saved,
-  known-good picture.
 - **CI**: tests that run automatically on every proposed change.
 - **Cycle-accurate emulation**: copying the chip's exact behaviour, step by
   step.
