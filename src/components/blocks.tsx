@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Idea } from "@/lib/content";
-import { CAPACITY_STATEMENT, GSOC_LOGO, GSOC_LOGO_LABEL, siteMapEntry } from "@/data/site";
+import { CAPACITY_STATEMENT, DISCUSSIONS_OPEN, discussionUrl, GSOC_LOGO, GSOC_LOGO_LABEL, siteMapEntry, START_THREADS } from "@/data/site";
 import { jsonLd } from "@/lib/seo";
 
 /** Render one or more JSON-LD objects, each in its own script tag. */
@@ -398,5 +398,27 @@ export function WhatNext({ links }: { links: NextLink[] }) {
         ))}
       </ul>
     </nav>
+  );
+}
+
+/**
+ * The pinned starting threads in GitHub Discussions, as a three-cell grid.
+ * Featured on the home page and the contributor guide while Discussions is open.
+ */
+export function StartThreads() {
+  if (!DISCUSSIONS_OPEN) return null;
+  return (
+    <ol className="hairline-grid thread-grid">
+      {START_THREADS.map((thread, index) => (
+        <li key={thread.number}>
+          <a href={discussionUrl(thread.number)}>
+            <span className="cell-number">{String(index + 1).padStart(2, "0")}</span>
+            <strong>{thread.label}</strong>
+            <span>{thread.text}</span>
+            <small>GitHub Discussions #{thread.number} ↗</small>
+          </a>
+        </li>
+      ))}
+    </ol>
   );
 }

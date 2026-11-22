@@ -325,6 +325,11 @@ main:focus { outline:none; }
 @keyframes cue-nudge { 0%,100% { transform:translateY(0); } 50% { transform:translateY(4px); } }
 @media (prefers-reduced-motion:reduce) { .scroll-cue span { animation:none; } }
 .page-start { height:0; }
+.thread-grid > li > a { height:100%; display:grid; align-content:start; gap:.45rem; padding:1.4rem 1.5rem 1.3rem; color:var(--ink); text-decoration:none; }
+.thread-grid > li > a:hover, .thread-grid > li > a:focus-visible { background:rgba(11,98,60,.04); }
+.thread-grid strong { font:400 clamp(1.6rem,1.3rem + .8vw,2.1rem)/.95 var(--font-display); text-transform:uppercase; }
+.thread-grid span:not(.cell-number) { color:var(--muted); font-size:var(--text-sm); line-height:1.5; }
+.thread-grid small { margin-top:.35rem; color:var(--leaf); font:650 .72rem/1.4 var(--font-mono); letter-spacing:.08em; text-transform:uppercase; }
 .prose .template-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem 1.25rem; }
 .prose .template-download { min-height:48px; display:inline-flex; align-items:center; padding:.75rem 1.3rem; border:1px solid var(--ink); border-radius:999px; background:var(--ink); color:var(--white); font-size:.9375rem; font-weight:700; text-decoration:none; }
 .prose .template-download:hover { border-color:var(--leaf); background:var(--leaf); color:var(--white); }

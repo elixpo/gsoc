@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HeroCard, HeroGeometry, nextLinks, PageStart, RoleChips, ScrollCue, sizeLabel, Tldr, WhatNext } from "@/components/blocks";
 import { escapeHtml, getIdea, IDEAS, neighbours, projectAnchor, projectOf, type Idea, type IdeaSection } from "@/lib/content";
-import { CONFIG_ACCESS_ANCHOR, CONTACT_EMAIL, DISCUSSIONS_NOTE_SHORT, DISCUSSIONS_OPEN, DISCUSSIONS_URL, RESPONSE_EXPECTATION, SETUP_NOTE } from "@/data/site";
+import { CONFIG_ACCESS_ANCHOR, CONTACT_EMAIL, discussionUrl, IDEA_DISCUSSIONS, DISCUSSIONS_NOTE_SHORT, DISCUSSIONS_OPEN, DISCUSSIONS_URL, RESPONSE_EXPECTATION, SETUP_NOTE } from "@/data/site";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -57,7 +57,9 @@ function ideaTldr(idea: Idea): string[] {
     `${sizeLabel(idea.sizeHours)} · ${idea.difficulty} · ${escapeHtml(idea.theme)}`,
     `Mentors: ${escapeHtml(idea.primaryMentor.name)} (primary) and ${escapeHtml(idea.backupMentor.name)} (backup).`,
     `First step: set up <a href="${idea.setup}">${escapeHtml(idea.repositoryName)}</a> from its README, then pick a <a href="#warm-up-tasks">warm-up task</a>.`,
-    `Questions: <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`,
+    IDEA_DISCUSSIONS[idea.slug] && DISCUSSIONS_OPEN
+      ? `Questions: ask in <a href="${discussionUrl(IDEA_DISCUSSIONS[idea.slug])}">this idea's discussion thread</a>, or write to <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`
+      : `Questions: <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`,
     `<a href="/ideas/">See all ${countWord(IDEAS.length)} ideas</a>, with size, difficulty and mentors.`,
   ];
 }
@@ -143,7 +145,14 @@ export default async function IdeaPage({ params }: Props) {
           cta={{ href: `/warm-up/#${project.slug}`, label: "Warm-up for this project" }}
           note={
             <>
-              <a href="#warm-up-tasks">Warm-up tasks</a> · <Link href="/glossary/">Glossary</Link>
+              <a href="#warm-up-tasks">Warm-up tasks</a>
+              {DISCUSSIONS_OPEN && IDEA_DISCUSSIONS[idea.slug] ? (
+                <>
+                  {" "}
+                  · <a href={discussionUrl(IDEA_DISCUSSIONS[idea.slug])}>Discuss this idea</a>
+                </>
+              ) : null}{" "}
+              · <Link href="/glossary/">Glossary</Link>
             </>
           }
         />
@@ -188,6 +197,11 @@ export default async function IdeaPage({ params }: Props) {
                   <li>
                     <Link href={`/projects/#${projectAnchor(idea.repository)}`}>Codebase overview</Link>
                   </li>
+                  {DISCUSSIONS_OPEN && IDEA_DISCUSSIONS[idea.slug] ? (
+                    <li>
+                      <a href={discussionUrl(IDEA_DISCUSSIONS[idea.slug])}>Discussion thread for this idea</a>
+                    </li>
+                  ) : null}
                 </ul>
                 <p className="note">
                   {SETUP_NOTE} If a step asks for a secret, report it as a setup issue. See{" "}

@@ -19,6 +19,24 @@ export const DISCUSSIONS_URL = "https://github.com/orgs/elixpo/discussions";
  * programme email is the main channel and pages say Discussions opens soon.
  */
 export const DISCUSSIONS_OPEN: boolean = true;
+/** A thread in the org Discussions (source repository elixpo/elixpo). */
+export const discussionUrl = (number: number) => `${DISCUSSIONS_URL}/${number}`;
+/** The pinned starting threads, featured on the home page and the contributor guide. */
+export const START_THREADS = [
+  { number: 98, label: "Welcome", text: "How this space works and where to begin" },
+  { number: 89, label: "Introduce yourself", text: "Say who you are and which idea interests you" },
+  { number: 90, label: "Warm-up results", text: "Post what happened when you tried a warm-up" },
+];
+/** One Discussions thread per idea, by idea slug. scripts/check_site.py checks that every idea has one. */
+export const IDEA_DISCUSSIONS: Record<string, number> = {
+  "lixblogs-read-access-policy": 91,
+  "accessible-lixsketch-canvas": 92,
+  "lixsketch-agent-editing": 93,
+  "crumb-sandbox": 94,
+  "crumb-connector-contract": 95,
+  "oreo-badge-simulator": 96,
+  "falera-update-trust": 97,
+};
 /** What Discussions is for, once open. */
 const DISCUSSIONS_PURPOSE = "GitHub Discussions is where applicants introduce themselves, ask about the ideas and share warm-up results.";
 const DISCUSSIONS_SOON = "GitHub Discussions for GSoC 2027 opens soon.";
@@ -63,6 +81,9 @@ export const ELIXPO_URL = "https://elixpo.com";
 export const ELIXPO_LOGO_URL = `${SITE_URL}/logo.png`;
 /** Date the Elixpo GitHub organisation was created (content/pages/about.md). */
 export const ELIXPO_FOUNDING_DATE = "2024-02-24";
+/** Elixpo's MSME (Udyam) registration with the Government of India, and the public page to verify it. */
+export const UDYAM_NUMBER = "UDYAM-WB-07-0152337";
+export const UDYAM_VERIFY_URL = "https://udyamregistration.gov.in/Udyam_Verify.aspx";
 // TODO: link the source repository (github.com/elixpo/gsoc) from the footer once it is public.
 
 export const STATUS_BANNER =
@@ -132,7 +153,7 @@ export const CAPACITY_COVER_MARKDOWN = [
 export const SETUP_NOTE = "Set up from the README; no private keys needed.";
 
 /** Date the content was last reviewed; used for the sitemap. */
-export const CONTENT_REVIEWED = "2026-10-29";
+export const CONTENT_REVIEWED = "2026-11-22";
 
 /**
  * Primary navigation in three groups, shown with a hairline spacer between

@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Metadata } from "next";
-import { CONTACT_EMAIL, ELIXPO_FOUNDING_DATE, ELIXPO_LOGO_URL, ELIXPO_URL, GITHUB_ORG_URL, SITE_NAME, SITE_URL } from "@/data/site";
+import { CONTACT_EMAIL, ELIXPO_FOUNDING_DATE, UDYAM_NUMBER, UDYAM_VERIFY_URL, ELIXPO_LOGO_URL, ELIXPO_URL, GITHUB_ORG_URL, SITE_NAME, SITE_URL } from "@/data/site";
 
 export const absoluteUrl = (path: string) => new URL(path, SITE_URL).toString();
 export const jsonLd = (value: unknown) => JSON.stringify(value).replace(/</g, "\\u003c");
@@ -73,6 +73,7 @@ export const organizationJsonLd = {
   url: ELIXPO_URL,
   logo: ELIXPO_LOGO_URL,
   foundingDate: ELIXPO_FOUNDING_DATE,
+  identifier: { "@type": "PropertyValue", propertyID: "Udyam Registration Number", value: UDYAM_NUMBER, url: UDYAM_VERIFY_URL },
   sameAs: [GITHUB_ORG_URL],
   contactPoint: [{ "@type": "ContactPoint", contactType: "Google Summer of Code programme", email: CONTACT_EMAIL, availableLanguage: ["en"] }],
 };

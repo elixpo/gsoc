@@ -13,7 +13,11 @@ import {
   DISCUSSIONS_NOTE,
   DISCUSSIONS_OPEN,
   DISCUSSIONS_URL,
+  discussionUrl,
   GITHUB_ORG_URL,
+  START_THREADS,
+  UDYAM_NUMBER,
+  UDYAM_VERIFY_URL,
   GSOC_TRADEMARK_NOTICE,
   GSOC_URL,
   LEGAL_PAGES,
@@ -172,6 +176,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <li>
                   <a href={DISCUSSIONS_URL}>{DISCUSSIONS_LINK_LABEL}</a>
                 </li>
+                {DISCUSSIONS_OPEN
+                  ? START_THREADS.slice(1).map((thread) => (
+                      <li key={thread.number}>
+                        <a href={discussionUrl(thread.number)}>{thread.label} (GitHub Discussions)</a>
+                      </li>
+                    ))
+                  : null}
                 {WHATSAPP_URL ? (
                   <li>
                     <a href={WHATSAPP_URL} rel="noopener">
@@ -203,6 +214,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <p>
               Site code is MIT licensed; site text is available under{" "}
               <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Each Elixpo project keeps its own licence; see its repository.
+            </p>
+            <p>
+              Elixpo is a registered MSME with the Government of India (Udyam):{" "}
+              <a href={UDYAM_VERIFY_URL}>{UDYAM_NUMBER}</a>.
             </p>
             <p className="trademark">{GSOC_TRADEMARK_NOTICE}</p>
           </div>
