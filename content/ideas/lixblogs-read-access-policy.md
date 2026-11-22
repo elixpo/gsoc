@@ -118,7 +118,7 @@ and adds access-aware full-text search.
    cause in your own words, then {{warm-up-results}}.
 3. Read `migrations/` and the existing tests in `tests/`, and describe how data
    and tests are structured today.
-4. Take a warm-up issue such as #564 or #392, open a pull request, and respond
+4. Take an open issue labelled `warm-up`, such as #392, open a pull request, and respond
    to review until it is merged or closed.
 
 ## Terms used on this page
