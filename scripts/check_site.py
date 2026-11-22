@@ -738,6 +738,11 @@ def check_site(site: Path, launched: bool) -> list[str]:
         expect(bool(crumb and 'href="/"' in crumb.group(0) and 'href="/ideas/"' in crumb.group(0) and 'aria-current="page"' in crumb.group(0)),
                f"{route}: breadcrumb (Home > Ideas > title) missing")
         expect(f"In short: {idea['in_short']}" in page.text, f"{route}: 'In short' summary missing")
+        if open_discussions:
+            thread = re.search(r'"' + re.escape(str(idea["slug"])) + r'": (\d+),', Path("src/data/site.ts").read_text(encoding="utf-8"))
+            expect(bool(thread), f"{route}: no Discussions thread in IDEA_DISCUSSIONS (src/data/site.ts)")
+            if thread:
+                expect(f'href="{DISCUSSIONS_URL}/{thread.group(1)}"' in source, f"{route}: link to its Discussions thread missing")
         headings = [html.unescape(re.sub(r"<[^>]+>", "", h)).strip() for h in re.findall(r'<h2 id="[^"]+">(.*?)</h2>', source, re.S)]
         found = [h for h in headings if h in IDEA_SECTIONS]
         expect(found == IDEA_SECTIONS, f"{route}: idea sections are {found}, expected {IDEA_SECTIONS}")

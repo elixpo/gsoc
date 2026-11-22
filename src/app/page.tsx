@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { GsocMark, HeroGeometry, IdeaCards, nextLinks, PageStart, Prose, ScrollCue, StepGrid, Tldr, WhatNext } from "@/components/blocks";
-import { HOME_CAPACITY_SENTENCE, HOME_CREDENTIALS, MENTORS_PER_IDEA, PLANNED_CONTRIBUTORS } from "@/data/site";
+import { GsocMark, HeroGeometry, IdeaCards, nextLinks, PageStart, Prose, ScrollCue, StartThreads, StepGrid, Tldr, WhatNext } from "@/components/blocks";
+import { DISCUSSIONS_OPEN, DISCUSSIONS_URL, HOME_CAPACITY_SENTENCE, HOME_CREDENTIALS, MENTORS_PER_IDEA, PLANNED_CONTRIBUTORS } from "@/data/site";
 import { getPage, IDEAS, PROJECTS, renderMarkdown, sections, slugify, steps } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
@@ -99,6 +99,21 @@ export default function Home() {
         </div>
         <IdeaCards ideas={IDEAS} />
       </section>
+      {DISCUSSIONS_OPEN && (
+        <section className="band" aria-labelledby="home-discussions">
+          <div className="band-head">
+            <p className="eyebrow">GitHub Discussions</p>
+            <h2 id="home-discussions">
+              Start <em>in public</em>
+            </h2>
+            <p>
+              Introduce yourself, ask about an idea in its own thread, and post your warm-up results. Mentors answer in public, so the next applicant
+              finds the answer too. <a href={DISCUSSIONS_URL}>All discussions</a>.
+            </p>
+          </div>
+          <StartThreads />
+        </section>
+      )}
       <WhatNext links={nextLinks(page.next)} />
     </>
   );
