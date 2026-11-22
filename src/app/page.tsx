@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { GsocMark, HeroGeometry, IdeaCards, nextLinks, Prose, StepGrid, Tldr, WhatNext } from "@/components/blocks";
+import { GsocMark, HeroGeometry, IdeaCards, nextLinks, PageStart, Prose, ScrollCue, StepGrid, Tldr, WhatNext } from "@/components/blocks";
 import { HOME_CAPACITY_SENTENCE, HOME_CREDENTIALS, MENTORS_PER_IDEA, PLANNED_CONTRIBUTORS } from "@/data/site";
 import { getPage, IDEAS, PROJECTS, renderMarkdown, sections, slugify, steps } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
@@ -43,7 +43,7 @@ export default function Home() {
           <h1 dangerouslySetInnerHTML={{ __html: page.headingHtml }} />
           <p className="lead">{page.lead}</p>
           <div className="actions">
-            <Link href="/ideas/">See the {IDEAS.length} project ideas</Link>
+            <Link href="/ideas/#ideas-overview">See the {IDEAS.length} project ideas</Link>
             <Link href="/contributor-guide/">How to apply</Link>
             <Link href="/why-elixpo/">Why Elixpo for GSoC</Link>
           </div>
@@ -55,6 +55,7 @@ export default function Home() {
               </li>
             ))}
           </ul>
+          <ScrollCue label="Read more" />
         </div>
         <aside className="hero-panel" aria-label="Key facts">
           <GsocMark />
@@ -69,6 +70,7 @@ export default function Home() {
           <p className="hero-panel-note">Google selects participating organisations and announces them after the application period.</p>
         </aside>
       </header>
+      <PageStart />
       <Tldr items={page.tldrHtml} />
 
       <div className="home-sections">

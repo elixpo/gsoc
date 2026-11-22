@@ -7,7 +7,7 @@ tldr:
   - Elixpo is applying to mentor in Google Summer of Code 2027. Google decides which organisations take part.
   - [Seven project ideas](/ideas/) across four open-source codebases, each with a primary and a backup mentor.
   - In 2027 we plan to mentor one contributor, so every accepted contributor gets two mentors' full attention.
-  - To start: choose an idea, set it up, complete a warm-up task, then follow the [contributor guide](/contributor-guide/).
+  - To start: ==choose an idea, set it up, complete a warm-up task==, then follow the [contributor guide](/contributor-guide/).
   - Questions: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
   - [Browse the seven project ideas](/ideas/).
 next:

@@ -35,8 +35,42 @@ export function HeroGeometry() {
  * trusted HTML from the page frontmatter, where `*phrase*` becomes the italic
  * serif accent (see accentHeading in src/lib/content.ts).
  */
-export function PageHero({ eyebrow, headingHtml, lead, children, aside }: { eyebrow: string; headingHtml: string; lead: string; children?: React.ReactNode; aside?: React.ReactNode }) {
+/**
+ * A small "continue reading" link at the foot of a hero, so readers know the
+ * page goes on below the first screen. It jumps to the anchor placed right
+ * after the hero (#page-start).
+ */
+export function ScrollCue({ label = "Read the page" }: { label?: string }) {
   return (
+    <a className="scroll-cue" href="#page-start">
+      {label} <span aria-hidden="true">↓</span>
+    </a>
+  );
+}
+
+/** The anchor ScrollCue jumps to; sits directly after the hero. */
+export function PageStart() {
+  return <div id="page-start" className="page-start" />;
+}
+
+export function PageHero({
+  eyebrow,
+  headingHtml,
+  lead,
+  children,
+  aside,
+  cue = true,
+}: {
+  eyebrow: string;
+  headingHtml: string;
+  lead: string;
+  children?: React.ReactNode;
+  aside?: React.ReactNode;
+  /** Show the "Read the page" link; off on pages with nothing below the hero. */
+  cue?: boolean;
+}) {
+  return (
+    <>
     <header className={aside ? "page-hero page-hero-with-aside hero-card" : "page-hero hero-card"}>
       <HeroGeometry />
       <div className="page-hero-copy">
@@ -44,9 +78,12 @@ export function PageHero({ eyebrow, headingHtml, lead, children, aside }: { eyeb
         <h1 dangerouslySetInnerHTML={{ __html: headingHtml }} />
         <p className="lead">{lead}</p>
         {children}
+        {cue && <ScrollCue />}
       </div>
       {aside}
     </header>
+    {cue && <PageStart />}
+    </>
   );
 }
 

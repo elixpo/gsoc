@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <PageHero
+      cue={false}
       eyebrow="404"
       headingHtml="Page <em>not found</em>"
       lead="The requested page does not exist. It may have moved, or the link may be incorrect. Use the links below or the site map at the foot of the page."

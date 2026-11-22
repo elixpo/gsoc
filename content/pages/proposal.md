@@ -5,8 +5,8 @@ heading: Proposal *template*
 lead: Your proposal is your plan for one Elixpo project idea. Start with what Google provides, then use Elixpo's template below, in this order. Write it yourself; be specific and concise.
 tldr:
   - "Google provides the official guidance: its contributor guide on [writing a proposal](https://google.github.io/gsocguides/student/writing-a-proposal), submission only through the [official GSoC website](https://summerofcode.withgoogle.com/) during the contributor application period, and the dates on its [official timeline](https://developers.google.com/open-source/gsoc/timeline). Google has not announced the 2027 dates yet."
-  - Your proposal is your plan for one idea. Write it yourself.
-  - Complete at least one of the idea's warm-up tasks first.
+  - Your proposal is your plan for one idea. ==Write it yourself.==
+  - ==Complete at least one of the idea's warm-up tasks first.==
   - Use the sections of [the template](#the-template), in order, including a timeline with a midterm checkpoint.
   - Send a draft to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) so that mentors can comment on it.
   - Choose your idea first: [browse the seven project ideas](/ideas/).
@@ -49,6 +49,12 @@ first; the rest of this page adds what Elixpo asks for.
 
 Elixpo's template: use these sections, in this order. Write each one
 yourself.
+
+<p class="template-actions"><a class="template-download" href="/proposal-template.md" download="elixpo-gsoc-2027-proposal.md">Download the template (Markdown)</a> <a href="https://google.github.io/gsocguides/student/writing-a-proposal">Google's guide to writing a proposal</a></p>
+
+The file has every section below with a prompt to replace. Fill it in, send
+a draft to [gsoc@elixpo.com](mailto:gsoc@elixpo.com), and paste the final
+version into the official GSoC website.
 
 ## Title
 

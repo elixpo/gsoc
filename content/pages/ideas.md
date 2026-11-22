@@ -7,7 +7,7 @@ tldr:
   - Seven ideas in four codebases: two are 350 hours and five are 175 hours.
   - The 350-hour ideas define a 175-hour core, and two 175-hour ideas describe a 350-hour version.
   - Four ideas are Hard and three are Intermediate; the warm-up tasks are the easy way in.
-  - Every idea has a primary and a backup mentor; complete a warm-up task before you write your proposal.
+  - Every idea has a primary and a backup mentor; ==complete a warm-up task before you write your proposal==.
   - Your own idea? Describe it to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) first.
   - Compare them in [all ideas at a glance](#ideas-overview), then open an idea for its warm-up tasks.
 next:
