@@ -6,10 +6,10 @@ lead: Elixpo takes part in Google Summer of Code to help one contributor become 
 tldr:
   - Elixpo is an open-source project foundry: build in public, release as a project.
   - Our aim: one contributor who becomes the supported owner of one part of one codebase.
-  - The ideas belong to five codebases released as hosted services, npm packages and a Debian package.
+  - The ideas belong to four codebases released as hosted services, npm packages and a Debian package.
   - No Google Summer of Code idea involves payments, pricing or paid features.
   - Two mentors, human review, and replies within 48 hours on weekdays.
-  - [Browse the six project ideas](/ideas/).
+  - [Browse the seven project ideas](/ideas/).
 next:
   - /contributor-guide/
   - /ideas/
@@ -46,7 +46,7 @@ invitation to keep reviewing and maintaining that part after the programme.
 
 ## What we ship in public
 
-The ideas belong to five codebases, described on the
+The ideas belong to four codebases, described on the
 [projects page](/projects/):
 
 - **LixBlogs**, hosted at [blogs.elixpo.com](https://blogs.elixpo.com).
@@ -54,8 +54,6 @@ The ideas belong to five codebases, described on the
 - **Crumb**, packaged in Debian
   ([package tracker](https://tracker.debian.org/pkg/crumb)) and in the Elixpo
   APT repository at [packages.elixpo.com](https://packages.elixpo.com).
-- **Elixpo Open Source**, in development at
-  [opensource.elixpo.com](https://opensource.elixpo.com).
 - **Falera**, with its operating system and hardware files on
   [GitHub](https://github.com/elixpo/falera).
 
@@ -108,8 +106,7 @@ set out how changes are accepted:
 
 
 - Elixpo does not sell anything through this programme. No Google Summer of
-  Code idea involves payments, pricing or paid features; the contest-scoring
-  idea lists payouts as out of scope.
+  Code idea involves payments, pricing or paid features.
 - The source code of the participating projects is published under the MIT
   licence. Project names, published package names and the official hosted
   deployments are reserved to Elixpo, as each repository's `NOTICE` file

@@ -1,12 +1,12 @@
 ---
 title: Crumb connector contract and offline conformance kit
 slug: crumb-connector-contract
-order: 3
+order: 5
 theme: Rust, agent security
 size_hours: 175
 difficulty: Hard
-primary_mentor: Circuit-Overtime
-backup_mentor: ez-vivek
+primary_mentor: ez-vivek
+backup_mentor: Circuit-Overtime
 repository: https://github.com/elixpo/crumb.elixpo
 setup: https://github.com/elixpo/crumb.elixpo/blob/main/README.md
 summary: Design a versioned, scoped contract for Crumb connectors to external accounts, with an offline conformance kit that proves a connector behaves correctly.
@@ -16,7 +16,7 @@ skills:
   - HTTP and OAuth basics
   - Test design
 related_issues:
-  - "254 Connector contract for external accounts (unblocks #29, #30, #31)"
+  - "254 Crumb connector contract and offline conformance kit"
   - "29 Plan professional productivity connectors"
   - "30 Plan GitHub connector for repository workflows"
   - "31 Plan storage connectors for media workflows"
@@ -24,15 +24,20 @@ related_issues:
 
 ## Description
 
-Crumb is Elixpo's self-hosted Rust agent harness: 29 crates, about 700
+Crumb is Elixpo's self-hosted Rust agent harness: 29 crates, over 700
 tests, and packaged in Debian. Skills already have a signed, verified
 manifest with a conformance test. External accounts do not have one: GitHub
 access is hand-written native tools, and MCP servers are unscoped.
 
 There is no versioned contract for declaring scopes, storing and revoking
 credentials, separating read approval from write approval, or proving that a
-connector behaves correctly. The planned connectors, linked under Material,
-are blocked until that contract exists.
+connector behaves correctly. The connector plans, linked under Material,
+say not to implement connectors until that contract is stable.
+
+An outside contributor is already mapping Crumb's GitHub tools and sketching
+the contract in the open on
+[#254](https://github.com/elixpo/crumb.elixpo/issues/254). Design discussion
+there is welcome now; the implementation is kept for the programme.
 
 **Impact.** When an agent can reach a user's accounts, it must do only what
 the user has allowed, and credentials must stay protected. A shared, tested
@@ -60,6 +65,8 @@ contract makes that guarantee explicit and unblocks the planned connectors.
 - OAuth app registration.
 - Marketplace UI.
 - New LLM providers.
+- Sandboxing the processes connectors start; that is the
+  [Crumb Sandbox](/ideas/crumb-sandbox/) idea.
 
 ## How success is measured
 
@@ -82,9 +89,11 @@ contract makes that guarantee explicit and unblocks the planned connectors.
    README. The tests use a mock LLM provider, so no API key is required.
 2. Read the `crumb-marketplace` crate and describe how skill manifests are
    verified today.
-3. Read the connector planning issues linked under Material and summarise
-   their requirements in your own words, then {{warm-up-results}}.
-4. Open a small documentation or test improvement pull request in the repository, and respond to review until it is merged or closed.
+3. Read the connector planning issues linked under Material and the design
+   discussion on #254, and summarise the requirements in your own words, then
+   {{warm-up-results}}.
+4. Take a warm-up issue such as #330 or #328, open a pull request, and
+   respond to review until it is merged or closed.
 
 ## Terms used on this page
 

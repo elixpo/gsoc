@@ -8,7 +8,7 @@ tldr:
   - Report mistakes on this site to the same address until its source repository is public.
   - Small fixes, tests and documentation are welcome in the [participating codebases](/projects/) at any time.
   - The Code of Conduct and the AI policy apply everywhere.
-  - [Browse the six project ideas](/ideas/).
+  - [Browse the seven project ideas](/ideas/).
 next:
   - /projects/
   - /contributor-guide/
@@ -35,7 +35,7 @@ Until then, report the mistake to
 
 ## Contribute to the codebases
 
-The project ideas belong to five Elixpo codebases, listed on the
+The project ideas belong to four Elixpo codebases, listed on the
 [codebases page](/projects/) with their repositories, setup
 instructions and contribution guidelines. Small fixes, tests and
 documentation are welcome at any time. If you plan to apply, the

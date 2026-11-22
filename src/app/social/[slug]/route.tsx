@@ -30,7 +30,7 @@ function card(slug: string) {
   const page = getPage(slug);
   return {
     title: slug === "home" ? "Google Summer of Code 2027" : page.heading,
-    summary: slug === "home" ? "Applying as a mentoring organisation · six project ideas · one contributor planned for 2027" : page.lead,
+    summary: slug === "home" ? "Applying as a mentoring organisation · seven project ideas · one contributor planned for 2027" : page.lead,
     tag: "Applying as a mentoring organisation",
   };
 }

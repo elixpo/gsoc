@@ -9,7 +9,7 @@ tldr:
   - The steps: choose an idea, set it up, complete a warm-up task, introduce yourself, make a small pull request, then write your proposal.
   - Questions and introductions: {{ask-channel}}. {{discussions}}
   - Submit your final proposal on the [official GSoC website](https://summerofcode.withgoogle.com/). Proposals sent anywhere else are not considered.
-  - Step one is choosing an idea: [browse the six project ideas](/ideas/).
+  - Step one is choosing an idea: [browse the seven project ideas](/ideas/).
 next:
   - /ideas/
   - /proposal/
@@ -38,20 +38,19 @@ next:
 
 - **[LixBlogs](/projects/#lixblogs)** is a collaborative blogging platform
   with an API and a command-line tool, where many publications run on one
-  deployment. Ideas: [read-access policy](/ideas/lixblogs-read-access-policy/)
-  and [CLI automation contract](/ideas/lixblogs-cli-contract/).
+  deployment. Idea: [Access Policy](/ideas/lixblogs-read-access-policy/).
 - **[LixSketch](/projects/#lixsketch)** is an end-to-end encrypted canvas for
-  sketches, diagrams and documents. Idea:
-  [accessible canvas](/ideas/accessible-lixsketch-canvas/).
+  sketches, diagrams and documents. Ideas:
+  [accessible canvas](/ideas/accessible-lixsketch-canvas/) and
+  [collaborative agent editing](/ideas/lixsketch-agent-editing/).
 - **[Crumb](/projects/#crumb)** is a self-hosted agent harness and
   natural-language terminal, written in Rust, that controls what AI agents
-  may do. Idea: [connector contract](/ideas/crumb-connector-contract/).
-- **[Elixpo Open Source](/projects/#elixpo-open-source)** is a platform, in
-  development, for running open-source contests and mentoring programmes.
-  Idea: [contest-scoring engine](/ideas/contest-scoring-engine/).
+  may do. Ideas: [Crumb Sandbox](/ideas/crumb-sandbox/) and
+  [connector contract](/ideas/crumb-connector-contract/).
 - **[Falera](/projects/#oreo)** is an open MicroPython operating system and
-  hardware design for an ESP32-S3 conference badge. Idea:
-  [badge simulator and CLI test bench](/ideas/oreo-badge-simulator/).
+  hardware design for an ESP32-S3 conference badge. Ideas:
+  [Falera Simulator](/ideas/oreo-badge-simulator/) and
+  [FaleraOS update trust](/ideas/falera-update-trust/).
 
 ## Step by step
 

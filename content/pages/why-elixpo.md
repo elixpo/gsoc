@@ -5,11 +5,11 @@ heading: Why Elixpo *for GSoC*
 lead: Short answers to the questions a Google Summer of Code reviewer is likely to ask about Elixpo, each with a link to the page or public record that supports it. Elixpo is applying to be a mentoring organisation for 2027; Google decides which organisations take part.
 tldr:
   - Elixpo has developed open source in public on GitHub since February 2024.
-  - The source code of all five participating codebases is licensed under the MIT License.
+  - The source code of all four participating codebases is licensed under the MIT License.
   - Three mentors, two administrators and a coordinator, for one planned contributor.
   - Every answer below links the page or public record that supports it.
   - Contact: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
-  - [Browse the six project ideas](/ideas/).
+  - [Browse the seven project ideas](/ideas/).
 next:
   - /about/
   - /operations/
@@ -19,25 +19,21 @@ next:
 ## Is Elixpo an established, active open-source organisation?
 
 Yes. The Elixpo GitHub organisation was created on 24 February 2024 and
-develops its projects in public. Each of the five participating repositories
+develops its projects in public. Each of the four participating repositories
 had changes pushed in October 2026. See the
 [Elixpo repositories](https://github.com/orgs/elixpo/repositories), the
 [participating codebases](/projects/) and the [dated history](/about/).
 
 ## Is the software under an OSI-approved licence?
 
-The source code of all five participating repositories is licensed under the
-MIT License, which is OSI-approved. LixBlogs and LixSketch use the standard
-MIT text, which GitHub detects as MIT
+The source code of all four participating repositories is licensed under the
+MIT License, which is OSI-approved. Each uses the standard MIT text, which
+GitHub detects as MIT, and keeps the brand rules separately in
+`TRADEMARKS.md`
 ([LixBlogs #555](https://github.com/elixpo/blogs.elixpo/pull/555),
-[LixSketch #209](https://github.com/elixpo/sketch.elixpo/pull/209), both
-merged). In Crumb, Elixpo Open Source and Falera the `LICENSE` file still
-combines the MIT terms with Elixpo's brand terms, so GitHub does not yet
-detect a licence; open pull requests replace it with the standard MIT text
-and move the brand rules to `TRADEMARKS.md`
-([Crumb #251](https://github.com/elixpo/crumb.elixpo/pull/251),
-[Elixpo Open Source #98](https://github.com/elixpo/opensource.elixpo/pull/98),
-[Falera #61](https://github.com/elixpo/falera/pull/61)).
+[LixSketch #209](https://github.com/elixpo/sketch.elixpo/pull/209),
+[Crumb #251](https://github.com/elixpo/crumb.elixpo/pull/251),
+[Falera #61](https://github.com/elixpo/falera/pull/61), all merged).
 
 ## Is there an active contributor community?
 
@@ -57,9 +53,11 @@ every idea. See the [mentors page](/mentors/).
 
 ## Are the project ideas well defined?
 
-Each of the six ideas is one problem in one codebase, with expected
+Each of the seven ideas is one problem in one codebase, with expected
 outcomes, what is out of scope, how success is measured, warm-up tasks, a
-size of 90 or 175 hours, and two named mentors. Every project can be set up
+size of 175 or 350 hours (every 350-hour idea also defines a 175-hour core),
+and two named mentors. Each idea has a public issue where design discussion
+is open now. Every project can be set up
 from its public repository without private keys. See the
 [ideas list](/ideas/).
 

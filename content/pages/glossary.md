@@ -7,7 +7,7 @@ tldr:
   - Definitions of the terms used on this site, in three groups: the programme, ideas and proposals, and working with code.
   - Each idea page also defines the terms it uses.
   - The [FAQ](/faq/) answers common questions.
-  - [Browse the six project ideas](/ideas/).
+  - [Browse the seven project ideas](/ideas/).
 next:
   - /
   - /ideas/
@@ -43,8 +43,9 @@ next:
   ideas are on the [ideas page](/ideas/).
 - **Participating project**: an Elixpo codebase that one or more ideas belong
   to. See the [projects page](/projects/).
-- **Size (90 or 175 hours)**: how much work an idea is expected to take in
-  total. 90 hours is a small project; 175 hours is a medium one.
+- **Size (90, 175 or 350 hours)**: how much work an idea is expected to take
+  in total. Google calls 90 hours small, 175 hours medium and 350 hours
+  large. Our ideas are 175 or 350 hours.
 - **Difficulty**: how hard an idea is: Easy, Intermediate or Hard.
 - **Proposal**: your written plan for the idea you want to work on. See the
   [proposal template](/proposal/).

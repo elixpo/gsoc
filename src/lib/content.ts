@@ -8,7 +8,7 @@ import { COMMITMENT_STATUS_MARKDOWN } from "@/data/agreements";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
-export const SIZES = [90, 175] as const;
+export const SIZES = [90, 175, 350] as const;
 export const DIFFICULTIES = ["Easy", "Intermediate", "Hard"] as const;
 export type Difficulty = (typeof DIFFICULTIES)[number];
 

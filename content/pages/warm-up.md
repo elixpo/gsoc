@@ -2,13 +2,13 @@
 title: "Warm-up: set up a project without keys"
 description: Set up each Elixpo GSoC 2027 project from a clean checkout without private keys: prerequisites, exact commands, expected results and warm-up tasks.
 heading: Set up a project *without keys*
-lead: Every warm-up task can be done from a public checkout, without decrypting any Elixpo configuration. This page gives, for each of the five projects, what runs without keys, the commands taken from the repository's own files, how to tell it worked, and the limitations you may meet today.
+lead: Every warm-up task can be done from a public checkout, without decrypting any Elixpo configuration. This page gives, for each of the four projects, what runs without keys, the commands taken from the repository's own files, how to tell it worked, and the limitations you may meet today.
 tldr:
   - You never need an Elixpo key, password or paid account to set up a project or complete a warm-up task.
   - Each project below lists its prerequisites and the exact commands its own CI or README uses, with the source file.
   - Where a project falls short today, its section says so under "Known limitations".
   - If a step asks for a secret, report it as a setup issue. Questions go to [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
-  - Pick the idea you will work on: [browse the six project ideas](/ideas/).
+  - Pick the idea you will work on: [browse the seven project ideas](/ideas/).
 next:
   - /ideas/
   - /contributor-guide/
@@ -43,8 +43,7 @@ project. Where a project does not meet one yet, its section below says so.
 ## LixBlogs
 
 Repository: [elixpo/blogs.elixpo](https://github.com/elixpo/blogs.elixpo).
-Ideas: [read-access policy](/ideas/lixblogs-read-access-policy/#warm-up-tasks)
-and [CLI automation contract](/ideas/lixblogs-cli-contract/#warm-up-tasks).
+Idea: [Access Policy](/ideas/lixblogs-read-access-policy/#warm-up-tasks).
 
 ### What runs without keys
 
@@ -87,9 +86,7 @@ Node's test runner ends with a summary. `# fail 0` means every test passed.
 ### Warm-up tasks
 
 See the warm-up tasks on the
-[read-access policy](/ideas/lixblogs-read-access-policy/#warm-up-tasks) and
-[CLI automation contract](/ideas/lixblogs-cli-contract/#warm-up-tasks) idea
-pages.
+[Access Policy](/ideas/lixblogs-read-access-policy/#warm-up-tasks) idea page.
 
 ### Known limitations
 
@@ -104,7 +101,8 @@ pages.
 ## LixSketch
 
 Repository: [elixpo/sketch.elixpo](https://github.com/elixpo/sketch.elixpo).
-Idea: [accessible canvas](/ideas/accessible-lixsketch-canvas/#warm-up-tasks).
+Ideas: [accessible canvas](/ideas/accessible-lixsketch-canvas/#warm-up-tasks)
+and [collaborative agent editing](/ideas/lixsketch-agent-editing/#warm-up-tasks).
 
 ### What runs without keys
 
@@ -146,7 +144,8 @@ draw shapes.
 ### Warm-up tasks
 
 See the [accessible canvas](/ideas/accessible-lixsketch-canvas/#warm-up-tasks)
-idea page.
+and [collaborative agent editing](/ideas/lixsketch-agent-editing/#warm-up-tasks)
+idea pages.
 
 ### Known limitations
 
@@ -159,7 +158,8 @@ idea page.
 ## Crumb
 
 Repository: [elixpo/crumb.elixpo](https://github.com/elixpo/crumb.elixpo).
-Idea: [connector contract](/ideas/crumb-connector-contract/#warm-up-tasks).
+Ideas: [Crumb Sandbox](/ideas/crumb-sandbox/#warm-up-tasks)
+and [connector contract](/ideas/crumb-connector-contract/#warm-up-tasks).
 
 ### What runs without keys
 
@@ -196,8 +196,9 @@ crate's tests end with `test result: ok.`
 
 ### Warm-up tasks
 
-See the [connector contract](/ideas/crumb-connector-contract/#warm-up-tasks)
-idea page.
+See the [Crumb Sandbox](/ideas/crumb-sandbox/#warm-up-tasks) and
+[connector contract](/ideas/crumb-connector-contract/#warm-up-tasks) idea
+pages.
 
 ### Known limitations
 
@@ -206,67 +207,11 @@ idea page.
 - Chatting with a real AI model needs a provider key and is not part of the
   warm-up.
 
-## Elixpo Open Source
-
-Repository:
-[elixpo/opensource.elixpo](https://github.com/elixpo/opensource.elixpo).
-Idea: [contest-scoring engine](/ideas/contest-scoring-engine/#warm-up-tasks).
-
-### What runs without keys
-
-Type-checking and linting the code, applying the database schema to a local
-database, and running the web frontend, which shows example (mock) data. The
-backend services are not written yet: `workers/` holds only the database
-migrations.
-
-### Prerequisites
-
-Git, Node.js 20 or newer and npm (README and `engines` in `package.json`).
-
-### Commands
-
-```bash
-git clone https://github.com/elixpo/opensource.elixpo
-cd opensource.elixpo
-npm install
-npm run typecheck
-./biome.sh ci
-npm run db:migrate:local
-npm run dev
-```
-
-Sources: the
-[README](https://github.com/elixpo/opensource.elixpo/blob/main/README.md#running-this-project-locally)
-(`npm install`, `npm run db:migrate:local`, `npm run dev`, `npm run typecheck`),
-[`package.json`](https://github.com/elixpo/opensource.elixpo/blob/main/package.json)
-scripts, and
-[`.github/workflows/biome.yml`](https://github.com/elixpo/opensource.elixpo/blob/main/.github/workflows/biome.yml)
-(`./biome.sh ci` on every pull request).
-
-### How you know it worked
-
-`npm run typecheck` finishes without errors, `./biome.sh ci` reports no
-errors, and [http://localhost:3000](http://localhost:3000) shows the landing
-page.
-
-### Warm-up tasks
-
-See the [contest-scoring engine](/ideas/contest-scoring-engine/#warm-up-tasks)
-idea page. The points ledger schema is in `workers/migrations/`.
-
-### Known limitations
-
-- The README's first setup step copies a settings template that is not in the
-  repository. Skip it: the app has local defaults.
-- There are no automated tests yet. A first test is a welcome warm-up pull
-  request.
-- The repository contains an encrypted `.env` file, which the development
-  server reads. Do not try to decrypt it; the frontend does not need it.
-
 ## Falera
 
 Repository: [elixpo/falera](https://github.com/elixpo/falera).
-Idea: [badge simulator and CLI test bench](/ideas/oreo-badge-simulator/#warm-up-tasks).
+Ideas: [Falera Simulator](/ideas/oreo-badge-simulator/#warm-up-tasks)
+and [FaleraOS update trust](/ideas/falera-update-trust/#warm-up-tasks).
 
 ### What runs without keys
 
@@ -298,17 +243,18 @@ and the CLI guide,
 
 ### How you know it worked
 
-The OS tests end with `OK` (407 tests in November 2026), the validator prints
+The OS tests end with `OK`, the validator prints
 `0 failed`, and `falera new` creates a `my_app` folder that
 `python3 tools/validate_app.py my_app` accepts. Then open `oreoOS/api.py`, the
 hardware abstraction every app is meant to go through.
 
 ### Warm-up tasks
 
-See the [simulator and CLI test bench](/ideas/oreo-badge-simulator/#warm-up-tasks)
-idea page: run the tests, try the CLI without a badge, find modules that
-import hardware directly, and try the MicroPython unix port from
-MicroPython's own documentation.
+See the [Falera Simulator](/ideas/oreo-badge-simulator/#warm-up-tasks) and
+[FaleraOS update trust](/ideas/falera-update-trust/#warm-up-tasks) idea
+pages: run the tests, try the CLI without a badge, read how the CLI is tested
+against fakes, and try the MicroPython unix port from MicroPython's own
+documentation.
 
 ### Known limitations
 

@@ -9,7 +9,7 @@ tldr:
   - In October 2025 the Chapter repository merged 47 Hacktoberfest pull requests from 24 GitHub accounts.
   - Every step in the record links its public source and states the precision of its date.
   - Outside contributors also work in the participating projects: Senthil455 had 44 pull requests merged in LixBlogs in October 2026.
-  - [Browse the six project ideas](/ideas/).
+  - [Browse the seven project ideas](/ideas/).
 next:
   - /ideas/
   - /mentors/
@@ -102,7 +102,7 @@ Evidence: [community partnership programme](https://elixpo.com/partnerships).
 ## Outside contributors in the participating projects
 
 The record above comes from the Chapter repository. Outside contributors also
-work in the five codebases that the ideas belong to:
+work in Elixpo's product codebases:
 
 - **Senthil Raja R ([Senthil455](https://github.com/Senthil455))** had 44
   pull requests merged in LixBlogs between 15 and 24 October 2026. In the
@@ -111,7 +111,7 @@ work in the five codebases that the ideas belong to:
   fixes for them, which are now on `main`, merged directly or in a
   maintainer's combined pull request ([#548](https://github.com/elixpo/blogs.elixpo/pull/548),
   [#549](https://github.com/elixpo/blogs.elixpo/pull/549)). Those reports led to the
-  [read-access policy idea](/ideas/lixblogs-read-access-policy/).
+  [LixBlogs Access Policy idea](/ideas/lixblogs-read-access-policy/).
 - **Karan Ray ([karanray06](https://github.com/karanray06))** had five pull
   requests merged in Elixpo Open Source in August 2026.
 
@@ -125,7 +125,8 @@ agent. Maintainers use it for triage and maintenance: finding defects,
 proposing fixes and keeping repositories tidy. It is not a contributor, and
 it is not counted in any contributor figure on this site.
 
-In the five participating repositories it has opened nine pull requests.
+In five Elixpo repositories (LixBlogs, LixSketch, Crumb, Elixpo Open Source
+and Falera) it had opened nine pull requests by November 2026.
 The five that were merged were merged by a maintainer, but none has a
 recorded GitHub review. From November 2026, every change from `elixpoo` goes
 through a pull request that a maintainer reviews and approves on GitHub
