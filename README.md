@@ -54,7 +54,7 @@ Everything in this programme is built around that path:
 | 2 | [Accessible LixSketch canvas](https://gsoc.elixpo.com/ideas/accessible-lixsketch-canvas/) | LixSketch | Accessibility | 175 h | Intermediate |
 | 3 | [LixSketch collaborative agent editing](https://gsoc.elixpo.com/ideas/lixsketch-agent-editing/) | LixSketch | Agents, collaboration | 175 h | Intermediate |
 | 4 | [Crumb Sandbox: one policy for everything an agent runs](https://gsoc.elixpo.com/ideas/crumb-sandbox/) | Crumb | Rust, agent security | 350 h (175 h core) | Hard |
-| 5 | [Crumb connector contract and offline conformance kit](https://gsoc.elixpo.com/ideas/crumb-connector-contract/) | Crumb | Rust, agent security | 175 h | Intermediate |
+| 5 | [Crumb connector contract and offline conformance kit](https://gsoc.elixpo.com/ideas/crumb-connector-contract/) | Crumb | Rust, agent security | 175 h | Hard |
 | 6 | [Falera Simulator: FaleraOS and its CLI without a badge](https://gsoc.elixpo.com/ideas/oreo-badge-simulator/) | Falera | Embedded, open hardware | 175 h | Intermediate |
 | 7 | [FaleraOS update trust: signed OTA and App Store](https://gsoc.elixpo.com/ideas/falera-update-trust/) | Falera | Embedded security | 175 h | Hard |
 

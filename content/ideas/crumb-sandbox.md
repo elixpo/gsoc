@@ -36,7 +36,9 @@ toolchain caches (`crates/crumb-tools/src/sandbox.rs`,
 [#296](https://github.com/elixpo/crumb.elixpo/issues/296)); every path stays
 readable. External MCP servers start with a cleared environment but no limits
 on files or network. There is no network policy, and nothing on macOS or
-Windows.
+Windows. Those parts are reserved for this project: maintainers will not build
+network rules, Seatbelt support or confinement beyond shell commands before
+the programme.
 
 Agent CLIs such as Codex already pair Landlock and seccomp on Linux with
 Seatbelt profiles on macOS, and that is prior art to study. What Crumb needs
@@ -84,8 +86,9 @@ network rules and the full escape suite.
 - For 350 hours: the same policy is enforced on macOS through Seatbelt.
 - The escape suite (writes outside the workspace, persistence through tool
   caches, network access, reading secrets) runs in CI on Linux, and on macOS
-  for 350 hours. A scripted model drives the escape attempts with Crumb's
-  existing `ScriptedProvider`, so no API key is needed.
+  for 350 hours. A scripted model drives the escape attempts, so no API key
+  is needed; the scripted provider that exists inside the harness tests today
+  is extracted into a reusable test component.
 - `/permissions` reports the real enforcement state on every platform.
 
 ## Warm-up tasks

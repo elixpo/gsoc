@@ -1,7 +1,7 @@
 ---
 name: Falera
 slug: oreo
-order: 5
+order: 4
 repository: https://github.com/elixpo/falera
 homepage: https://falera.elixpo.com
 elixpo_page: https://elixpo.com/projects/oreo

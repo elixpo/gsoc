@@ -34,7 +34,7 @@ transport, `SerialLink` in `cli/oreo_cli/transport.py`, which drives
 MicroPython's raw REPL using the methods `open`, `enter`, `exec`, `restart`,
 `close`, `interrupt`, `mount` and `friendly`.
 
-The project has about 600 host tests for the OS and about 370 for the CLI.
+The project has about 600 host tests for the OS and about 350 for the CLI.
 `cli/tests/fake.py` and `cli/tests/test_contract.py` already run the CLI's
 code snippets in CPython against the real OS modules. What has never happened
 is running them on a real MicroPython runtime, over the real raw-REPL

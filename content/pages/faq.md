@@ -47,7 +47,7 @@ version, so you can propose either size; say which in your proposal.
 
 ## How difficult are the projects?
 
-Difficulty is Easy, Intermediate or Hard, as Google defines them. Three ideas are Hard and four are Intermediate. None is rated Easy: each
+Difficulty is Easy, Intermediate or Hard, as Google defines them. Four ideas are Hard and three are Intermediate. None is rated Easy: each
 needs real design work, and the warm-up tasks are the easy way in. Each idea page states its level.
 
 ## Who are the mentors?

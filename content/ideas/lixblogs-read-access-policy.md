@@ -67,7 +67,8 @@ new features such as search a safe base to build on.
   own rules.
 - Anyone can prove, offline and without secrets, that private content stays
   private, by running the real route handlers against a local database.
-- For 350 hours: full-text search over post bodies, built as the first
+- For 350 hours: full-text search over post bodies, extending today's title search
+  in `app/api/search/` and built as the first
   feature on the policy, so search can never show what the policy hides.
 
 The project can be proposed at **175 hours**: the policy, the harness and

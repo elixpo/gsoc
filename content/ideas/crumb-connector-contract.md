@@ -4,7 +4,7 @@ slug: crumb-connector-contract
 order: 5
 theme: Rust, agent security
 size_hours: 175
-difficulty: Intermediate
+difficulty: Hard
 primary_mentor: ez-vivek
 backup_mentor: Circuit-Overtime
 repository: https://github.com/elixpo/crumb.elixpo
@@ -31,8 +31,9 @@ access is hand-written native tools, and MCP servers are unscoped.
 
 There is no versioned contract for declaring scopes, storing and revoking
 credentials, separating read approval from write approval, or proving that a
-connector behaves correctly. The connector plans, linked under Material,
-say not to implement connectors until that contract is stable.
+connector behaves correctly. The earlier connector plans, linked under
+Material and since closed, said not to implement connectors until that
+contract was stable.
 
 An outside contributor is already mapping Crumb's GitHub tools and sketching
 the contract in the open on

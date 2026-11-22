@@ -6,7 +6,7 @@ lead: Each idea is a defined piece of work in one Elixpo codebase, with expected
 tldr:
   - Seven ideas in four codebases: two are 350 hours and five are 175 hours.
   - The 350-hour ideas define a 175-hour core, and two 175-hour ideas describe a 350-hour version.
-  - Three ideas are Hard and four are Intermediate; the warm-up tasks are the easy way in.
+  - Four ideas are Hard and three are Intermediate; the warm-up tasks are the easy way in.
   - Every idea has a primary mentor and a backup mentor.
   - Complete at least one warm-up task before you write your proposal.
   - Your own idea? Describe it to [gsoc@elixpo.com](mailto:gsoc@elixpo.com) first.
@@ -23,7 +23,7 @@ next:
   (large). The two 350-hour ideas each define a 175-hour core, and two
   175-hour ideas describe a 350-hour extended version; say which size you
   propose.
-- **Difficulty** follows Google's levels: three ideas are Hard and four are
+- **Difficulty** follows Google's levels: four ideas are Hard and three are
   Intermediate.
 - **Mentors**: each idea has a primary mentor, who is the contributor's main
   contact, and a backup mentor, who knows the project and can step in.

@@ -9,8 +9,8 @@ primary_mentor: Circuit-Overtime
 backup_mentor: divyanshuj91
 repository: https://github.com/elixpo/sketch.elixpo
 setup: https://github.com/elixpo/sketch.elixpo/blob/main/README.md
-summary: Let an AI agent and a person edit the same LixSketch diagram safely, with per-shape rebase, scene diffs, bound arrows and a keyless diagram benchmark.
-in_short: Make it safe for an AI assistant and a person to work on the same LixSketch diagram at once, and build a benchmark that measures how well agents draw.
+summary: Let an AI agent and a person edit the same LixSketch diagram safely, with per-shape rebase, scene diffs and arrows that stay bound to their shapes.
+in_short: Make it safe for an AI assistant and a person to work on the same LixSketch diagram at once, without one overwriting the other.
 skills:
   - JavaScript
   - Data structures for merging changes
