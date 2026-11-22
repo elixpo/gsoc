@@ -18,7 +18,7 @@ export const DISCUSSIONS_URL = "https://github.com/orgs/elixpo/discussions";
  * scripts/check_site.py checks the wording against it. While false, the
  * programme email is the main channel and pages say Discussions opens soon.
  */
-export const DISCUSSIONS_OPEN: boolean = false;
+export const DISCUSSIONS_OPEN: boolean = true;
 /** What Discussions is for, once open. */
 const DISCUSSIONS_PURPOSE = "GitHub Discussions is where applicants introduce themselves, ask about the ideas and share warm-up results.";
 const DISCUSSIONS_SOON = "GitHub Discussions for GSoC 2027 opens soon.";
