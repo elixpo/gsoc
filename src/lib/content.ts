@@ -27,10 +27,22 @@ export const slugify = (text: string) =>
  * "On this page" list can link to them. HTML comments are dropped. Tables get a focusable scroll wrapper
  * for small screens.
  */
+/**
+ * Highlighter: ==text== in content/ becomes <mark>text</mark>, drawn as a
+ * marker-pen stroke (see "mark" in globals.css). Code spans are left alone.
+ * Use it sparingly: one or two key phrases per page.
+ */
+export function highlight(html: string): string {
+  return html
+    .split(/(<code>[\s\S]*?<\/code>|<pre>[\s\S]*?<\/pre>)/)
+    .map((part) => (part.startsWith("<code>") || part.startsWith("<pre>") ? part : part.replace(/==([^=\n<>][^=\n]*?)==/g, "<mark>$1</mark>")))
+    .join("");
+}
+
 export function renderMarkdown(markdown: string): string {
   // Editorial notes (<!-- TODO ... -->) stay in the source, not in the published page.
   const html = marked.parse(markdown.replace(/<!--[\s\S]*?-->\n?/g, ""), { async: false, gfm: true }) as string;
-  return html
+  return highlight(html)
     .replace(/<h2>(.*?)<\/h2>/g, (_match, inner: string) => `<h2 id="${slugify(inner)}">${inner}</h2>`)
     .replace(/<table>/g, '<div class="table-scroll" role="region" tabindex="0" aria-label="Table (scrolls sideways on small screens)"><table>')
     .replace(/<\/table>/g, "</table></div>");
@@ -139,7 +151,7 @@ export const TLDR_MAX = 6;
  */
 export function tldr(items: string[], file: string): string[] {
   if (items.length < TLDR_MIN || items.length > TLDR_MAX) throw new Error(`${file}: "tldr" must have ${TLDR_MIN} to ${TLDR_MAX} items (found ${items.length})`);
-  return items.map((item) => marked.parseInline(item, { async: false }) as string);
+  return items.map((item) => highlight(marked.parseInline(item, { async: false }) as string));
 }
 
 function pageTldr(slug: string, data: Frontmatter, file: string): string[] {

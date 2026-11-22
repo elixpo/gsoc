@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { HeroCard, HeroGeometry, nextLinks, RoleChips, sizeLabel, Tldr, WhatNext } from "@/components/blocks";
+import { HeroCard, HeroGeometry, nextLinks, PageStart, RoleChips, ScrollCue, sizeLabel, Tldr, WhatNext } from "@/components/blocks";
 import { escapeHtml, getIdea, IDEAS, neighbours, projectAnchor, projectOf, type Idea, type IdeaSection } from "@/lib/content";
 import { CONFIG_ACCESS_ANCHOR, CONTACT_EMAIL, DISCUSSIONS_NOTE_SHORT, DISCUSSIONS_OPEN, DISCUSSIONS_URL, RESPONSE_EXPECTATION, SETUP_NOTE } from "@/data/site";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
@@ -125,6 +125,7 @@ export default async function IdeaPage({ params }: Props) {
           </p>
           <h1>{idea.title}</h1>
           <p className="lead">{idea.summary}</p>
+          <ScrollCue label="Read the idea" />
         </div>
         <HeroCard
           label="Key facts about this idea"
@@ -147,6 +148,7 @@ export default async function IdeaPage({ params }: Props) {
           }
         />
       </header>
+      <PageStart />
       <Tldr items={ideaTldr(idea)} />
 
       <div className="idea-body">

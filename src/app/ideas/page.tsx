@@ -30,12 +30,12 @@ export default function IdeasPage() {
         <Capacity />
       </PageHero>
       <Tldr items={page.tldrHtml} />
-      <section className="content content-split">
-        <Prose html={page.html} />
-      </section>
       <section className="content" aria-labelledby="ideas-overview">
         <h2 id="ideas-overview">All ideas at a glance</h2>
         <IdeaTable ideas={IDEAS} headingId="ideas-overview" />
+      </section>
+      <section className="content content-split">
+        <Prose html={page.html} />
       </section>
       <section className="content" aria-labelledby="ideas-summaries">
         <h2 id="ideas-summaries">What each idea is about</h2>

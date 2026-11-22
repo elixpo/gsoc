@@ -314,6 +314,29 @@ main:focus { outline:none; }
 .idea-hero .lead { font-size:var(--text-base); }
 .idea-body { display:grid; grid-template-columns:13.5rem minmax(0,1fr); gap:var(--space-3) clamp(1.5rem,4vw,4rem); align-items:start; padding-top:var(--space-5); }
 .idea-main { min-width:0; }
+
+/* Content-first heroes: shorter heroes, a "continue reading" cue, a compact key-facts card */
+.hero-card { padding-top:calc(var(--nav-height) + 2.25rem); padding-bottom:clamp(1.75rem,3vw,2.5rem); }
+.page-hero h1 { font-size:clamp(2.75rem,1.5rem + 3.2vw,4.75rem); }
+.idea-hero h1 { font-size:clamp(2.4rem,1.5rem + 2.6vw,3.9rem); }
+.scroll-cue { display:inline-flex; align-items:center; gap:.45rem; min-height:44px; margin-top:var(--space-3); color:var(--leaf); font:650 .78rem/1.4 var(--font-mono); letter-spacing:.13em; text-transform:uppercase; text-decoration:underline; text-decoration-color:var(--leaf-line); text-underline-offset:.3em; }
+.scroll-cue span { display:inline-block; animation:cue-nudge 1.8s ease-in-out infinite; }
+.scroll-cue:hover { color:var(--ink); }
+@keyframes cue-nudge { 0%,100% { transform:translateY(0); } 50% { transform:translateY(4px); } }
+@media (prefers-reduced-motion:reduce) { .scroll-cue span { animation:none; } }
+.page-start { height:0; }
+.prose .template-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem 1.25rem; }
+.prose .template-download { min-height:48px; display:inline-flex; align-items:center; padding:.75rem 1.3rem; border:1px solid var(--ink); border-radius:999px; background:var(--ink); color:var(--white); font-size:.9375rem; font-weight:700; text-decoration:none; }
+.prose .template-download:hover { border-color:var(--leaf); background:var(--leaf); color:var(--white); }
+/* Highlighter (==text== in content/): a marker-pen stroke across the lower part of the line */
+mark { padding:0 .12em; color:inherit; background:linear-gradient(100deg,rgba(255,205,70,0) 0,rgba(255,205,70,.7) .4em,rgba(255,205,70,.55) 60%,rgba(255,205,70,.75) calc(100% - .3em),rgba(255,205,70,0) 100%) 0 70% / 100% 62% no-repeat; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+.tldr mark a, mark a { color:inherit; }
+.idea-hero .hero-fact-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:1rem; }
+.idea-hero .hero-fact-list > div { grid-template-columns:1fr; gap:.1rem; padding:.45rem 0; }
+.idea-hero .hero-fact-list dd { font-size:.8125rem; }
+.idea-hero .hero-facts { gap:var(--space-2); padding:1.1rem 1.25rem; }
+.idea-table th, .idea-table td { padding-top:.6rem; padding-bottom:.6rem; }
+.idea-table td:nth-child(4), .idea-table td:nth-child(5) { white-space:nowrap; }
 .idea-section { padding:0 0 var(--space-5); }
 .idea-section + .idea-section { padding-top:var(--space-3); border-top:1px solid var(--line); }
 .idea-section:last-child { padding-bottom:0; }

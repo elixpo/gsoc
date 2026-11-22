@@ -4,7 +4,7 @@ description: Set up each Elixpo GSoC 2027 project from a clean checkout without 
 heading: Set up a project *without keys*
 lead: Every warm-up task can be done from a public checkout, without decrypting any Elixpo configuration. This page gives, for each of the four projects, what runs without keys, the commands taken from the repository's own files, how to tell it worked, and the limitations you may meet today.
 tldr:
-  - You never need an Elixpo key, password or paid account to set up a project or complete a warm-up task.
+  - ==You never need an Elixpo key, password or paid account== to set up a project or complete a warm-up task.
   - Each project below lists its prerequisites and the exact commands its own CI or README uses, with the source file.
   - Where a project falls short today, its section says so under "Known limitations".
   - If a step asks for a secret, report it as a setup issue. Questions go to [gsoc@elixpo.com](mailto:gsoc@elixpo.com).

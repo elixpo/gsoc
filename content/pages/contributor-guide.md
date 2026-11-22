@@ -8,7 +8,7 @@ tldr:
   - We offer a real project used in public, two mentors on every idea, review by people, and credit for attributable work.
   - The steps: choose an idea, set it up, complete a warm-up task, introduce yourself, make a small pull request, then write your proposal.
   - Questions and introductions: {{ask-channel}}. {{discussions}}
-  - Submit your final proposal on the [official GSoC website](https://summerofcode.withgoogle.com/). Proposals sent anywhere else are not considered.
+  - Submit your final proposal on the [official GSoC website](https://summerofcode.withgoogle.com/). ==Proposals sent anywhere else are not considered.==
   - Step one is choosing an idea: [browse the seven project ideas](/ideas/).
 next:
   - /ideas/

@@ -4,8 +4,8 @@ description: Evidence-linked answers for GSoC reviewers: Elixpo's open-source re
 heading: Why Elixpo *for GSoC*
 lead: Short answers to the questions a Google Summer of Code reviewer is likely to ask about Elixpo, each with a link to the page or public record that supports it. Elixpo is applying to be a mentoring organisation for 2027; Google decides which organisations take part.
 tldr:
-  - Elixpo has developed open source in public on GitHub since February 2024.
-  - The source code of all four participating codebases is licensed under the MIT License.
+  - Elixpo has developed open source in public on GitHub ==since February 2024==.
+  - The source code of all four participating codebases is ==licensed under the MIT License==.
   - Three mentors, two administrators and a coordinator, for one planned contributor.
   - Every answer below links the page or public record that supports it.
   - Contact: [gsoc@elixpo.com](mailto:gsoc@elixpo.com).
